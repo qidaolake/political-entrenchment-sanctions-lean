@@ -1,0 +1,138 @@
+\section{Parametric families and the example economies in use}
+\label{app:witness}
+
+This section records the paper's parametric families, the benchmark economy at which the
+conditions of persistence and shock entry hold, and an economy in the class outside the
+quadratic--linear family. Further example economies, among them the roster and the
+mechanism-active $P_3$ economy, are in \Cref{app:further-examples}.
+
+\subsection{The parametric examples}
+\label{sec:model:family}
+\label{sec:model:examples}
+
+The main text names no functional form. Its parametric examples, a section of the
+main text until 2026-10-16, are collected here with the closed forms of its results.
+
+\central{The paper's examples are parametric: a family of payoffs with closed
+forms, a law of motion, and an interest-group polity.}\footnote{The verifications
+of the examples are in the rest of this section and in \Cref{app:fourgroup};
+the numerical example economies, among them the dual-basin economy, are in
+\Cref{sec:moved-main-2026-10-15,app:dual-basin-economy}.} The
+\emph{quadratic--linear family} is
+\begin{equation}
+\Us(x,a,s)=-\tfrac{q}{2}s^2+s\,(u_0-ka+rx)+wx,
+\qquad
+\Ut(x,a,s)=-\ell a+s\,(nx-c)+vx,
+\label{eq:ql-family}
+\end{equation}
+with $u_0,w,\ell,k,v>0$, $r,n\ge0$ and $c>n$, so that a sanction hurts the
+target at every state. A member is an economy in the class when its sanction
+cost is curved enough (\Cref{ass:sender-concavity}), and then every bound of the
+class has a closed form; for instance $\underline s=u_0/q$ when $u_0\le q$. The
+cross terms $r$ and $n$ let entrenchment raise the sender's marginal return to
+sanctioning and soften the target's marginal pain. Compliance neutrality holds
+automatically, $\Us(x,a,0)=wx$.
+
+\central{The \emph{partial-adjustment law} moves the state a fixed fraction of
+the way toward the current sanction.} At adjustment speed $\delta$,
+\begin{equation}
+\F(x,s)=(1-\delta)x+\delta s,\qquad 0<\delta<1,
+\label{eq:affine}
+\end{equation}
+which satisfies \textup{(F1)--(F5)} at every speed. The \emph{interest-group
+polity} of \Cref{app:fourgroup}, with two groups in each country, derives both
+governments' payoffs from a within-period political contest; it is a
+structured example for the welfare results of \Cref{sec:welfare}.
+
+
+\paragraph{Closed forms of the main text's results on the family.} For every
+transition in the class, the myopic benchmark's compliance
+(\Cref{prop:myopic-benchmark}) is $a^{00}(x)=(u_0+rx)/k$; in the target-only case of
+\Cref{thm:four-cells} the sanction is $(u_0+rx)/q$ and the state converges to
+$x^{10}_\infty=u_0/(q-r)$. Under the partial-adjustment law and with $u_0\le q$, the
+entrenchment condition (\Cref{ass:loss-offset}) reads
+\begin{equation}
+c\le\frac{\beta_T\,\delta\,(v+nu_0/q)}{1-\beta_T(1-\delta)} ,
+\label{eq:loss-offset-family}
+\end{equation}
+its strong form (\Cref{sec:results:security}) is \eqref{eq:loss-offset-family} with
+$n=0$, and the premium bound of \Cref{sec:results:wedge} is
+\begin{equation}
+\frac{\beta_S\,w\,\delta}{q\bigl(1-\beta_S(1-\delta)\bigr)} .
+\label{eq:sender-wedge-family}
+\end{equation}
+
+\subsection{The benchmark economy with persistence and shock entry}
+\label{app:witness:benchmark}
+
+The non-monotone (B2) economy of \Cref{tab:witness-roster} is the first
+application of \Cref{sec:existence:nonvacuity}; its statement, moved here from
+the main text, is the following.
+
+\begin{theorem}[A benchmark with persistence and shock entry]
+\label{thm:b2-benchmark}
+Within the general-$\F$ model there exists an economy with
+$\beta_T,\beta_S>0$, a non-degenerate high political basin
+$[\bar x,1]$, and a stationary feedback Stackelberg equilibrium $E$ such that:
+\begin{enumerate}[label=(\roman*)]
+\item both equilibrium value functions are nonconstant;
+\item the target chooses full non-compliance at the basin pivot and the
+sender's realized sanction there is strictly interior;
+\item the dynamic sanction at the pivot strictly exceeds the sanction
+in the myopic equilibrium;
+\item from every $x_0\in[\bar x,1]$, the basin is invariant and the
+realized-sanction sequence stays above $\bar x$ and is non-decreasing;
+and
+\item maximum sanctions have a strictly positive minimum drift below
+the basin, so a temporary sanction shock of finite length moves every initial
+state into $[\bar x,1]$, after which the conclusions in (iv) hold.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+At the parameter vector of the non-monotone (B2) row of
+\Cref{tab:witness-roster} (\path{b2Params}; the machine-checked statement is
+\path{b2NonMono_three_goals_dominance}),
+$(\beta_T,\beta_S)=(9/10,1/2)$ and $\bar x=1/2$. Both discounted value
+differences are nonzero. At the pivot, the target action is zero and the
+dynamic sanction is $7/8$, compared with $5/14$ in the myopic
+equilibrium. The same construction establishes basin invariance, the
+sanction floor, monotonicity, and positive minimum drift under a
+temporary sanction shock at the maximum sanction.
+\end{proof}
+
+\subsection{An economy in the class outside the family}
+\label{app:witness:quartic}
+The class contains an economy that is
+quadratic--linear in no payoff coordinate and affine in no transition
+coordinate (\path{Examples/ChordEconomyQuarticWitness.lean}). Its payoffs are
+\[
+\Us=-\tfrac32s^2-\tfrac18s^4+s\bigl(1-3a-\tfrac14a^2+\tfrac12x+\tfrac18x^2\bigr)+x-\tfrac1{10}x^2,
+\]
+\[
+\Ut=-a-\tfrac18a^2-4s-\tfrac14s^2+\tfrac12xs+\tfrac18x^2s+30x-x^2,
+\]
+the transition is \texttt{quadDiagF}, refuted against the affine law at every
+rate (\path{qw_F_ne_affineF}), the sender discounts at $\beta_S=1/2$, and the
+myopic best response is the maximizer of the sender's strictly concave stage payoff,
+defined as an argmax rather than by a formula. Neither payoff is
+quadratic--linear at any coefficients (\path{qwU_S_ne_symU_S},
+\path{qwU_T_ne_symU_T}), and ten of the lower and upper rate pairs of panel~A0
+are strictly split (\path{qw_pairs_split}). Each rate is a
+theorem on the cube: $w\in[4/5,31/20]$, $\sigma_x=1/20$, $\tau_x=1/5$,
+$r\in[1/2,3/4]$, $q=3$, $\bar Q=9/2$, $k\in[3,7/2]$, $u\in[1,13/8]$ for the
+sender; $\ell\in[1,5/4]$, $p_{\mathrm{lo}}=27/8$, $c=9/2$, the envelopes
+$28+\tfrac34s$ and $30+\tfrac12s$ for the target; slopes
+$g,d\in[2/5,3/5]$ with $M_x=M_{\mathrm{cs}}=1/5$ and the other moduli zero;
+$\sigma_V=1$. The target's envelope slopes are ordered
+$n_{\mathrm{lo}}=3/4>n_{\mathrm{hi}}=1/2$, as two envelopes with different
+intercepts may be. At $\beta_T=1/30$ the relief equilibrium exists and its
+sanction rule is zero at every state (\path{qwRelief_reliefEquilibrium},
+\path{qwRelief_rule_zero}). At $\beta_T=1/2$ the entrenchment condition and the increasing-differences
+condition hold, \Cref{thm:four-cells} holds in all four cases, and both forward-looking
+incentives change behavior at the constructed equilibrium
+(\path{qwDefiance_four_cells}, \path{qwDefiance_both_channels}). The economy is
+an existence certificate: it shows that the class is inhabited outside the
+family, and it says nothing about how common such economies are or about
+magnitudes.
+

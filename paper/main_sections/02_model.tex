@@ -1,0 +1,744 @@
+% @econ-contract section
+% id: MODEL_ENVIRONMENT
+% role: Define the sequential game, the general class of transitions and objectives, the myopic benchmark with its one-period assumptions and prop:myopic-benchmark, the forward-looking equilibrium concept and the assumptions of the forward-looking results; define every symbol a later equation uses, and close with a notation table.
+% question_answered: Who acts, in what order, with what information and objectives, under which restrictions, and what counts as an equilibrium?
+% required_inputs: The accepted paper question and claim ceiling (PAPER_MASTER_PLAN).
+% output_handoff: The objects, the admissible class with its theorem-specific conditions, and the solution concept used by Section 3.
+% claim_ceiling: Definitions and maintained restrictions, and one result, the myopic benchmark (prop:myopic-benchmark); no other existence, uniqueness or comparative claim.
+% exclusions: The basin assumptions A1-A3 and the conditional persistence machinery (appendix); the precise forms of the class's rate bounds and of the conditions other than the entrenchment condition (Online Appendix, panel A0); the conflict-structure reading (Section 5).
+% exact_ref: tex-label:sec:model
+% support_status: NOT_APPLICABLE
+% status: HUMAN_CONFIRMED
+% human_confirmed_at: 2026-10-01
+% decision_ref: suggestions/2026-10-01-manuscript-rebuild/01_STRUCTURE_PROPOSAL.md#author-decisions-recorded
+% confirmation_scope: Section role and claim ceiling only.
+% reopen_if: Timing, information, the transition class, the payoff class or the solution concept changes.
+% amended_at: 2026-10-13 (exposition: only the symbols that enter later equations are defined here; the other bounds and conditions are named in words with their precise forms in the Online Appendix; the dual-basin economy first among the examples; a notation table; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#exposition-2026-10-13); 2026-10-15 (parametric examples only, the dual-basin economy and the numeric partial-adjustment example moved to the Online Appendix; the conditions as numbered Assumptions 1--10 marked with the results that use them; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md); 2026-10-16 (layout decisions D1-D5: the myopic benchmark with its one-period assumptions and prop:myopic-benchmark first, then forward-looking governments with their assumptions; the two conditions only the Sender-only case reads moved to the discussion; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#layout-myopic-benchmark-first-2026-10-16); 2026-10-16 (the parametric examples, former Section 2.3, moved to the Online Appendix, sec:model:examples, on the author's word; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#section-23-to-the-online-appendix-2026-10-16); 2026-10-16 (N183 promoted: a published precedent, or the contrast, at each assumption; Assumption 6 named Increasing differences after the cited works; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#n183-promoted-literature-precedents-and-their-terms-2026-10-16); 2026-10-16 (compliance neutrality and the strong entrenchment condition leave the numbered assumptions and are stated with the results that read them; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#four-conditions-leave-the-numbered-assumptions-2026-10-16); 2026-10-16 (structure plan S1-S7 against the cited papers; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#structure-plan-s1-s7-2026-10-16); 2026-10-19 (coauthor wording review: wording of the coauthor's line-by-line revision applied where not wrong; sender/target in lower case; non-compliance for defiance; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#coauthor-wording-review-2026-10-19); 2026-10-20 (the moves within a date as an enumerated list; (F1)-(F5) as a list; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#acemoglu-comparison-and-model-exposition-2026-10-20); 2026-10-20 (subsection openings in the style of Acemoglu and coauthors, N187; the claims unchanged; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#acemoglu-style-subsection-openings-2026-10-20); 2026-10-20 (plain-language reminders at the mathematics, N188; formal statements unchanged; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#plain-language-reminders-at-the-mathematics-2026-10-20); 2026-10-20 (equation prose in the forms of Acemoglu and Robinson 2008, N189; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#equation-prose-in-the-style-of-acemoglu-and-robinson-2026-10-20)
+% @end-econ-contract
+\section{Theoretical framework: sanctions and political entrenchment}
+\label{sec:model}
+
+\subsection{Timing, actions, and the political state}
+\label{sec:model:timing}
+
+% @econ-contract paragraph
+% id: MODEL_TIMING
+% role: State the timing as an enumerated sequence of the moves within a date (the author, 2026-10-20), observability and discounting, and what a myopic reading is; give the source of the order of moves (Eaton and Engers without the threat stage, the author's word 2026-10-13).
+% depends_on: MODEL_ENVIRONMENT
+% handoff: The state variable and its interpretation.
+% exact_ref: bib:Eaton1992#scope=paper
+% source_role: bib:Eaton1992#scope=paper => The authors' stated source of the move order (author's word, 2026-10-13): their sanctions game, in which the sender is committed between reviews (the reading recorded in app:literature), adapted without its threat stage; supports no result.
+% support_status: UNVERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Consider two governments, a target and a sender, that interact at dates $t=0,1,2,\ldots$
+and move in sequence at each date.} Each date proceeds as follows.
+\begin{enumerate}[label=(\arabic*)]
+\item Both governments observe the political state $x_t\in[0,1]$, defined below.
+\item The target chooses compliance $a_t\in[0,1]$.
+\item The sender observes $a_t$ and chooses a sanction intensity $s_t\in[0,1]$.
+\item Each government receives its per-period payoff, which depends on
+$(x_t,a_t,s_t)$ (\Cref{sec:model:objectives}).
+\item The state moves to $x_{t+1}$ by the law of motion~\eqref{eq:transition} below.
+\end{enumerate}
+The order adapts the sanctions game of \citet{Eaton1992} without its threat stage:
+the sender announces nothing in advance and chooses its sanction after observing
+compliance. The target therefore knows that its choice triggers the sender's response
+and, in the economies studied here, that less compliance makes the sender want to
+sanction more (\Cref{sec:model:objectives}). A period is one such review of
+compliance, and every result uses this order. Actions and the state are observed by
+both, and information is complete. The target and the sender discount their own
+payoffs at $\beta_T,\beta_S\in[0,1)$. A government is \emph{myopic} when its discount
+factor is zero and \emph{forward-looking} when it is positive.
+
+% @econ-contract paragraph
+% id: MODEL_STATE
+% role: Say what the political state measures and how sanctions move it.
+% depends_on: MODEL_TIMING
+% handoff: The objectives.
+% exact_ref: bib:Curtat1996#p=185
+% source_role: bib:Curtat1996#p=185 => Monotonicity assumption of supermodular stochastic games (transition stochastically increasing in the state and actions); (F2)-(F3) are its deterministic counterpart (N183, 2026-10-16).
+% exact_ref: bib:Amir2002#p=43
+% source_role: bib:Amir2002#p=43 => Assumption (A7), higher states and actions lead to higher states, the stochastic form of (F2)-(F3) (N183).
+% exact_ref: bib:AcemogluRobinson2008#p=278
+% source_role: bib:AcemogluRobinson2008#p=278 => State dependence of political power (democracy more likely to follow democracy), read as the discrete-state precedent of (F2) (N183).
+% exact_ref: bib:Kaempfer1988#p=791
+% source_role: bib:Kaempfer1988#p=791 => The rally-around-the-flag effect by which sanctions can raise the regime supporters political effort, the precedent of (F3) (N183).
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The state $x_t$ is the de facto political power of the target's
+isolationist and anti-concession constituencies, whose position is tied to
+continued confrontation, and sanctions move it.} A sanction above the inherited
+state raises it, and one below erodes it. Its law of motion is a reduced form
+for how that power evolves. The law is
+\begin{equation}
+x_{t+1}=\F(x_t,s_t),
+\label{eq:transition}
+\end{equation}
+where $\F\colon[0,1]^2\to[0,1]$ satisfies the following conditions throughout.
+\begin{enumerate}[label=\textup{(F\arabic*)}]
+\item $\F$ is continuous.
+\item $\F$ is non-decreasing in the current state, so power persists.
+\item $\F$ is non-decreasing in the sanction.
+\item $\F(x,x)=x$ for every $x$: a sanction equal to the current state reproduces it.
+\item For every $x,s\in[0,1]$, the state moves strictly toward the current sanction,
+\[
+s<x\ \Longrightarrow\ \F(x,s)<x,
+\qquad
+x<s\ \Longrightarrow\ x<\F(x,s).
+\]
+\end{enumerate}
+With \textup{(F2)} and \textup{(F4)}, \textup{(F5)} rules out overshooting,
+\[
+s<x\ \Longrightarrow\ s\leq\F(x,s)<x,
+\qquad
+x<s\ \Longrightarrow\ x<\F(x,s)\leq s,
+\]
+so zero sanctions strictly erode every positive state, $\F(x,0)<x$ for
+$x\in(0,1]$, and full sanctions strictly raise every state below one,
+$x<\F(x,1)$ for $x\in[0,1)$. Comparing state and sanction is a normalization
+within the model. Monotonicity of the law of motion in the state and in the sanction,
+\textup{(F2)}--\textup{(F3)}, is the deterministic counterpart of the assumption,
+standard in stochastic games, that higher states and actions lead to higher states
+(\citealp[p.~185]{Curtat1996}; \citealp[p.~43]{Amir2002}). \textup{(F2)} is the state
+dependence of political power of \citet[p.~278]{AcemogluRobinson2008} in a
+continuous state, and \textup{(F3)} the rally effect by which a sanction can raise
+the political effort of the target regime's supporters \citep[p.~791]{Kaempfer1988}. An interval of states from a threshold up to $1$ is a
+\emph{high basin}, and one from $0$ up to a threshold a \emph{low basin}; the
+results ask when equilibrium play keeps the state in such an interval.
+
+\subsection{Objectives and the political stakes}
+\label{sec:model:class}
+\label{sec:model:objectives}
+
+% @econ-contract paragraph
+% id: MODEL_CLASS_PAYOFFS
+% role: Define the payoffs and values, say that they are government objectives, and define full defiance and relief; one footnote gives where the precise forms of the bounds are.
+% depends_on: MODEL_STATE
+% handoff: The general class and the bounds that enter later equations.
+% exact_ref: tex-label:app:proofs:placable
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{We next turn to the governments' objectives: each government's per-period payoff depends
+on the political state, the target's compliance and the sanction.}\footnote{The Online Appendix lists
+every bound of the class in the form the proofs use (panel~A0 of
+\Cref{app:proofs:placable}) and gives the closed forms of the derived constants
+(\Cref{app:closedforms}).} Write $\Ut,\Us\colon[0,1]^3\to\R$ for the target's
+and the sender's per-period payoffs in $(x,a,s)$, and $\Vt,\Vs$ for their
+continuation values, which are bounded continuous functions of the state. The
+payoffs are continuous. They are government objectives: they weight the
+interest groups each government answers to, so they can differ from national
+welfare (\Cref{sec:welfare}). A \emph{target policy} $\alpha$ gives compliance
+as a function of the state. \emph{Full non-compliance} means $a=0$, and the
+\emph{full-non-compliance policy} $\alpha\equiv0$ chooses it at every state; an
+equilibrium (\Cref{sec:model:equilibrium}) with this policy is a
+\emph{full-non-compliance equilibrium}. \emph{Full compliance} means $a=1$, and the
+\emph{full sanction} $s=1$. \emph{Relief} means $s=0$, and \emph{permanent
+relief} means $s=0$ at every date. The target
+\emph{accommodates} when its compliance brings the sanction to zero.
+
+% @econ-contract paragraph
+% id: MODEL_CLASS_TRANSITION
+% role: Say where the results use no functional form, and define the bounds that enter the main text's equations (state and sanction slopes of the transition, the Sender's stake and cost curvature, the Target's stake and pain).
+% depends_on: MODEL_CLASS_PAYOFFS
+% handoff: The economic content of the two state stakes.
+% exact_ref: tex-label:app:proofs:placable
+% exact_ref: bib:DorussenMo2001#p=407
+% source_role: bib:DorussenMo2001#p=407 => The kappa parameter by which rent-seeking helps the target government decrease the costs of sanctions, a fixed-parameter version of entrenchment softening a sanction (N183).
+% support_status: VERIFIED
+% status: PROPOSED
+% merged_from: MODEL_TRANSITION_GENERALITY
+% @end-econ-contract
+\central{The results use no functional form for the transition or for either
+payoff.} They hold on a \emph{general class} of
+economies defined by \textup{(F1)--(F5)} and by bounds on the slopes and
+curvature of the transition and on the rates of the payoffs. No derivative is
+assumed: each slope bound applies to every chord. The next state rises with the
+current state and with the sanction, the latter at a rate bounded away from zero.
+Both payoffs rise with the state at rates bounded away from zero, the target's
+the more so the heavier the sanction, because entrenchment softens a sanction's
+pain. A fixed version of this property is the parameter by which rent-seeking helps a
+target government decrease the costs of sanctions in \citet[p.~407]{DorussenMo2001}. The curvature of the sender's cost of sanctioning and the pain of a
+sanction to the target are bounded. The main text states these bounds in words
+where a result uses them; their symbols and precise forms are in
+\Cref{sec:moved-main-2026-10-13:conditions} of the Online Appendix. The paper's
+parametric examples, a quadratic--linear family of payoffs and a partial-adjustment
+law of motion, are in \Cref{sec:model:examples} of the Online Appendix.
+
+% @econ-contract paragraph
+% id: MODEL_STAKES
+% role: State the two positive state stakes as the maintained political-incentive region, and whose valuations they are.
+% depends_on: MODEL_CLASS_TRANSITION
+% handoff: Compliance incentives and compliance neutrality.
+% exact_ref: bib:Kaempfer1988#scope=paper
+% source_role: bib:Kaempfer1988#scope=paper => Sender-side interest-group logic that the positive Sender stake restates as a continuation value; it does not establish the sign of any coefficient here.
+% exact_ref: bib:BajoghliNasrSalehiIsfahaniVaez2024#p=118
+% source_role: bib:BajoghliNasrSalehiIsfahaniVaez2024#p=118 => The authors' statement (read 2026-10-02) that in the United States lifting sanctions on Iran carries a political cost while imposing them accrues political capital; motivation for the Sender's stake (argument plan, 2026-10-13), not an identification of it.
+% note: 2026-10-13 the response to the Sender-stake objection and the three distinct Sender-side features added (argument plan item 4).
+% exact_ref: bib:DorussenMo2001#p=403
+% source_role: bib:DorussenMo2001#p=403 => Audience costs make the sender prefer to remain with sanctions for domestic reasons while the target refuses to yield, and make sanctions cheaper for the sender the more extreme the target policy: a formal Sender-side precedent for the stake and for the state-sanction complementarity (N183).
+% exact_ref: bib:AcemogluRobinson2008#p=268
+% source_role: bib:AcemogluRobinson2008#p=268 => The elite invest in de facto power for the returns from controlling politics, the precedent of the Target incumbent stake (N183).
+% support_status: UNVERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The positive lower bounds on the two payoffs' state rates give both
+incumbents a direct stake in the state.} The sender's stake is the substantive
+assumption, and a reader may doubt that a sender gains from its adversary's
+entrenchment. The sender's own coalition is modeled as sustained by a visibly
+entrenched adversary, so the constituency the sanction strengthens abroad keeps
+the sanction popular at home. The assumption restates the sender-side
+interest-group logic of \citet{Kaempfer1988} as a continuation value. Sender-side politics of this kind are
+documented: in the case of Iran,
+lifting sanctions can carry a domestic political cost in the sanctioning country
+that imposing them does not \citep[p.~118]{BajoghliNasrSalehiIsfahaniVaez2024}.
+In a formal model of ending sanctions, audience costs lead the sender to prefer to
+remain with sanctions for domestic reasons as long as the target refuses to yield
+\citep[p.~403]{DorussenMo2001}.
+Three sender-side features are distinct. The bound on its state rate is a
+stake in the state itself. A state--sanction complementarity, where present,
+makes the return to sanctioning rise with the state, as a state--sanction cross
+term in the sender's payoff does; the audience-cost term of \citet{DorussenMo2001} is
+one, under which sanctions cost the sender less the more extreme the target's
+policy. And in the class the sender's one-period marginal
+return to a first unit of sanction against a non-compliant target is positive at every
+state, so its myopic best response sanctions a non-compliant target everywhere, and so
+does its forward-looking response whenever its continuation value does not fall
+with the state. Likewise the bound on the target's state rate describes the
+target incumbent's valuation of the organized
+influence the state measures, as the elite of \citet[p.~268]{AcemogluRobinson2008}
+invest in de facto power for the returns from controlling politics. An explicit interest-group polity, with two groups
+in each country, derives both stakes from a within-period political contest
+(\Cref{sec:welfare}).
+
+% @econ-contract paragraph
+% id: MODEL_COMPLIANCE_NEUTRALITY
+% role: Explain why compliance is costly at a fixed sanction, what pays for it, the compliance neutrality that relief results read, and the floor sanction and Target slope the entrenchment condition uses.
+% depends_on: MODEL_STAKES
+% handoff: The example economies.
+% exact_ref: bib:Marinov2005#p=567
+% source_role: bib:Marinov2005#p=567 => That concessions are costly is a central notion in the literature on economic pressure (quoted); the same page says the sender government cares about policy concessions, the coercion-model contrast with compliance neutrality (N183).
+% exact_ref: bib:Eaton1992#p=903
+% source_role: bib:Eaton1992#p=903 => The target utility decreases in its compliance action at given sanctions, the same restriction; the sender utility increases in it, the contrast with compliance neutrality (N183).
+% exact_ref: bib:Kaempfer1988#scope=eqs-1-1prime
+% source_role: bib:Kaempfer1988#scope=eqs-1-1prime => Sanctioning-country utilities defined over the sanction and its domestic incidence, not the target policy: the public-choice view that compliance neutrality follows (N183).
+% exact_ref: bib:Tsebelis1990#scope=Assumptions-2-4
+% source_role: bib:Tsebelis1990#scope=Assumptions-2-4 => The sender prefers to sanction a violation and not to sanction compliance, the binary form of a positive substitution rate (N183).
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Unlike the state, compliance pays the target only through the
+sender's response.} It is costly at a fixed sanction, and it lowers the sender's
+marginal return to sanctioning: compliance and the sanction are substitutes in the
+sender's payoff, which has decreasing differences in them, at a rate we call the
+\emph{substitution rate}. That concessions are costly to
+the target is `a central notion in the literature on economic pressure'
+(\citealp[p.~567]{Marinov2005}; see also \citealp[p.~903]{Eaton1992}), and the sender of
+\citet[Assumptions~2 and~4]{Tsebelis1990} prefers to sanction a violation and not to
+sanction compliance, the binary form of a positive substitution rate.
+\emph{Compliance neutrality},
+\begin{equation}
+\Us(x,a,0)=\Us(x,0,0),
+\label{eq:zero-sanction-neutrality}
+\end{equation}
+says that compliance is payoff-irrelevant to the sender at a zero sanction:
+compliance matters to the sender only through its decision to sanction. It is not
+one of the paper's assumptions; the three results that construct relief state it
+(the relief side of \Cref{sec:results:patience}, \Cref{prop:planner-efficient-persistence}
+and the sender-only case of \Cref{sec:discussion:horizons}). Along relief the
+sanction is zero, so the sender's value can be computed before the target's
+compliance is known; the positive results about non-compliance hold without it. Most coercion models let the sender value
+compliance directly (\citealp[p.~903]{Eaton1992}; \citealp[p.~567]{Marinov2005});
+compliance neutrality follows instead the public-choice view of
+\citet[eqs.~(1) and~(1$'$)]{Kaempfer1988}, in which the payoffs in the sanctioning
+country are defined over the sanction and its domestic incidence rather than over
+the target's policy. For future reference, write $\underline s$ for the
+sanction that maximizes the sender's per-period payoff against full non-compliance at
+the state $x=0$ (unique on the class, \Cref{sec:model:myopic}). A more entrenched
+adversary does not lower that sanction, so $\underline s$ is the least sanction a
+myopic sender imposes on a non-compliant target.
+
+\subsection{The myopic benchmark}
+\label{sec:model:myopic}
+\label{sec:model:conditions}
+
+% @econ-contract paragraph
+% id: MODEL_MYOPIC_BENCHMARK
+% role: Solve the game without foresight first (the author's layout decisions D1-D5, 2026-10-16): the myopic best response, the myopic equilibrium, the three one-period assumptions it uses with their economic meaning and their uses, and prop:myopic-benchmark (the Target buys relief and the state erodes), the benchmark against which the forward-looking results are read.
+% depends_on: MODEL_COMPLIANCE_NEUTRALITY
+% handoff: Forward-looking governments.
+% merged_from: MODEL_CLASS_CONDITIONS (its one-period part) and MODEL_RESPONSES (the myopic best response), 2026-10-16
+% exact_ref: tex-label:prop:myopic-benchmark
+% exact_ref: tex-label:app:proofs:placable
+% exact_ref: tex-label:sec:moved-main-2026-10-13:conditions
+% exact_ref: bib:AcemogluRobinson2008#scope=Assumption-3
+% source_role: bib:AcemogluRobinson2008#scope=Assumption-3 => A condition on primitives that makes the elite investment in de facto power interior, the analogue of the interiority assumptions (N183).
+% exact_ref: bib:BressanJiang2020#scope=Lemma-2.3
+% source_role: bib:BressanJiang2020#scope=Lemma-2.3 => A boundary condition that keeps the follower control interior in a feedback Stackelberg game (N183).
+% exact_ref: bib:Tsebelis1990#scope=Assumption-2
+% source_role: bib:Tsebelis1990#scope=Assumption-2 => If there is no violation the sender prefers not to sanction, the binary form of the myopic lifting condition (N183).
+% exact_ref: bib:Lacy2004#p=31
+% source_role: bib:Lacy2004#p=31 => The coercer prefers not to impose sanctions if the target complies, the binary form of the myopic lifting condition (N183).
+% exact_ref: bib:HufbauerSchottElliott2007#p=50
+% source_role: bib:HufbauerSchottElliott2007#p=50 => Sanctions succeed when the target costs of defiance exceed its costs of compliance, the total form of myopic relief (N183).
+% exact_ref: bib:Marinov2005#p=566
+% source_role: bib:Marinov2005#p=566 => The leadership concedes only if the cost of noncompliance exceeds the cost of granting the demands, the total form of myopic relief (N183).
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{We first analyze a benchmark in which neither government looks ahead; in this benchmark
+the target accommodates and sanctions end.}\footnote{The precise form of each assumption is in panel~A0 of
+\Cref{app:proofs:placable} and in \Cref{sec:moved-main-2026-10-13} of the Online
+Appendix, and \Cref{prop:myopic-benchmark} is proved in panel~F of
+\Cref{app:proofs:placable}.} A myopic government gives no weight to the future
+political state. The sender's \emph{myopic best response} is
+\begin{equation}
+\sigM(x,a)\in\arg\max_{s\in[0,1]}\Us(x,a,s),
+\end{equation}
+that is, the sanction that gives the sender the highest payoff in the current period, at
+state $x$ and compliance $a$. It exists by continuity on the compact interval and is
+unique on the class, so $\underline s=\sigM(0,0)$: the myopic sanction against full
+non-compliance when entrenchment is zero. The class also requires it to be continuous in the
+state and compliance; only the results built on the myopic sender use this.
+
+\begin{definition}[Myopic equilibrium]
+\label{def:myopic}
+In the \emph{myopic equilibrium} both discount factors are zero. The sender plays
+its myopic best response $\sigM$ after every compliance level, and at every state
+the target chooses the compliance $\alpha(x)$ that maximizes its per-period payoff
+against that response, $\Ut(x,a,\sigM(x,a))$. Its sanction rule is
+$x\mapsto\sigM(x,\alpha(x))$, and from an initial state $x_0$ its realized path is
+$s_t=\sigM(x_t,\alpha(x_t))$, $x_{t+1}=\F(x_t,s_t)$.
+\end{definition}
+
+The benchmark uses three assumptions on the one-period problem. Each states one
+economic restriction and is marked with the results that use it; their dynamic
+counterparts, which count the future value of the state, come with the
+forward-looking governments in \Cref{sec:model:equilibrium}.
+
+\begin{assumption}[Myopic interiority]
+\label{ass:stage-interiority}
+In the one-period problem, the sender's marginal gain from sanctioning a
+non-compliant target falls short of the marginal cost of the maximal sanction, so a
+myopic sender never sanctions fully.
+\end{assumption}
+\noindent\textit{Used in:} \Cref{prop:myopic-benchmark}; \Cref{thm:regime-separation}
+and \Cref{prop:welfare-nonidentification}, which compare with the benchmark; and the
+cases with a myopic sender in \Cref{sec:discussion:horizons}.\par
+\noindent\textit{Interpretation:} It keeps the myopic sender's sanction against a
+non-compliant target below the maximum. Interiority conditions of this kind are
+standard: \citet[Assumption~3]{AcemogluRobinson2008} impose a condition on primitives
+that makes the elite's investment in de facto power interior, and
+\citet[Lemma~2.3]{BressanJiang2020} keep the follower's control in the interior of
+$[0,1]$ in a feedback Stackelberg game.
+
+\begin{assumption}[Compliance ends the myopic sanction]
+\label{ass:stage-placability}
+In the one-period problem, full compliance removes the sender's marginal gain from
+sanctioning, so a myopic sender does not sanction a fully compliant target.
+\end{assumption}
+\noindent Also termed the \emph{myopic lifting condition}.\par
+\noindent\textit{Used in:} \Cref{prop:myopic-benchmark}, and through it in
+\Cref{thm:regime-separation} and \Cref{prop:welfare-nonidentification}.\par
+\noindent\textit{Interpretation:} It makes relief available in exchange for
+compliance. It is the continuous-action form of the standard assumption that a sender
+prefers not to sanction a target that complies (\citealp[Assumption~2]{Tsebelis1990};
+\citealp[p.~31]{Lacy2004}).
+
+\begin{assumption}[Myopic relief]
+\label{ass:stage-relief}
+In the one-period problem, a unit of compliance costs the target less than the
+sanction pain it removes.
+\end{assumption}
+\noindent\textit{Used in:} \Cref{prop:myopic-benchmark}, and through it in
+\Cref{thm:regime-separation} and \Cref{prop:welfare-nonidentification}; and in
+\Cref{prop:collapse-threshold}. In \Cref{thm:four-cells} it follows from the
+forward-looking relief condition \textup{(RL)} of \Cref{sec:discussion:horizons}.\par
+\noindent\textit{Interpretation:} It makes relief worth its price. It is the marginal
+form of the familiar condition that sanctions succeed when the target's costs of
+non-compliance exceed its costs of compliance
+\citep[p.~50]{HufbauerSchottElliott2007}; in \citet[p.~566]{Marinov2005} the target
+leadership concedes only if the cost of noncompliance exceeds the cost of granting
+the sender's demands.
+
+\begin{proposition}[The myopic benchmark]
+\label{prop:myopic-benchmark}
+For every economy in the class satisfying
+Assumptions~\ref{ass:stage-interiority}--\ref{ass:stage-relief}, the myopic target's
+unique optimum at every state is partial compliance $a^{00}(x)\in(0,1)$---the minimum
+compliance level at which the myopic sanction falls to zero. Under this policy, the
+myopic equilibrium exhibits no sanctions at any state, and from any initial state the political state falls at least geometrically to zero.
+\end{proposition}
+
+\central{Without foresight, the target trades compliance for relief.} Myopic
+interiority keeps the myopic sender's sanction against a non-compliant target below
+the maximum, and the myopic lifting condition causes it to vanish before compliance
+is complete. Thus a minimum compliance level $a^{00}(x)$ suffices to end the
+sanction. Myopic relief makes this relief worth the cost: in the one-period problem,
+a unit of compliance costs the target less than the pain it eliminates. The target
+complies exactly to this threshold, the sender imposes no sanctions, and in the
+absence of sanctions the state erodes at least geometrically---since the next-period
+state responds to the sanction at a rate bounded away from zero. Persistent sanctions
+therefore require a mechanism absent from the one-period framework: the value each
+government attaches to the political state its actions leave behind.
+
+\subsection{Forward-looking governments}
+\label{sec:model:equilibrium}
+\label{sec:model:forward}
+
+% @econ-contract paragraph
+% id: MODEL_RESPONSES
+% role: Define the dynamic Sender response with the greatest selection, and the Target Bellman operator (the myopic best response moved to the myopic benchmark, 2026-10-16).
+% depends_on: MODEL_MYOPIC_BENCHMARK
+% handoff: The equilibrium definition.
+% exact_ref: bib:QuahStrulovici2009#scope=paper
+% source_role: bib:QuahStrulovici2009#scope=paper => Monotonicity of the greatest selection under interval dominance; it does not establish any result of this paper by itself.
+% exact_ref: tex-label:app:existencemachinery
+% support_status: UNVERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{We now allow both governments to look ahead: a forward-looking sender responds to
+observed compliance through its dynamic best response, and a forward-looking target
+optimizes given this response.}\footnote{The existence routes, the comparison with
+history-dependent strategies and the role of the myopic best response's
+continuity are in \Cref{app:existencemachinery,app:moved-ad} of the Online
+Appendix.} Given a sender continuation value $\Vs$, the sender's dynamic objective at
+state $x$, with compliance $a$ and sanction $s$, is
+\begin{equation}
+\Us(x,a,s)+\beta_S\Vs(\F(x,s)).
+\label{eq:sender-obj}
+\end{equation}
+The first term is the sender's payoff $\Us(x,a,s)$ in the current period. The second
+term is the discounted value $\beta_S\Vs(\F(x,s))$ of the state that the sanction leaves
+for the next period, so the sender trades this period's payoff against the value of the
+state it leaves.
+The sender's \emph{dynamic best response} $\sigDynTop_{\Vs}(x,a)$ is the largest
+sanction that maximizes this objective (the greatest-selection tie-breaking rule).
+This response exists because the argmax set is compact, and it is monotonic under the
+interval-dominance conditions applied below \citep[Thm.~1]{QuahStrulovici2009}. Strict
+concavity of the dynamic objective in the sanction level---including the continuation
+term---implies the argmax is a singleton. Given this response, the target's Bellman
+equation is
+\begin{equation}
+\Vt(x)=\max_{a\in[0,1]}\bigl\{\Ut(x,a,\sigDynTop_{\Vs}(x,a))
+   +\beta_T\Vt(\F(x,\sigDynTop_{\Vs}(x,a)))\bigr\}.
+\label{eq:T-bellman}
+\end{equation}
+Intuitively, the target weighs what compliance costs it today against two effects:
+compliance changes the sender's response $\sigDynTop_{\Vs}(x,a)$, and through that response
+it changes the state the target inherits next period. A target policy $\alpha$ is Bellman-optimal for $\Vt$ if $\alpha(x)$ attains the
+maximum on the right-hand side at every $x\in[0,1]$.
+
+% @econ-contract paragraph
+% id: MODEL_EQUILIBRIUM_DEF
+% role: Define the stationary feedback Stackelberg equilibrium with greatest selection and the set E (how existence is obtained and the scope of the concept moved to sec:discussion:scope, 2026-10-16, structure plan S4).
+% depends_on: MODEL_RESPONSES
+% handoff: Realised paths and the equilibrium law of motion.
+% exact_ref: bib:MaskinTirole2001#p=191
+% source_role: bib:MaskinTirole2001#p=191 => A Markov strategy depends only on payoff-relevant past events; the strategies here are Markov in this sense (N183).
+% exact_ref: bib:basar1999#scope=Def-3.29-Sec-7.3
+% source_role: bib:basar1999#scope=Def-3.29-Sec-7.3 => The feedback Stackelberg solution, with the Stackelberg property at every stage; the equilibrium is its stationary infinite-horizon form (N183).
+% exact_ref: bib:BretonAljHaurie1988#pp=74-75
+% source_role: bib:BretonAljHaurie1988#pp=74-75 => Stationary strategies with the leader conditioning on the state and the follower on the state and the observed leader action, the same strategy spaces (N183).
+% exact_ref: bib:topkis1998#scope=Thm-2.8.3
+% source_role: bib:topkis1998#scope=Thm-2.8.3 => The argmax has a greatest element that is increasing in the parameter, the selection used in (E4) (N183).
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The equilibrium concept builds on the dynamic best-response structure: the
+sender's response is optimal following every feasible compliance choice, both on and
+off the equilibrium path, and the target correctly anticipates this response.}
+Strategies are \emph{feedback} (or Markov) strategies: the target's compliance depends
+only on the current state, and the sender's sanction depends on the current state and
+the observed compliance level. These are Markov strategies in the sense of
+\citet{MaskinTirole2001}. The equilibrium defined below is the stationary
+infinite-horizon version of the feedback Stackelberg solution, which exhibits the
+Stackelberg property at every stage \citep[Def.~3.29 and Sec.~7.3]{basar1999}.
+\citet{BretonAljHaurie1988} define analogous stationary strategies for discounted
+games, where the leader's strategy depends on the state and the follower's strategy
+depends on both the state and the leader's observed action. Formally, a
+\emph{stationary feedback Stackelberg equilibrium} is a tuple $E=(\Vt,\Vs,\alpha)$
+satisfying:
+\begin{enumerate}[label=(E\arabic*)]
+\item[(E0)] The target feedback policy $\alpha\colon[0,1]\to[0,1]$ is continuous.
+\item[(E1)] $\Vt$ satisfies the target Bellman equation \eqref{eq:T-bellman}.
+\item[(E2)] $\Vs$ satisfies the sender Bellman equation
+\[
+\Vs(x)=
+\Us\bigl(x,\alpha(x),\sigDynTop_{\Vs}(x,\alpha(x))\bigr)
++\beta_S\Vs\!\left(
+\F\bigl(x,\sigDynTop_{\Vs}(x,\alpha(x))\bigr)
+\right).
+\]
+That is, $\Vs(x)$ is the sender's payoff now plus its discounted value from the next
+state, when the target follows $\alpha$ and the sender responds optimally.
+\item[(E3)] $\alpha$ is Bellman-optimal for $\Vt$.
+\item[(E4)] The sender uses greatest-selection tie-breaking: $\sigDynTop_{\Vs}$ is the
+largest maximizer of \eqref{eq:sender-obj} over $s\in[0,1]$, pointwise in $(x,a)$.
+\end{enumerate}
+In models with complementarities, greatest-selection tie-breaking is the standard
+rule \citep[Thm.~2.8.3]{topkis1998}. Within the class of economies studied, the maximizer
+is unique, so this tie-breaking rule never binds. Let $\mathcal E$ denote the set of
+such equilibria. Because both value functions must solve their respective fixed-point
+equations, a sender solution given a fixed target policy is an intermediate
+construction step, not an equilibrium itself.
+
+% @econ-contract paragraph
+% id: MODEL_REALISED_MYOPIC
+% role: Define realised paths and the equilibrium law of motion, and place the myopic equilibrium of sec:model:myopic in E as its member with both discount factors zero (the comparator of the dominance results).
+% depends_on: MODEL_EQUILIBRIUM_DEF
+% handoff: The assumptions of the forward-looking results.
+% exact_ref: tex-label:thm:dominance
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Each equilibrium generates a sanction rule and, from each initial
+state, a realized path of states and sanctions.} Given $E\in\mathcal E$, the
+\emph{sanction rule of $E$} is the map $x\mapsto\sigDynTop_{\Vs}(x,\alpha(x))$.
+Given also an initial state $x_0\in[0,1]$, the realized path of states and
+sanctions $(x_t,s_t)$ is defined recursively by
+\begin{equation}
+s_t=\sigDynTop_{\Vs}(x_t,\alpha(x_t)),
+\qquad
+x_{t+1}=\F(x_t,s_t),
+\qquad
+x_0\ \text{given}.
+\end{equation}
+In words, the rule sets the sanction from the current state, and the law of motion then
+moves the state. The map $x\mapsto\F\bigl(x,\sigDynTop_{\Vs}(x,\alpha(x))\bigr)$ is the
+\emph{equilibrium law of motion}, and a \emph{steady state} is a state that it
+leaves unchanged. The myopic equilibrium of \Cref{def:myopic} is an equilibrium in
+$\mathcal E$ of the same economy with both discount factors set to zero: at a zero
+sender discount factor the dynamic best response is the myopic best response.
+
+% @econ-contract paragraph
+% id: MODEL_CLASS_CONDITIONS
+% role: State the assumptions of the forward-looking results as numbered assumptions with their economic meaning, each marked with the results that use it (the author, 2026-10-15: "they are also assumptions, just mark when they will be used"; 2026-10-16: the one-period assumptions with the benchmark first, then the dynamic ones). Concavity, entrenchment and increasing differences carry thm:regime-separation; interiority and the lifting condition are used by particular later results; compliance neutrality, the strong entrenchment condition and the two Sender-only conditions are not numbered assumptions and are stated with the results that read them (the author, 2026-10-16). Display only the entrenchment condition. The usage marks follow the appendix record of which result reads which condition (sec:moved-main-2026-10-13:conditions and the proofs of thm:regime-separation and thm:four-cells).
+% depends_on: MODEL_REALISED_MYOPIC
+% handoff: What the entrenchment condition means.
+% exact_ref: tex-label:app:proofs:placable
+% exact_ref: tex-label:sec:moved-main-2026-10-13
+% exact_ref: tex-label:sec:moved-main-2026-10-13:conditions
+% exact_ref: bib:basar1999#scope=Remark-7.5
+% source_role: bib:basar1999#scope=Remark-7.5 => Strict convexity of the follower stage-plus-cost-to-go objective gives a unique follower response, the role of the concavity assumption (N183).
+% exact_ref: bib:StokeyLucas1989#scope=Thm-4.8
+% source_role: bib:StokeyLucas1989#scope=Thm-4.8 => Strict concavity of the return makes the value strictly concave and the policy single-valued, the textbook route (N183).
+% exact_ref: bib:Curtat1996#scope=Thm-4.1
+% source_role: bib:Curtat1996#scope=Thm-4.1 => Strict diagonal dominance of the stage payoff with a continuation term that preserves it gives a unique response (N183).
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\paragraph{Assumptions for forward-looking results.}
+\central{Three assumptions underpin the benchmark comparison; two additional
+assumptions are used for specific results.}\footnote{The examples on either side of the
+entrenchment condition are in \Cref{app:witness:quartic,app:formalization} of the
+Online Appendix.} \Cref{ass:sender-concavity} is maintained throughout the class of
+economies; the rest are hypotheses of the results that invoke them. Conditions used
+only in a minority of results are stated alongside those results: compliance
+neutrality (\Cref{sec:model:objectives}), the strong entrenchment condition
+(\Cref{sec:results:security}), and the two conditions for the sender-only case
+(\Cref{sec:discussion:horizons}).
+
+\begin{assumption}[Concavity]
+\label{ass:sender-concavity}
+The curvature of the sender's sanctioning cost exceeds the curvature contributed by
+its continuation value: the marginal cost of sanctioning rises faster than the future
+gain from a more entrenched adversary can offset.
+\end{assumption}
+\noindent\textit{Used in:} all results on the class, as a maintained class
+condition.\par
+\noindent\textit{Interpretation:} This condition guarantees the forward-looking sender has exactly one optimal sanction level at each state and compliance level.
+Strict concavity of the follower's stage-plus-continuation objective in its own action
+is the standard source of a unique follower response in feedback Stackelberg games
+\citep[Remark~7.5]{basar1999}. When the payoff is concave and the set of feasible
+choices is convex, standard recursive arguments imply concave continuation values \citep[Thm.~4.8]{StokeyLucas1989}, and stochastic
+games with complementarities restrict the transition so that the continuation term
+preserves the strict concavity of stage payoffs \citep[Thm.~4.1]{Curtat1996}. The
+sender's value need not be globally concave, so \Cref{ass:sender-concavity} bounds the
+curvature it can add.
+
+\begin{assumption}[Entrenchment condition]
+\label{ass:loss-offset}
+The target incumbent values the entrenchment generated by one unit of sanctions, in
+discounted terms, at least as much as the immediate pain of the sanction.
+\end{assumption}
+\noindent Formally: the minimum increase in next-period state per unit of sanction,
+multiplied by the minimum discounted value of a unit of state to the target under
+sanctions, weakly exceeds the maximum pain a unit of sanction can impose (inequality \eqref{eq:loss-offset} in the Online Appendix).\par
+\noindent\textit{Used in:} \Cref{thm:regime-separation} (to support non-compliance as
+the target's best reply); \Cref{prop:welfare-nonidentification}; persistence without
+hysteresis (\Cref{sec:results:lockin}); the participation result of
+\Cref{sec:discussion:relief}; and the forward-looking target cases in
+\Cref{sec:discussion:horizons} (including the long-run gap).
+
+% @econ-contract paragraph
+% id: MODEL_LOSS_OFFSET_MEANING
+% role: Interpret the entrenchment-condition margin as a strong political restriction that is sufficient, not necessary, for defiance, and record that economies meeting the conditions exist inside and outside the family.
+% depends_on: MODEL_CLASS_CONDITIONS
+% handoff: Increasing differences and the assumptions used by particular results.
+% merged_from: MODEL_CLASS_INHABITED
+% exact_ref: tex-label:app:witness:quartic
+% exact_ref: bib:AcemogluEgorovSonin2012#scope=Example-1
+% source_role: bib:AcemogluEgorovSonin2012#scope=Example-1 => A sufficiently forward-looking elite blocks a reform that raises its payoff and a myopic elite adopts it, the political-economy precedent of the entrenchment-condition trade-off and of the myopic-forward contrast (N183).
+% exact_ref: bib:Powell2006#pp=189-190
+% source_role: bib:Powell2006#pp=189-190 => A faction in power prefers costly fighting to a settlement that lowers its chance of keeping power, more so the lower the cost and the more valuable control: the two ingredients of entrenchment-condition (N183).
+% exact_ref: bib:HalcoussisKaempferLowenberg2021#p=156
+% source_role: bib:HalcoussisKaempferLowenberg2021#p=156 => Non-democratic regimes can pass on the costs of sanctions to the governed (Nossal 1999, quoted), the first ingredient of entrenchment-condition (N183).
+% exact_ref: bib:Peksen2021#p=187
+% source_role: bib:Peksen2021#p=187 => The consensus that political elites mostly remain insulated from the hardships of sanctions (N183).
+% exact_ref: bib:Marinov2005#p=564
+% source_role: bib:Marinov2005#p=564 => Sanctions raise the chance that a leader loses office on average: the scope limit stated with entrenchment-condition (N183).
+% exact_ref: bib:EscribaFolchWright2010#p=341
+% source_role: bib:EscribaFolchWright2010#p=341 => Single-party and military regimes shift fiscal pressure better than personalist ones: the scope of the cost-shifting ingredient (N183).
+% exact_ref: bib:topkis1998#scope=Thm-3.9.2-Lemma-2.6.2
+% source_role: bib:topkis1998#scope=Thm-3.9.2-Lemma-2.6.2 => Increasing differences between action and state gives monotone policies (Thm 3.9.2); a function of a same-sign linear combination is supermodular iff convex (Lemma 2.6.2): the term and the partial-adjustment case of Assumption 6 (N183).
+% exact_ref: bib:Curtat1996#p=185
+% source_role: bib:Curtat1996#p=185 => Cardinal complementarity between own action and the state in stochastic games, the stage part of Assumption 6 (N183).
+% exact_ref: bib:BalbusReffettWozny2014JET#p=826
+% source_role: bib:BalbusReffettWozny2014JET#p=826 => Increasing differences between actions and states added to obtain Markov equilibria monotone in the state (N183).
+% exact_ref: bib:Amir2002#p=44
+% source_role: bib:Amir2002#p=44 => The usual complementarity conditions on transitions exclude deterministic transitions, why Assumption 6 sits on the dynamic objective (N183).
+% exact_ref: bib:HopenhaynPrescott1992#p=1403
+% source_role: bib:HopenhaynPrescott1992#p=1403 => Complementarity must be high relative to the curvature of utility for increasing differences, the same structure as Assumption 6 (N183).
+% exact_ref: bib:Eaton1992#p=914
+% source_role: bib:Eaton1992#p=914 => Compliance ends the interaction by the rules of the game, the contrast with the lifting condition, which derives it from the Sender's incentives (N183).
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The entrenchment condition is a demanding statement about a government
+that would rather be sanctioned than weaken its base.} It is consistent with the
+case-study descriptions of \Cref{sec:discussion:evidence}: in the model's terms,
+a leadership that can pass sanction costs to its citizens bears little pain from a sanction, and one
+reluctant to weaken its control values the power the state measures. The trade-off has precedents in political
+economy. In \citet[Example~1]{AcemogluEgorovSonin2012} a sufficiently forward-looking
+elite blocks a reform that would raise its payoff, which a myopic elite adopts,
+because of the further changes the reform would engender; in
+\citet[pp.~189--190]{Powell2006} a faction in power prefers costly fighting to a
+settlement that lowers its chance of keeping power, the more so the lower the cost
+of fighting and the more valuable control of the state. For sanctions,
+non-democratic regimes can `simply pass on the costs of the sanctions to the
+governed' (Nossal, quoted by \citealp[p.~156]{HalcoussisKaempferLowenberg2021}),
+and political elites `mostly remain insulated' from the hardship
+\citep[p.~187]{Peksen2021}. The condition describes a class of targets: sanctions
+raise the chance that a leader loses office on average \citep[p.~564]{Marinov2005},
+and the capacity to shift their costs is greater in single-party and military
+regimes than in personalist ones \citep[p.~341]{EscribaFolchWright2010}. It makes the forward-looking
+target maintain non-compliance, and it is sufficient, not necessary: an economy with quadratic--linear
+payoffs fails it and still has non-compliance as the target's unique optimum.
+Economies that meet the conditions exist inside the quadratic--linear family and
+outside it, including one whose transition is affine in neither coordinate.
+
+\begin{assumption}[Increasing differences]
+\label{ass:dynamic-complementarity}
+The sender's dynamic objective exhibits increasing differences in the sanction and
+the state: a more entrenched adversary raises the marginal attractiveness of
+sanctioning for the sender by enough to offset two opposing forward-looking forces:
+the curvature of the sender's continuation value, and the state-dependent effect of sanctions on next-period state dynamics.
+\end{assumption}
+\noindent\textit{Used in:} \Cref{thm:regime-separation}; persistence without
+hysteresis (\Cref{sec:results:lockin}). It ensures the sender's response to
+non-compliance is non-decreasing in the state; \Cref{prop:welfare-nonidentification},
+\Cref{prop:patience-existence}, the long-run gap of \Cref{sec:discussion:horizons},
+and the participation result of \Cref{sec:discussion:relief} rely only on this
+monotonicity property.\par
+\noindent\textit{Interpretation:} The condition holds when the transition follows a partial-adjustment law---shifting the state a fixed fraction of the way toward the
+current sanction---and the sender's payoff is convex in the state. Increasing
+differences in a player's own action and the state is the standard sufficient
+condition for monotone state-contingent policies
+(\citealp[Thm.~3.9.2]{topkis1998}; \citealp{Curtat1996};
+\citealp[p.~826]{BalbusReffettWozny2014JET}). Standard regularity conditions on transition rules exclude deterministic laws of motion \citep[p.~44]{Amir2002}, so the
+assumption is imposed on the sender's dynamic objective. As in
+\citet[p.~1403]{HopenhaynPrescott1992}, the complementarity must be large relative to
+competing curvature effects; under the partial-adjustment law, the continuation term
+exhibits increasing differences if and only if the continuation value is convex
+\citep[Lemma~2.6.2]{topkis1998}.
+
+\begin{assumption}[Interiority]
+\label{ass:interiority}
+Even accounting for the future value of a higher state, the sender's marginal gain
+from sanctioning a non-compliant target falls short of the marginal cost of the
+maximum sanction. Thus a forward-looking sender never imposes full sanctions.
+\end{assumption}
+\noindent\textit{Used in:} the premium bound of \Cref{sec:results:wedge}; the result in
+\Cref{thm:regime-separation} that forward-looking sanctions are never at full
+intensity; \Cref{prop:collapse-threshold}; the results of \Cref{sec:results:lockin}
+on full-non-compliance equilibria and on persistence without hysteresis; the
+relief-side analysis of \Cref{sec:results:patience}; and \Cref{thm:four-cells}.\par
+\noindent\textit{Interpretation:} This condition implies \Cref{ass:stage-interiority},
+and it allows a forward-looking sender to sanction strictly more heavily than a
+myopic one without reaching the upper bound.
+
+\begin{assumption}[Compliance ends the sanction]
+\label{ass:placability}
+Full compliance eliminates the sender's marginal gain from sanctioning, including
+future gains, so a forward-looking sender also does not sanction a fully compliant
+target.
+\end{assumption}
+\noindent Also termed the \emph{lifting condition}.\par
+\noindent\textit{Used in:} \Cref{prop:collapse-threshold}; the results of
+\Cref{sec:results:lockin} on full-non-compliance equilibria and on persistence without
+hysteresis; the relief-side analysis of \Cref{sec:results:patience}; and the
+myopic-target cases in \Cref{sec:discussion:horizons}.\par
+\noindent\textit{Interpretation:} This condition implies \Cref{ass:stage-placability},
+and it preserves the availability of relief in exchange for compliance under
+forward-looking senders. In dynamic sanction games, compliance ends sanctions by the
+rules of the game \citep[p.~914]{Eaton1992}; here it arises endogenously from the
+forward-looking sender's incentives.
+
+% @econ-contract display
+% id: TAB_NOTATION
+% role: Collect the symbols that enter the paper's equations, with their meaning, grouped by family in the order the text introduces them (exposition decision D4, 2026-10-13; regrouped 2026-10-15 on the author's word: "go by symbol families in sequence").
+% evidence_represented: The definitions of this section.
+% permitted_inference: Meanings only.
+% reader_takeaway: Every symbol used in an equation of the main text is defined here or at the result that uses it.
+% claim_supported: MODEL_ENVIRONMENT
+% source_artifact: paper/main_sections/02_model.tex
+% caption_scope: Notation only.
+% support_status: NOT_APPLICABLE
+% status: PROPOSED
+% @end-econ-contract
+\begin{table}[htbp]
+\centering\footnotesize
+\caption{Notation, by family in the order the text introduces them. Symbols that
+appear in a single result are defined there.}
+\label{tab:notation}
+\begin{tabular}{@{}p{0.24\linewidth}p{0.70\linewidth}@{}}
+\toprule
+Symbol & Meaning \\
+\midrule
+\multicolumn{2}{@{}l}{\emph{The game} (\Cref{sec:model:timing})} \\
+$x_t$, $a_t$, $s_t$ & political state, target compliance, sanction at date $t$, each in $[0,1]$ \\
+$\beta_T$, $\beta_S$ & discount factors of the target and the sender \\
+$\F$ & law of motion of the state, $x_{t+1}=\F(x_t,s_t)$ \\
+\addlinespace
+\multicolumn{2}{@{}l}{\emph{Payoffs, values and policies} (\Cref{sec:model:objectives})} \\
+$\Ut$, $\Us$ & per-period payoffs of the target and the sender governments \\
+$\Vt$, $\Vs$ & their continuation values \\
+$\alpha$ & target policy (compliance as a function of the state) \\
+$\underline s$ & least sanction a myopic sender imposes on a non-compliant target \\
+\addlinespace
+\multicolumn{2}{@{}l}{\emph{The myopic benchmark} (\Cref{sec:model:myopic})} \\
+$\sigM$ & sender's myopic best response \\
+$a^{00}$ & least compliance that ends the myopic sanction (\Cref{prop:myopic-benchmark}) \\
+\addlinespace
+\multicolumn{2}{@{}l}{\emph{Forward-looking governments} (\Cref{sec:model:equilibrium})} \\
+$\sigDynTop_{\Vs}$ & sender's dynamic best response \\
+$\mathcal E$ & set of stationary feedback Stackelberg equilibria \\
+\addlinespace
+\multicolumn{2}{@{}l}{\emph{Equilibrium outcomes} (\Cref{sec:results})} \\
+$x^{11}_\infty$ & steady state of the forward-looking equilibrium (\Cref{thm:regime-separation}); superscripts name the case \\
+$\bar x$ & threshold of a high basin $[\bar x,1]$ (\Cref{prop:lock-in}) \\
+$\beta_T^*$ & threshold discount factor for full non-compliance (\Cref{prop:collapse-threshold}) \\
+\addlinespace
+\multicolumn{2}{@{}l}{\emph{Welfare} (\Cref{sec:welfare})} \\
+$W_g$, $\theta_g$ & welfare of interest group $g$ and its political weight (\Cref{def:interest-group-representation}) \\
+$W$ & aggregate welfare, the sum of the $W_g$ \\
+\addlinespace
+\multicolumn{2}{@{}l}{\emph{One government forward-looking} (\Cref{sec:discussion:horizons})} \\
+$a^{01}$ & least compliance that ends a forward-looking sender's sanction (\Cref{tab:four-cells}) \\
+$x^{10}_\infty$ & long-run state when a forward-looking target faces a myopic sender (\Cref{thm:four-cells}) \\
+\bottomrule
+\end{tabular}
+\end{table}

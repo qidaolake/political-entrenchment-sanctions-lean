@@ -1,0 +1,294 @@
+{
+ "Sanctions.AbstractGame.Params.F_mem_derived": {
+  "hash": "c39f3a2e639f65f60b757038c0e194b6d3aa3a0917b5ea071b69def5ff431af5",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.AbstractGame.Params.SenderPersistenceBasinTop.of_pivot_beats_subpivot": {
+  "hash": "1522d24eed9c89c7b152145549d8648e2f7bdc8c2ff9efbe17475cea0c4d8a17",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.AbstractGame.Params.TransitionStateLipschitzWith.toOn": {
+  "hash": "15e26a2e3bcf3f1f2fdd32445cca14851236eab2c311e2d8aef8fce2fbd6b24d",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.AbstractGame.Params.V_S_valueLipschitzWith_of_transitionStateLipschitzOn": {
+  "hash": "441ab60ab10f8350e7a18c5de35575accb1b321727ac101d63ccaa1eac7d82b5",
+  "reviewed": "317e4278d431"
+ },
+ "Sanctions.AbstractGame.Params.ValueClass2.existsUnique_fixedPoint_in_carrier_schur": {
+  "hash": "0ab1a9e4bb13112abc9a24b92acd57efafad2bc6c5e8304157f8d2e2dacddf9b",
+  "reviewed": "317e4278d431"
+ },
+ "Sanctions.AbstractGame.Params.ValueClass2.exists_feedbackStackelbergTop_from_valueClass2_with_membership_schur": {
+  "hash": "42f938e75c594a52a026eda71850506f46ccbe0b9910ab447f23834a18f40556",
+  "reviewed": "317e4278d431"
+ },
+ "Sanctions.AbstractGame.Params.all_stage_lt_dynamic_of_greatest_stage_improvement": {
+  "hash": "aa1e609b7acee1f66d6338548a454d563f7758c8a149034e2313f505264d2632",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.AbstractGame.Params.diagonal_and_sanction_monotone_insufficient_for_strict_step": {
+  "hash": "d8744ea8f63b1fb4bb87a21f382b5055a2f9918b42e4271118b6579ea144459e",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.AbstractGame.Params.star_chord_of_pairwise_chord": {
+  "hash": "73dae127d5210cb42f1070fd8bc965bf8a813532eb98327b893c585ab12796b3",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.AbstractGame.Params.subpivot_chord_forces_static_response_ge_pivot": {
+  "hash": "bccec03e4f2160d4f504f39c012d74626e7991f34a96001da5de01fb412b89e6",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.ChordEconomy.targetArgmax_eq_zero": {
+  "hash": "bc7feb5b4088662eef16c0d3f08c7625d5654b5c19a0e1f20a84f19d6f146de9",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.ChordEconomy.targetOnly_no_lowBasin_containing_zero": {
+  "hash": "2a541d9b98584c0d9550ce7ef67c2639e8da4e36ebecef556f9ee42572cb6877",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.ChordEconomy.toParams_strictAdjustment": {
+  "hash": "5a8d46ceca8817b2f898d1acb060ea3a9b86b981e070a22b9a629cd7b06f5138",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.ChordEconomyCs.reliefSharp_of_scaled_Mtot_le": {
+  "hash": "022b3c02eb4df976e34d42857f07910c25048dcb56f76739c49133808af1cae8",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.ChordEconomyCs.reliefSharp_uniform_iff": {
+  "hash": "4be598e1211582218384f27e12c36bc5d02bb2018dcf6248da39b355f6f165db",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.ChordEconomyCs.senderOnly_post_relief_low_persistence": {
+  "hash": "3553567a7375afc07226c8d09fe26755437eb87519b5e0235029f6c6b8c5a750",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.ChordEconomyRelief.gSharp_balance": {
+  "hash": "f22dffd52cdff9ff17dfbf8315363501096589e7627a798eb81cece461b08258",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.ChordEconomyRelief.myopic_post_relief_low_persistence": {
+  "hash": "92625588ecdbf7022b75f017bf3d9f5a324b9e1f45ded5aba28ddd218460b4f1",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.ChordEconomyTwoSided.dynamic_no_lowBasin_containing_zero": {
+  "hash": "af2141dc99d65c4f8712d7821dafc53c532b8d030f5f2d9c0c80da6149663298",
+  "reviewed": "317e4278d431"
+ },
+ "Sanctions.Examples.ChordEconomyTwoSided.gT_balance": {
+  "hash": "2ba506ee0867d3a8175164a5626f60fbdf2235079735f36918ead6b5140ff006",
+  "reviewed": "317e4278d431"
+ },
+ "Sanctions.Examples.ChordEconomyTwoSided.margin_of_flat": {
+  "hash": "54e702073bc4694ca53afbc77f7034d8bd04676b404039419a47713b3a76ae5f",
+  "reviewed": "317e4278d431"
+ },
+ "Sanctions.Examples.ChordEconomyTwoSided.placable_post_episode_nonexit_generalF": {
+  "hash": "89035938ef82611885202ec2e8772be10ca4e3c2a2c8fdca7b8d35bb6d48eee1",
+  "reviewed": "317e4278d431"
+ },
+ "Sanctions.Examples.PlacableEconomyF.DAU_on_carrier": {
+  "hash": "423ad51d8d14da16a46b18447a83f9d0a2edb51f3e233a646521ab5006d29357",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.PlacableEconomyF.senderObj_strictConcaveOn": {
+  "hash": "76bb98465662f0883b004bd5ae610f8bbc6e9d7052d31c3d4f69def2dedf85d6",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.dbCert_lowBasin_rule_eq_zero": {
+  "hash": "5e04a09ce08dfe798a8b8b9e1acf402b33ff6efa7e6d918d947446ad23b7753b",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.endpoint_floor_not_whole_basin_corner": {
+  "hash": "899d6b64653c90d899997b44f0ec272ef01a0c37bdde11479ff93a87caf87b61",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.exists_binding_rally_member": {
+  "hash": "d8261a7a29c82445141c8f298d5cea257c4419c52f49913eceff4cf09023df2d",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.exists_equality_placability_partial_compliance": {
+  "hash": "7ebef527126959744debac48401e3370b4824e5c9f9fcfbd40e8eb24b771392a",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.exists_floor_member_not_old": {
+  "hash": "4e4527b0c13a50760b0ab6da3177eb18aaba31b26091bc5cd84fd0055ae2eae6",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.exists_member_response_monotone_not_margin": {
+  "hash": "c0bfb961947e0430fdc5af4e3f2e361ba85bf677b0a23333ca887ba8cb1c5d39",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.exists_sender_only_full_compliance": {
+  "hash": "cfcf299e83b7188e09b1910e3a62904152f055327b94e54f199c70b17e4022e9",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.exists_sharp_relief_member_not_old": {
+  "hash": "8d1f19602b51a87e617d858c8ea1d5337d3fec49302a584c871562a2ada5291b",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.hTMargin_of_old": {
+  "hash": "5f4bb57b7ff8662c1bda5e1fb4fabfa9bc8c61ea78223e1a26640352df8c047e",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.lossOffset_iff_v_ge": {
+  "hash": "09f4ccf0b6ea6487f3c7c4b5fedfb4ea726e9b07f445684042815022daf81924",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.loss_offset_converse_counterexample": {
+  "hash": "8b90aed803a6efa4017afbb50dd8998ebe7afb7e9c1bafba0ce01f2b0e87bc90",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableAffine_flip": {
+  "hash": "81b61be8fd85a73c7ef5d957df6eba930bc6abe991c695c192b41b87e6b9350e",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableAffine_four_cells": {
+  "hash": "702b760421a0f2f95f49e22b29a9dc002d32360d0f848da7cb959fa843a7e1d0",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableAffine_relief": {
+  "hash": "08d0f2ed53b0c493baa911cfbfd8d79aeefad41edd3a8e0aaa78f9426a060d5c",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableAffine_riccati_feasible": {
+  "hash": "a1afbd4b4cac9baa412fab882df76800836bdd93edebc4793e1b051d1caee4a3",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableBox_four_cells": {
+  "hash": "9d130afa4c9e9f7283d319781eea2c2b44caf760e76ce5e0e0c7329163a8c0f7",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableBox_relief": {
+  "hash": "4f66d2bb090f4a1e2be3fbe2af9a1d82fba83d41edb27bc21ccb58f02e2d3827",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableQuadDiagLoose_not_margin": {
+  "hash": "4af0d54ae63d8c6cd52f66966269c3ee98b7a31fcee30a285c77fd96dbc8545f",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableQuadDiag_flip": {
+  "hash": "cd3c1a81f1f08e4c4be9de0670d294aa2edbf1109215f0e0b02a82b554be5263",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableQuadDiag_four_cells": {
+  "hash": "4cb123b7def05f862a6430872707f4b1d645427e09a2444e6a13e1b8da8254b2",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableQuadDiag_relief": {
+  "hash": "e8dd2cc5d6cc5310af0068a4c1da9d474a4f2761ea1260d89e38554598908a89",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableQuadDiag_riccati_feasible": {
+  "hash": "e22f8ffd4fd22a17b43d97de2febcfbe2add8499b0835cf3d890331e9efb4651",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableRallyBinding_margin_eq": {
+  "hash": "9a346f796a827f3984f45754763343651ed547af0da5dd25c53e137e61a30e65",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableReliefOnly_not_flip": {
+  "hash": "d6bd8df8375b46bf57eaac33b55709e33cc090c1038520c54865bd660f7bf3ec",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.placableSharpRelief_relief_disch": {
+  "hash": "77db60c901971015220eb53993926d9f8dff9876d5deab6068b7fb97f8d932c9",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_appetite": {
+  "hash": "caa9d623167c60df08ecc688ab1cded4fe04ead23fcc34a84da545a6df6cefa1",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_concave": {
+  "hash": "065ef8319df69c9eac8b5c5b2a35204c0a85bece323adba02185d3336dd6a875",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_convex": {
+  "hash": "2e805160e805a3deb946bf769c1b671ffb51766847bd715ea115995fec8f2a06",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_crossHi": {
+  "hash": "78689bd3d37b5e404b900b714867d242636d258c17de909332c6147a27391c9a",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_crossLo": {
+  "hash": "d386b24217889ba8f5652d23128b4f1ba32af6d7af397a7313e2ac84abde6e5c",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_floor": {
+  "hash": "73ebca9fa04c3246528fe28e3fdf76a5b8a8523b7909d955db132e46c85fd603",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_joint": {
+  "hash": "6ca37527f4cc124c4b71bd86ed8ed50eadd249c8b5f8fd26735be4e6b64981da",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_placHi": {
+  "hash": "d4f17999277a18f643880c6600a3c935a2e10ac41715198509d8165585e53a79",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_placLo": {
+  "hash": "6450377cf06ff0eb2d7d45009faeae4b82de9723fa73b9da5eeeea562b1c2193",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_stateConvex": {
+  "hash": "5ccaa8d4c3809b79cd23ef6f9d804879687b081c99dc1e30f703f4ed67806c0e",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_stateLip": {
+  "hash": "575d912d54cc3c0eaafbd69b6d57392ea1e864eef7de4d9ddeac69788fe81e28",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_US_stateSlope": {
+  "hash": "fd6688a47ffc76bba3ad412b61238aefc47cc91199db2fe1246b6d753aac76a6",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_UT_costHi": {
+  "hash": "489336ab90c10d76a11508bcc589e9b509c518a869a083458b2db9a7f45eab0e",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_UT_costLo": {
+  "hash": "36f2c8a1ad3d8054d879c136f84e21d0aed4825a3c7e5c0123ea50135aca82cb",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_UT_painHi": {
+  "hash": "3fcaf16869c65803155b2a48eaec896bde4726e9dca743e51cc0706898a0458d",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_UT_painLo": {
+  "hash": "74fb5b1ddef3e12a4fdb8478c72c51d57407170017ac37411778dd13fdfb403c",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_UT_stateHi": {
+  "hash": "91a4fbbf9ee75a3aa2d47446041ca7fb6e96d64fef4f737c7b39630257efe477",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_UT_stateLo": {
+  "hash": "3c487f02b76429ff2b89ceec17544e92809d738cedeecdd548d2aa9382aaa3be",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.qw_pairs_split": {
+  "hash": "415231f7a14666e33330223f2d00c6c63aa69150ec26126706102347d32141be",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.rally_softening_interval_iff": {
+  "hash": "df2daaa9f47b759d19524076329672b19a5defff35a0fb25224beca612c329f8",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.sigV_feasible_iff": {
+  "hash": "36218fcf713a57c89e0e9d93d7a3a39046bbc2da708b20938a604b95cf6c80db",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.Examples.stage_signs_not_IDO_counterexample": {
+  "hash": "e1495756d1c78cec36f699b8a7551ae44ab15fe4877d9766478095134a24a9ad",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.IntervalDominanceOrder.IDOFamilyOn.of_singleCrossingOn": {
+  "hash": "85faceb79e9f686ebec8bf672bb843d6666ae57361a89f0550811c26fe9f8a50",
+  "reviewed": "6a1586218b6c"
+ },
+ "Sanctions.MilgromShannon.IncreasingDifferencesOn.toSingleCrossingOn": {
+  "hash": "67cbd3d1c67601e95dc989a8961ab0927010fc46f9c52bb9c9958b80b3aecbeb",
+  "reviewed": "6a1586218b6c"
+ }
+}

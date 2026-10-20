@@ -1,0 +1,115 @@
+\section{Reading the Lean statements}
+\label{app:reading-lean}
+
+Each main-text result is stated in Lean, with no proof, in
+\path{Sanctions/Paper/Statements.lean}, and proved in \path{Sanctions/Paper/Proofs.lean}
+by the declaration that \Cref{app:formalization} names for it. This section shows two of
+the statements as they stand in the source, each with a table that says what every Lean
+name means, and then lists where all twelve are. In the code, the symbols are typeset;
+everything else is the source text. A line that starts with \texttt{--} is a comment.
+
+\subsection{Theorem~4: foresight never lowers the sanction}
+\label{app:reading-lean:dominance}
+
+\begin{alltt}\footnotesize
+def dominance : Prop :=
+  \(\forall\) (p : Sanctions.AbstractGame.Params) (V_S : \(\uparrow\)(Sanctions.S : Set \(\mathbb{R}\)) \(\to\sp{b}\) \(\mathbb{R}\)),
+    Monotone V_S \(\to\)  -- h_V_S_mono
+    \(\forall\) (\(\alpha\) : \(\mathbb{R}\) \(\to\) \(\mathbb{R}\)) (x : \(\mathbb{R}\)), p.\(\sigma\) x (\(\alpha\) x) \(\le\) p.\(\sigma\)_dyn_top V_S x (\(\alpha\) x)
+\end{alltt}
+
+\begin{center}\footnotesize
+\begin{tabular}{@{}p{0.36\linewidth}p{0.58\linewidth}@{}}
+\toprule
+Lean & Meaning in the paper \\
+\midrule
+\texttt{p : Sanctions.AbstractGame.Params} & an abstract game: payoffs, law of motion and
+  discount factors, with no functional form \\
+\texttt{Sanctions.S} & the state space $[0,1]$ \\
+\texttt{V\_S :} \(\uparrow\)\texttt{S} \(\to^{b}\) \(\mathbb{R}\) & a bounded continuous sender continuation
+  value $\Vs$ on $[0,1]$ \\
+\texttt{Monotone V\_S} & $\Vs$ does not fall with the state \\
+\texttt{-- h\_V\_S\_mono} & a comment: the hypothesis's name in the backing theorem \\
+\(\alpha\)\texttt{ :} \(\mathbb{R}\to\mathbb{R}\) & a target policy $\alpha$ \\
+\texttt{p.}\(\sigma\)\texttt{ x (}\(\alpha\)\texttt{ x)} & the myopic best response $\sigM(x,\alpha(x))$ \\
+\texttt{p.}\(\sigma\)\texttt{\_dyn\_top V\_S x (}\(\alpha\)\texttt{ x)} & the largest dynamic best response
+  $\sigDynTop_{\Vs}(x,\alpha(x))$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The statement reads: for every game, every sender continuation value that does
+not fall with the state, every target policy and every state, the myopic sanction is at
+most the forward-looking one. That is \Cref{thm:dominance}, for any game, not only the
+class.\par
+
+\subsection{Proposition~5: no exit from a high basin}
+\label{app:reading-lean:lockin}
+
+\begin{alltt}\footnotesize
+def lockInNoExit : Prop :=
+  \(\forall\) (p : Sanctions.AbstractGame.Params) \{D : p.ValueClass2\}
+    \{E : p.FeedbackStackelbergEquilibriumTop\} \{xT xS K_S : \(\mathbb{R}\)\},
+    p.SenderPersistencePackage D E xT xS K_S \(\to\)  -- P
+    \(\forall\) x\(\sb{0}\) \(\in\) Set.Icc (max xT xS) 1,
+      (\(\forall\) n, p.dynamicTopLockInPathF E.V_S E.\(\alpha\) x\(\sb{0}\) n \(\in\) Set.Icc (max xT xS) 1) \(\wedge\)
+      (\(\forall\) n, max xT xS \(\le\) p.dynamicTopLockInSanctionsF E.V_S E.\(\alpha\) x\(\sb{0}\) n) \(\wedge\)
+      Monotone (p.dynamicTopLockInSanctionsF E.V_S E.\(\alpha\) x\(\sb{0}\))
+\end{alltt}
+
+\begin{center}\footnotesize
+\begin{tabular}{@{}p{0.40\linewidth}p{0.54\linewidth}@{}}
+\toprule
+Lean & Meaning in the paper \\
+\midrule
+\texttt{D : p.ValueClass2} & the value sets: closed sets of value functions for the target
+  and the sender \\
+\texttt{E : p.FeedbackStackelbergEquilibriumTop} & an equilibrium $E=(\Vt,\Vs,\alpha)$ in
+  $\mathcal E$, the sender using its largest optimal sanction \\
+\texttt{xT}, \texttt{xS} & the target's and the sender's basin thresholds \\
+\texttt{K\_S} & the Lipschitz bound of the sender's values \\
+\texttt{p.SenderPersistencePackage D E xT xS K\_S} & the conditions of \Cref{prop:lock-in}
+  on the sender's side, as the fields P1, P2, P3 and P5; no field constrains how the target
+  ranks sanctions \\
+\texttt{Set.Icc (max xT xS) 1} & the high basin $[\bar x,1]$, with $\bar x=\max\{x_T,x_S\}$ \\
+\texttt{p.dynamicTopLockInPathF E.V\_S E.}\(\alpha\)\texttt{ x}\(\sb{0}\)\texttt{ n} & the state
+  $x_n$ on the equilibrium path from $x_0$ \\
+\texttt{p.dynamicTopLockInSanctionsF \dots\ n} & the sanction $s_n$ on that path \\
+the three conjuncts & properties (i), (ii) and (iii) of \Cref{prop:lock-in}: the state
+  stays in the basin, the sanction stays at or above $\bar x$, and the sanction never falls \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The statement reads: for every game, every pair of value sets, every equilibrium
+and every pair of thresholds at which the sender-side conditions hold, a path that starts in
+the basin stays there, with sanctions at or above the threshold that never fall.\par
+
+\subsection{Where each statement is}
+\label{app:reading-lean:index}
+
+\begin{center}\footnotesize
+\begin{tabular}{@{}p{0.23\linewidth}p{0.29\linewidth}p{0.42\linewidth}@{}}
+\toprule
+Result & Statement & Proved by \\
+\midrule
+\Cref{prop:myopic-benchmark} & \texttt{myopicBenchmark} & \path{ChordEconomyRelief.myopic_dynamic_equilibrium_separation_generalF_stage} \\
+\Cref{thm:regime-separation} & \texttt{regimeSeparation} & \path{ChordEconomyRelief.myopic_dynamic_equilibrium_separation_generalF} \\
+\Cref{thm:dominance} & \texttt{dominance} & \path{Params.theorem2_dynamic_dominates_myopic_at_same_alpha} \\
+\Cref{prop:lock-in}, no exit & \texttt{lockInNoExit} & \path{Params.standardCompliance_persistence_generalF_from_sender_package} \\
+\Cref{prop:lock-in}, entry & \texttt{lockInEntry} & \path{Params.standardCompliance_min_drift_shock_generalF_from_sender_package_of_preBasinAscent} \\
+\Cref{prop:collapse-threshold} & \texttt{collapseThreshold} & \path{ChordEconomyCs.collapse_equilibrium_threshold_le} \\
+\Cref{prop:patience-existence} (i) & \texttt{patienceSlope} & \path{ChordEconomyRelief.balance_of_le_}$\beta$\path{T} \\
+\Cref{prop:patience-existence} (ii) & \texttt{patienceExistence} & \path{ChordEconomyRelief.exists_defiance_equilibrium_mono_}$\beta$\path{T} \\
+\Cref{prop:welfare-nonidentification} & \texttt{welfareNonidentification} & \path{ChordEconomyRelief.exists_reps_reversing_myopic_forward_ranking} \\
+\Cref{prop:zero-sanction-planner} & \texttt{zeroSanctionPlanner} & \path{Welfare.zeroSanction_planner_optimal} \\
+\Cref{prop:planner-efficient-persistence} & \texttt{plannerEfficientPersistence} & \path{ChordEconomy.planner_efficient_rep_at_policy_zero} \\
+\Cref{thm:four-cells} & \texttt{fourCases} & \path{ChordEconomyCs.four_cell_generalF'} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Each proof in \path{Sanctions/Paper/Proofs.lean} is the backing declaration applied
+as it stands: the statement and the declaration have the same type. The proof of each
+statement carries its name with the suffix \texttt{\_holds}, for example
+\texttt{dominance\_holds}.\par

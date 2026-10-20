@@ -1,0 +1,167 @@
+-- scripts/contract_probe.lean.template -- the ONE contract-root extractor
+-- (doc 70, F-2/F-3). Both scripts/Generate-HeadlineSnapshot.ps1 (the
+-- production gate) and scripts/Test-ContractFence.ps1 (the focused mutation
+-- test) splice this file verbatim after their own `import` and `open` lines,
+-- so the two cannot drift apart (the first mutation run of doc 68 measured
+-- 70/72 records changed for exactly that reason).
+--
+-- Rendering is fixed here, not inherited from the ambient file:
+--   pp.fullNames true   -- every constant prints fully qualified, so the hashes
+--                          no longer depend on the caller's `open` line;
+--   pp.deepTerms true + pp.maxSteps -- nothing is elided for depth or size;
+--   pp.proofs false     -- proof arguments print as `⋯` (proof irrelevance:
+--                          a proof term inside a statement is not part of the
+--                          contract, and hashing it would fence proof refactors).
+-- These four options are the anchor's rendering policy for the PRINTED hashes.
+-- Changing any of them moves every printed hash and is a Rule-18 rebaseline of
+-- that column (D3 of doc 70, 2026-09-08); the structural column below is
+-- computed from the expression, not from the printer, and is unaffected.
+set_option pp.fullNames true
+set_option pp.deepTerms true
+set_option pp.maxSteps 1000000
+set_option pp.proofs false
+
+-- For each root: its own elaborated type; for a structure, additionally the
+-- constructor's type and every own projection's type (inherited projections
+-- are reached through the parent, which is its own root); for a definition,
+-- its body as well (a `Prop`-valued predicate by its body; a data definition
+-- such as a selector by its body). A missing root or projection is an
+-- elaboration error, so the caller fails closed rather than dropping a row.
+elab "#contractRoots " ids:ident+ : command => do
+  let env <- getEnv
+  for id in ids do
+    let n <- liftCoreM <| realizeGlobalConstNoOverload id
+    liftTermElabM do
+      let some ci := env.find? n | throwError "CONTRACT-MISSING {n}"
+      let ts <- do let f <- ppExpr ci.type; pure f.pretty
+      if isStructure env n then
+        logInfo m!"CONTRACT-BEGIN {n}
+{ts}
+CONTRACT-END"
+        let ctor := getStructureCtor env n
+        let cts <- do let f <- ppExpr ctor.type; pure f.pretty
+        logInfo m!"CONTRACT-BEGIN {ctor.name}
+{cts}
+CONTRACT-END"
+        for fld in getStructureFields env n do
+          let pn := n ++ fld
+          match env.find? pn with
+          | some pci =>
+            let pts <- do let f <- ppExpr pci.type; pure f.pretty
+            logInfo m!"CONTRACT-BEGIN {pn}
+{pts}
+CONTRACT-END"
+          | none => throwError "CONTRACT-MISSING {pn}"
+      else
+        let vs <- match ci.value? with
+          | some v => do let f <- ppExpr v; pure f.pretty
+          | none   => pure "<opaque>"
+        logInfo m!"CONTRACT-BEGIN {n}
+{ts}
+:=
+{vs}
+CONTRACT-END"
+
+-- Evidence declarations (doc 70, C-7): the theorems and refutations the
+-- hypothesis census cites as its status evidence, hashed by TYPE only. A
+-- status recorded against one of these becomes stale when its row moves.
+elab "#evidenceRoots " ids:ident+ : command => do
+  let env <- getEnv
+  for id in ids do
+    let n <- liftCoreM <| realizeGlobalConstNoOverload id
+    liftTermElabM do
+      let some ci := env.find? n | throwError "EVIDENCE-MISSING {n}"
+      let ts <- do let f <- ppExpr ci.type; pure f.pretty
+      logInfo m!"EVIDENCE-BEGIN {n}
+{ts}
+EVIDENCE-END"
+
+-- Structural fingerprint (round O, doc 82 P5 / the reader's T8; user-approved
+-- 2026-09-10). A canonical, alpha-invariant serialisation of a root's
+-- elaborated TYPE: binder names are dropped and bound variables print as de
+-- Bruijn indices; binder infos, constants with their universe levels (level
+-- parameters renamed by position), literals and projections print in full;
+-- proof subterms print as `⋯` (proof irrelevance, the same policy as
+-- `pp.proofs false` above). The generator hashes the serialisation
+-- (HEADLINE-SNAPSHOT.md, column "Structural SHA256") and gate 5 keys the
+-- headline rows on that column; the printed column is kept as information.
+-- `scripts/Test-StructuralFingerprint.ps1` checks the invariants on a fixture
+-- each round: a binder rename, a universe rename and a proof refactor inside
+-- a statement leave the digest unchanged; a changed hypothesis or binder info
+-- moves it.
+--
+-- Scope and limits (2026-09-11, the reader's C19). The digest is of the root's
+-- elaborated TYPE only: the constants it names are printed by name and never
+-- expanded, so a change inside a definition or structure the type mentions
+-- (a field of `PlacableEconomyF`, the body of a predicate) leaves a headline's
+-- fingerprint unchanged — that is what the contract rows above are for. The
+-- digest compares the alpha-normalised, proof-erased, metadata-free
+-- serialisations of two types: equal digests are a drift detector, not a
+-- proof that the raw expressions are alpha-equivalent (proof subterms are
+-- erased and a digest is not injective; the reader's Q1-4, 2026-09-15). It
+-- does not decide logical equivalence, hypothesis redundancy, data equality
+-- under a definition change, or axiom cleanliness (the last is gate 3 and the
+-- `#guard_msgs` rows of `Headlines.lean`). Metadata nodes are skipped;
+-- metavariables, loose bound variables and foreign free variables are errors,
+-- so a malformed expression fails closed rather than hashing.
+def structBI : BinderInfo → String
+  | .default => "d" | .implicit => "i" | .strictImplicit => "s" | .instImplicit => "c"
+
+partial def structLevel : Level → String
+  | .zero => "0"
+  | .succ l => s!"s({structLevel l})"
+  | .max a b => s!"max({structLevel a},{structLevel b})"
+  | .imax a b => s!"imax({structLevel a},{structLevel b})"
+  | .param n => s!"p:{n}"
+  | .mvar _ => "?"
+
+-- `fvars` lists the binders entered so far, outermost first; a free variable
+-- prints as its distance from the innermost binder (its de Bruijn index).
+partial def structSer (fvars : Array FVarId) (e : Expr) : MetaM String := do
+  if ← isProof e then return "⋯"
+  match e with
+  | .bvar i => throwError "STRUCT-LOOSE-BVAR {i}"
+  | .fvar id =>
+    match fvars.findIdx? (· == id) with
+    | some i => return s!"#{fvars.size - 1 - i}"
+    | none => throwError "STRUCT-FOREIGN-FVAR"
+  | .mvar _ => throwError "STRUCT-MVAR"
+  | .sort u => return s!"S({structLevel u})"
+  | .const n us => return s!"C({n}[{",".intercalate (us.map structLevel)}])"
+  | .app f a => return s!"A({← structSer fvars f},{← structSer fvars a})"
+  | .lam n t b bi =>
+    let ts ← structSer fvars t
+    withLocalDecl n bi t fun x => do
+      let bs ← structSer (fvars.push x.fvarId!) (b.instantiate1 x)
+      return s!"L{structBI bi}({ts},{bs})"
+  | .forallE n t b bi =>
+    let ts ← structSer fvars t
+    withLocalDecl n bi t fun x => do
+      let bs ← structSer (fvars.push x.fvarId!) (b.instantiate1 x)
+      return s!"P{structBI bi}({ts},{bs})"
+  | .letE n t v b _ =>
+    let ts ← structSer fvars t
+    let vs ← structSer fvars v
+    withLetDecl n t v fun x => do
+      let bs ← structSer (fvars.push x.fvarId!) (b.instantiate1 x)
+      return s!"T({ts},{vs},{bs})"
+  | .lit (.natVal k) => return s!"N{k}"
+  | .lit (.strVal s) => return s!"Str({s.quote})"
+  | .mdata _ e' => structSer fvars e'
+  | .proj s i e' => return s!"J({s},{i},{← structSer fvars e'})"
+
+-- One record per root: `STRUCT-BEGIN name`, the serialisation, `STRUCT-END`.
+-- A missing root is an elaboration error (the caller fails closed).
+elab "#structuralRoots " ids:ident+ : command => do
+  let env <- getEnv
+  for id in ids do
+    let n <- liftCoreM <| realizeGlobalConstNoOverload id
+    liftTermElabM do
+      let some ci := env.find? n | throwError "STRUCT-MISSING {n}"
+      let lvls := (List.range ci.levelParams.length).map fun i =>
+        Level.param (Name.mkSimple s!"u{i}")
+      let ty := ci.type.instantiateLevelParams ci.levelParams lvls
+      let s <- structSer #[] ty
+      logInfo m!"STRUCT-BEGIN {n}
+{s}
+STRUCT-END"

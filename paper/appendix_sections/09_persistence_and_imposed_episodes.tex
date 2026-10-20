@@ -1,0 +1,927 @@
+\section{Persistence, temporary shocks, and lock-in}
+\label{app:persistence}
+
+This appendix collects the results that start from an equilibrium and explicit
+basin conditions: the general existence route, the conditional high-basin
+theorem and its long run, dual-basin path dependence, the effects of temporary
+sanction and suspensions of sanctions, the comparative statics of lock-in, and the
+contracting closed loop of the class under the lifting condition. \Cref{sec:discussion}
+summarizes what they establish. The statements are those of the previous main
+text, moved without change except the one correction noted at
+\Cref{cor:pathwise-dominance}, the restatements of 2026-10-07, which keep
+each conclusion and drop hypotheses the proofs do not read, and the
+2026-10-08 restatement of \Cref{cor:pathwise-dominance} to the hypotheses and
+existence conclusion of its certificate theorem; A1--A3 and the
+basin, which only these results use, come first.
+
+\subsection{Assumptions and the basin}
+\label{sec:assumptions}
+
+The high-basin and pathwise-ordering results of this appendix require only
+\textup{(F2)--(F4)} of the transition; the shock-entry result
+(\Cref{thm:shock}) additionally uses continuity \textup{(F1)} and full-sanction
+ascent below the basin, which \textup{(F5)} implies. For the optional
+quantitative value-regularity route, we additionally use an inherited-state
+modulus $\gamma_F$:
+\begingroup
+\renewcommand{\theHequation}{F6Q}
+\begin{equation}
+\bigl|\F(x_2,s)-\F(x_1,s)\bigr|
+\leq \gamma_F |x_2-x_1|
+\quad\text{for all }x_1,x_2,s\in[0,1],
+\qquad
+\beta_S\gamma_F<1.
+\tag{F6-Q}\label{eq:F-state-lip}
+\end{equation}
+\endgroup
+Condition \textup{(F6-Q)} is not part of the qualitative baseline
+\textup{(F1)--(F5)}, and it is stated on the feasible square. Under
+\eqref{eq:affine}, $\gamma_F=1-\delta$: it is the coefficient on the inherited
+state, not the sanction pass-through $\delta$ (\Cref{app:moved-ah}).
+
+We state three structural inputs and derive the high political basin.
+A1 and A2 restrict objectives uniformly over value sets; A3 is a
+curvature condition on the sender's stage payoff. The general existence
+theorem takes its invariant-set, selector and operator-bound conditions as
+hypotheses; the constructions of \Cref{sec:existence:placable} and
+\Cref{sec:existence:nonvacuity} build their invariant sets and regularity
+constants from $(U_T,U_S,\F,\beta_T,\beta_S)$ in closed form in the stated rates
+(\Cref{app:closedforms}). The derived-basin
+route in \Cref{sec:flip} derives the basin and the target condition from
+complementarity. The three assumptions also provide a fallback for
+specifications without global complementarity.
+
+\subsubsection*{Basin pivots}
+
+Let $\bar x_T,\bar x_S\in[0,1]$ denote the target and sender tipping
+thresholds. Under stage complementarity, each is the infimum of a flip
+set; \Cref{prop:tipping} establishes existence, interiority, and the
+upper-interval structure. Define the joint pivot
+$\bar x=\max\{\bar x_T,\bar x_S\}$ and the high basin
+$\basin=[\bar x,1]$.
+
+\subsubsection*{Lipschitz constants}
+
+Write $K_S$ for a Lipschitz constant, in the inherited state, of the
+sender's values in its value set. Under the optional regularity \eqref{eq:F-state-lip} the
+envelope recursion gives $K_S=L_{S,x}^{\alpha}/(1-\beta_S\gamma_F)$, where
+$L_{S,x}^{\alpha}$ bounds the state variation of the sender's stage payoff along
+a continuous target policy \citep{StokeyLucas1989,BertsekasTsitsiklis1996};
+the target constant and the selector moduli are in \Cref{app:closedforms}.
+The modulus $\gamma_F$ does not bound the transition's response to the
+sanction, so the level condition used below is the transition-adjusted slope condition
+\begin{equation}
+\Us(x,a,s_2)-\Us(x,a,s_1)
+>
+\beta_S K_S\bigl|\F(x,s_2)-\F(x,s_1)\bigr|,
+\qquad s_1<s_2,
+\label{eq:F-adjusted-sender-chord}
+\end{equation}
+on the range used below. It needs no separate modulus of $\F$ in the sanction
+and, under the partial-adjustment law, follows from $\beta_SK_S\delta<m_S$ for a stage
+lower slope $m_S$ (\Cref{app:moved-ah}).
+
+\subsubsection*{Three structural assumptions}
+
+We refer to \Cref{ass:sender,ass:target,ass:concavity} as A1--A3. A1
+controls the direction of the sender's response, A2 records the
+target's forward-looking preference on the basin, and A3 gives
+diminishing returns in the sender's stage problem. The high-basin
+theorem uses the direction and target conditions together with a separate
+sanction-level condition, the target condition only for its conclusion (vi);
+the shock theorem uses no target condition, and neither uses A3 directly.
+On the derived-basin route A2 can be derived rather than imposed, though the
+route's conclusions no longer read it (\Cref{prop:flip-route}). \Cref{tab:assumption-routes}, in \Cref{app:moved-ad},
+records which
+result consumes which of these conditions: none is a maintained assumption
+on the whole model, and the constructed equilibria of \Cref{sec:four-regimes}
+use none of A1--A3 as stated.
+
+
+Write $\mathcal C_T$ and $\mathcal C_S$ for the target and sender value
+sets: closed, nonempty sets of bounded continuous functions on
+$[0,1]$ cut out by a sup-norm radius together with Lipschitz or slope bounds,
+with radii and moduli derived from the model primitives in
+\Cref{sec:existence,app:closedforms}. The general existence theorem takes these
+sets and their invariance as inputs; the constructions discharge
+them, the target's invariant set on the class under the lifting condition by a sup-norm radius and a lower-slope
+condition with no Lipschitz clause.
+
+\begin{assumption}[Sender interval dominance after target-policy substitution]
+\label{ass:sender}
+For every value pair
+$(\Vt,\Vs)\in\mathcal C_T\times\mathcal C_S$, let
+$\alpha_{\Vt,\Vs}$ be its induced target policy and define the
+policy-substituted sender family by
+\begin{equation}
+\widetilde J_{\Vt,\Vs}(s,x)
+:=
+J_S\bigl(x,\alpha_{\Vt,\Vs}(x),s;\Vs\bigr).
+\label{eq:sender-policy-substituted}
+\end{equation}
+On the sanction--state domain $[0,1]\times\basin$, this family
+satisfies the interval dominance order in $(s,x)$ of
+\citet{QuahStrulovici2009}. Milgrom--Shannon single crossing in
+$(s,x)$ is a sufficient, stronger condition.
+\end{assumption}
+
+A1 is ordinal: after the endogenous target policy is substituted, it makes the
+sender's dynamic best response non-decreasing in the state; single crossing is a
+stronger sufficient condition \citep{MilgromShannon1994}. Direction does not
+determine level: keeping the response above $\max\{x,\bar x\}$ is the role of
+\eqref{eq:F-adjusted-sender-chord}, and the proof of \Cref{thm:persistence} keeps the two
+arguments separate (\Cref{app:proofs,app:dischargers,app:moved-ah}).
+
+\begin{assumption}[Target combined slope condition, value-set form]
+\label{ass:target}
+For every $(V_T,V_S)\in\mathcal C_T\times\mathcal C_S$, let
+$\alpha_{V_T,V_S}$ be the induced target policy. For every
+$x\in\basin$,
+\begin{equation}
+\boxed{
+ s\longmapsto
+ U_T\bigl(x,\alpha_{V_T,V_S}(x),s\bigr)
+ +\beta_TV_T\bigl(\F(x,s)\bigr)
+ \text{ is non-decreasing on }[\max\{x,\bar x\},1].
+}
+\label{eq:A2}
+\end{equation}
+\end{assumption}
+
+A2 is imposed uniformly over the value sets rather than at a presumed
+equilibrium. It combines the target's current payoff from sanctions with
+the political-coalition effect in its continuation value
+\citep{Kaempfer1988}. Each component may be non-monotone; their sum must
+be non-decreasing on the displayed range. Strict concavity of the
+complete target objective in compliance, together with Berge's Maximum
+Theorem, supplies a continuous policy selector
+\citep{AliprantisBorder2006}.
+
+\begin{assumption}[Uniform stage strong concavity in $s$]
+\label{ass:concavity}
+There is $\mu>0$ such that, for every $(x,a)\in[0,1]^2$, every
+$s_1,s_2\in[0,1]$ and every $t\in[0,1]$,
+\[
+t\,U_S(x,a,s_1)+(1-t)\,U_S(x,a,s_2)
+\le U_S\bigl(x,a,ts_1+(1-t)s_2\bigr)-\tfrac{\mu}{2}\,t(1-t)(s_1-s_2)^2 .
+\]
+This is the derivative-free form the formalization consumes. When $U_S$ is twice
+differentiable in $s$ it is the familiar
+$\sup_{(x,a,s)\in[0,1]^3}\partial^2 U_S/\partial s^2\le-\mu<0$.
+\end{assumption}
+
+A3 imposes diminishing returns to sanctions, as in standard public-choice
+models \citep{Kaempfer1988,Eaton1992}, and makes the myopic best response
+unique. It does not make the maximizer of $J_S$ unique, because the continuation
+term can offset stage curvature, and it is not what carries the substitution
+between compliance and the sanction (\Cref{app:closedforms,app:moved-ah}).
+
+\paragraph{A route that derives the basin.}
+Under a stage-complementarity assumption the pivots $\bar x_T$ and $\bar x_S$
+are not inputs: each is the infimum of a payoff flip set that is an upper
+interval, and the target condition A2 becomes a result
+(\Cref{ass:flip,prop:tipping,prop:flip-route}, in \Cref{sec:flip}). Sign
+conditions of this kind fix the signs of slopes and bound no magnitude, so they do not
+deliver persistence on their own; the magnitude condition is the sub-pivot
+slope condition (P5) of \Cref{thm:persistence}. No result on the class under the lifting condition in
+\Cref{sec:four-regimes} uses this route.
+
+\subsection{Equilibrium existence and persistence in the general game}
+\label{sec:existence:general}
+
+The dynamic results of this subsection require a stationary feedback
+Stackelberg equilibrium, and they start from one.
+
+\subsubsection{Equilibrium existence}
+
+A joint contraction gives one route to existence in a smooth,
+gently coupled region. Let $L_{TS}$ and $L_{ST}$ measure how each
+Bellman row responds to the other player's continuation value, and let
+$\beta_{S,\mathrm{row}}$ be the sender row's own contraction modulus;
+$\rho(\mathbf M)$ is the spectral radius of the coupling matrix these
+four numbers form (\Cref{app:existencemachinery}).
+
+\Cref{thm:existence} (\Cref{app:existencemachinery}) states the route and its
+Schur condition $L_{TS}L_{ST}<(1-\beta_T)(1-\beta_{S,\mathrm{row}})$, with no
+sign condition on the four numbers. Its uniqueness conclusion --- every
+equilibrium with values in the invariant sets that plays the target selector those sets define
+coincides with the constructed one --- is confined to the stated invariant-set and
+selector restrictions; it is not global equilibrium uniqueness. A summary of the
+statement is in \Cref{app:moved-ad}.
+
+The economically transparent deterministic route is the high-basin
+corner. When full non-compliance is optimal for the target, the game reduces
+to sequential single-agent Bellman problems.
+
+\begin{theorem}[Basin-corner feedback Stackelberg existence]
+\label{thm:corner-existence}
+Fix $\Vs$ at its Bellman fixed point against $\alpha\equiv0$, and
+write $\sigma^\ast=\sigma^{\mathrm{dyn,top}}(\Vs)$. Suppose, on the
+entire feasible state space, that:
+\begin{enumerate}[label=(\roman*)]
+\item the map $(x,a)\mapsto\sigma^\ast(x,a)$ is continuous at feasible
+states $x$ and every target action $a$;
+\item the target continuation value constructed against
+$\sigma^\ast$ is non-decreasing in $x$;
+\item for $a\in(0,1]$, $\sigma^\ast(x,a)\le\sigma^\ast(x,0)$: no positive
+compliance raises the sender's response above its response to full
+non-compliance; and
+\item the substituted target stage payoff is highest at full non-compliance,
+\[
+U_T\!\bigl(x,a,\sigma^\ast(x,a)\bigr)
+\le
+U_T\!\bigl(x,0,\sigma^\ast(x,0)\bigr)
+\qquad\text{for }a\in(0,1].
+\]
+\end{enumerate}
+Then $\alpha\equiv0$ is dynamically optimal and
+$E=(\Vt,\Vs,\alpha\equiv0)\in\mathcal E$, with $\Vt$ constructed as
+the single-agent Banach fixed point.
+\end{theorem}
+
+Continuity gives a well-defined target Bellman operator, while the
+remaining conditions make full non-compliance optimal after the sender's
+response is substituted. Each condition is used once and only weakly: an
+antitone response and a strict stage decrease, the form stated before
+2026-10-07, are a special case. This argument applies to the general
+monotone transition law and does not require purification.
+
+Off the corner the deterministic joint iteration need not preserve order or
+contract; existence there is obtained for a transition-smoothed game (an atomless
+disturbance added to the state law; ``purified'' in earlier versions, a term this
+literature reserves for payoff noise) and at example economies, not for
+the primitive class (\Cref{app:moved-ad,app:scope-notes}).
+
+The dynamic results use the general transition law
+\eqref{eq:transition}. Monotonicity and the diagonal condition deliver
+basin invariance; strict adjustment makes the long-run sanction
+equal to the limiting state. The partial-adjustment law \eqref{eq:affine} is needed only for the
+closed-form expressions stated separately below.
+
+\subsection{Persistence and the long run}
+
+\begin{theorem}[Persistence on the high political basin]
+\label{thm:persistence}
+Let $\bar x_T,\bar x_S\in[0,1]$ and
+$\bar x=\max\{\bar x_T,\bar x_S\}$. Fix the value sets
+$\mathcal C_T\times\mathcal C_S$ and let
+$E=(\Vt,\Vs,\alpha)\in\mathcal E$. Suppose:
+\begin{enumerate}[label=(P\arabic*),leftmargin=2.7em]
+\item $\Vt\in\mathcal C_T$, $\Vs\in\mathcal C_S$, and
+$\alpha=\alpha_{\Vt,\Vs}$;
+\item every sender value in $\mathcal C_S$ is $K_S$-Lipschitz;
+\item A1 holds for every value pair, in the state-indexed form
+\eqref{eq:sender-policy-substituted};
+\item the target combined slope condition A2 holds for every value pair; and
+\item for every value pair $(V_T,V_S)$, every basin state $x\in\basin$,
+and every sanction $0\le s<x$ below the pivot $\max\{x,\bar x\}=x$, the
+general-$\F$ sub-pivot slope condition holds in pivot-star form:
+\[
+\Us\!\left(x,\alpha_{V_T,V_S}(x),x\right)
+-
+\Us\!\left(x,\alpha_{V_T,V_S}(x),s\right)
+>
+\beta_S K_S\bigl|\F(x,x)-\F(x,s)\bigr|.
+\]
+\end{enumerate}
+Then for every $x_0\in\basin$, the equilibrium path satisfies:
+\begin{enumerate}[label=(\roman*)]
+\item $x^E_t\in\basin$ for every $t\ge0$;
+\item $s^E_t\ge\bar x$ for every $t\ge0$;
+\item $s^E_t\le s^E_{t+1}$ for every $t\ge0$;
+\item $\alpha(x_t^E)$ is feasible and maximizes the target's complete
+Bellman objective against the sender's dynamic best response;
+\item $s_t^E$ maximizes $J_S(x_t^E,\alpha(x_t^E),\cdot\,;\Vs)$; and
+\item the map
+\[
+s\longmapsto
+\Ut(x_t^E,\alpha(x_t^E),s)
++\beta_T\Vt\bigl(\F(x_t^E,s)\bigr)
+\]
+is non-decreasing on $[\max\{x_t^E,\bar x\},1]$.
+\end{enumerate}
+\end{theorem}
+
+The proof separates the direction and the level of the sender's response: A1
+makes the dynamic best response non-decreasing in the inherited state, and the
+transition-adjusted slope condition P5 keeps it above the basin floor, so that
+$s_t^E\ge x_t^E$ and the basin is preserved. P5 is read only at basin states
+and only against the pivot: it compares each sub-pivot sanction with the pivot,
+never two sub-pivot sanctions with each other, and it constrains no state below
+the joint pivot; the pairwise slope condition on $[\bar x_S,1]$ implies it. The target
+condition P4 is logically
+separate and yields only conclusion (vi); conclusions (i)--(iii) hold under
+P1--P3 and P5 alone. A1 is used only for (iii): conclusions (i), (ii) and
+(iv), and a non-decreasing state path, follow from P1, P2 and P5, the level
+condition, without it. The theorem is conditional on the stated equilibrium and
+its value-set conditions; \Cref{thm:corner-existence} and
+\Cref{prop:primitive-persistence} provide unconditional applications under
+narrower primitive conditions. The proof is in \Cref{app:proofs}; a local form
+with no value sets, and an economy showing that these conditions select no limit,
+are in \Cref{app:moved-ad}, and the paragraphs this one replaces in
+\Cref{app:moved-ah}.
+
+\begin{corollary}[Post-entry non-termination]
+\label{cor:nontermination}
+Under the hypotheses of \Cref{thm:persistence}, let $T$ be a date with
+$x_T^E\in\basin$. For every cutoff $q<\bar x$ and every $n\ge0$,
+\[
+s_{T+n}^E>q.
+\]
+Thus every sanction-reduction threshold strictly below the inherited floor
+is never reached after basin entry, and when $\bar x>0$ neither is
+relief.
+\end{corollary}
+
+Relief remains feasible; the corollary says it is not chosen along the
+path of the equilibrium $E\in\mathcal E$ after the political state enters the
+basin. It is therefore a result about how long sanctions last after basin entry, not about
+which disputes enter sanctions in the first place. Only the level condition
+is used: at any equilibrium whose sanction rule is at or above the state on
+the basin, no cutoff below the inherited floor is reached after entry;
+neither A1 nor the target condition enters.
+
+\paragraph{The rule and the closed loop.}
+Two abbreviations make the long-run statements readable. Write
+\[
+R_E(x)=\sigDynTop_{\Vs}\bigl(x,\alpha(x)\bigr),
+\qquad
+G_E(x)=\F\bigl(x,R_E(x)\bigr),
+\]
+so that $R_E$ is the sanction rule of $E$ --- the sender's dynamic best
+response evaluated at the target's equilibrium policy --- and $G_E$ is the closed
+loop it induces on the political state. The realized path of an equilibrium is
+then simply $s^E_t=R_E(x^E_t)$ and $x^E_{t+1}=G_E(x^E_t)$; these are the same
+objects as in \Cref{sec:model}, named rather than redefined. A \emph{steady
+state} of the equilibrium is a fixed point of $G_E$: a political state the closed
+loop reproduces. Under strict directional adjustment \textup{(F5)} that is
+equivalent to the sanction matching the state there, $R_E(x)=x$, so the two ways
+of saying it agree wherever \textup{(F5)} holds.
+
+Three long-run results follow, and they differ in what they assume about the
+sanction rule and in how precisely they name the limit. The first
+uses only the level condition of \Cref{thm:persistence} --- the sanction rule
+at or above the state on the basin --- and establishes convergence to an
+unspecified steady state. The second adds monotonicity of the closed loop and
+continuity of the rule and pins down the limit as an extremal steady state,
+which may differ across starting points. The third retains those conditions but ends the interval at the first
+steady state above the pivot, yielding one limit for every start in that interval.
+
+\begin{proposition}[Long-run lock-in level]
+\label{prop:longrun}
+Let $E\in\mathcal E$, let $\bar x\ge0$, and suppose the sanction rule is at
+or above the state on $\basin$, $R_E(x)\ge x$ for $x\in\basin$, with no
+floor. With the state evolved by the general law \eqref{eq:transition}
+satisfying the maintained \textup{(F1)--(F5)}, the state path from every
+basin start converges to some $x^\ast\in\basin$. The realized sanction
+sequence converges to the same limit, and $x^\ast$ is an
+equilibrium-consistent steady state: sanction $x^\ast$ is optimal at state
+$x^\ast$ and reproduces that state. The hypotheses of \Cref{thm:persistence}
+imply the level condition.
+\end{proposition}
+
+This baseline result requires neither monotonicity nor continuity of the sanction
+rule, and neither A1 nor the target condition. Those conditions enter only when the
+limit itself is to be pinned down.
+
+Monotonicity of the closed loop and continuity of the sanction rule pin down the limit
+(\Cref{prop:order-selection}, \Cref{cor:order-selection-identified} and
+\Cref{prop:derived-interval}, stated in \Cref{app:moved-ak}). If the start
+lies below the rule's value there, the state converges to the least steady
+state of the closed loop at or above it, and if above, to the greatest steady
+state at or below it; under strict directional adjustment the realized
+sanction converges to the same value. Continuity of the rule is the
+requirement, and uniqueness of the maximizer of $J_S$ is one
+sufficient condition for it (\Cref{app:moved-ad}). Order selection need not
+imply attraction of a whole basin: every start in an invariant interval
+converges to one common limit exactly when the interval contains a unique
+steady state, and the interval that runs from the basin pivot to the first
+steady state above it has that property by construction. In plain terms, the
+inherited political state selects, at date zero and within a single
+equilibrium, which self-sustaining steady state is reached --- path dependence, not
+indeterminacy --- and up to the first such steady state above the pivot every
+start reaches it. A steady state of $G_E$ is a political state at which the
+sender's optimal sanction reproduces the entrenchment it inherits; none of
+the three results delivers a rate (\Cref{app:moved-ah}).
+
+\subsection{Dual-basin path dependence}
+\label{sec:mechanism:bistability}
+
+The argument of \Cref{thm:persistence} has a sign-reversed counterpart on a low
+political basin, and the two can hold for one equilibrium. With
+$\varepsilon=+1$ the high orientation and $\varepsilon=-1$ the low one, the
+sender's sanction rule remains non-decreasing in the inherited state, and from
+every start in the corresponding basin the state stays there and the
+sanction moves monotonically on the basin's side; neither orientation reads
+a target condition (\Cref{thm:lowbasin}; the high
+orientation reproduces conclusions (i)--(iii) of \Cref{thm:persistence}).
+Because the two assumption blocks apply on disjoint state ranges, the same
+equilibrium can satisfy both: below a low threshold $\bar x_L$ the state
+stays below it with non-increasing sanctions, above a high threshold $\bar x_H$ it
+locks in with non-decreasing ones
+(\Cref{cor:initial-condition-selection}). This is selection by initial
+conditions within one equilibrium, not selection among equilibria; the
+appendix supplies an economy satisfying both sets of conditions. The region
+between the two thresholds is not left to assumption: if the closed loop
+strictly lowers the state on the low basin, strictly raises it on the high
+one and has a continuous sanction rule, it determines two of its own steady
+states $x_s^-\le x_s^+$ strictly inside $(\bar x_L,\bar x_H)$, with convergence to zero
+from every start below $x_s^-$ and lock-in from every start above $x_s^+$,
+and the two coincide exactly when there is a single steady state between the
+basins (\Cref{prop:derived-dividing-line}; \Cref{fig:bistability}
+draws the single-crossing case). The picture --- two
+basins inside one equilibrium, with initial conditions selecting between
+them --- is the known one of \Cref{sec:literature}; what is new is that the
+basins are basins of a political state moved by a coercive instrument.
+
+\subsection{Persistence on a low basin and initial-condition selection}
+
+The persistence argument has a sign-reversed counterpart on a low
+political basin. Let $\varepsilon=+1$ denote the high orientation and
+$\varepsilon=-1$ the low orientation. In both the sender's sanction rule remains
+non-decreasing in the inherited state, and neither reads the target's
+sanction preference.
+
+\begin{theorem}[Persistence with orientation $\varepsilon$]
+\label{thm:lowbasin}
+Fix $\varepsilon\in\{+1,-1\}$ and suppose
+A1$_\varepsilon$ holds, together with the orientation-specific level condition;
+neither orientation reads a target condition. Suppose
+$E=(\Vt,\Vs,\alpha)\in\mathcal E$ with
+$\Vt\in\mathcal C_T$, $\Vs\in\mathcal C_S$, and
+$\alpha=\alpha_{\Vt,\Vs}$. Then, from every starting state in the
+corresponding basin:
+\begin{enumerate}[label=(\roman*)]
+\item the state remains in that basin;
+\item the realized sanction remains on the basin side of its
+corresponding extremum;
+\item $\varepsilon(s^E_{t+1}-s^E_t)\ge0$ for every $t$.
+\end{enumerate}
+\end{theorem}
+
+The high orientation reproduces conclusions (i)--(iii) of
+\Cref{thm:persistence}; the low orientation keeps the state in the low basin with non-increasing
+sanctions. Because the
+two assumption blocks apply on disjoint state ranges, the same
+equilibrium can satisfy both.
+
+\begin{corollary}[Initial-condition selection under a common equilibrium]
+\label{cor:initial-condition-selection}
+Suppose the same equilibrium $E$ satisfies the sender's high-basin
+conditions with state threshold $\bar x_H$ and sanction threshold
+$\bar s_H$ --- at every state of $[\bar x_H,1]$ some maximizer of
+$J_S$ is at least $\max\{x,\bar s_H\}$, and the greatest one is
+non-decreasing in the state there --- and the sender's low-basin conditions
+with thresholds $\bar x_L$ and $\bar s_L$ --- on $[0,\bar x_L]$ the dynamic
+best response is at most $\min\{x,\bar s_L\}$ and non-decreasing in the
+state --- where $\bar x_L<\bar x_H$. No target condition is used. Then the initial-state regions
+$[0,\bar x_L]$ and $[\bar x_H,1]$ are disjoint. For every
+$x_0\in[\bar x_H,1]$ and every $t\ge0$,
+\[
+x_t^E\in[\bar x_H,1],\qquad
+s_t^E\ge\max\{\bar x_H,\bar s_H\},\qquad
+s_{t+1}^E\ge s_t^E.
+\]
+For every $x_0\in[0,\bar x_L]$ and every $t\ge0$,
+\[
+x_t^E\in[0,\bar x_L],\qquad
+s_t^E\le\min\{\bar x_L,\bar s_L\},\qquad
+s_{t+1}^E\le s_t^E.
+\]
+\end{corollary}
+
+This is selection by initial conditions within one equilibrium, not
+selection among equilibria. The appendix supplies an economy satisfying
+both sets of conditions.
+
+\Cref{cor:initial-condition-selection} leaves the region between $\bar x_L$ and
+$\bar x_H$ unclassified and takes both basin boundaries as given. Continuity of
+the equilibrium closed loop nevertheless derives bounds on the dividing region
+without imposing a sign in the middle.
+
+\begin{proposition}[The dividing line is derived]
+\label{prop:derived-dividing-line}
+Let $E\in\mathcal E$ and $0<\bar x_L\le\bar x_H<1$, for instance the thresholds
+of \Cref{cor:initial-condition-selection}. Suppose that the closed loop strictly
+lowers the state at every state of $(0,\bar x_L]$ and strictly raises it at
+every state of $[\bar x_H,1)$, and that the sanction rule is continuous on
+$[0,1]$. The closed loop then maps $[0,1]$ into itself, by feasibility of the
+transition and of the rule, and fixes both endpoints of the state space; the
+first formalization assumed both. Impose no restriction on the sign
+of $G_E(x)-x$ between $\bar x_L$ and $\bar x_H$; monotonicity of the sanction
+rule is also unnecessary. Then the equilibrium
+closed loop determines two of its own steady states,
+\[
+  x_s^-=\inf\{\,x\in[\bar x_L,\bar x_H]:x\le G_E(x)\,\},
+  \qquad
+  x_s^+=\sup\{\,x\in[\bar x_L,\bar x_H]:G_E(x)\le x\,\},
+\]
+with $\bar x_L<x_s^-\le x_s^+<\bar x_H$, such that every equilibrium path started
+anywhere in $[0,x_s^-)$ converges to $0$ and every equilibrium path started
+anywhere in $(x_s^+,1]$ converges to $1$. Moreover $x_s^-=x_s^+$ exactly when
+$G_E$ has a single steady state in $[\bar x_L,\bar x_H]$.
+\end{proposition}
+
+The two convergence regions therefore extend strictly beyond the given basins,
+with endpoints derived from the equilibrium; the interval between them need
+not collapse to a point, and continuity of the sanction rule is what supplies
+a middle steady state (\Cref{app:moved-ah}).
+
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+  x=7cm,y=5.2cm,
+  >={Stealth[length=2mm]},
+  every node/.style={font=\scriptsize}
+]
+\fill[black!8] (0,0) rectangle (0.22,1);
+\fill[black!8] (0.78,0) rectangle (1,1);
+\draw[->] (0,0) -- (1.08,0) node[right] {$x_t$};
+\draw[->] (0,0) -- (0,1.08) node[above] {$x_{t+1}$};
+\draw[black!45,dashed] (0,0) -- (1,1);
+\draw[very thick] (0,0) -- (0.22,0.19);
+\draw[very thick] (0.78,0.79) -- (1,1);
+\draw[black!55,dashed]
+  plot[smooth,tension=.75] coordinates
+  {(0.22,0.19) (0.38,0.28) (0.50,0.50) (0.66,0.76) (0.78,0.79)};
+\draw[->,thick] (0.42,-0.08) -- (0.16,-0.08);
+\draw[->,thick] (0.58,-0.08) -- (0.88,-0.08);
+\draw[->,thick,dashed] (0.06,-0.19) to[bend right=14]
+  node[midway,below] {shock entry when \Cref{thm:shock} applies} (0.97,-0.19);
+\node[rotate=90,black!55] at (0.05,0.55) {low basin};
+\node[rotate=90,black!55] at (0.975,0.45) {high basin};
+\fill (0.5,0.5) circle (0.9pt);
+\node[below] at (0.22,0) {$\bar x_L$};
+\node[below] at (0.78,0) {$\bar x_H$};
+\node[below] at (0.5,0) {$x_s^{\pm}$};
+\node[above left,black!55] at (0.62,0.62) {$x_{t+1}=x_t$};
+\end{tikzpicture}
+\caption{\textbf{Dual-basin selection.}
+The solid segments represent the equilibrium dynamics established on the
+low and high basins. The dashed middle segment is illustrative. By
+\Cref{prop:derived-dividing-line} the middle region contains steady states
+$x_s^-\le x_s^+$ derived from the closed loop, with convergence to zero below $x_s^-$ and
+lock-in above $x_s^+$; the figure draws the case $x_s^-=x_s^+$ of a single
+crossing, which the proposition does not assert. Under
+the separate shock-entry conditions, a temporary sanction
+shock can move the state into the high basin, after which equilibrium
+dynamics resume.}
+\label{fig:bistability}
+\end{figure}
+
+\subsection{Temporary-shock entry and persistence after entry}
+\label{sec:counterfactual}
+
+A temporary sanction shock can move the political state into the high
+basin, after which equilibrium policies keep the state there. The
+shock is not an equilibrium policy or an optimal sanction policy; each result
+describes resumed play under the same specified equilibrium, and every
+duration below is a sufficient ceiling that need not be minimal.
+
+\begin{theorem}[Temporary-shock entry and persistence after entry]
+\label{thm:shock}
+Maintain \textup{(P1)--(P3)} and \textup{(P5)} of \Cref{thm:persistence},
+with the same value sets, equilibrium, pivots, and sender Lipschitz constant;
+the target condition \textup{(P4)} is not needed. In
+addition, suppose the transition follows the general law
+\eqref{eq:transition}, satisfies \textup{(F1)--(F4)}, and rises under full
+sanctions below the basin, $x<\F(x,1)$ for $x\in[0,\bar x]$ (so $\bar x<1$). Define the full-sanction drift and its minimum below the
+basin by
+\[
+d_{\F}(x):=\F(x,1)-x,
+\qquad
+\eta_{\F}(\bar x):=\min_{x\in[0,\bar x]}d_{\F}(x).
+\]
+Then $\eta_{\F}(\bar x)>0$. Define the conservative shock-duration
+bound by
+\[
+\widehat N_{\F}(\bar x)
+:=\left\lceil\frac{\bar x}{\eta_{\F}(\bar x)}\right\rceil.
+\]
+From any $x_0\in[0,1]$, imposing $s_t=1$ for
+$t=0,\ldots,\widehat N_{\F}(\bar x)-1$ gives
+\[
+x_{\widehat N_{\F}(\bar x)}\ge\bar x.
+\]
+The same conclusion holds for every longer temporary shock at the full sanction.
+Consequently $x_{\widehat N_{\F}(\bar x)}\in\basin$, and conclusions
+(i)--(iii) of \Cref{thm:persistence} hold along the equilibrium path
+resumed from that state.
+\end{theorem}
+
+Continuity and full-sanction ascent below the basin make the full-sanction
+drift strictly positive on the compact pre-basin interval, where its minimum
+is attained. Until the lowest shocked
+path enters the basin, it therefore rises by at least
+$\eta_{\F}(\bar x)$ each period. The bound is conservative because it
+uses only the smallest one-period drift.
+
+The theorem establishes entry followed by persistence. It does not compare
+the shocked path with the path the same equilibrium would have followed
+unshocked, and so it does not assert that the shock selects a different
+long-run outcome; \Cref{prop:activation-not-hysteresis} exhibits an economy
+in which it does not. The duration is a sufficient bound that depends on the
+economy and is not small in any uniform sense (\Cref{app:moved-ah}).
+
+Under the partial-adjustment law \eqref{eq:affine}, the sharper closed-form duration is
+\[
+N_*(\bar x,\delta)
+:=\left\lceil\frac{\log(1-\bar x)}{\log(1-\delta)}\right\rceil,
+\qquad
+x_{N_*}=1-(1-\delta)^{N_*}(1-x_0)\ge\bar x.
+\]
+
+A transition that carries the state up faster under the full sanction has
+a weakly larger minimum entry drift and a weakly shorter sufficient
+duration; the drift comparison is strict when the transition comparison is,
+while the duration comparison stays weak because distinct drifts can share an
+integer ceiling (\Cref{cor:shock-transition-strength}, in \Cref{app:moved-ak}).
+
+\subsection{A temporary shock, then no endogenous exit}
+\label{sec:finite-episode}
+A confrontation may begin as an attempt to make the other government back
+down. The model does not solve that initial interaction, and it carries no
+types, beliefs, or signals. What it shows is what a temporary shock
+leaves behind. If the shock carries the political state into a region the
+resumed equilibrium preserves, the shock's original purpose ceases to
+matter for what follows: under unchanged primitives and that equilibrium,
+sanctions never fall below the region's floor. This is endogenous non-exit,
+not technological impossibility of relief --- the transition still erodes
+entrenchment under low sanctions, and \Cref{thm:relief-exit} gives a
+sufficient duration for a temporary suspension of sanctions --- and it presupposes that
+everything the shock leaves behind is represented by the scalar state.
+
+\begin{theorem}[Temporary shock, then no endogenous exit]
+\label{thm:finite-episode}
+Maintain \textup{(F1)--(F4)}. Let $(\Vt,\Vs,\alpha)\in\mathcal E$ with
+sanction rule $R(x)=\sigDynTop_{\Vs}(x,\alpha(x))$, and let
+$\bar x$ and $\bar s$ satisfy $\bar x\le\F(\bar x,\bar s)$ and
+$R(x)\ge\bar s$ for every $x\in[\bar x,1]$; both hold whenever the sanction
+rule is at or above $\bar x$ on $[\bar x,1]$ and $\bar s=\bar x$. Let
+$(u_t)_{t<T}$ be a temporary shock, a feasible sanction path set exogenously before date $T$, with
+the equilibrium resumed from date $T$:
+\[
+x_{t+1}=\F(x_t,s_t),\qquad
+s_t=\begin{cases}u_t,&t<T,\\ R(x_t),&t\ge T.\end{cases}
+\]
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Splice.} For $t\ge T$ the path $(x_t,s_t)$ is the equilibrium
+path of \Cref{sec:model} restarted at $x_T$.
+\item \emph{Non-exit.} If $x_T\in[\bar x,1]$ then $x_t\in[\bar x,1]$ and
+$s_t\ge\bar s$ for every $t\ge T$, and for every cutoff $q<\bar s$ there is
+no date $t\ge T$ at which $s_t\le q$.
+\item \emph{Entry under a non-maximal shock.} Let $0\le\bar x$, let the
+sanction level $h$ raise every state of $[0,\bar x]$, $x<\F(x,h)$ there
+(held-sanction ascent, which forces $\bar x<h$ and which \textup{(F5)}
+implies whenever $\bar x<h\le1$), and let $u_t\ge h$ for every $t<T$. The drift
+$\eta_h(\bar x):=\min_{x\in[0,\bar x]}\bigl(\F(x,h)-x\bigr)$ is attained and
+strictly positive, and for $T\ge N_h(\bar x):=\lceil\bar x/\eta_h(\bar x)\rceil$
+every initial state $x_0\in[0,1]$ gives $x_T\in[\bar x,1]$. At $h=1$,
+$N_1(\bar x)$ is $\widehat N_{\F}(\bar x)$ of \Cref{thm:shock}. Where a lower
+bound $d>0$ on the transition's sanction slope is available and $\bar x<h\le1$,
+$\lceil\bar x/(d(h-\bar x))\rceil$ is an explicit, looser, sufficient
+duration.
+\item \emph{Ratchet tail.} If $x_T\in[\bar x,1]$ and the sanction rule is at
+or above the state on $[\bar x,1]$, the post-shock sanction satisfies
+$s_t\ge\max(x_T,\bar x)$ for every $t\ge T$; if the rule is also
+non-decreasing on $[\bar x,1]$, the sanction is nondecreasing in $t$. Both
+conditions hold under \textup{(P1)--(P5)} of \Cref{thm:persistence} with
+pivots $\bar x,\bar s$.
+\end{enumerate}
+\end{theorem}
+
+The basin conditions of \Cref{thm:finite-episode} are met on the class under
+the lifting condition at every equilibrium at which the target maintains full non-compliance, with pivot and
+floor both equal to $\underline s=\sigM(0,0)$ ($u_0/q$ on the quadratic--linear family when
+$u_0\le q$, as under interiority);
+such an equilibrium exists under the entrenchment condition and a non-decreasing
+response at non-compliance, which the increasing-differences condition \eqref{eq:rally-margin} implies, the constructed one. That is weak invariance and a floor, not the ratchet and not
+hysteresis (\Cref{app:moved-ah}).
+
+The comparison behind (iii), two machine-checked boundaries of the statement
+--- a floor equal to the pivot need not be reached in finite time, and no
+duration is uniformly small across transitions --- and the instantiation at a
+non-affine transition are in \Cref{app:moved-ad}.
+
+\paragraph{The theorem on a finite temporary shock, on the class under the lifting condition.} \emph{(From \Cref{sec:finite-episode}, after \Cref{thm:finite-episode}.)}
+
+The basin conditions of \Cref{thm:finite-episode} are met on the class under
+the lifting condition at every equilibrium at which the target maintains full non-compliance, with pivot and
+floor both equal to $\underline s=\sigM(0,0)$ ($u_0/q$ on the quadratic--linear family when
+$u_0\le q$, as under interiority):
+every such equilibrium realizes the constructed response, which is at least
+the floor at every state, and $\F(\underline s,\underline s)=\underline s$, so
+a temporary shock ending in $[\underline s,1]$ --- in particular one held at
+any level above $\underline s$ for the derived duration --- is followed by
+permanent residence there with the sanction never below $\underline s$
+(\path{placable_post_episode_nonexit_of_policy_zero},
+\path{placable_highEpisode_nonexit_of_policy_zero}). Such an equilibrium exists
+under the entrenchment condition and a non-decreasing response at non-compliance, which
+the increasing-differences condition \eqref{eq:rally-margin} implies, the constructed one; where
+none exists the statement is empty. This is weak invariance and a
+floor, not the ratchet and not hysteresis: at the affine member the closed
+loop contracts and the unshocked path settles above the floor as well.
+
+\subsection{Relief and the exit duration}
+\label{sec:relief-exit}
+
+The entry result has a counterpart on the exit side, which uses only the
+descent half of \textup{(F5)}, and only inside the basin: the zero sanction
+strictly lowers every state of $[\bar x,1]$.
+Whether one equilibrium sustains both basins is a further question;
+\Cref{prop:two-sided-one-equilibrium} is the one economy at which it is settled
+(\Cref{app:moved-ah}).
+
+\begin{theorem}[Exit under a temporary suspension of sanctions]
+\label{thm:relief-exit}
+Maintain \textup{(F1)--(F4)}, let $\bar x\le1$, and suppose the zero
+sanction strictly lowers every state of the basin, $\F(x,0)<x$ for
+$x\in[\bar x,1]$ (post-basin descent, which forces $\bar x>0$ and which
+\textup{(F5)} implies whenever $\bar x>0$). Define the relief
+drift and its minimum inside the basin by
+\[
+  r_{\F}(x):=x-\F(x,0),
+  \qquad
+  \eta^{R}_{\F}(\bar x):=\min_{x\in[\bar x,1]}r_{\F}(x).
+\]
+The minimum is attained and $\eta^{R}_{\F}(\bar x)>0$. Let
+\[
+  \widehat N^{R}_{\F}(\bar x)
+  :=\left\lceil\frac{1-\bar x}{\eta^{R}_{\F}(\bar x)}\right\rceil .
+\]
+If the sanction is held at zero from an arbitrary feasible initial state
+$x_0\in[0,1]$, then the resulting state path satisfies $x_n\le\bar x$ at every
+date $n\ge\widehat N^{R}_{\F}(\bar x)$.
+\end{theorem}
+
+As with \Cref{thm:shock}, the relief path is exogenous, not chosen: it is a
+temporary shock during which neither government optimizes, and the result is
+correspondingly not an optimal-relief claim. What it adds is the second
+threshold. Under the hypotheses of \Cref{thm:persistence} relief never arrives
+endogenously --- inside the basin the equilibrium sanction stays above the state
+inherited at entry, so the set of dates at which the equilibrium grants relief
+is empty --- and under the weaker floor of \Cref{thm:finite-episode} it never
+falls below the region's floor. Read together, the two statements say something
+neither says alone:
+
+\begin{quote}
+The equilibrium never ends the sanctions regime on its own. A temporary
+suspension of sanctions of the stated sufficient duration crosses the threshold;
+whether sanctions then stay low depends on a separate low-basin
+condition for the resumed equilibrium.
+\end{quote}
+
+The bound is a sufficient duration for a temporary suspension
+of sanctions, not a minimal one. What this implies for sunset clauses and review
+dates, and how the entry and exit durations compare, is in
+\Cref{app:moved-ah,app:moved-ad}.
+
+Two limits should be stated plainly. \Cref{thm:relief-exit} stops at the
+crossing: it establishes that the state re-enters $[0,\bar x]$ and by itself
+says nothing about whether it \emph{remains} there once the shock ends. That
+gap is closed \emph{conditionally}, with the same shape as the entry side:
+
+Conditional on the low-basin level condition --- the sanction rule at most
+the state and at most a level $\underline s$ on $[0,\bar x]$ --- a
+temporary suspension of sanctions of the stated length is followed by a state path that
+stays in $[0,\bar x]$ and is non-increasing (\Cref{prop:post-relief-persistence}). The level condition is the dual of the one
+\Cref{thm:shock} assumes on the high basin: an assumption about the
+equilibrium in question, discharged at the dual-basin economy of
+\Cref{prop:two-sided-one-equilibrium} and at no other economy in the
+development. Read with \Cref{thm:shock}, the two statements are two
+opposite-direction crossings, each followed under its own conditions by the state staying on its new side; they
+are not a same-equilibrium hysteresis unless both level conditions hold for
+one equilibrium. Two further limits, at the threshold itself and in the
+conservatism of the duration, are in \Cref{app:moved-ah}.
+
+Relief in this section is set exogenously. At the constructed forward-looking
+equilibrium of the class under the lifting condition it does not arise endogenously, since the
+target maintains non-compliance there; against a myopic target, and below the intermediate range of the target's discount factor in \Cref{prop:bracket},
+compliance buys it (\Cref{tab:four-cells}). Under the entrenchment condition and
+a non-decreasing response, at every equilibrium of the class at which the
+target maintains full non-compliance (the constructed one among them) a spell of
+zero sanctions of any length, followed by that equilibrium, is worth
+strictly less to the sender than the equilibrium itself --- by at least a
+stage-gain floor per period ($u_0^2/(2q)$ on the quadratic--linear family), when
+no compliance level is worth more to the sender than non-compliance at zero sanction ---
+and weakly less to the target, whose entrenchment
+condition makes the discounted entrenchment a sanction builds cover its pain;
+their gains sum to a negative number, so no lump-sum side payment between them
+makes the spell acceptable to both (\Cref{prop:relief-participation}). The
+obstacle to de-escalation there is participation before it is enforcement.
+Outside the entrenchment condition the target's half fails: a temporary suspension
+of sanctions can benefit a target that would still choose non-compliance.
+
+At the dual-basin economy there is one equilibrium at which a temporary
+full-sanction shock of the stated length is followed by permanent residence
+in the high basin with the sanction at its maximum, and a temporary suspension
+of sanctions by permanent residence in the low basin with a zero
+sanction (\Cref{prop:two-sided-one-equilibrium} in \Cref{app:dual-basin-economy}).
+This is the same-equilibrium two-sided statement that \Cref{sec:relief-exit}
+declines to make in general. It is affine, it leaves the interval between the
+two basins unclassified, and it is an existence certificate
+(\Cref{app:moved-ah}).
+
+
+\paragraph{Forward-looking incentives that change behavior do not imply hysteresis.}
+\label{sec:compstat:activation-not-hysteresis}
+On the class under the lifting condition (\Cref{sec:existence:placable}) both forward-looking incentives
+change behavior at a constructed equilibrium, and one might read that as history
+dependence. It is not, and the most transparent member of its quadratic--linear
+family shows why.
+
+\begin{proposition}[A contracting closed loop]
+\label{prop:activation-not-hysteresis}
+On every economy in the class under the lifting condition let $\rho$ be the
+sender's dynamic best response at full non-compliance, evaluated at its constructed value, which
+exists on every such economy; under the entrenchment condition and the increasing-differences condition
+\eqref{eq:rally-margin} the map $G(x)=\F(x,\rho(x))$ is the state law of the
+equilibrium of
+\Cref{prop:placable-family}. Then $G$ is Lipschitz on $[0,1]$ with constant
+$L_{\mathrm{loop}}=g_{\mathrm{hi}}+d_{\mathrm{hi}}\cdot L_{\mathrm{resp}}/\mu$,
+where $\mu=q-\beta_S(\sigma_V d_{\mathrm{hi}}^2+K_S M_s)$ is the
+strong-concavity modulus of the sender's dynamic objective, $M_s$ the
+sanction curvature bound of the transition, and
+$L_{\mathrm{resp}}=r_{\mathrm{hi}}+\beta_S\bigl(\bar\sigma g_{\mathrm{hi}}d_{\mathrm{hi}}
++(K_S+2\bar\sigma)M_{\mathrm{mix}}\bigr)$ with
+$\bar\sigma=\max(\sigma_V,\sigma_C)$ and $K_S=w_{\mathrm{hi}}/(1-\beta_Sg_{\mathrm{hi}})$. Two paths that resume the equilibrium
+at states $x$ and $y$ are within $L_{\mathrm{loop}}^n|x-y|$ after $n$
+periods. On every member of the relief class with $L_{\mathrm{loop}}<1$ that
+satisfies myopic interiority $u_{\mathrm{hi}}<q$, the entrenchment condition and
+the increasing-differences condition, the equilibrium has exactly one steady state in $[0,1]$, at
+which the sanction equals the state, and every initial state converges to
+it. At the affine member $K_S=2$,
+$\mu=23/8$, $L_{\mathrm{resp}}=5/8$, and $L_{\mathrm{loop}}=14/23$; at the
+non-affine member $K_S=15/7$, $\mu=141/50$, $L_{\mathrm{resp}}=17/25$, and
+$L_{\mathrm{loop}}=35/47$.
+\end{proposition}
+
+So at both members both governments are forward-looking, both forward-looking incentives change
+behavior, and a temporary sanction shock has no asymptotic effect, though
+transient and cumulative effects are not excluded; the absence of an
+asymptotic effect holds on the whole relief class wherever
+$L_{\mathrm{loop}}<1$ and the stated conditions hold. The persistence in
+\Cref{thm:shock} rests on its basin conditions, not on whether the forward-looking incentives
+change behavior. The two constants are evaluated upper bounds, not measured
+convergence rates (\Cref{app:moved-ah}).
+
+% Moved from the main text, 2026-10-16 (structure plan S2): the reading of lock-in and the
+% three notions of stability, formerly in Section 5.2.
+\subsection{Persistence after relief}
+
+\begin{proposition}[Post-relief persistence, conditional on the low-basin
+level condition]
+\label{prop:post-relief-persistence}
+Maintain \textup{(F1)--(F4)}, let $\bar x\le1$, suppose the zero sanction
+strictly lowers every state of $[\bar x,1]$, $\F(x,0)<x$ there (which forces
+$\bar x>0$), and let $R$ be the sanction rule of an equilibrium's
+value and policy. Suppose the low-basin
+level condition holds: for some $\underline s$, $R(x)\le\min(x,\underline s)$
+on $[0,\bar x]$. Then from every initial state, after a temporary suspension
+of sanctions of length $\widehat N^{R}_{\F}(\bar x)$, the state path evolved by
+$\F$ under $R$ lies in $[0,\bar x]$ at every later date and is
+non-increasing.
+\end{proposition}
+
+The level condition is the dual of the one \Cref{thm:shock} assumes on the
+high basin: it is an assumption about the equilibrium in question, not a
+property of the model, and it is discharged at the dual-basin economy of
+\Cref{prop:two-sided-one-equilibrium} (where the rule is zero on the low
+basin) and at no other economy in the development. Read with
+\Cref{thm:shock}, the two statements are two opposite-direction crossings
+with conditional persistence on each side; they are not a same-equilibrium
+hysteresis unless both level conditions hold for one equilibrium, which is
+what \Cref{prop:two-sided-one-equilibrium} exhibits. Two further limits, at the
+threshold itself and in the conservatism of the duration, are in
+\Cref{app:moved-ah}.
+
+\subsection{Reading lock-in}
+\label{app:persistence:reading}
+
+Whether persistent sanctions are permanent is a question about the
+dynamics, which lock-in answers equilibrium by equilibrium. Lock-in is a property of a given equilibrium: its
+direction and level conditions are imposed only at basin states, at every value
+pair in the stated sets, and the level condition only against the state itself
+(\Cref{prop:lock-in}). These requirements can be met: on a class of corner
+economies, defined by inequalities among primitives, at which the constructed
+equilibrium sanctions fully at every state, and at an example economy whose
+continuation values change observable choices.
+Lock-in's comparative statics run in one direction: with the same transition and
+initial state, a non-decreasing sanction rule at least as high as another on the
+high basin yields a state path at least as high at every date.
+
+Three notions of stability appear in these results, and they remain
+distinct. First, state paths converge. When the equilibrium law of motion is
+non-decreasing on a basin that it preserves and the sanction rule is continuous
+there, the start fixes the steady state reached: the least one at or above the
+start if the sanction there is at least the state, and otherwise the greatest one
+at or below it. Second, equilibrium uniqueness holds relative to stated
+restrictions: invariant sets of value functions, tie-breaking rules and
+non-decreasing sanction rules (\Cref{sec:results:security}). Uniqueness in
+dynamic games of this kind is open \citep{DoraszelskiSatterthwaite2010}. On every
+family the paper constructs, the sender's optimal sanction is unique at each state
+and feasible compliance level, so the greatest, the least and any other selection
+coincide there. Third, in a stochastic extension of the model studied elsewhere in this
+appendix, an invariant distribution of the state exists; its analytic
+existence argument and its formalized constructions have different verification
+scopes.

@@ -1,0 +1,131 @@
+import Sanctions
+open Sanctions Sanctions.Examples Sanctions.AbstractGame.Params Sanctions.AbstractGame.ShockedParams
+open Lean Elab Command Meta
+
+/-! Unused-binder probe (doc 78, K12; round K), protocol v2 (doc 80, M4; round L).
+The Rule-13 unused-hypothesis audit as an instrument, in the census's own
+style. For each root declaration it emits, in a line-oriented format parsed
+strictly by `scripts/unused_run.py`:
+
+  UNUSED-RUN <nonce>                   -- once, first: the runner's nonce
+  UNUSED-BEGIN <name> <kind> <nbinders>
+  BINDER <k> | <binderName> | <explicit|implicit|instImplicit|strictImplicit> | <isProp> | <inBody> | <inLaterTypes> | <inConclusion> | <type>
+  NOVALUE                              -- instead of BINDER rows: the root has no value (axiom/opaque)
+  UNUSED-END <name>
+  UNUSED-DONE <n>                      -- once, last: the number of requested roots
+
+The runner accepts nothing else. Every BEGIN names the root's kind and its
+telescope length; every END names its root; a BEGIN that is not followed by
+NOVALUE must be followed by exactly `nbinders` BINDER rows with consecutive
+indices and `true`/`false` flags; the DONE count must equal the number of
+requested roots; a duplicate BEGIN, a truncated record, a malformed row or a
+nonce mismatch fails the run, and no report is written on failure. (Round K's
+runner accepted seven malformed shapes; the reader's round-K validation
+package, document 04 §2, reproduced them.)
+
+What it measures. The root's compiled value is applied to the free variables
+of its own type telescope (`Expr.beta`), so the value's leading lambdas are
+consumed in step with the type's binders. Auxiliary constants the compiler
+split off under the root's name (`_proof_i`, `match_i`, `_aux`, …) are
+inlined and beta-reduced, up to four levels, so a binder that reaches an
+auxiliary lemma which ignores it is still seen as unused. Each binder gets
+three occurrence flags: in the (inlined) proof body, in the type of another
+binder, in the conclusion. A binder with all three false is logically
+removable from the statement; a binder that occurs only in the body is used
+by *this* proof, which says nothing about whether another proof could avoid
+it — that question, and "implied by another hypothesis of the same theorem",
+stay reading tasks. Implicit and instance binders are reported for
+completeness and are not candidates (they are determined by, or serve, the
+explicit ones).
+
+Limits, stated so the report can say them: a value that was eta-reduced
+below its type's binder count leaves the remaining binders as arguments of a
+constant, and `Expr.beta` then counts them as used (conservative);
+universe levels of inlined auxiliaries are not instantiated, which is sound
+for an occurrence test and never type-checked; the decisive deletion check
+for a candidate is a sibling declaration without the binder that elaborates
+(`shockEntryHorizon_bound_of_pow`, round L). -/
+
+set_option pp.fullNames true
+set_option pp.deepTerms true
+set_option pp.maxSteps 1000000
+set_option pp.proofs false
+
+def unusedBinderKind : BinderInfo → String
+  | .default => "explicit"
+  | .implicit => "implicit"
+  | .instImplicit => "instImplicit"
+  | .strictImplicit => "strictImplicit"
+
+def unusedKind (ci : ConstantInfo) : String :=
+  match ci with
+  | .thmInfo _ => "theorem"
+  | .defnInfo _ => "def"
+  | .inductInfo _ => "inductive"
+  | .ctorInfo _ => "ctor"
+  | .axiomInfo _ => "axiom"
+  | .opaqueInfo _ => "opaque"
+  | .recInfo _ => "rec"
+  | .quotInfo _ => "quot"
+
+def unusedOneLine (s : String) : String :=
+  String.intercalate " " (s.splitOn "\n" |>.map String.trim) |>.trim
+
+def unusedPP (e : Expr) : MetaM String := do
+  let f <- ppExpr e; pure (unusedOneLine f.pretty)
+
+/-- Inline the auxiliary constants the compiler split off under `root` (`root`
+is a strict prefix of their name), then beta-reduce; repeat up to `fuel` times.
+Universe levels are not instantiated: the result is used only for an
+occurrence test, never type-checked. -/
+partial def unusedInlineAux (env : Environment) (root : Name) (e : Expr) (fuel : Nat) :
+    MetaM Expr := do
+  if fuel == 0 then return e
+  let e' := e.replace fun sub =>
+    match sub with
+    | .const c _ =>
+      if c != root && root.isPrefixOf c then
+        match env.find? c with
+        | some ci => ci.value?
+        | none => none
+      else none
+    | _ => none
+  if e' == e then return e
+  let e'' <- Core.betaReduce e'
+  unusedInlineAux env root e'' (fuel - 1)
+
+elab "#unusedRun " s:str : command => do
+  logInfo m!"UNUSED-RUN {s.getString}"
+
+elab "#unused " ids:ident+ : command => do
+  let env <- getEnv
+  for id in ids do
+    let n <- liftCoreM <| realizeGlobalConstNoOverload id
+    liftTermElabM do
+      let some ci := env.find? n | throwError "UNUSED-MISSING {n}"
+      let nb <- forallTelescope ci.type fun xs _ => pure xs.size
+      logInfo m!"UNUSED-BEGIN {n} {unusedKind ci} {nb}"
+      match ci.value? with
+      | none => logInfo m!"NOVALUE"
+      | some v =>
+        forallTelescope ci.type fun xs concl => do
+          let body0 := v.beta xs
+          let body <- unusedInlineAux env n body0 4
+          let mut k : Nat := 0
+          for x in xs do
+            k := k + 1
+            let ld <- x.fvarId!.getDecl
+            let isP <- isProp ld.type
+            let inBody := body.containsFVar x.fvarId!
+            let mut inLater := false
+            for y in xs do
+              if y != x then
+                let yd <- y.fvarId!.getDecl
+                if yd.type.containsFVar x.fvarId! then inLater := true
+            let inConcl := concl.containsFVar x.fvarId!
+            let tys <- unusedPP ld.type
+            logInfo m!"BINDER {k} | {ld.userName} | {unusedBinderKind ld.binderInfo} | {isP} | {inBody} | {inLater} | {inConcl} | {tys}"
+      logInfo m!"UNUSED-END {n}"
+
+elab "#unusedDone " n:num : command => do
+  logInfo m!"UNUSED-DONE {n.getNat}"

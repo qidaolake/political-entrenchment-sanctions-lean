@@ -1,0 +1,172 @@
+import Sanctions
+open Sanctions Sanctions.Examples Sanctions.AbstractGame.Params Sanctions.AbstractGame.ShockedParams
+open Lean Elab Command Meta
+
+/-! Hypothesis-census probe (doc 68 round E; repaired doc 70 round F). For each
+root declaration it emits, in a line-oriented format parsed by
+`scripts/census_build.py`:
+
+  CENSUS-BEGIN <name>
+  KIND <theorem|def|structure|...>
+  BINDER <k> | <binderName> | <explicit|implicit|instImplicit|strictImplicit> | <isProp> | <headConst or -> | <type>
+  EXPAND-STRUCT <k> | <structName>
+  FIELD <k> | <Owner.field> | <isProp> | <type>            -- level 1, owner = declaring structure
+  FIELD-UNFOLD <k> | <Owner.field> | <unfolded body>         -- a Prop field whose head is a project definition
+  FIELD-STRUCT <k> | <Owner.field> | <structName2>           -- a data field whose type is a project structure
+  FIELD2 <k> | <Owner.field> | <Owner2.field2> | <isProp> | <type>   -- level 2
+  FRONTIER <k> | <path> | <reason>                           -- not expanded further (depth limit)
+  EXPAND-DEF <k> | <defName>
+  UNFOLD <k> | <unfolded type>
+  CONCL <conclusion>
+  CENSUS-END
+
+and, once per run, `CENSUS-DONE <n>` (the runner's completion marker).
+
+Rendering is fixed (the same four options as the contract fence): names print
+fully qualified, nothing is elided for depth, proof arguments print as `⋯`.
+Structures are expanded two levels (a field whose type is itself a project
+structure is expanded once more; anything deeper is a FRONTIER record, not a
+silent omission); a Prop field or binder whose head is a project definition is
+unfolded one level. Nothing is hashed here; this is a reading instrument, not
+the drift fence. -/
+
+set_option pp.fullNames true
+set_option pp.deepTerms true
+set_option pp.maxSteps 1000000
+set_option pp.proofs false
+
+def censusIsProject (n : Name) : Bool := (`Sanctions).isPrefixOf n
+
+def censusBinderKind : BinderInfo → String
+  | .default => "explicit"
+  | .implicit => "implicit"
+  | .instImplicit => "instImplicit"
+  | .strictImplicit => "strictImplicit"
+
+def censusKind (ci : ConstantInfo) : String :=
+  match ci with
+  | .thmInfo _ => "theorem"
+  | .defnInfo _ => "def"
+  | .inductInfo _ => "inductive"
+  | .ctorInfo _ => "ctor"
+  | .axiomInfo _ => "axiom"
+  | .opaqueInfo _ => "opaque"
+  | .recInfo _ => "rec"
+  | .quotInfo _ => "quot"
+
+def censusOneLine (s : String) : String :=
+  String.intercalate " " (s.splitOn "\n" |>.map String.trim) |>.trim
+
+def censusPP (e : Expr) : MetaM String := do
+  let f <- ppExpr e; pure (censusOneLine f.pretty)
+
+/-- Is `c` a project definition with a body (unfoldable)? -/
+def censusIsProjectDef (env : Environment) (c : Name) : Bool :=
+  censusIsProject c && (match env.find? c with | some (.defnInfo _) => true | _ => false)
+
+/-- The fields of a project structure, each with its declaring owner. -/
+def censusFieldsWithOwner (env : Environment) (c : Name) : Array (Name × Name) := Id.run do
+  let mut out := #[]
+  for fld in getStructureFieldsFlattened env c (includeSubobjectFields := false) do
+    let owner := (findField? env c fld).getD c
+    out := out.push (owner ++ fld, fld)
+  return out
+
+/-- Expand the fields of structure `c` reached from binder `k` through `path`
+(empty for level 1). Level 1 emits FIELD / FIELD-UNFOLD / FIELD-STRUCT and
+recurses once; level 2 emits FIELD2 and FRONTIER records. -/
+partial def censusExpandStruct (env : Environment) (k : Nat) (c : Name) (path : String)
+    (level : Nat) : TermElabM Unit := do
+  for (pn, _) in censusFieldsWithOwner env c do
+    match env.find? pn with
+    | none => logInfo m!"FRONTIER {k} | {path}{pn} | projection not found"
+    | some pci =>
+      forallTelescope pci.type fun _ fb => do
+        let fisP <- isProp fb
+        let fts <- censusPP pci.type
+        if level == 1 then
+          logInfo m!"FIELD {k} | {pn} | {fisP} | {fts}"
+        else
+          logInfo m!"FIELD2 {k} | {path} | {pn} | {fisP} | {fts}"
+        match fb.getAppFn with
+        | .const c2 _ =>
+          if censusIsProject c2 then
+            if isStructure env c2 then
+              if level == 1 then
+                logInfo m!"FIELD-STRUCT {k} | {pn} | {c2}"
+                censusExpandStruct env k c2 s!"{pn} > " 2
+              else
+                logInfo m!"FRONTIER {k} | {path}{pn} | structure {c2} not expanded (depth limit 2)"
+            else if fisP && censusIsProjectDef env c2 then
+              if level == 1 then
+                match (<- unfoldDefinition? fb) with
+                | some u =>
+                  let us <- censusPP (<- Core.betaReduce u)
+                  logInfo m!"FIELD-UNFOLD {k} | {pn} | {us}"
+                | none => logInfo m!"FRONTIER {k} | {path}{pn} | predicate {c2} did not unfold"
+              else
+                logInfo m!"FRONTIER {k} | {path}{pn} | predicate {c2} not unfolded (depth limit 2)"
+        | _ => pure ()
+
+elab "#census " ids:ident+ : command => do
+  let env <- getEnv
+  for id in ids do
+    let n <- liftCoreM <| realizeGlobalConstNoOverload id
+    liftTermElabM do
+      let some ci := env.find? n | throwError "CENSUS-MISSING {n}"
+      logInfo m!"CENSUS-BEGIN {n}"
+      logInfo m!"KIND {censusKind ci}"
+      forallTelescope ci.type fun xs body => do
+        let mut k : Nat := 0
+        for x in xs do
+          k := k + 1
+          let ld <- x.fvarId!.getDecl
+          let ty := ld.type
+          let isP <- isProp ty
+          let tys <- censusPP ty
+          let head := match ty.getAppFn with
+            | .const c _ => c.toString
+            | _ => "-"
+          logInfo m!"BINDER {k} | {ld.userName} | {censusBinderKind ld.binderInfo} | {isP} | {head} | {tys}"
+          match ty.getAppFn with
+          | .const c _ =>
+            if censusIsProject c then
+              if isStructure env c then
+                logInfo m!"EXPAND-STRUCT {k} | {c}"
+                censusExpandStruct env k c "" 1
+              else if censusIsProjectDef env c then
+                if isP then
+                  logInfo m!"EXPAND-DEF {k} | {c}"
+                  match (<- unfoldDefinition? ty) with
+                  | some u =>
+                    let us <- censusPP (<- Core.betaReduce u)
+                    logInfo m!"UNFOLD {k} | {us}"
+                  | none => logInfo m!"FRONTIER {k} | {ld.userName} | predicate {c} did not unfold"
+          | _ => pure ()
+        let bs <- censusPP body
+        logInfo m!"CONCL {bs}"
+      logInfo m!"CENSUS-END"
+
+/-- Second pass: print the type and body of the project predicates the census
+records mention, so each substantive relation is shown once, unfolded. -/
+elab "#censusPreds " ids:ident+ : command => do
+  let env <- getEnv
+  for id in ids do
+    let n <- liftCoreM <| realizeGlobalConstNoOverload id
+    liftTermElabM do
+      let some ci := env.find? n | throwError "PRED-MISSING {n}"
+      let ts <- censusPP ci.type
+      let vs <- match ci.value? with
+        | some v => censusPP v
+        | none => pure "<opaque>"
+      logInfo m!"PRED-BEGIN {n}
+TYPE {ts}
+BODY {vs}
+PRED-END"
+
+/-- Completion marker: the runner appends `#censusDone <n>` after the last
+root, so a truncated run is detectable even when Lean exits zero. -/
+elab "#censusDone " n:num : command => do
+  logInfo m!"CENSUS-DONE {n.getNat}"
+
+set_option maxHeartbeats 4000000

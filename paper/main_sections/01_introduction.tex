@@ -1,0 +1,407 @@
+% @econ-contract section
+% id: INTRO_FRAME
+% role: State the problem (common ground, the persistence fact, the standing complete-information objection, its consequence) and the question; give the paper's answer in three parts at their proved strength and levels of generality; state three contributions with their reasons (entrenchment through lock-in at every equilibrium of any economy that meets its conditions, entry under a temporary shock, low basins and persistence without hysteresis; what each government's patience decides, with the investment logic of defiance and a closed-form bound on the Sender's part; political persistence is not social welfare); answer the objections a referee will raise with proved results; give the roadmap; place the paper against the closest literature.
+% question_answered: What question does the paper answer, how, and with what claim ceiling?
+% required_inputs: RESULTS_HORIZONS, WELFARE_BOUNDARY, DISCUSSION_INTERPRETATION (written after them).
+% output_handoff: The reader's question, answer, claim ceiling and roadmap.
+% claim_ceiling: Exactly the master plan's ceiling; no manuscript notation by default.
+% exclusions: The detailed literature (app:literature). The N134 sources enter as motivation only (promoted 2026-10-02 on the author's word). The conditions of lock-in and of persistence without hysteresis (Section 3.3).
+% exact_ref: tex-label:sec:intro
+% support_status: VERIFIED
+% status: HUMAN_CONFIRMED
+% human_confirmed_at: 2026-10-10
+% decision_ref: suggestions/2026-10-10-terminology-rename/DECISIONS.md#contracts-reconfirmed
+% confirmation_scope: Section role, claim ceiling, and the literature folded into the introduction (D1); first confirmed 2026-10-01 (suggestions/2026-10-01-manuscript-rebuild/01_STRUCTURE_PROPOSAL.md#author-decisions-recorded), reconfirmed 2026-10-10 after the Acemoglu--Wolitzky positioning (N180) and the terminology rename.
+% reopen_if: The question, a principal result, or the literature positioning changes.
+% amended_at: 2026-10-11 (lock-in as a numbered contribution; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#lock-in-in-the-main-text); 2026-10-11 (no 'horizon'; no wording about what the paper is not; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#plain-framing-2026-10-11); 2026-10-12 (three contributions around entrenchment; the dual-basin economy as the central illustration, after Lean round D; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#framing-2026-10-12); 2026-10-13 (argument plan: problem before answer, one three-part answer with its levels of generality, the dual-basin economy said to lie outside the class (author's decision D2, reversing 'limits only in the conclusion' for this one clause), contributions with their warrants, a paragraph of objections and responses, the positioning paragraph moved into Section 1.1; decision_ref: suggestions/2026-10-10-jet-submission/exposition-2026-10-13/ARGUMENT_PLAN.md); 2026-10-15 (the dual-basin economy dropped from the main text for now, on the author's word; the first contribution rests on lock-in, and the 'outside the class' clause of D2 goes with the example); 2026-10-16 (layout decisions D1-D5: the answer and the contributions lead with foresight against the myopic benchmark, then lock-in, then welfare; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#layout-myopic-benchmark-first-2026-10-16); 2026-10-16 (structure plan S1-S7 against the cited papers; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#structure-plan-s1-s7-2026-10-16); 2026-10-17 (one contribution paragraph, directly before the roadmap, replaces the three that restated the answer; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#one-contribution-paragraph-2026-10-17); 2026-10-19 (coauthor wording review: wording of the coauthor's line-by-line revision applied where not wrong; sender/target in lower case; non-compliance for defiance; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#coauthor-wording-review-2026-10-19); 2026-10-20 (N185 opening paragraph; N184 de facto power sources; the comparison with Acemoglu and coauthors, INTRO_LIT_POWER_CONFLICT, and INTRO_LIT_HYSTERESIS split from it; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#acemoglu-comparison-and-model-exposition-2026-10-20); 2026-10-20 (a footnote names the public repository; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#public-repository-2026-10-20)
+% @end-econ-contract
+\section{Introduction}
+\label{sec:intro}
+
+% @econ-contract paragraph
+% id: INTRO_PUZZLE
+% role: State the problem: sanctions as temporary coercion (common ground), the persistence fact the literature records (condition), the standing complete-information objection and what follows from it (consequence); then the question.
+% depends_on: INTRO_FRAME
+% handoff: The paper's answer in one sentence and the political state.
+% exact_ref: bib:HalcoussisKaempferLowenberg2021#p=162
+% source_role: bib:HalcoussisKaempferLowenberg2021#p=162 => Already-cited observation that prominent sanctions episodes have lasted for decades without fundamental change in the target government; motivation, not evidence for the mechanism; the episodes that sentence names (Cuba, Iran, North Korea) are named in the text (N185, 2026-10-20).
+% exact_ref: bib:GAO2025RussiaSanctions#p=14
+% source_role: bib:GAO2025RussiaSanctions#p=14 => The report's objectives for the U.S. measures on Russia (read 2026-10-02), worded as in Section 5 (DISC_SCOPE); an example of a sanctions regime's stated objectives, moved here from the deleted INTRO_SCOPE (2026-10-11); supports no model result.
+% exact_ref: bib:Drezner2003#scope=paper
+% source_role: bib:Drezner2003#scope=paper => Already-cited statement of the objection that imposed sanctions reflect failed bargaining or incomplete information; moved here from INTRO_CONFLICT_DYNAMICS as the paper's problem (argument plan, 2026-10-13); answered by the model, not supported by it.
+% support_status: UNVERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{A striking feature of economic sanctions is how long some of them last.}
+A sanctioning government restricts trade, financial, or diplomatic access to induce a
+target government to change its behavior, and such measures are typically framed as
+temporary instruments of coercion.\footnote{Stated objectives can be wider: those of the U.S. measures on
+Russia are economic pressure, inhibition of the war effort, and accountability
+\citep[p.~14]{GAO2025RussiaSanctions}.} Yet many prominent sanction episodes, for
+example those against Cuba, Iran, and North Korea, have persisted for decades without
+fundamental change in the target government
+\citep[p.~162]{HalcoussisKaempferLowenberg2021}. This persistence is difficult to
+reconcile with a standard result in sanction theory: under complete information,
+targets concede at the threat stage, so actually imposed sanctions reflect either
+bargaining failure or incomplete information \citep{Drezner2003}. If persistence
+required such frictions, better information or more effective bargaining would end it.
+Why, then, can sanctions persist between optimizing governments that know each other's
+objectives, and how does each government's foresight shape the outcome?
+
+% @econ-contract paragraph
+% id: INTRO_EVIDENCE
+% role: Give the paper's answer in one sentence (sanctions can strengthen the domestic constituencies that keep them in place), define the political state and the two stakes in words with the warrant for the Sender's stake, and give the Iran accounts with the stake each illustrates, as motivation and not as a test.
+% depends_on: INTRO_PUZZLE
+% handoff: The game.
+% merged_from: INTRO_PUZZLE (its thesis and the definition of the political state, 2026-10-13)
+% exact_ref: bib:BajoghliNasrSalehiIsfahaniVaez2024#pp=51-52
+% source_role: bib:BajoghliNasrSalehiIsfahaniVaez2024#pp=51-52 => Interview accounts (read 2026-10-02) of Revolutionary Guard-linked enterprises gaining wealth under comprehensive sanctions while independent owners lost revenue and influence; motivation for a redistribution of influence, unquantified by the authors and not a test.
+% exact_ref: bib:BajoghliNasrSalehiIsfahaniVaez2024#p=118
+% source_role: bib:BajoghliNasrSalehiIsfahaniVaez2024#p=118 => The authors' statement (read 2026-10-02) that in the United States lifting sanctions on Iran carries a political cost while imposing them accrues political capital; motivation for Sender-side politics, not an identification of the Sender's stake.
+% exact_ref: bib:AcemogluRobinson2008#p=268
+% source_role: bib:AcemogluRobinson2008#p=268 => De facto power as influence not allocated by institutions (p. 268, read 2026-10-02, as in INTRO_LIT_POWER_CONFLICT); the sense of 'de facto power' at the first definition of political entrenchment (coauthor review, 2026-10-19), and the sources of such power, a group's wealth, weapons or ability to solve the collective action problem (N184, 2026-10-20); not support for a result.
+% support_status: UNVERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{We focus on one domestic-political mechanism: sanctions can strengthen the
+domestic constituencies that favor their continuation.} Government objectives
+incorporate the political influence of interest groups, and sanctions alter this
+influence by shifting a political state variable. This state, which we label
+political entrenchment, is the de facto power
+\citep[in the sense of][p.~268]{AcemogluRobinson2008} of target-side constituencies
+whose interests are tied to continued confrontation. In their account, such power is not
+allocated by formal institutions but derives from a group's wealth, weapons, or
+ability to solve the collective action problem. It rises when sanctions exceed
+its inherited level and erodes when sanctions fall below it. The target incumbent
+values this state. We assume the sender's government also values it, modeling its
+domestic ruling coalition as being sustained by a visibly entrenched adversary
+(\Cref{sec:model:objectives}). Case studies of Iran sanctions illustrate both sides
+of this mechanism. Qualitative evidence documents that enterprises tied to the
+Revolutionary Guard accumulated wealth under comprehensive sanctions, while
+independent business owners lost revenue and influence---a shift in power toward
+constituencies aligned with confrontation; some within the ruling establishment
+favored continuing the sanctions
+\citep[pp.~51--52]{BajoghliNasrSalehiIsfahaniVaez2024}. In the sanctioning country,
+lifting sanctions can carry a domestic political cost that imposing them does not
+\citep[p.~118]{BajoghliNasrSalehiIsfahaniVaez2024}, a sender-side political dynamic
+captured by the model's sender payoff function. These qualitative accounts motivate
+our formal mechanism.
+
+% @econ-contract paragraph
+% id: INTRO_QUESTION
+% role: Describe the game in words (timing, complete information, what each government weighs) and how the equilibria are obtained on a general class.
+% depends_on: INTRO_EVIDENCE
+% handoff: The answer.
+% merged_from: INTRO_CONSTRUCTION (2026-10-13); the threshold special case moved to INTRO_CONTRIBUTION_ONE, and with it to INTRO_CONTRIBUTIONS (2026-10-17).
+% exact_ref: tex-label:sec:model:class
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The two governments play a dynamic complete-information game.} In each
+period, the target first chooses a level of compliance; the sender then observes
+this choice and sets the intensity of sanctions. Information is complete and
+monitoring is perfect, yet each government weighs both the current payoffs of its
+actions and the future political entrenchment that its actions help shape. We
+derive continuation values for both governments and verify that the sender's
+response is optimal following every feasible compliance choice---both on and off
+the equilibrium path---and that the target's choice is a best response at every
+state, as required for a stationary feedback Stackelberg equilibrium. The general
+results hold across a class of economies with general transition and payoff
+functions; closed-form solutions for a quadratic--linear specification within the
+class are reported in the Online Appendix.
+
+% @econ-contract paragraph
+% id: INTRO_PREVIEW
+% role: Give the answer in three parts at their proved scope (foresight against the myopic benchmark, with the two governments' roles; lock-in under conditions on the equilibrium and the transition; welfare), then the levels of generality (reordered on the author's layout decisions, 2026-10-16). (2026-10-15: the dual-basin passage removed with the example, on the author's word.)
+% depends_on: INTRO_QUESTION
+% handoff: The related literature.
+% merged_from: INTRO_EXPERIMENT (its result sentence, 2026-10-13)
+% exact_ref: tex-label:prop:myopic-benchmark
+% exact_ref: tex-label:thm:regime-separation
+% exact_ref: tex-label:prop:lock-in
+% exact_ref: tex-label:sec:welfare
+% support_status: VERIFIED
+% status: PROPOSED
+% decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md
+% @end-econ-contract
+\central{Our analysis delivers three core sets of results.} First, foresight
+sustains sanction persistence. When both governments are myopic---attaching no
+weight to future political entrenchment---the target accommodates: it adjusts
+compliance just enough to induce the sender to halt sanctions, and the entrenchment
+state erodes over time (\Cref{prop:myopic-benchmark}). When both governments are
+forward-looking, the same economy supports an equilibrium where the target
+maintains non-compliance, sanctions exceed the myopic sender's level and never end,
+and the political state converges to a positive steady state
+(\Cref{thm:regime-separation}). The target's patience determines whether relief or
+non-compliance prevails; the sender's patience sets the compliance threshold for
+relief or, under non-compliance, raises both sanction intensity and the steady-state
+entrenchment level (\Cref{sec:results:wedge,sec:discussion:horizons}). Second,
+sanctions exhibit lock-in effects. Under stated equilibrium and transition
+conditions, once the political state enters a high basin---an interval of high
+entrenchment---equilibrium play keeps it there and sanctions never decline. A
+sufficiently long temporary sanction shock can move the state into this basin from
+any initial condition (\Cref{prop:lock-in}). Third, the game alone does not pin down
+a welfare ranking (\Cref{sec:welfare}). These results hold at varying levels of
+generality. The benchmark comparison is derived from inequalities across model
+primitives on the class, holding all primitives fixed except the discount factors;
+lock-in holds at every equilibrium satisfying its conditions; and the welfare
+results apply across the class, with an explicit interest-group polity and the
+quadratic--linear family serving as illustrative examples.
+
+\label{sec:literature}
+
+% @econ-contract paragraph
+% id: INTRO_POSITIONING
+% moved: 2026-10-16, the related literature woven into the introduction without a heading (structure plan S1)
+% role: Place the contribution against patient-conflict antecedents and antecedents with different discount factors, the source of the timing (Eaton and Engers without the threat stage, the author's word 2026-10-13) and the predecessor version, without claiming either is new; it states what the paper studies rather than a novelty claim, until a systematic antecedent search is done (author's word, 2026-10-03). Moved from before the roadmap into Section 1.1 (argument plan, 2026-10-13).
+% depends_on: INTRO_PREVIEW
+% handoff: The public-choice analysis of sanctions.
+% exact_ref: bib:Eaton1992#scope=paper
+% source_role: bib:Eaton1992#scope=paper => Already-cited antecedent relating each side's toughness to patience and sanction costs, with both parties discounting and no endogenous political state (the reading recorded in app:literature); the authors' stated source of the move order, without its threat stage (author's word, 2026-10-13); positions the contribution, does not support a result.
+% exact_ref: bib:McBrideSkaperdas2009#scope=paper
+% source_role: bib:McBrideSkaperdas2009#scope=paper => Already-cited working paper in which greater concern for future positions can favour conflict; positioning only.
+% exact_ref: bib:GongZhong2025#scope=paper
+% source_role: bib:GongZhong2025#scope=paper => The author-identified predecessor working paper; its acknowledged Target-patience and transition antecedents are retained.
+% support_status: UNVERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Patient conflict and differences in patience are established themes; we
+study them in a target-first sanctions game in which the sender re-optimizes
+each period and its sanctions move a political state that both incumbents
+value.} That a longer shadow of the future can sustain conflict when today's
+outcome shapes tomorrow's position is established in the theory of conflict
+\citep{SkaperdasSyropoulos1996,GarfinkelSkaperdas2000,Powell2012,KraininWiseman2016},
+typically under one common discount factor. Differences in patience also have
+antecedents. \citet{Eaton1992} let the two sides of a sanctions game discount
+differently, without an endogenous political state, and relate their toughness
+to patience and sanction costs; our order of moves adapts their game without its
+threat stage. \citet[Appendix~B]{McBrideSkaperdas2009} let a long-lived party
+face one-period challengers. The earlier working paper \citet{GongZhong2025}
+studies a target-only dynamic program, with target patience and the
+partial-adjustment law as a leading example. A forward-looking sender with its
+own discount factor is what allows the two governments' forward-looking
+incentives to be separated.
+
+% @econ-contract paragraph
+% id: INTRO_LIT_PUBLIC_CHOICE
+% role: Place the paper in the public-choice analysis of sanctions and say what is added.
+% depends_on: INTRO_POSITIONING
+% handoff: Endogenous political power and conflict.
+% exact_ref: bib:Kaempfer1988#scope=paper
+% source_role: bib:Kaempfer1988#scope=paper => Already-cited public-choice starting point; positioning only.
+% support_status: UNVERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Relative to the public-choice analysis of sanctions, the model makes the
+political feedback dynamic and strategic.} Both governments' choices are derived
+from continuation values over a political state that the sanction itself
+moves. The public-choice starting point is \citet{Kaempfer1988}, who explain
+sanctions through the political pressure and effectiveness of organized interest
+groups. \citet{HalcoussisKaempferLowenberg2021} emphasize that sanctions may
+retain domestic political functions after their direct leverage has diminished.
+The model concerns how long sanctions last once imposed, and so complements
+empirical work on duration and termination
+\citep{BolksAlSowayel2000,AttiaGrauvogelVonSoest2020,AttiaGrauvogel2023}.
+
+% @econ-contract paragraph
+% id: INTRO_LIT_POWER_CONFLICT
+% role: Compare the political state with the work of Acemoglu and coauthors on persistent political power (de facto power, its resource base, power shaped by those who hold it, persistent conflict) and state what the model adds: a stock moved by a foreign government's policy, the separate roles of two governments' foresight, lock-in by a temporary shock with welfare left open (the author's "Specifically compare with acemoglu", 2026-10-20); the Acemoglu--Wolitzky pointer and the standing objection under complete information moved to INTRO_CONFLICT_DYNAMICS (2026-10-11), hysteresis and lock-in to INTRO_LIT_HYSTERESIS (2026-10-20).
+% depends_on: INTRO_LIT_PUBLIC_CHOICE
+% handoff: Hysteresis and lock-in.
+% exact_ref: bib:AcemogluRobinson2008#pp=268,272
+% source_role: bib:AcemogluRobinson2008#pp=268,272 => De facto power as influence not allocated by institutions (p. 268), formally a per-period flow bought by the group while the persistent state is the regime (eq. 8, p. 272); read 2026-10-02; the stock/flow difference is stated.
+% exact_ref: bib:AcemogluEgorovSonin2012#scope=abstract
+% source_role: bib:AcemogluEgorovSonin2012#scope=abstract => "Current decisions determine the future distribution of political power" (read 2026-10-02); replaces AcemogluEgorovSonin2013, a two-period signalling model with no power state.
+% exact_ref: bib:AcemogluRobinson2008#pp=279,287
+% source_role: bib:AcemogluRobinson2008#pp=279,287 => Changes in de jure power 'can be partially or entirely offset by changes in de facto political power'; elites 'that are more forward-looking are more likely to dominate politics' (p. 287); investment in de facto power by the elite is 'socially costly' (p. 279); read 2026-10-20 (N184, N186); comparison, not support.
+% exact_ref: bib:AcemogluJohnsonRobinson2005#scope=section-1.2
+% source_role: bib:AcemogluJohnsonRobinson2005#scope=section-1.2 => A rich group's de facto power 'will tend to reproduce the initial relative wealth disparity'; 'shocks, including changes in technologies and the international environment, that modify the balance of (de facto) political power'; read 2026-10-20 (N186); comparison, not support.
+% exact_ref: bib:AcemogluTicchiVindigni2010#p=664
+% source_role: bib:AcemogluTicchiVindigni2010#p=664 => In weakly institutionalized polities a strong army 'opens the way for excessive influence or coups by the military', so civilian governments whose rents are largely unaffected by civil wars 'choose small and weak armies that are incapable of ending insurrections'; read 2026-10-20 (N186); comparison, not support.
+% support_status: UNVERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The model is closest to the work of Acemoglu and coauthors on persistent
+political power, and it differs from that work in who moves the power state and in
+what persists.} In \citet{AcemogluRobinson2008}, an elite buys de facto power anew
+each period, and changes in it can partly or entirely offset changes in de jure power,
+the power that formal institutions allocate, so that economic institutions persist
+while political institutions change (pp.~268, 272, 287). In the framework of
+\citet[Section~1.2]{AcemogluJohnsonRobinson2005}, a group's resources shape its de facto
+power, which tends to reproduce the group's advantage unless shocks, including changes
+in the international environment, modify the balance. In
+\citet{AcemogluEgorovSonin2012,AcemogluEgorovSonin2015}, as in \citet{BaiLagunoff2011},
+current decisions of those who hold power determine its future distribution. Domestic
+politics can also keep a costly conflict going: in weakly institutionalized polities,
+a civilian government whose rents a civil war leaves largely unaffected keeps its army
+too small to end the war, because a strong army opens the way to military coups
+\citep[p.~664]{AcemogluTicchiVindigni2010}. The model adds three things to this work.
+(i)~The power state is a slow stock moved by a foreign government's policy: the
+sender's sanctions, a change in the target's international environment, raise or erode
+it, and what persists is that policy rather than a domestic institution. (ii)~Two
+governments with separate discount factors act on the same state, so the roles of
+foresight come apart. In \citet[p.~287]{AcemogluRobinson2008}, more forward-looking
+elites are more likely to dominate politics; here a more patient target sustains
+non-compliance whenever a less patient one does (\Cref{prop:patience-existence}),
+while a forward-looking sender raises the steady-state level of political
+entrenchment. (iii)~A temporary sanction shock can carry the state into a high basin
+that equilibrium play does not leave (\Cref{prop:lock-in}), and the game does not
+determine whether the resulting persistence is socially costly
+(\Cref{prop:welfare-nonidentification}), whereas in
+\citet[p.~279]{AcemogluRobinson2008} the elite's investment in de facto power is
+socially costly.
+
+% @econ-contract paragraph
+% id: INTRO_LIT_HYSTERESIS
+% role: Place persistence against hysteresis and lock-in models and point to the full positioning (split from INTRO_LIT_POWER_CONFLICT, 2026-10-20).
+% depends_on: INTRO_LIT_POWER_CONFLICT
+% handoff: Conflict under complete information.
+% exact_ref: tex-label:app:literature
+% source_role: tex-label:app:literature => The full positioning against hysteresis and lock-in models, to which the paragraph's footnote points (split from INTRO_LIT_POWER_CONFLICT, 2026-10-20).
+% support_status: UNVERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The model also relates to hysteresis and lock-in.} Relative to hysteresis
+and lock-in models \citep{Dixit1989,Krugman1991,Arthur1989,HasslerEtAl2003},
+persistence here is an equilibrium property of a game in which one government chooses
+the instrument that moves the state, against the other's response.\footnote{The full
+positioning, including the earlier working paper and the analytical methods, is
+in \Cref{app:literature} of the Online Appendix.}
+
+% @econ-contract paragraph
+% id: INTRO_CONFLICT_DYNAMICS
+% role: Say why sanctions can persist under complete information: place the political state against information-based and complete-information accounts of conflict dynamics, tie it to the objection stated in INTRO_PUZZLE without restating the four-case theorem (argument plan, 2026-10-13), and say what the state mechanism does at its stated scope.
+% depends_on: INTRO_LIT_HYSTERESIS
+% handoff: The verification statement and the roadmap.
+% merged_from: INTRO_LIT_POWER_CONFLICT (part 2 only: its sentences 3 to 5; that block stays with part 1)
+% exact_ref: bib:AcemogluWolitzky2014#scope=paper
+% source_role: bib:AcemogluWolitzky2014#scope=paper => Spirals started by misperceptions end from inside as Bayesian players with limited memory come to treat a long spiral as uninformative about the opponent's type and experiment with cooperation (abstract; the reading recorded in app:literature); positioning only.
+% exact_ref: bib:AcemogluWolitzkyMistrust#scope=sections-4-6
+% source_role: bib:AcemogluWolitzkyMistrust#scope=sections-4-6 => Dates linked by persistent types (Section 4) or by threats to switch equilibria (Section 5.4); misperception and misunderstanding central to the onset, continuation and cessation of conflict (Section 6); positioning only.
+% exact_ref: bib:SkaperdasSyropoulos1996#scope=paper
+% source_role: bib:SkaperdasSyropoulos1996#scope=paper => Valuing the future sustains arming under complete information (the reading recorded in app:literature); positioning only.
+% exact_ref: bib:Powell2012#scope=paper
+% source_role: bib:Powell2012#scope=paper => Patient factions fight to forestall an adverse shift in power under complete information (the reading recorded in app:literature); positioning only.
+% exact_ref: tex-label:sec:discussion:persistence
+% exact_ref: bib:Drezner2003#scope=paper
+% source_role: bib:Drezner2003#scope=paper => Already-cited statement of the objection that imposed sanctions reflect failed bargaining or incomplete information; stated in INTRO_PUZZLE and referred to here; answered by the model, not supported by it.
+% exact_ref: bib:AcemogluWolitzkyMistrust#scope=sections-4-5
+% source_role: bib:AcemogluWolitzkyMistrust#scope=sections-4-5 => Dates linked by persistent types (Section 4) or by threats to switch equilibria (Section 5.4); read 2026-10-02; positioning only.
+% support_status: UNVERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Sanctions can persist here under complete information because a
+political state, which the sanctions themselves move, carries each government's
+incentives from one date to the next.} Information-based accounts explain much
+of the dynamics of conflict. In \citet{AcemogluWolitzky2014}, conflict spirals
+end from inside: Bayesian players with limited memory come to treat a long
+spiral as uninformative about the opponent's type and experiment with
+cooperation. In the framework of \citet{AcemogluWolitzkyMistrust}, mistrust,
+misperception and misunderstanding drive conflict, and dates are linked by a
+belief about the opponent's type or a threat to switch equilibria. In
+complete-information models, valuing the future can also sustain conflict
+\citep{SkaperdasSyropoulos1996,Powell2012}. The political-state mechanism is of
+that kind, with no belief to revise, and it is how the model answers the
+objection of \citet{Drezner2003} stated at the outset. The same state can also
+end a conflict: after a temporary suspension of sanctions, a resumed sanction rule that
+stays at or below the state keeps de-escalation in place
+(\Cref{sec:discussion:persistence}).
+\Cref{sec:discussion:misperception} of the Online Appendix compares the two accounts
+in detail.
+
+% @econ-contract paragraph
+% id: INTRO_VERIFICATION_ROADMAP
+% role: State the verification status precisely (repair C8), in two sentences (argument plan, 2026-10-13); the roadmap follows in its own paragraph (INTRO_ROADMAP).
+% depends_on: INTRO_CONFLICT_DYNAMICS
+% handoff: The contributions.
+% exact_ref: file:appendix_sections/07_formalization_map.tex#label=app:formalization
+% source_role: file:appendix_sections/07_formalization_map.tex#label=app:formalization => The formal supplement's formalization map, which records the Lean declaration behind each statement; it establishes formal derivation, not economic correspondence.
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{An Online Appendix and a formal supplement accompany the paper.} The
+Online Appendix gives every proof and the precise statements of the results that
+the main text gives in words. The formal supplement relates the core results to a
+companion Lean~4 formalization, separately marks the analytic extensions that
+rely on external existence results, and gives a separately reviewed map from the
+formal statements to the paper's economic sentences.\footnote{The Lean~4 development, the
+paper sources and the three documents are public at \url{https://github.com/qidaolake/political-entrenchment-sanctions-lean}.}
+
+% @econ-contract paragraph
+% id: INTRO_CONTRIBUTIONS
+% role: State the paper's three contributions in one paragraph, directly before the roadmap (the author, 2026-10-17), keeping what the answer paragraph (INTRO_PREVIEW) does not say: the entrenchment condition and the investment logic of defiance, sufficient and not necessary; the Sender's foresight premium and defiance with a myopic Sender; the results beyond the constructed equilibria (a more patient Target, the threshold in the linear-quadratic special case, the minmax bound and uniqueness under the strong entrenchment condition, the participation result); lock-in at any equilibrium meeting its conditions, low basins, selection by the initial state and persistence without hysteresis; welfare non-identification and planner-optimal persistence.
+% depends_on: INTRO_VERIFICATION_ROADMAP
+% handoff: The roadmap.
+% merged_from: INTRO_CONTRIBUTION_ONE; INTRO_PERSISTENCE; INTRO_CONTRIBUTION_THREE (2026-10-17)
+% exact_ref: tex-label:sec:results:wedge
+% exact_ref: tex-label:thm:four-cells
+% exact_ref: tex-label:prop:patience-existence
+% exact_ref: tex-label:prop:collapse-threshold
+% exact_ref: tex-label:sec:results:security
+% exact_ref: tex-label:sec:discussion:relief
+% exact_ref: tex-label:sec:results:lockin
+% exact_ref: tex-label:prop:welfare-nonidentification
+% exact_ref: tex-label:prop:planner-efficient-persistence
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The paper makes three contributions.} First, it separates what each
+government's foresight does to sanctions, holding every other primitive fixed. The
+comparison rests on the entrenchment condition, under which non-compliance is an
+investment: a sanction's pain today buys entrenchment worth at least as much, so a
+forward-looking target accepts the sanction rather than pay to end it, while a
+myopic one accommodates. The condition is sufficient for this, not necessary. A
+forward-looking sender sanctions a non-compliant target more than a myopic one, by a
+foresight premium with a closed-form lower bound (\Cref{sec:results:wedge}), and with a myopic
+sender a forward-looking target still maintains non-compliance and sanctions stay positive
+(\Cref{thm:four-cells}). Several results reach beyond the constructed equilibria: a
+more patient target keeps a full-non-compliance equilibrium when the sender's response
+does not fall with the state and a condition on primitives holds
+(\Cref{prop:patience-existence}); in a linear--quadratic special case such an
+equilibrium exists exactly from a threshold discount factor that the sender's
+patience does not move (\Cref{prop:collapse-threshold}); under a stronger form of
+the entrenchment condition every equilibrium gives the target at least its
+pure-strategy minmax payoff, and on the class every equilibrium with a
+non-decreasing sanction rule has full non-compliance (\Cref{sec:results:security}); and
+no date-zero payment between the governments makes a temporary suspension of
+sanctions acceptable to both (\Cref{sec:discussion:relief}). Second, it shows how
+sanctions entrench themselves. Lock-in holds at any equilibrium of any economy that
+meets explicit conditions; low sanctions can entrench themselves in the same way;
+when one equilibrium has both a high and a low basin, the initial state selects
+between them; and persistence need not mean hysteresis, since under further
+conditions every start converges to the same long-run state
+(\Cref{sec:results:lockin}). Third, it separates political persistence from social
+welfare. Two interest-group representations that reproduce the governments'
+payoffs, and so leave the equilibria unchanged, rank the forward-looking
+equilibrium and the benchmark in opposite social orders
+(\Cref{prop:welfare-nonidentification}). Under compliance neutrality some
+representation makes the play of every full-non-compliance equilibrium socially optimal
+(\Cref{prop:planner-efficient-persistence}), while in an explicit interest-group
+polity in the tradition of \citet{Kaempfer1988} sanctions at one example economy
+stay at their maximum although ending them would maximize aggregate welfare.
+Evaluating welfare therefore requires group-level welfare primitives and an
+explicit aggregation in addition to the equilibrium.
+
+% @econ-contract paragraph
+% id: INTRO_ROADMAP
+% role: Give the roadmap, with the measurement requirements of the scope subsection (sec:discussion:scope).
+% depends_on: INTRO_CONTRIBUTIONS
+% handoff: The model (Section 2).
+% split_from: INTRO_VERIFICATION_ROADMAP
+% merged_from: INTRO_SCOPE
+% merge_note: INTRO_SCOPE ("The paper is deliberately narrower than an assessment of sanctions.") was deleted on the author's word (2026-10-11); its sec:discussion:scope reference survives here, attached to the measurement requirements it stated, and its GAO2025RussiaSanctions citation survives in INTRO_PUZZLE.
+% exact_ref: tex-label:sec:results:lockin
+% exact_ref: tex-label:sec:discussion:scope
+% support_status: NOT_APPLICABLE
+% status: PROPOSED
+% @end-econ-contract
+\central{The rest of the paper sets out the model, the results on the class and
+welfare.} \Cref{sec:model} defines the model and the example economies and solves
+the myopic benchmark. \Cref{sec:results} compares forward-looking governments with
+it, bounds the sender's part of the difference, and presents lock-in and the role
+of the target's patience. \Cref{sec:welfare} separates the governments'
+incentives from aggregate welfare. \Cref{sec:discussion} solves the cases in which
+only one government looks forward, follows the path of the political state,
+interprets the results and
+states what empirical work would have to measure (\Cref{sec:discussion:scope}),
+and \Cref{sec:conclusion} concludes.

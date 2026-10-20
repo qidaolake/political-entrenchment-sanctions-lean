@@ -1,0 +1,17 @@
+# Declarations whose axioms the HPC gate scans after the build (scripts/hpc-package.py writes
+# RoundScan.lean from this list; CLAUDE.md Rule 26). Fully qualified, one per line.
+# Round LEANREPO (2026-10-19): the paper interface of Sanctions/Paper/Proofs.lean -- one theorem per
+# main-text result, each the backing declaration applied to its restated statement. Replace the list
+# each round.
+Sanctions.Paper.myopicBenchmark_holds
+Sanctions.Paper.regimeSeparation_holds
+Sanctions.Paper.dominance_holds
+Sanctions.Paper.lockInNoExit_holds
+Sanctions.Paper.lockInEntry_holds
+Sanctions.Paper.collapseThreshold_holds
+Sanctions.Paper.patienceSlope_holds
+Sanctions.Paper.patienceExistence_holds
+Sanctions.Paper.welfareNonidentification_holds
+Sanctions.Paper.zeroSanctionPlanner_holds
+Sanctions.Paper.plannerEfficientPersistence_holds
+Sanctions.Paper.fourCases_holds

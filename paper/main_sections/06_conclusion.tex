@@ -1,0 +1,114 @@
+% @econ-contract section
+% id: CONCLUSION_ANSWER
+% role: Answer the question at its proved scope: the mechanism and answer first; who decides accommodation, who decides intensity; what the reach results add; the persistence and welfare limits.
+% question_answered: What did the paper establish, and where does it stop?
+% required_inputs: RESULTS_HORIZONS, WELFARE_BOUNDARY, DISCUSSION_INTERPRETATION.
+% output_handoff: None.
+% claim_ceiling: The master plan's ceiling; no policy prescription.
+% exclusions: A theorem list; new claims.
+% exact_ref: tex-label:sec:conclusion
+% support_status: VERIFIED
+% status: HUMAN_CONFIRMED
+% human_confirmed_at: 2026-10-01
+% decision_ref: suggestions/2026-10-01-manuscript-rebuild/01_STRUCTURE_PROPOSAL.md#author-decisions-recorded
+% confirmation_scope: Section role and claim ceiling.
+% reopen_if: A principal result or the claim ceiling changes.
+% amended_at: 2026-10-12 (opens on the dual-basin illustration and states its limits; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#framing-2026-10-12); 2026-10-13 (argument plan: mechanism and answer first, then the dual-basin illustration with its limits, the reach results, welfare and lock-in, and a closing 'so what / now what' paragraph; decision_ref: suggestions/2026-10-10-jet-submission/exposition-2026-10-13/ARGUMENT_PLAN.md); 2026-10-15 (the dual-basin illustration dropped from the main text for now, on the author's word); 2026-10-19 (coauthor wording review: wording of the coauthor's line-by-line revision applied where not wrong; sender/target in lower case; non-compliance for defiance; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#coauthor-wording-review-2026-10-19)
+% @end-econ-contract
+\section{Conclusion}
+\label{sec:conclusion}
+
+% @econ-contract paragraph
+% id: CONCLUSION_ROLES
+% role: Open with the mechanism and the answer on the class (the myopic benchmark ends sanctions, forward-looking governments sustain them; the Target's patience decides relief against defiance), then the Sender's role and the same-policy comparison with its hypothesis (repair C4). Moved first (argument plan, 2026-10-13); reordered on the layout decisions of 2026-10-16.
+% depends_on: CONCLUSION_ANSWER
+% handoff: The reach results.
+% exact_ref: tex-label:prop:myopic-benchmark
+% exact_ref: tex-label:thm:regime-separation
+% exact_ref: tex-label:thm:four-cells
+% exact_ref: tex-label:thm:dominance
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Economic sanctions can persist because they strengthen the domestic political
+interests that support their continuation.} Without foresight they unravel: in the
+myopic benchmark, the target accommodates and the political state erodes over time. In
+the equilibria constructed over the class of economies, when both governments value the
+political state and are forward-looking, the target maintains non-compliance, sanctions
+persist indefinitely, and the political state converges to a positive steady-state
+level. The target's patience determines whether relief or non-compliance prevails;
+whether the sender is forward-looking shapes the compliance threshold for relief or the
+intensity of sanctions under non-compliance. These comparisons hold all non-discount
+primitives fixed. For a fixed target policy, a non-decreasing sender continuation value
+weakly increases the largest of the optimal sanctions relative to the myopic best response. Under
+interiority, the constructed equilibria exhibit a strictly positive foresight premium
+relative to the myopic best response, with a closed-form lower bound.
+
+% @econ-contract paragraph
+% id: CONCLUSION_REACH
+% role: Summarize the reach results: patience, like the Target's other parameters, can change whether full defiance is an equilibrium; result names in place of condition lists (argument plan, 2026-10-13).
+% depends_on: CONCLUSION_ROLES
+% handoff: The welfare findings and lock-in.
+% exact_ref: tex-label:prop:security
+% exact_ref: tex-label:prop:collapse-threshold
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Beyond the constructed equilibria, patience---like all other target
+parameters---shapes whether full non-compliance is supportable as an equilibrium.} When
+the sender's response and the target's value under full non-compliance do not decrease
+with the state, greater target patience preserves the full-non-compliance equilibrium.
+Under the strong entrenchment condition, the target guarantees itself a minmax payoff
+against every pure sanction strategy, bounding its payoff in every equilibrium from
+below; and across the class, every equilibrium with a non-decreasing sanction rule
+exhibits full non-compliance. In the special case of \Cref{prop:collapse-threshold}, a
+full-non-compliance equilibrium exists if and only if the target's discount factor is at
+least a threshold value.
+
+% @econ-contract paragraph
+% id: CONCLUSION_LIMITS
+% role: State the welfare findings, then lock-in and persistence without hysteresis, naming prop:lock-in instead of listing its conditions (argument plan, 2026-10-13).
+% depends_on: CONCLUSION_REACH
+% handoff: So what and now what.
+% exact_ref: tex-label:sec:welfare
+% exact_ref: tex-label:prop:lock-in
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Persistent sanctions can be socially costly, and the game alone does not
+determine their welfare ranking.} Across the class, two interest-group representations
+of the same government payoffs rank the constructed equilibria in opposite orders, and
+under compliance neutrality one makes persistent play socially optimal. For an example
+economy with one explicit interest-group polity, equilibrium sanctions remain at their
+maximum level and generate welfare losses.
+
+The political state can also lock in sanctions. Where an equilibrium and a high-state
+interval satisfy the conditions of \Cref{prop:lock-in}, a state entering the interval
+remains there under equilibrium play and sanctions never decline. When full sanctions
+raise every state below the basin, a sufficiently long temporary shock can produce a
+durable outcome. Persistence can also arise without hysteresis. Where the explicit
+Lipschitz constant derived for the constructed equilibrium's law of motion is strictly
+below one, a temporary shock has no permanent asymptotic effect.
+
+% @econ-contract paragraph
+% id: CONCLUSION_SO_WHAT
+% role: Say what the results mean (persistence need not reveal failed bargaining or misperception; with information complete, the levers act on the political state and the governments' incentives, not on beliefs) and what would discipline the channel (measurement, sec:discussion:scope), with no prescription; close on the paper's answer.
+% depends_on: CONCLUSION_LIMITS
+% handoff: None.
+% origin: argument plan item 10 (2026-10-13); the closing sentence moved here from CONCLUSION_LIMITS.
+% exact_ref: tex-label:sec:discussion:scope
+% exact_ref: tex-label:sec:discussion:misperception
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Persistent sanctions therefore need not reflect failed bargaining or
+misperception.} Within the model, they can be the optimal choice of governments that
+value the political state that sanctions themselves have built. With complete
+information, the levers that end sanctions operate through the political state and
+government incentives, not through beliefs (\Cref{sec:discussion:misperception} of the
+Online Appendix). Whether this channel operates in a given episode is an empirical
+question: measurements that separate the political state from aggregate income would
+discipline estimates of its transition and of the payoff terms governing basin entry
+(\Cref{sec:discussion:scope}). \central{Optimizing governments can thus perpetuate and
+lock in sanctions through the political state that sanctions generate; patience and
+other economic features determine whether this occurs.}

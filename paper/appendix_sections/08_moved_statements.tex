@@ -1,0 +1,394 @@
+\section{Further results on persistence and the long run}
+\label{app:moved-ak}
+
+This section collects results on persistence and the long run that the main text does
+not need: the order-selection block, the transition-strength corollary and a pointer to the
+two-sided statement, which stood in the main text until 2026-09-23 and were moved here
+verbatim, with their labels, on the author's decision (doc~98 G12; terminology updated
+since, and several restated on 2026-10-07 with fewer hypotheses and the same conclusions);
+and, from the sections on the general results, post-entry non-termination and the selection
+boundary, the economic mechanism behind the basins, persistence from primitives, the
+pathwise ordering under basin preservation and the comparative statics of lock-in. Each
+statement is the one the formalization map cites.
+
+\subsection{The order-selection block (\Cref{sec:mechanism})}
+
+\begin{proposition}[Order-selected steady state]
+\label{prop:order-selection}
+Let $\basin$ be preserved by the equilibrium closed loop $G_E(x)=\F(x,R_E(x))$,
+and suppose that the closed loop is non-decreasing on $\basin$ --- a higher state
+today never leads to a lower state tomorrow, which holds whenever the
+equilibrium sanction rule $R_E$ is non-decreasing --- and that $R_E$ is
+\emph{continuous} on $\basin$. Fix a start $x_0\in\basin$.
+\begin{enumerate}[label=(\roman*)]
+\item If $x_0\le R_E(x_0)$, the political state path converges to the
+  \emph{least} steady state of $G_E$ at or above $x_0$.
+\item If $R_E(x_0)\le x_0$, it converges to the \emph{greatest} steady state of
+  $G_E$ at or below $x_0$.
+\end{enumerate}
+In either case the realized sanction converges to $R_E$ evaluated at that limit.
+The two cases are exhaustive, and nothing is assumed about how many steady states
+$\basin$ contains.
+\end{proposition}
+
+\begin{corollary}[Coincidence of the two limits]
+\label{cor:order-selection-identified}
+If in addition the transition satisfies strict directional adjustment
+\textup{(F5)}, the realized sanction and the political state converge to the same
+value.
+\end{corollary}
+
+Continuity of $R_E$ is the requirement; uniqueness of the maximizer of
+$J_S$ is one sufficient condition for it
+(\Cref{app:moved-ad}).
+
+Order selection need not imply attraction of a whole basin. The selected limit may
+vary with the initial condition. For a monotone continuous closed loop on an
+invariant interval, every path converges to one common limit if and only if the
+interval contains a unique steady state; equivalently, $G_E$ lies strictly off the
+diagonal on either side of that state. The next result obtains uniqueness by
+deriving the interval from the first steady state rather than imposing an
+additional condition.
+
+\begin{proposition}[Attraction on a derived interval]
+\label{prop:derived-interval}
+Under the hypotheses of \Cref{prop:order-selection} --- an invariant basin, a
+non-decreasing closed loop and a continuous sanction rule, with no level
+condition --- let $x_s$ be
+the \emph{least} steady state of $G_E$ at or above the basin pivot $\bar x$. Then
+every equilibrium path started anywhere in $[\bar x,x_s]$ converges to $x_s$ ---
+a single limit, common to every start in that interval. Under strict directional
+adjustment \textup{(F5)} the realized sanction converges to $x_s$ as well.
+\end{proposition}
+
+In plain terms: initial conditions determine the direction of movement and select
+an extremal steady state on that side. Different initial states in the same
+invariant interval need not converge to a common point --- unless the interval
+runs only as far as the first steady state, in which case they do.
+
+\paragraph{What the three results say about sanctions regimes.}
+A steady state of $G_E$ is a political state at which the sender's optimal
+sanction reproduces the entrenchment it inherits: escalation has no further
+return, and a lower sanction would concede entrenchment the sender wants kept. The regime
+sustains itself without either government changing its behavior.
+
+\Cref{prop:order-selection} says that the inherited political state selects,
+at date zero and within a single equilibrium, which self-sustaining regime is
+reached --- path dependence, not indeterminacy --- and
+\Cref{prop:derived-interval} that up to the first such regime above the pivot
+every start reaches it. None of the three results delivers a rate: they say
+where a sanctions regime ends up, not how long it takes
+(\Cref{app:moved-ah}).
+
+\subsection{The transition-strength corollary (\Cref{sec:compstat})}
+
+\begin{corollary}[Transition strength and shock duration]
+\label{cor:shock-transition-strength}
+Consider two transition laws $\F_1$ and $\F_2$ satisfying
+\textup{(F1)--(F4)} and evaluated at the same threshold $0\le\bar x$, below
+which the first rises under full sanctions, $x<\F_1(x,1)$ for
+$x\in[0,\bar x]$ (so $\bar x<1$). If
+\[
+\F_1(x,1)\le\F_2(x,1)
+\qquad\text{for every }x\in[0,\bar x],
+\]
+then
+\[
+\eta_{\F_1}(\bar x)\le\eta_{\F_2}(\bar x),
+\qquad
+\widehat N_{\F_2}(\bar x)
+\le\widehat N_{\F_1}(\bar x).
+\]
+If the transition inequality is strict throughout $[0,\bar x]$, the
+drift inequality is strict. The duration inequality remains weak
+because distinct drift bounds can have the same integer ceiling.
+
+Under the affine law,
+\[
+\eta_\delta(\bar x)=\delta(1-\bar x),
+\qquad
+\widehat N_\delta(\bar x)
+=\left\lceil
+\frac{\bar x}{\delta(1-\bar x)}
+\right\rceil.
+\]
+Hence $\delta_1\le\delta_2$ implies
+$\widehat N_{\delta_2}(\bar x)\le
+\widehat N_{\delta_1}(\bar x)$.
+\end{corollary}
+
+\subsection{The same-equilibrium two-sided statement (\Cref{sec:relief-exit})}
+
+The statement, \Cref{prop:two-sided-one-equilibrium}, moved into the main text on
+2026-10-13 and back to the Online Appendix on 2026-10-15; it is in
+\Cref{app:dual-basin-economy}, with the definition of the dual-basin economy.
+
+\subsection{Post-entry non-termination and the selection boundary}
+\label{app:nontermination}
+
+Fix a date $T$ with $x_T^E\in\basin$ and restart the stationary
+equilibrium path from $x_T^E$. The proof of
+\Cref{thm:persistence} applies to this tail and gives
+\[
+s_{T+n}^E\ge\bar x,
+\qquad
+s_{T+n}^E\le s_{T+n+1}^E
+\quad\text{for every }n\ge0.
+\]
+For a cutoff $q<\bar x$, define
+\[
+\tau_q^E(T)
+:=\inf\{n\ge0:s_{T+n}^E\le q\},
+\qquad \inf\varnothing:=+\infty.
+\]
+The strict cutoff inequality and the inherited floor make the set
+empty, so $\tau_q^E(T)=+\infty$. A weak cutoff is insufficient: a path
+that stays exactly at its floor reaches that weak threshold. Only the floor is
+used, so the conclusion needs only the level condition, the sanction rule at or
+above the state on the basin (\path{equilibriumTop_tailF_no_relief_of_ratchet});
+neither A1 nor the target condition enters.
+
+Condition (E4) supplies the optimization content. At every tail date
+and against every feasible sanction $r\in[0,1]$,
+\[
+\begin{split}
+&U_S\bigl(x_{T+n}^E,\alpha(x_{T+n}^E),s_{T+n}^E\bigr)
+ +\beta_S V_S\!\left(F(x_{T+n}^E,s_{T+n}^E)\right)\\
+&\qquad\ge
+ U_S\bigl(x_{T+n}^E,\alpha(x_{T+n}^E),r\bigr)
+ +\beta_S V_S\!\left(F(x_{T+n}^E,r)\right).
+\end{split}
+\]
+Thus non-termination is selected from an action set that includes
+relief and every reduction of the sanction. Without state-local dynamic-argmax
+uniqueness, this conclusion is specific to the greatest selection: the greatest
+maximizer stays above the floor, while another tied maximizer need not.
+With uniqueness, every maximizer equals the realized action and every
+other sanction is strictly worse. Lean verifies the tail
+restart, floor, empty first-passage set, optimality comparison, and
+uniqueness upgrade in
+\path{Sanctions/Theory/LockIn/PostEntryNonTermination.lean}.
+
+\subsection{Economic mechanism}
+\label{sec:mechanism}
+\label{sec:mechanism:forces}
+
+Political lock-in combines two forward-looking incentives. A sender
+that values a more entrenched successor state weighs current sanctions
+against the entrenchment they leave. For feasible sanctions $s_L<s_H$, the dynamic sender
+prefers $s_H$ to $s_L$ exactly when
+\[
+\beta_S\!\left[
+\Vs(\F(x,s_H))-\Vs(\F(x,s_L))
+\right]
+>
+\Us(x,a,s_L)-\Us(x,a,s_H).
+\]
+The discounted continuation gain must exceed the current payoff loss.
+This is the direct effect of the sender's foresight; it underlies the
+comparison of dynamic and myopic sanctions at a fixed target policy in
+\Cref{thm:dominance}.
+
+The target faces the corresponding intertemporal trade-off. More
+compliance can reduce the current sanction but also erode a political
+constituency valued by the incumbent. A Bellman-optimal target may
+therefore comply less than a myopic target. The two incentives point the same way:
+lower compliance raises the sender's sanction (the indirect effect of the target's lower compliance), and the sender's
+continuation value raises the sanction relative to its myopic best response.
+Whether they \emph{amplify} one another is a separate question, and no result
+below signs an interaction primitive (\Cref{app:moved-ad}).
+
+\paragraph{Formation of the high basin.}
+\label{sec:mechanism:basin}
+Under \Cref{ass:flip}, the target and sender flip sets are upper
+intervals, and \Cref{prop:tipping} defines their infima as political
+pivots. Above their joint pivot, the sender's incentive supports a
+sanction floor and the target's current-plus-future objective favors
+the high-sanction direction. The target condition supplies preference
+evidence for the latter claim. Basin invariance itself follows from the
+sender's equilibrium floor and transition monotonicity.
+
+\subsection{Primitive applications and scope}
+\label{sec:existence:nonvacuity}
+
+The conditions of \Cref{thm:persistence} are attained in an economy where
+continuation values affect observable choices (\Cref{thm:b2-benchmark},
+\Cref{app:witness:benchmark}); its description and its two robustness
+extensions are in \Cref{app:moved-ad}.
+
+\subsubsection{Persistence from primitives}
+\label{sec:existence:primitive-persistence}
+
+The high-basin theorem (\Cref{thm:persistence}) starts from an equilibrium and value sets satisfying its conditions.
+A narrower class, whose economies we call the corner economies, permits both to be derived from payoff and transition
+primitives. Its transition law satisfies the model's maintained
+continuity, monotonicity, diagonal, and strict-adjustment conditions,
+together with a lower bound on its sanction slope and a two-sided bound on the
+corner section $x\mapsto\F(x,1)$. No upper bound on the sanction slope and no bound on the
+curvature of $\F$ are imposed (until 2026-10-08 this class carried both), and
+it contains non-affine realized recursions, including members whose
+curvature in the sanction exceeds half the lower bound on their sanction slope.
+
+\begin{proposition}[Primitive persistence over a general transition]
+\label{prop:primitive-persistence}
+For every corner economy (an economy of the general-$\F$ class above) there exists a
+stationary feedback Stackelberg equilibrium, lying in invariant sets constructed from the
+economy's own coefficients, such that from every initial state in the
+high basin, the political state remains in the basin at every date, the
+realized sanction never falls below the basin pivot, and the realized
+sanction sequence is non-decreasing.
+\end{proposition}
+
+No equilibrium, value function, policy, single-crossing condition,
+sanction floor, or path property is assumed in this proposition. Those
+objects are constructed from inequalities among the primitives. The
+gain in primitive content comes with a precise limitation: the
+equilibrium sanction is maximal at every state. The result establishes
+persistence, but its non-decreasing sanction path is flat rather than a
+state-dependent ratchet.
+
+No curvature bound is needed because the sender's choice is settled by
+monotonicity rather than by concavity. Every sender value in the constructed
+invariant set rises with the state at least at a fixed rate, every unit of sanction
+raises the next state by at least the lower bound on the transition's sanction slope, and this class's
+implacability condition makes the discounted value of that rise exceed the largest
+current cost of the unit. The sender's forward-looking objective is therefore
+strictly increasing in the sanction at every state and at every compliance level
+the target can choose, and full sanction is its unique maximizer, however
+curved the transition is. The constructed invariant set for the sender accordingly restricts only
+the level and the slope of the sender's value. If the corner section is in
+addition semiconcave with some modulus $M\ge0$, the equilibrium sender value is
+semiconcave as well, with a modulus proportional to $M$; no curvature of $\F$ in
+the sanction is needed for this. This class contains a member whose transition is
+semiconcave with modulus $1/5$, and with no smaller modulus, both in the
+sanction and along the corner section; that modulus exceeds half the lower bound on the member's
+sanction slope, $3/20$, a level this class excluded until 2026-10-08,
+and the proposition holds there (\Cref{app:formalization}).
+
+The off-corner boundary of this result is described in \Cref{app:moved-ad}
+and \Cref{sec:discussion:scope}.
+
+\subsection{Pathwise ordering under basin preservation}
+\label{app:persistence:pathwise}
+
+The corollary below compares the myopic equilibrium $M$ with the equilibrium that a
+local invariant-set certificate of the high-basin route constructs. It is an
+existence statement about that constructed equilibrium, not a statement about
+every equilibrium satisfying the hypotheses of \Cref{thm:persistence}.
+
+\begin{corollary}[Pathwise ordering under basin preservation]
+\label{cor:pathwise-dominance}
+Let the transition follow the general law \eqref{eq:transition}, let
+$\bar x_T,\bar x_S\in[0,1]$ with $\bar x<1$, and take the following
+local invariant-set certificate: invariant sets $\mathcal C_T\times\mathcal C_S$ of value functions
+on which the sender's dynamic argmax and the target's argmax are unique, as in
+\Cref{thm:existence}, and on which the joint Bellman operator satisfies the row
+bounds of \Cref{thm:existence} with non-negative coefficients and
+$\beta_T+L_{TS}<1$, $\beta_{S,\mathrm{row}}+L_{ST}<1$; \textup{(P2)}
+and \textup{(P3)} of \Cref{thm:persistence}; and a sanction floor
+$\bar s\in[0,1]$, a slope $m_S$ and a rate $d$ such that, for every value
+pair and every $x\in[\bar x_S,1]$, the sender's stage payoff at the induced
+target policy rises at rate at least $m_S$ on $[0,\max\{x,\bar s\}]$, the
+transition's sanction slope is at most $d$ there, and $\beta_SK_Sd<m_S$. This
+rate form implies the pivot-star slope condition \textup{(P5)}; the target condition
+\textup{(P4)} is not needed. Suppose in addition that the sanction rule of the
+myopic equilibrium satisfies, at every $x\in\basin$, the ceiling
+$\sigM(x,\alphaM(x))\le\max\{x,\bar s\}$, and that it preserves the basin:
+\begin{equation}
+\sigM(x,\alphaM(x))\in\basin
+\qquad\text{for every }x\in\basin.
+\label{eq:myopic-basin-preservation}
+\end{equation}
+Then these hypotheses construct an equilibrium $E=(\Vt,\Vs,\alpha)\in\mathcal E$
+with $\Vt\in\mathcal C_T$ and $\Vs\in\mathcal C_S$ such that, at every
+$x\in\basin$,
+\[
+\sigM(x,\alphaM(x))\le\sigDynTop_{\Vs}(x,\alpha(x)),
+\]
+and from every common initial state $x_0\in\basin$ the
+realized sanctions satisfy $s^M_t\le s^E_t$ for every $t\ge0$.
+\end{corollary}
+
+The corollary is stated at the scope of the certificate theorem that proves
+it: the statewise inequality compares the myopic ceiling with the sender's
+floor and uses neither \Cref{thm:dominance} nor the compliance ordering
+$\alpha\le\alphaM$, the certificate reads no condition on how the target ranks
+sanction levels, and the extra hypothesis \eqref{eq:myopic-basin-preservation}
+is substantive because two different state paths are compared
+(\Cref{app:moved-ah}; the proof is \Cref{app:proof-pathwise}). Both
+paths are evolved by the general transition; until 2026-10-07 the corollary
+was stated for the partial-adjustment law only.
+
+\paragraph{Proof of \Cref{cor:pathwise-dominance}.}
+\label{app:proof-pathwise}
+The corollary is the certificate theorem \path{pathwise_dominance_generalF};
+its hypotheses are the fields of the core certificate
+\path{StandardComplianceLocalCoreCertificate}, listed in the statement, and basin
+preservation \eqref{eq:myopic-basin-preservation}, a separate hypothesis of the
+theorem. Write
+$\hat x=\max\{x,\bar s\}$.
+
+\emph{Step 1: the equilibrium, its floor and its direction.} Row contraction
+gives $E=(\Vt,\Vs,\alpha)\in\mathcal E$ with $\Vt\in\mathcal C_T$,
+$\Vs\in\mathcal C_S$ and $\alpha=\alpha_{\Vt,\Vs}$, which is (P1) by construction
+(the formal statement exports membership of the invariant sets)
+(\path{exists_feedbackStackelbergTop_from_valueClass2_with_membership}). At
+$x\in\basin$ the rate form gives the transition-adjusted slope condition
+\eqref{eq:F-adjusted-sender-chord} on $[0,\hat x]$
+(\path{sender_transition_adjusted_chord_of_upperChordOn_lowerSlope}). Together
+with the $K_S$-Lipschitz bound (P2) it makes $J_S(x,\alpha(x),\cdot\,;\Vs)$
+strictly increasing on $[0,\hat x]$
+(\path{senderDynObjective_strictMono_of_transition_adjusted_chord_and_V_lipschitz}),
+as in \Cref{lem:single-crossing}(b) with $\bar s$ in place of $\bar x$. So the dynamic best response
+is at least $\hat x$: $R_E(x)\ge\hat x\ge x$
+(\path{SenderPersistenceBasinTop.level_dyn_top}), and since $R_E\le1$, $R_E$ maps
+$\basin$ into itself. By (P3), $R_E$ is non-decreasing on $\basin$
+(\path{dynamicTopRealizedRule_mono_of_IDOFamilyOn}). Both facts are packaged in
+\path{exists_equilibrium_senderPersistenceBasinTop_generalF}.
+
+\emph{Step 2: statewise.} At $x\in\basin$ the myopic ceiling and Step~1 give
+$\sigM(x,\alphaM(x))\le\hat x\le R_E(x)=\sigDynTop_{\Vs}(x,\alpha(x))$
+(\path{ruleDom_of_dynamic_floor_and_myopic_ceiling}).
+
+\emph{Step 3: pathwise.} Let $R_M(x)=\sigM(x,\alphaM(x))$, and let $x^M_t$ and
+$x^E_t$ be the paths from $x_0\in\basin$ under $R_M$ and $R_E$, both evolved by
+$\F$. Each rule maps $\basin$ into itself: $R_M$ by
+\eqref{eq:myopic-basin-preservation} and $R_E$ by Step~1. If $y\in\basin$ and
+$R(y)\ge\bar x$, then $\F(y,R(y))\ge\F(\bar x,\bar x)=\bar x$ by (F2)--(F4),
+so both paths stay in $\basin$. Suppose $x^M_t\le x^E_t$. Step~2 at $x^M_t$,
+monotonicity of $R_E$ on $\basin$, (F3) and (F2) give
+\[
+x^M_{t+1}=\F\bigl(x^M_t,R_M(x^M_t)\bigr)\le\F\bigl(x^M_t,R_E(x^E_t)\bigr)
+\le\F\bigl(x^E_t,R_E(x^E_t)\bigr)=x^E_{t+1}.
+\]
+So $x^M_t\le x^E_t$ at every date
+(\path{rulePathF_le_of_rule_le_and_upper_monoOn_basin}), and
+$s^M_t=R_M(x^M_t)\le R_E(x^M_t)\le R_E(x^E_t)=s^E_t$
+(\path{ruleSanctionsF_le_of_rule_le_and_upper_monoOn_basin}).
+
+The statewise inequality compares the myopic ceiling with the sender's floor;
+it does not go through \Cref{thm:dominance} or the compliance ordering. Basin
+preservation is used only in Step~3, where the two paths are at different
+states. \qed
+
+\subsection{Comparative statics of lock-in}
+\label{sec:compstat:lockin}
+
+Consider two configurations with the same transition law and initial
+state. If the second sanction rule is non-decreasing and
+pointwise no lower than the first on the high basin, transition
+monotonicity implies
+\[
+x_t^{(1)}\le x_t^{(2)}\qquad\text{for every }t.
+\]
+When both paths satisfy the conditions of \Cref{thm:persistence}, their limiting
+lock-in states have the same order. Thus any primitive or equilibrium
+change that raises the sanction rule raises the state path, subject
+to the stated monotonicity and common-transition conditions.
+
+Adjustment speed and patience enter differently. With the sanction rule held
+fixed, the steady-state set does not depend on a positive affine adjustment
+rate; and at a fixed continuation value and target policy greater sender
+patience weakly raises the dynamic best response, the corner economies permitting a
+total comparison (\Cref{prop:equilibrium-patience-feedback},
+\Cref{tab:compstat-windows}, \Cref{app:moved-ah}).

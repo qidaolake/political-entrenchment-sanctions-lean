@@ -1,0 +1,1113 @@
+\section{A microfounded interest-group example in the
+Kaempfer--Lowenberg tradition}
+\label{app:fourgroup}
+
+The analytic example economies of \Cref{app:witness} are hand-chosen
+parameter vectors. This section instead supplies a
+public-choice interest-group polity in the \citet{Kaempfer1988} tradition,
+with two interest groups in each country, in which the stage payoffs are
+\emph{computed} from interest-group primitives by the
+\citet{GrossmanHelpman1994} weighted-sum aggregation rule, and the
+stage complementarity \eqref{eq:flip} and the diminishing-returns
+curvature of \Cref{ass:concavity} then follow, on the sign region
+defined below, from a \emph{sign condition on interest-group effectiveness}
+rather than being posited directly at the stage level. The
+construction is machine-checked in
+\texttt{Theory.Microfoundations.FourGroupPolity} (the derivation and the
+general-transition bridge \texttt{toParamsF}, which takes the transition law
+and its five structural obligations as arguments) and instantiated in
+\texttt{Examples.FourGroupWitness}.  The instance \texttt{toParams} under the partial-adjustment law --- the
+same polity with its transition pinned to \texttt{affineF}~$\delta$ --- is the
+\texttt{affineF}~$\delta$ instance of \texttt{toParamsF} and lives with the other affine
+instances in \texttt{Examples.AffineInstance.Microfoundations}.
+
+\subsection{Four groups, two per country}
+\label{sec:fourgroup:primitives}
+
+The sender and the target each contain two organized interest groups
+--- four in all. On the sender side: a \emph{pro-sanction coalition}
+$\JSgroup$ (strategic, security, or import-competing interests whose
+political standing is advanced by confrontation) and a \emph{commercial
+lobby} $\KSgroup$ (exporters and investors harmed by the sanction). On the
+target side: a \emph{regime-aligned bloc} $\JTgroup$ that rallies under
+external pressure, and an \emph{opposition} $\KTgroup$ that the sanction's
+economic damage can empower. Each group $g$ has a welfare $W_g$ and a
+political weight $\theta_g$ (its political effectiveness); following \citet{Kaempfer1988},
+effectiveness is allowed to shift with the political state $x$ and the
+sanction level $s$ as the confrontation hardens. Each country's
+policymaker maximizes the \citet[eq.~(11)]{GrossmanHelpman1994}
+weighted sum of its two groups' welfares, plus the resource terms that enter
+its objective at unit weight --- on the sender side the sanctioning
+deadweight $k_Ss^2$, the compliance--sanction cross term $w_{\mathrm{pl}}sa$ and the direct
+compliance benefit $\beta^{\mathrm{base}}_Sa$; on the target side the
+compliance cost $k_Ta^2$ and the sanction cost $d_ss$:
+\begin{equation}
+\Us=\!\!\sum_{g\in\{\JSgroup,\KSgroup\}}\!\!\theta_g\,W_g
++\beta^{\mathrm{base}}_S\,a-k_Ss^2-w_{\mathrm{pl}}\,s\,a,
+\qquad
+\Ut=\!\!\sum_{g\in\{\JTgroup,\KTgroup\}}\!\!\theta_g\,W_g
+-k_Ta^2-d_s\,s ,
+\label{eq:GH-aggregate}
+\end{equation}
+with group welfares $w_{\JSgroup}=g_Js$, $w_{\KSgroup}=-q_Ks$,
+$w_{\JTgroup}=b_Jx-c_Ja$ and $w_{\KTgroup}=-b_Kx+c_Ka$. The unweighted terms
+are the ones the planner of \Cref{sec:fourgroup:planner} keeps at unit
+weight; they are not political transfers.
+
+\subsection{Reduced stage payoffs}
+\label{sec:fourgroup:payoffs}
+
+Taking the linear-quadratic specification of the group welfares and
+effectiveness schedules --- the pro-sanction coalition's pull rising
+in the political state at rate $\nu$ (the source of the sender's
+\emph{state--sanction complementarity},
+$\theta_{\JSgroup}=\theta^0_{\JSgroup}+\nu x$), the regime bloc's and
+opposition's effectiveness rising in the sanction at rates $\rho$ and
+$\mu$ respectively, a sanctioning-cost curvature $k_S$, a compliance
+cost $k_T$, and a cross-group \emph{compliance--sanction} term $w_{\mathrm{pl}}$
+by which target compliance dampens the marginal political value of
+sanctioning --- the aggregation \eqref{eq:GH-aggregate} collapses to
+\begin{align}
+\Us(x,a,s)&=\beta^{\mathrm{base}}_S\,a
++\bigl(\theta^0_{\JSgroup}+\nu x\bigr)g_J\,s
+-\theta^0_{\KSgroup}q_K\,s
+-k_S s^2
+-w_{\mathrm{pl}}\,s\,a,
+\label{eq:fourgroup-US}\\
+\Ut(x,a,s)&=\bigl(\theta^0_{\JTgroup}+\rho s\bigr)\bigl(b_J x-c_J a\bigr)
++\bigl(\theta^0_{\KTgroup}+\mu s\bigr)\bigl(-b_K x+c_K a\bigr)
+-k_T a^2-d_s s .
+\label{eq:fourgroup-UT}
+\end{align}
+Every coefficient in \eqref{eq:fourgroup-US}--\eqref{eq:fourgroup-UT}
+is an interest-group primitive; nothing is chosen to make a
+monotonicity hold.
+
+\subsection{The stage assumptions follow from a sign condition on interest-group effectiveness}
+\label{sec:fourgroup:derived}
+
+The cross-partials of \eqref{eq:fourgroup-US}--\eqref{eq:fourgroup-UT}
+are read off directly:
+\begin{equation}
+\frac{\partial^2\Us}{\partial s\,\partial x}=\nu\,g_J,
+\qquad
+\frac{\partial^2\Us}{\partial s\,\partial a}=-w_{\mathrm{pl}},
+\qquad
+\frac{\partial^2\Us}{\partial s^2}=-2k_S,
+\qquad
+\frac{\partial^2\Ut}{\partial s\,\partial x}=\rho\,b_J-\mu\,b_K .
+\label{eq:fourgroup-crosspartials}
+\end{equation}
+Define the \emph{sign region} $\mathcal R$ by the strict
+sign conditions
+\begin{equation}
+k_S>0,
+\qquad
+\nu\,g_J>0,
+\qquad
+\mu\,b_K<\rho\,b_J,
+\qquad
+w_{\mathrm{pl}}\ge 0,
+\label{eq:fourgroup-region}
+\end{equation}
+expressed entirely as inequalities among existing group primitives
+(no new named gap scalar). On $\mathcal R$:
+\begin{itemize}[leftmargin=2em]
+\item \textbf{Stage complementarity (\Cref{ass:flip}).}
+On $\mathcal R$, under the sign condition,
+$\partial^2\Us/\partial s\,\partial x=\nu g_J>0$ is the sender's half of
+the stage complementarity, and
+$\partial^2\Ut/\partial s\,\partial x=\rho b_J-\mu b_K>0$ says that the
+regime bloc's gain in effectiveness under sanctions strictly dominates opposition empowerment.
+Both halves of \eqref{eq:flip} hold strictly --- this is exactly the
+case-split \citeauthor{Kaempfer1988} leave with indeterminate sign,
+here resolved by the region $\mathcal R$. (In Lean:
+\path{U_S_senderStageIDStrict}, \path{U_T_targetStageIDStrict},
+the derivative-free Topkis form that \eqref{eq:flip} implies.)
+\item \textbf{\Cref{ass:concavity} (strict concavity of $\Us$ in $s$)
+holds on $\mathcal R$ under the sign condition.} $\partial^2\Us/\partial s^2=-2k_S$, so the curvature
+floor is $c_\sigma=2k_S>0$ whenever $k_S>0$. (In Lean:
+\texttt{U\_S\_senderChordConcaveInS}; the same $k_S>0$ makes the
+clipped-vertex static sender selector a genuine stage argmax,
+\texttt{sigmaSel\_isMaxOn} --- the Rule-1 optimality coupling.)
+\end{itemize}
+\Cref{ass:flip} is thus a \emph{theorem} on $\mathcal R$, not a posit,
+and the sign of the compliance--sanction cross term
+$\partial^2\Us/\partial s\,\partial a=-w_{\mathrm{pl}}\le 0$ supplies
+the decreasing-differences input the sender response uses.
+
+The welfare identities and sign conditions of \Cref{sec:fourgroup:planner}
+need none of this: they hold for every vector of the eighteen coefficients,
+inside $\mathcal R$ or not (\path{FourGroupCoeffs}), and the planner-optimum
+theorem there is stated for interest-group polities but its proof reads, of
+$\mathcal R$, only $k_S>0$ and $w_{\mathrm{pl}}\ge0$. The region is what the
+government game's stage assumptions need, so it still matters that $\mathcal R$
+is inhabited without exhibiting a calibration, and it is. Of the eighteen
+group-effectiveness coefficients, twelve --- the baseline weights
+$\theta^0_{J_S},\theta^0_{K_S},\theta^0_{J_T},\theta^0_{K_T}$, the
+anti-sanction coefficient $q_K$, the direct compliance benefit
+$\mathrm{base}_S$, the concession costs $c_J,c_K$, the opposition weight
+$b_K$, the opposition-empowerment slope $\mu$, the target concavity $k_T$
+and the sanction-cost rate $d_s$ --- may be given \emph{arbitrary} real
+values, and the remaining six are then obtained by choosing each strictly
+beyond a threshold assembled from those already fixed: $k_S$ and
+$w_{\mathrm{pl}}$ above zero, the factors $\nu$ and $g_J$ of the sender's
+state--sanction cross term above zero, the hawk-welfare weight $b_J$ above zero, and finally
+the slope $\rho$ of the regime bloc's effectiveness above $\mu b_K/b_J$, which is exactly the third
+sign condition in \eqref{eq:fourgroup-region}. No
+magnitude is selected anywhere in the construction (in Lean:
+\path{exists_fourGroup_of_free}, with \path{Nonempty FourGroup} as a
+one-line corollary). $\mathcal R$ is thus a sign region on interpretable
+primitives rather than a condition whose satisfiability rests on one
+parameter vector --- which is the appropriate standard for a hypothesis
+class over which universally quantified results range.
+
+It is worth being exact about what stage complementarity does \emph{not}
+buy on its own. \Cref{prop:tipping} derives the tipping pivots
+$\bar x_T,\bar x_S$ from \Cref{ass:flip} \emph{together with} the
+boundary sign conditions \eqref{eq:boundary}, and
+\Cref{ass:target} follows from those pivots, in the derivation after
+\Cref{prop:flip-route}, only if the top sign $1\in\mathcal F_T(\bar s)$ holds --- the target's stage
+payoff must already be non-decreasing in the sanction at the hardest
+political state. The conditions \eqref{eq:fourgroup-region} that define
+$\mathcal R$ restrict cross-partials and the sanction curvature; they
+leave the \emph{level} of the target's sanction slope --- in particular
+the sanction-cost rate $d_s$ --- entirely free, and so do not deliver
+\eqref{eq:boundary}. On $\mathcal R$ the pivots are therefore derived
+comparative statics wherever the boundary signs independently hold, and
+are unavailable where they do not.
+
+They do not hold at the calibrated certificate economy
+\texttt{fgcParams} of \Cref{sec:fourgroup:instance}, and this is
+machine-checked rather than conjectured. There the induced target stage
+payoff is $\Ut(x,a,s)=3x-\tfrac15 a+s\,\bigl(x-\tfrac{14}{5}\bigr)$:
+the target's state--sanction cross-partial $\rho b_J-\mu b_K=1>0$ is genuine ---
+\Cref{ass:flip} does hold --- but the sanction-cost level
+$d_s=\tfrac{14}{5}$ swamps it, so the sanction slope
+$x-\tfrac{14}{5}\le-\tfrac95$ is strictly negative at every state and
+action. Every chord in \eqref{eq:FT-def} therefore falls, and in
+particular the top sign fails at every non-degenerate floor $\bar s<1$
+($1\notin\mathcal F_T(\bar s)$:
+\texttt{fgcCert\_one\_not\_mem\_targetFlipSet}), while the degenerate
+floor $\bar s=1$ leaves only the trivial chord and so puts $0$ in the
+flip set, destroying the bottom sign $0\notin\mathcal F_T$ instead;
+either way the boundary bundle \eqref{eq:boundary} is contradictory
+(\texttt{fgcCert\_stageFlip\_MS\_boundary\_infeasible}). The derived-basin
+route therefore does \emph{not} fire at this economy: neither the
+pivots of \Cref{prop:tipping} nor the derivation of \Cref{ass:target} along that
+route is available here. The route is not thereby vacuous
+--- it is inhabited by a separate economy designed for it (the
+non-vacuity paragraph of \Cref{sec:flip}) --- but the paper refutes it
+at \emph{this} economy rather than quietly assuming it.
+
+\Cref{ass:target} at \texttt{fgcParams} is instead supplied by the
+mutually exclusive \emph{entrenchment-condition} route, and supplied from the same
+derived group primitives: the target's strictly negative stage slope is
+bounded by the loss rate $c_T=\tfrac{14}{5}>0$ (numerically the derived
+sanction cost $d_s$) and is offset by the continuation gain
+$g_T=\tfrac{80}{11}$ carried on the target's invariant set of value functions, the entrenchment condition
+$c_T=\tfrac{14}{5}\le\tfrac{36}{11}=\beta_T g_T\delta$ being discharged
+outright (Lean: the fields \texttt{cT}, \texttt{gT},
+\texttt{hT\_loss\_margin} of \texttt{fourGroupCertCertificate};
+\Cref{sec:fourgroup:instance}). Stage complementarity and the sign
+of the compliance--sanction cross term continue to do their work --- on the sender side, in the
+comparative statics, and in the interest-group interpretation of the mechanism
+--- but what they do not do at this calibration is generate the basin,
+which the entrenchment condition generates instead. Finally, what is
+\emph{not} discharged unconditionally from \eqref{eq:fourgroup-region}
+alone is the \emph{dynamic} content of \Cref{ass:sender} and
+\Cref{ass:target} --- single-crossing of the forward-looking objectives
+once the continuation value is included --- together with joint MPE
+existence; these are supplied on an invariant set of value functions by a
+model-specific row-Lipschitz / Schur-condition route
+(\Cref{sec:existence,app:existencemachinery}).
+
+\subsection{A concrete instance and its long-run behavior}
+\label{sec:fourgroup:instance}
+
+The Lean parameter vector \texttt{fourGroupWitnessParams} fixes
+\begin{equation}
+\nu g_J=3,
+\quad
+\rho b_J-\mu b_K=\tfrac{9}{10},
+\quad
+w_{\mathrm{pl}}=\tfrac{3}{2},
+\quad
+c_\sigma=2k_S=1,
+\quad
+\delta=\tfrac15,\ \beta_T=\tfrac{9}{10},\ \beta_S=\tfrac12,
+\end{equation}
+all four region conditions \eqref{eq:fourgroup-region} holding
+strictly. The
+machine-checked headline
+\path{fourGroupWitnessParams_three_goals_conditional} delivers
+the dynamic-over-myopic comparison on the basin, conditional on the value class, with
+the inputs of the derived-basin route feeding it discharged from
+\eqref{eq:fourgroup-crosspartials}.
+
+\paragraph{The conditional headline is now discharged unconditionally.}
+The value-class residual that
+\texttt{fourGroupWitnessParams\_three\_goals\_conditional} leaves open
+is closed by a certificate-complete sibling, another interest-group
+polity. At the tuned instance \texttt{fgcParams} --- the
+\citet{GrossmanHelpman1994} interest-group polity with $\delta=\tfrac12$,
+$\beta_T=\tfrac{9}{10}$, $\beta_S=\tfrac12$ and the region conditions
+holding strictly --- every field of the core certificate
+\texttt{StandardComplianceLocalCoreCertificate} is discharged from the
+interest-group primitives: the sender high-sanction condition with
+$\beta_S K_S\delta=\tfrac13<\tfrac32=m_S$, and the target entrenchment condition
+with $c_T=\tfrac{14}{5}\le\tfrac{36}{11}=\beta_T g_T\delta$, on the
+slope-pinned invariant sets
+\begin{align*}
+\mathcal C_S&=\{V:\lVert V\rVert_\infty\le 5,\ V(y)-V(x)=\tfrac43\,(y-x)\ \text{for } 0\le x\le y\le1\},\\
+\mathcal C_T&=\{V:\lVert V\rVert_\infty\le 28,\ V(y)-V(x)=\tfrac{80}{11}\,(y-x)\ \text{for } 0\le x\le y\le1\}
+\end{align*}
+(each is a Lipschitz ball whose lower slope floor on the whole physical
+interval equals its Lipschitz ceiling, so the set is pinned to one slope;
+the radii are the discounted stage bounds $\tfrac{5/2}{1-1/2}=5$ and
+$\tfrac{14/5}{1-9/10}=28$; \path{fgcCarrierS_eq}, \path{fgcCarrierT_eq}).
+The resulting headline
+\texttt{fourGroupCert\_three\_goals\_dominance} (axiom-clean) is
+\emph{unconditional}: it \emph{constructs} the stationary feedback
+Stackelberg equilibrium $E$ on those invariant sets and delivers the
+dynamic-over-myopic comparison (each side at its own equilibrium's target
+action) $\sigM(x,\alphaM(x))\le\sigDynTop_{\Vs}(x,\alpha(x))$ for every
+$x\in[\tfrac1{10},1]$, with no value-class certificate taken as a
+hypothesis. This is the first \emph{microfounded} instance of the core
+certificate --- existence and the three goals hold at a
+public-choice-derived stage economy, not only at the analytic
+example economies of \Cref{sec:existence:nonvacuity}.
+
+\paragraph{What the certificate-complete economy exhibits, and what it does not.}
+At \texttt{fgcParams} the two Bellman fixed points are exact and affine,
+$\Vs(x)=\tfrac{11}{3}+\tfrac43x$ and $\Vt(x)=\tfrac{52}{11}+\tfrac{80}{11}x$
+(\path{fgc_VS_star_fixed}, \path{fgc_VT_star_fixed}), and the derived
+actions of the constructed equilibrium are full non-compliance and the maximal
+sanction at every physical state (\path{fgc_}$\alpha$\path{_on_eq_zero},
+\path{fgc_}$\sigma$\path{_dyn_zero_eq_one}: the joint objective, with the
+sender's dynamic best response substituted, is maximized at full non-compliance, and at full
+non-compliance the sender's dynamic best response is $1$). Its dynamic-over-myopic
+comparison is an equilibrium comparison of the constructed equilibrium with the
+myopic equilibrium, in which both governments re-optimize; it is not the
+sender's foresight premium at a common compliance level, since the myopic sanction
+$\min(1,2+x)$ and the dynamic best response at full non-compliance are both $1$. This economy supplies
+microfounded non-vacuity of the core certificate and the welfare comparison
+of \Cref{sec:fourgroup:planner}. Whether either government's
+forward-looking incentive changes its behavior at a given state is a
+separate question that this example economy is not used to answer; the uniform
+statement that both forward-looking incentives change behavior belongs to the class under the lifting condition
+(\Cref{prop:placable-family} and its form without the one-period ranking condition after
+\Cref{thm:four-cells}). The earlier calibration
+\texttt{fourGroupWitnessParams} of \Cref{sec:fourgroup:instance}, whose
+bistability was explored numerically only, supports no machine-checked
+statement about its continuation values or the size of any foresight premium, and none
+is made here. Displaying the indirect effect of the target's lower compliance at an interior target policy
+remains the role of the mechanism-active $P_3$ economy (\Cref{sec:existence:nonvacuity}).
+
+\paragraph{What this example adds.}
+The interest-group example \emph{derives} the two stage-level primitives ---
+\Cref{ass:flip} (stage complementarity) and \Cref{ass:concavity} (strict
+sender concavity in the sanction) --- from public-choice primitives, so the
+``flip'' in the cross-partials is a consequence of the regime bloc's gain in effectiveness under
+sanctions exceeding opposition empowerment rather than an analyst's posit. What it does
+\emph{not} do is obtain \Cref{ass:target} from \Cref{ass:flip}: the
+derived-basin route of \Cref{prop:flip-route} needs the boundary sign conditions
+\eqref{eq:boundary} \emph{in addition} to complementarity, and the region
+conditions \eqref{eq:fourgroup-region} constrain cross-partials and
+curvature, not the \emph{level} of the target's sanction slope
+(\Cref{sec:fourgroup:derived}). At the calibration
+\texttt{fourGroupWitnessParams} the target half of \Cref{ass:target} is
+carried inside the value-class certificate that the conditional headline
+assumes; at the certificate-complete \texttt{fgcParams} it is discharged
+outright on the mutually exclusive entrenchment-condition route ($c_T=\tfrac{14}{5}>0$),
+the boundary bundle of the derived-basin route being machine-checked infeasible there. That
+instance also discharges dynamic single-crossing and joint MPE existence on
+its invariant set of value functions and \emph{constructs} the equilibrium
+(\texttt{fourGroupCert\_three\_goals\_dominance}). This is the decoupled
+$L_{ST}=0$ route; a coupled three-goals/Schur certificate would need
+analytic discharges of the conditions on the target's invariant set that are not available
+on the sets examined, and none is claimed.
+
+The grounding is a \emph{trade}, not a one-directional subsumption,
+relative to the Eaton--Engers example economy of \Cref{sec:existence:nonvacuity}:
+that economy derives the \emph{transition} sign from a two-group
+Kaempfer--Lowenberg market-clearing polity (the assignment of states to the lock-in
+basin and to the basin of convergence to zero is an equilibrium output, not the bare partial-adjustment law),
+whereas the interest-group example derives the \emph{stage payoffs} but
+takes the partial-adjustment transition as given. The two constructions ground
+complementary halves of the model; neither subsumes the other.
+
+\subsection{The pressure schedules from a Becker contest}
+\label{sec:fourgroup:contest}
+
+The market-clearing polity above takes the groups' pressure schedules
+as monotone primitives. They too can be derived. Let the two
+target-side groups choose pressure levels at quadratic cost, with
+political influence additive in the pressure difference --- the
+canonical pressure-competition structure of \citet{Becker1983}. Best
+responses are then \emph{dominant strategies} with closed-form
+equilibrium pressure $p_i^\ast = \max\{0,\,S_i(s)/(2c_{p_i})\}$, where
+the stake $S_i(s)$ is the group's effectiveness-weighted marginal
+benefit of entrenchment net of income-incidence erosion --- both read
+off the interest-group payoff fields already introduced. The three
+Kaempfer--Lowenberg effects (rally, incidence, empowerment) become
+\emph{definitions} --- equilibrium contest objects rather than assumed
+schedules --- and the market-clearing map they induce is exactly the
+partial-adjustment transition used throughout, so the lock-in
+condition becomes a \emph{cost-adjusted} form of the third sign condition of region~(R),
+$c_{p_J}(\mu b_K) < c_{p_K}(\rho b_J)$, degenerating literally to that
+sign condition at equal pressure costs. The
+only new primitives are the two pressure-cost coefficients and two
+incidence-exposure slopes; the lock-in conclusion is obtained by
+\emph{applying} the existing market-clearing theorem, and at the
+example's numbers the contest-induced transition coincides with the
+partial-adjustment law --- the transition used throughout the paper is, at the
+example economy, itself a contest-equilibrium object.
+
+\subsection[Aggregate welfare: construction of W and the two comparisons]
+{Aggregate welfare: construction of $W$, the two
+comparison paths, and the period-by-period accounting}
+\label{sec:fourgroup:planner}
+
+\Cref{sec:policy:welfare} states the welfare results on the class; this
+subsection carries the polity's instance of them and the derivation behind it. Aggregate
+welfare, its closed form at the example economy, the two state paths, the
+per-period gap and every discounted constant below are machine-checked
+(\path{Theory.Microfoundations.FourGroupPlanner},
+\path{Examples.FourGroupPlannerWitness} and, for the primitive identity,
+its sign conditions and the two counterexamples,
+\path{Examples.FourGroupWelfareSign}, and, for the planner's optimum at every
+polity and transition, \path{Theory.Microfoundations.FourGroupPlannerOptimum};
+\Cref{app:formalization}). The accounting identities, the sign conditions and
+the stationary comparison are stated over the coefficients alone, with no
+region condition (\path{FourGroupCoeffs}), and a polity reaches them through
+\path{FourGroup.toCoeffs}; the
+one-line stationarity reduction $x=\F(x,s)\iff x=s$ is immediate from
+\eqref{eq:affine}.
+
+\paragraph{Construction of aggregate welfare.}
+The \citet{GrossmanHelpman1994} rule \eqref{eq:GH-aggregate} weights each
+group's welfare by that group's political effectiveness $\theta_g$. In the
+reduced payoffs \eqref{eq:fourgroup-US}--\eqref{eq:fourgroup-UT} those
+weights appear not as bare constants but as the \emph{schedules}
+$\theta_{\JSgroup}(x)=\theta^0_{\JSgroup}+\nu x$,
+$\theta_{\KSgroup}=\theta^0_{\KSgroup}$,
+$\theta_{\JTgroup}(s)=\theta^0_{\JTgroup}+\rho s$ and
+$\theta_{\KTgroup}(s)=\theta^0_{\KTgroup}+\mu s$. Aggregate welfare is the \emph{same}
+aggregation with the political weights removed: each schedule --- not
+merely its intercept --- set identically to one, so the effectiveness
+slopes $\nu,\rho,\mu$ vanish along with them. Nothing else
+changes: the group-borne resource terms already enter
+\eqref{eq:fourgroup-US}--\eqref{eq:fourgroup-UT} at unit weight,
+multiplied by no $\theta_g$, so they carry through untouched. Substituting
+$\theta_{\JSgroup}\equiv\theta_{\KSgroup}\equiv
+\theta_{\JTgroup}\equiv\theta_{\KTgroup}\equiv1$
+into \eqref{eq:fourgroup-US}--\eqref{eq:fourgroup-UT} and summing the two
+countries' group welfares gives
+\begin{equation}
+W(x,a,s)
+=\bigl(g_J\,s-q_K\,s+\beta^{\mathrm{base}}_S\,a-k_S s^2
+        -w_{\mathrm{pl}}\,s\,a\bigr)
++\bigl((b_J-b_K)\,x+(c_K-c_J)\,a-k_T a^2-d_s s\bigr),
+\label{eq:planner-W}
+\end{equation}
+the first bracket the two sender groups' summed welfare, the second the
+two target groups'. Every coefficient in \eqref{eq:planner-W} is an
+existing group primitive of
+\eqref{eq:fourgroup-US}--\eqref{eq:fourgroup-UT}; no scalar is introduced.
+Subtracting \eqref{eq:planner-W} from the sum of \eqref{eq:fourgroup-US}
+and \eqref{eq:fourgroup-UT} and collecting group by group returns
+\eqref{eq:planner-distortion} coefficient by coefficient in all eighteen
+fields --- pure algebra, no side condition. Evaluating
+\eqref{eq:planner-W} at the two corners the dynamics single out gives
+$W(0,0,0)=0$ and $W(1,0,1)=(g_J-q_K)+(b_J-b_K)-(k_S+d_s)$, and comparing
+the two is the flip boundary reported in \Cref{sec:policy:welfare}.
+For any planner discount factor $\beta\in[0,1)$, capitalizing a
+stationary flow gives
+\[
+\mathcal W_\beta^{\mathrm{stat}}(x,a,s)
+=\frac{W(x,a,s)}{1-\beta}.
+\]
+Therefore
+\[
+\mathcal W_\beta^{\mathrm{stat}}(0,0,0)
+-\mathcal W_\beta^{\mathrm{stat}}(1,0,1)
+=
+\frac{(k_S+d_s)-\bigl[(g_J-q_K)+(b_J-b_K)\bigr]}
+     {1-\beta},
+\]
+so the discounted stationary ranking has exactly the same parametric
+boundary as the flow ranking. Lean proves the capitalization identity,
+the discounted if-and-only-if boundary, and the exact primitive gap as
+\path{stationaryPlannerValue_eq},
+\path{stationaryPlannerValue_lockin_dominated_iff}, and
+\path{stationaryPlannerValue_relief_gain}.
+
+At the certificate-complete instance \texttt{fgcParams} of
+\Cref{sec:fourgroup:instance} the sender groups' sanction benefits net out
+($g_J=q_K=1$), the target groups' net entrenchment value is
+$b_J-b_K=1$, the direct compliance flows cancel
+($\beta^{\mathrm{base}}_S=0$, $c_J=c_K$) and compliance curvature is
+absent ($k_T=0$), so \eqref{eq:planner-W} collapses to
+\begin{equation}
+W(x,a,s)=x-\tfrac{14}{5}s-\tfrac12 s^2-\tfrac{11}{5}\,s\,a :
+\label{eq:planner-W-fgc}
+\end{equation}
+entrenchment is worth $x$, and sanctioning burns the target's sanction
+cost $d_s=\tfrac{14}{5}$, the sender's deadweight $k_S s^2=\tfrac12 s^2$
+and the compliance--sanction transfer $w_{\mathrm{pl}}\,s\,a=\tfrac{11}{5}sa$. On the
+physical cube $[0,1]^3$, \eqref{eq:planner-W-fgc} obeys
+$\lvert W\rvert\le\tfrac{13}{2}$ --- the uniform bound the discounting
+step below consumes.
+
+\paragraph{Stationary points of the transition.}
+Under the partial-adjustment law \eqref{eq:affine} with $\delta\in(0,1)$,
+$x=\F(x,s)$ holds iff $x=s$: the stationary points are exactly the
+diagonal triples $(s,a,s)$, $(s,a)\in[0,1]^2$. Evaluating
+\eqref{eq:planner-W-fgc} along that diagonal, the entrenchment credit and
+the sanction cost collapse into a single linear term,
+\[
+W(s,a,s)=-\tfrac95 s-\tfrac12 s^2-\tfrac{11}{5}\,s\,a\;\le\;0=W(0,0,0),
+\]
+each of the three terms being nonpositive on the cube, with \emph{strict}
+inequality whenever $s>0$ (the first is then strictly negative). So no
+stationary point does better than the origin, and every stationary point
+carrying \emph{positive sanctions} is strictly worse. That weak-with-
+strict-above-zero statement is exactly what is claimed and no more: the
+zero-sanction stationary points $(0,a,0)$ all attain $0$ as well, so what
+is pinned is that \emph{sanctioning} at a stationary point is what
+destroys planner value --- not that the origin is the unique maximizer.
+The lock-in corner $(1,0,1)$ --- the absorbing point of the certified play
+--- sits $\tfrac{23}{10}$ below the origin in flow terms.
+
+\paragraph{The two comparison paths.}
+At \texttt{fgcParams}, $\delta=\tfrac12$, so \eqref{eq:affine} reads
+$\F(x,s)=(x+s)/2$. The \emph{equilibrium} path is the orbit of the
+certified play, not of an assumed policy: the derived sender corner
+$\sigDynTop_{\Vs}(x,0)=1$ against the derived leader policy
+$\alpha\equiv 0$ (full non-compliance), both pinned for every value function in
+the sender's certified invariant set and every state in $[0,1]$ by the certificate
+behind \texttt{fourGroupCert\_three\_goals\_dominance}, so
+$x_{t+1}=\F(x_t,1)=(x_t+1)/2$. The \emph{comparison} path shuts sanctions
+off, $s\equiv0$, $a\equiv0$ --- a \emph{feasible} policy, not an
+equilibrium one, which is all an inefficiency claim requires --- so
+$x_{t+1}=\F(x_t,0)=x_t/2$. Both are affine contractions and solve in
+closed form from any start $x_0$:
+\begin{equation}
+x^E_t=1-(1-x_0)\,2^{-t}\uparrow 1,
+\qquad
+x^0_t=x_0\,2^{-t}\downarrow 0 .
+\label{eq:planner-paths}
+\end{equation}
+Both orbits stay in $[0,1]$. The cube-wide policy identities proved for the
+exact equilibrium (\path{fgcEquilibriumTargetPath_eq_zero},
+\path{fgcEquilibriumSenderPath_eq_one}) identify the equilibrium path with
+equilibrium play from \emph{every} start $x_0\in[0,1]$; for a basin start
+$x_0\in[\tfrac1{10},1]$ the orbit is increasing and also remains in the high
+basin $[\tfrac1{10},1]$ used by the separate three-goals certificate, an
+additional invariance fact and not the domain of the welfare theorem.
+
+\paragraph{Period-by-period accounting and the discounted gap.}
+Substituting \eqref{eq:planner-paths} into \eqref{eq:planner-W-fgc}, the
+equilibrium flow is
+$W(x^E_t,0,1)=x^E_t-\tfrac{33}{10}=-\tfrac{23}{10}-(1-x_0)2^{-t}$
+(entrenchment worth $x^E_t$ against the per-period resource burn
+$k_S+d_s=\tfrac{33}{10}$) and the comparison flow is
+$W(x^0_t,0,0)=x_0 2^{-t}$, so the per-period gap is
+\begin{equation}
+W(x^0_t,0,0)-W(x^E_t,0,1)=\tfrac{23}{10}+2^{-t},
+\label{eq:planner-gap}
+\end{equation}
+in which the start $x_0$ cancels \emph{identically}: a permanent flow gain
+of $\tfrac{23}{10}$ from abandoning the sanctions war, plus a vanishing
+transition bonus. Now discount at any $\beta\in[0,1)$ and sum. Along any
+cube-valued path the series $\sum_t\beta^t W$ converges absolutely by
+geometric comparison against $\tfrac{13}{2}\sum_t\beta^t$, so both path
+values are well defined and may be summed term by term. Each is then a
+pair of geometric series, with ratios $\beta$ (the constant flow) and
+$\beta/2$ (the transition term inherited from the contraction factor
+$1-\delta=\tfrac12$ in \eqref{eq:planner-paths}):
+\begin{equation}
+V^E(x_0;\beta)=-\frac{23}{10(1-\beta)}-\frac{1-x_0}{1-\beta/2},
+\qquad
+V^0(x_0;\beta)=\frac{x_0}{1-\beta/2}.
+\label{eq:planner-values}
+\end{equation}
+Differencing \eqref{eq:planner-values}, the two $(1-\beta/2)^{-1}$ terms
+recombine --- $x_0+(1-x_0)=1$ --- and the start drops out, leaving
+\[
+V^0(x_0;\beta)-V^E(x_0;\beta)
+=\frac{23}{10(1-\beta)}+\frac{1}{1-\beta/2},
+\]
+the exact discounted gap of \Cref{sec:policy:welfare}, an identity for
+every start $x_0\in[0,1]$ and every $\beta\in[0,1)$; both terms are
+strictly positive on that range, which is the strict-dominance form.
+
+\paragraph{The stationary comparison.}
+Let $g_J$ and $q_K$ be the sender groups' per-unit sanction benefit and
+loss, $b_J$ and $b_K$ the target groups' state valuations, $k_S$ the
+sender's sanctioning-cost curvature, and $d_s$ the target's sanction-cost
+rate. The benefit of maximal entrenchment and sanctions is
+$(g_J-q_K)+(b_J-b_K)$; its resource cost is $k_S+d_s$. For a planner discount
+factor $\beta\in[0,1)$, define discounted welfare at a constant
+state-action-sanction triple by
+$\mathcal W_\beta^{\mathrm{stat}}(x,a,s)=\sum_{t=0}^{\infty}\beta^t W(x,a,s)$.
+
+\begin{proposition}[Discounted stationary welfare boundary]
+\label{prop:discounted-stationary-welfare}
+For every vector of interest-group coefficients, inside region~(R) or not, and
+every $\beta\in[0,1)$,
+\[
+\mathcal W_\beta^{\mathrm{stat}}(0,0,0)
+-\mathcal W_\beta^{\mathrm{stat}}(1,0,1)
+=
+\frac{(k_S+d_s)-\bigl[(g_J-q_K)+(b_J-b_K)\bigr]}
+     {1-\beta}.
+\]
+Consequently, the stationary zero path strictly planner-dominates the
+stationary lock-in path if and only if
+\[
+(g_J-q_K)+(b_J-b_K)<k_S+d_s.
+\]
+\end{proposition}
+
+Discounting capitalizes the flow gap without changing its sign, and the
+example interest-group economy satisfies the inequality. No region condition is
+read (\path{FourGroupCoeffs.stationaryPlannerValue_relief_gain},
+\path{FourGroupCoeffs.stationaryPlannerValue_lockin_dominated_iff}). The stationary
+comparison is not the equilibrium comparison, which runs along moving paths
+from a common start; that comparison is the next proposition. (This
+proposition stood in the main text until round AD; it was moved here, with
+the affine closed form, when the welfare section was reduced to one attained
+example and the family-wide statement.)
+
+\paragraph{The same accounting in the primitives, and the sign.}
+The two closed forms are the case $\delta=\tfrac12$, $b_J-b_K=1$,
+$(k_S+d_s)-(g_J-q_K)=\tfrac{33}{10}$ of an identity that holds for every
+vector of the eighteen coefficients and every transition of the paper's class.
+No sign condition of region~(R) enters its proof, so it also covers
+coefficient vectors outside the region, such as those in which opposition
+empowerment dominates the regime bloc's gain in effectiveness under sanctions (\path{FourGroupCoeffs}). Write $H=(k_S+d_s)-(g_J-q_K)-(b_J-b_K)$ for the
+stationary gap and $B=b_J-b_K$ for the target groups' net valuation of the
+state.
+
+\begin{proposition}[The welfare gap in primitives]
+\label{prop:affine-welfare-gap}
+For every vector of interest-group coefficients, every transition
+$\F\colon[0,1]^2\to[0,1]$ satisfying \textup{(F2)--(F3)}, every planner
+discount $\beta\in[0,1)$ and every start $x_0\in[0,1]$, let
+$e_{t+1}=\F(e_t,1)$ and $y_{t+1}=\F(y_t,0)$, with $e_0=y_0=x_0$, be the
+corner path of full sanctions against full non-compliance and the zero-sanction path, and let $z_t=1-e_t+y_t$, so
+that $z_t\in[0,1]$ and $z_0=1$. Then
+\[
+V^0(x_0;\beta)-V^E(x_0;\beta)
+=\frac{H}{1-\beta}+B\sum_{t=0}^{\infty}\beta^tz_t .
+\]
+If the transition also satisfies \textup{(F1)}, \textup{(F4)} and strict
+adjustment \textup{(F5)}, the difference is positive for every
+$\beta\in[0,1)$ if and only if $k_S+d_s>g_J-q_K$ and
+$k_S+d_s\ge(g_J-q_K)+(b_J-b_K)$. Under the partial-adjustment law \eqref{eq:affine} with
+$\delta\in(0,1)$ the two paths are $x^0_t=x_0(1-\delta)^t$ and
+$x^E_t=1-(1-x_0)(1-\delta)^t$, the residual is $z_t=(1-\delta)^t$, and
+\[
+V^0(x_0;\beta)-V^E(x_0;\beta)
+=\frac{(k_S+d_s)-(g_J-q_K)-(b_J-b_K)}{1-\beta}
++\frac{b_J-b_K}{1-\beta(1-\delta)} ;
+\]
+this difference is positive if and only if
+$[(k_S+d_s)-(g_J-q_K)-(b_J-b_K)](1-\beta(1-\delta))+(b_J-b_K)(1-\beta)>0$,
+and it is positive for every $\beta\in[0,1)$ if and only if
+$k_S+d_s>g_J-q_K$ and $k_S+d_s\ge(g_J-q_K)+(b_J-b_K)$.
+\end{proposition}
+
+\begin{proof}
+At full non-compliance $W(x,0,s)=(g_J-q_K-d_s)s-k_Ss^2+(b_J-b_K)x$, so the
+per-period gap between the two paths is $H+Bz_t$. Both paths stay in $[0,1]$,
+where the flows are bounded, and summing termwise gives the identity
+(\path{FourGroupCoeffs.pathValue_cornerF_gap}). Under strict adjustment the
+corner path rises to $1$ and the zero-sanction path falls to $0$, so their
+separation $1-z_t$ starts at $0$, stays in $[0,1]$ and tends to one; with
+$C=(k_S+d_s)-(g_J-q_K)$, a discounted series $\sum_t\beta^t\bigl(C-B(1-z_t)\bigr)$
+of that kind is positive at every $\beta\in[0,1)$ exactly when $C>0$ and
+$B\le C$ (\path{DiscountedSign.tsum_pos_all_discounts_iff},
+\path{pathValue_cornerF_gap_pos_all_discounts_iff_of_params}). Under the partial-adjustment
+law the residual is $(1-\delta)^t$ and the start cancels; two geometric series
+give the closed form (\path{pathValue_affineCorner_gap}). Clearing the
+positive denominators gives the fixed-$\beta$ condition
+(\path{affineCornerGap_pos_iff}). At $\beta=0$ the numerator is
+$(k_S+d_s)-(g_J-q_K)$, and as $\beta\to1$ it tends to
+$\delta[(k_S+d_s)-(g_J-q_K)-(b_J-b_K)]$, which gives the all-$\beta$ condition
+(\path{affineCornerGap_pos_all_discounts_iff}). The welfare theorems cited are
+stated over the coefficients and read no region condition; the polity forms are
+their instances through \path{FourGroup.toCoeffs}.
+\end{proof}
+
+The conjunction ``stationary gap positive and $b_J-b_K\ge0$'' is sufficient
+and not necessary: a zero stationary gap with a positive transition bonus,
+or a negative $b_J-b_K$, can still give a positive difference. Since
+$1\le\sum_t\beta^tz_t\le1/(1-\beta)$, the difference is at least
+$H/(1-\beta)+B$ when $B\ge0$ and at least $[(k_S+d_s)-(g_J-q_K)]/(1-\beta)$
+when $B<0$ (\path{pathValue_cornerF_gap_ge_of_nonneg},
+\path{pathValue_cornerF_gap_ge_of_neg}). A lower bound on the transition's sanction slope bounds the
+residual sum from above and so gives no lower bound in the first case; a lower
+bound $g\ge0$ on the transition's state slope along the two endpoint sections sharpens the first bound's
+transition term to $B/(1-\beta g)$
+(\path{pathValue_cornerF_gap_ge_of_nonneg_of_cornerChords}). The all-discount
+condition needs no affine rate: it holds under the qualitative direction of
+\textup{(F5)} with the continuity of \eqref{eq:transition}, which is the
+paper's maintained class, and under its quantitative form, a positive lower
+bound on the sanction slope, such as the family's $d_{\mathrm{lo}}>0$, which adds a
+geometric rate (\path{pathValue_cornerF_gap_pos_all_discounts_iff}). Without
+strict adjustment the necessity direction fails: the identity transition keeps
+both paths at the start and gives $[(k_S+d_s)-(g_J-q_K)]/(1-\beta)$ whatever
+$b_J-b_K$ is (\path{not_necessary_without_strict_adjustment}).
+
+\paragraph{Region~(R) does not determine the sign.}
+Neither inequality of \Cref{prop:affine-welfare-gap} is a region-(R)
+condition, and the government game does not settle them either. Rescale the
+pro-sanction coalition: multiply its per-unit benefit $g_J$ by some $\phi\ne0$
+and divide its weight schedule, $\theta^0_{\JSgroup}$ and $\nu$, by the same
+$\phi$ (\path{hawkRescale}). The product $(\theta^0_{\JSgroup}+\nu x)g_J$ does not
+change, so both government payoffs, the static sender selector, every
+region-(R) condition and the induced game under every transition are those of
+the original polity, and every equilibrium of the one is an equilibrium of the
+other (\path{hawkRescale_U_S}, \path{hawkRescale_U_T},
+\path{hawkRescale_toParamsF}). The planner, who counts the hawks' benefit at
+unit weight, sees $W+(\phi-1)g_Js$, so under every transition into $[0,1]$ the
+gap between the zero-sanction path and the corner path of full sanctions
+against full non-compliance falls by
+exactly $(\phi-1)g_J/(1-\beta)$ (\path{hawkRescale_cornerF_gap}), while under
+\textup{(F2)--(F3)} the gap is at most $(|H|+|B|)/(1-\beta)$ in absolute value
+(\path{abs_cornerF_gap_le}). Hence, for every polity whose hawks gain from
+sanctions, $g_J>0$, some $\phi>0$ makes the gap strictly negative at every planner
+discount, every start and every transition satisfying \textup{(F2)--(F3)}
+(\path{exists_hawkRescale_cornerF_gap_neg}); for every polity whose hawks lose,
+$g_J<0$, which region~(R) allows when $\nu<0$, some $\phi>0$ makes it strictly
+positive (\path{exists_hawkRescale_cornerF_gap_pos}). Each statement goes one
+way: when the hawks gain, the game never shows that the zero-sanction path
+is at least as good for the planner as persistent full sanctions, and when
+they lose, it never shows the reverse.
+
+Next to the example economy, the rescaling with $\phi=5$ raises $g_J$ from $1$
+to $5$ and scales the weight schedule down to $\theta^0_{\JSgroup}=\tfrac35$,
+$\nu=\tfrac15$, so that $(\tfrac35+\tfrac x5)\cdot5=3+x$ is exactly what it was
+(\path{fourGroupCertHawkScaled_eq_hawkRescale}). The induced game is
+\texttt{fgcParams} itself and the constructed equilibrium is an equilibrium of
+the new polity verbatim (\path{fourGroupCertHawkScaled_toParams}), while the
+planner sees $W+4s$: $(k_S+d_s)-(g_J-q_K)=-\tfrac7{10}$, the gap falls by
+$4/(1-\beta)$ (\path{fourGroupCertHawkScaled_gap_shift}), and the value of the
+specified feasible zero-sanction path less that of equilibrium play is
+\[
+-\frac{17}{10(1-\beta)}+\frac{1}{1-\beta/2}
+=-\frac{14+3\beta}{20(1-\beta)(1-\beta/2)}<0
+\]
+at every $\beta\in[0,1)$ (\path{fourGroupCertHawkScaled_gap_neg}): same
+government game, same equilibrium, opposite welfare ranking. The reversal
+concerns the same specified zero-sanction alternative, not the hawk-scaled
+planner's own optimum. Bundled, the two polities induce \texttt{fgcParams}
+and their planners, who maximize aggregate welfare, rank the equilibrium path and the same
+feasible zero-sanction alternative oppositely at every discount and every
+physical start
+(\path{fourGroupCert_welfare_not_identified_by_game}): government payoff
+functions and equilibrium behavior do not by themselves determine the
+welfare ranking of these two paths. A second polity
+changes only the direct sanction cost to $d_s=\tfrac1{10}$, so region~(R)
+again holds and the cost stays positive: the difference is $\tfrac35$ at
+$\beta=0$, zero at $\beta=\tfrac34$ and $-\tfrac{24}{11}$ at
+$\beta=\tfrac9{10}$ (\path{fourGroupCertPositiveCost_gap_at_nine_tenths});
+the difference equals $(3-4\beta)/(5(1-\beta)(1-\beta/2))$, positive exactly
+when $\beta<\tfrac34$ (\path{fourGroupCertPositiveCost_gap_sign_iff}), so
+even with positive resource costs the relative welfare of the two specified
+paths reverses with the planner's discount factor. Both are existence
+certificates: they refute the universal ``region~(R) implies a
+positive gap'' and say nothing about magnitudes. Politically weighted payoff
+coefficients therefore do not identify the comparison by aggregate welfare;
+the region conditions constrain cross-partials and curvature, not the
+resource burn against the groups' benefits.
+
+\paragraph{From a feasible comparison to the planner value.}
+For a polity, a transition $\F$ and an initial state \(x_0\), let
+\(\mathcal P(x_0)\) be the set of
+cube-valued path triples \((x_t,a_t,s_t)_{t\ge0}\) starting at \(x_0\) and
+satisfying the transition law \(x_{t+1}=\F(x_t,s_t)\), and define
+\[
+\mathcal W^\star_\beta(x_0)
+:=
+\sup_{(x,a,s)\in\mathcal P(x_0)}
+\sum_{t=0}^{\infty}\beta^tW(x_t,a_t,s_t).
+\]
+On the cube \(\lvert W\rvert\) is at most a bound in the coefficients
+(\path{plannerWBound}; \(13/2\) at the certificate-complete polity, whose
+welfare function is \eqref{eq:planner-W-fgc}), so this supremum is finite.
+(The bound is a property of the polity's coefficients; it has no counterpart
+for the interest-group microfoundations of the family below, whose welfare coefficients
+are unbounded across microfoundations.) Write
+\(\varphi(a)=(\beta^{\mathrm{base}}_S+c_K-c_J)a-k_Ta^2\) for the compliance part
+of $W$, \(a^\ast\) for a maximizer of \(\varphi\) on \([0,1]\), which exists by
+compactness (\path{exists_complianceFlow_max}), and
+\(Y(x_0)=\sum_t\beta^ty_t\) for the discounted state along the zero-sanction
+path from \(x_0\).
+
+\begin{proposition}[The planner's optimum and the exact loss]
+\label{prop:planner-optimum-lower-bound}
+\begin{enumerate}[label=(\roman*)]
+\item For every interest-group polity, every transition
+$\F\colon[0,1]^2\to[0,1]$ satisfying \textup{(F2)--(F3)}, every
+\(\beta\in[0,1)\) and every \(x_0\in[0,1]\), write $B=b_J-b_K$ and suppose
+either (a) $B\ge0$, the transition has an upper bound $L$ on its sanction slope,
+$\F(x,s_2)-\F(x,s_1)\le L(s_2-s_1)$ for $s_1\le s_2$, and an upper bound
+$\lambda$ on its state slope along the zero-sanction section,
+$\F(y_2,0)-\F(y_1,0)\le\lambda(y_2-y_1)$ for $y_1\le y_2$, with
+$\beta\lambda<1$, and
+\[
+g_J-q_K+\frac{\beta BL}{1-\beta\lambda}\le d_s ;
+\]
+or (b) $B\le0$ and $g_J-q_K\le d_s$. Then the zero-sanction path with the
+constant compliance $a^\ast$ attains the planner's optimum,
+\[
+\mathcal W^\star_\beta(x_0)=B\,Y(x_0)+\frac{\varphi(a^\ast)}{1-\beta},
+\]
+and the optimum exceeds the value of the corner path of full
+sanctions against full non-compliance by
+$H/(1-\beta)+B\sum_t\beta^tz_t+\varphi(a^\ast)/(1-\beta)$, with $H$ and $z_t$
+as in \Cref{prop:affine-welfare-gap}. Under the partial-adjustment law \eqref{eq:affine},
+for either sign of $B$, the condition
+$g_J-q_K+\beta\delta B/(1-\beta(1-\delta))\le d_s$ gives
+$\mathcal W^\star_\beta(x_0)=Bx_0/(1-\beta(1-\delta))+\varphi(a^\ast)/(1-\beta)$.
+\item At the certificate-complete interest-group economy, for every
+\(x_0\in[0,1]\) and \(\beta\in[0,1)\), the zero-sanction path attains the
+planner's optimum, \(\mathcal W^\star_\beta(x_0)=x_0/(1-\beta/2)\), and
+\[
+\mathcal W^\star_\beta(x_0)-V^E(x_0;\beta)
+=
+\frac{23}{10(1-\beta)}+\frac{1}{1-\beta/2}
+>0,
+\]
+where \(V^E\) is the discounted welfare of the play of the constructed
+equilibrium.
+\end{enumerate}
+\end{proposition}
+
+The planner condition of (i) says that the first unit of sanction does not pay socially once the
+political shift it causes is counted. A unit of sanction gives the sender's
+groups $g_J-q_K$ net and raises next period's state by at most $L$; along the
+zero-sanction path that follows, the planner values the higher state at most
+$\beta B/(1-\beta\lambda)$ per unit when $B\ge0$ and at most zero when
+$B\le0$, since a planner with $B<0$ counts a higher state as a loss. If these
+together do not cover the target's direct sanction cost $d_s$, the zero-sanction
+path is optimal: the planner gains nothing by sanctioning. The quadratic cost
+$k_Ss^2$ and the compliance--sanction cross term only strengthen the conclusion.
+
+\begin{proof}
+(i) Let \(v(x)=B\,Y(x)+\varphi(a^\ast)/(1-\beta)\). At every feasible triple,
+\(W(x,a,s)+\beta v(\F(x,s))-v(x)\) is the sum of the political term
+\((g_J-q_K-d_s)s+\beta B\bigl(Y(\F(x,s))-Y(\F(x,0))\bigr)\) and
+\(\varphi(a)-\varphi(a^\ast)-k_Ss^2-w_{\mathrm{pl}}sa\), which is nonpositive by
+the choice of \(a^\ast\) and the polity's signs $k_S>0$ and
+$w_{\mathrm{pl}}\ge0$ (\path{bellman_le_of_politicalMargin}). Where the
+political term is nonpositive at every feasible state and sanction, the
+supersolution bound of \path{Foundations/DiscountedChordSum.lean} bounds every
+feasible value by \(v(x_0)\), and the zero-sanction path with compliance
+\(a^\ast\) attains it (\path{plannerOptimalValue_eq_of_politicalMargin}). For
+$B\ge0$, $Y$ is non-decreasing, two zero-sanction paths stay within
+$\lambda^t$ times their initial distance, and so
+$Y(\F(x,s))-Y(\F(x,0))\le Ls/(1-\beta\lambda)$, which with the condition of (a)
+makes the political term nonpositive (\path{zeroStateSum_sub_le},
+\path{plannerOptimalValue_eq_of_upperChords}; $\lambda\ge0$ is derived, not
+assumed). For $B\le0$ a sanction raises the state, which a planner with
+$B\le0$ values at no more than zero, so (b) suffices and no slope bound is used
+(\path{plannerOptimalValue_eq_of_nonpos}). Under the partial-adjustment law
+$Y(x)=x/(1-\beta(1-\delta))$ exactly (\path{plannerOptimalValue_eq_affineF}).
+The loss is the accounting identity of \Cref{prop:affine-welfare-gap} plus the
+capitalized compliance flow (\path{plannerOptimalValue_loss_of_upperChords},
+\path{plannerOptimalValue_loss_of_nonpos},
+\path{plannerOptimalValue_loss_affineF}).
+
+(ii) At the certificate-complete economy $B=1$, $g_J=q_K$ and
+\(\varphi\equiv0\), and the planner condition of (i) under the partial-adjustment law at \(\delta=\tfrac12\) reads
+\(\beta/(2-\beta)\le\tfrac{14}{5}\), which holds at every \(\beta\in[0,1)\);
+so (i) gives the optimum (\path{plannerOptimalValue_eq_affineF},
+\path{fgcPlannerOptimalValue_eq_general}). The verification at the example economy is
+direct.
+Let \(v_0(x)=x/(1-\beta/2)\). At every feasible triple,
+\(W(x,a,s)+\beta v_0(\F(x,s))-v_0(x)
+=s\bigl(\tfrac{\beta}{2-\beta}-\tfrac{14}{5}\bigr)-\tfrac{s^2}{2}-\tfrac{11}{5}sa\le0\),
+with equality at \(s=0\) (\path{fgc_planner_bellman_upper}). Multiplying by
+\(\beta^t\) and summing over \(t<N\) along any feasible path telescopes to
+\(\sum_{t<N}\beta^tW_t+\beta^Nv_0(x_N)\le v_0(x_0)\); the terminal term
+vanishes because the state stays in \([0,1]\), and the series converges by
+the cube bound, so every feasible value is at most \(v_0(x_0)\)
+(\path{fgc_plannerPath_value_le}, through the generic verification lemma of
+\path{Foundations/InfiniteHorizonVerification}). The zero-sanction path
+attains \(v_0(x_0)\) by \eqref{eq:planner-values}, so the supremum equals it
+(\path{fgcPlannerOptimalValue_eq}), and the exact difference in
+\eqref{eq:planner-values} gives the loss of equilibrium play relative to the
+specified feasible zero-sanction path
+(\path{fgc_plannerOptimalValue_gap_eq_equilibrium}).
+\end{proof}
+
+At the certificate-complete economy the optimum is attained by the
+zero-sanction path, but not uniquely: at
+\(s=0\) every compliance choice ties, and at \(\beta=0\) future controls are
+not ranked.
+
+The planner condition is sufficient, and it fails at the hawk-scaled and
+positive-cost polities above. At the first, $g_J-q_K=4>\tfrac{14}5=d_s$, so it
+fails at every discount; at the second, where $d_s=\tfrac1{10}$, the condition under the
+partial-adjustment law reads $\beta/(2-\beta)\le\tfrac1{10}$ and fails for
+$\beta>\tfrac2{11}$. There sanctions can pay socially: at the first polity at
+every discount, and at the second at $\beta=\tfrac9{10}$, the corner path of full sanctions against full
+non-compliance is worth strictly more to the planner than the zero-sanction path at
+full non-compliance (\path{fourGroupCertHawkScaled_gap_neg},
+\path{fourGroupCertPositiveCost_gap_at_nine_tenths}). At both polities
+$\beta^{\mathrm{base}}_S=0$, $c_J=c_K$ and $k_T=0$, so the compliance part
+$\varphi$ of $W$ is identically zero and every zero-sanction path is worth the
+same. Since the corner path is feasible, an immediate consequence is that no
+zero-sanction path attains the planner's optimum there; this step is an
+inference from the two comparisons, not a separate machine-checked result.
+
+Evaluating the exact gap at $\beta_S=\tfrac12$ and at
+$\beta_T=\tfrac9{10}$ returns the two capitalized numbers reported
+there. The planner condition in general form is
+\Cref{prop:zero-sanction-planner}, and the sensitivity of the verdict to how $W$
+is defined is \Cref{prop:welfare-rescaling}; the verdict itself --- a
+lock-in that is politically rational and socially wasteful --- is the
+sanctions-persistence analogue of the inefficient-persistence verdicts in
+the dynamic political-economy tradition
+\citep{AcemogluRobinson2008,BattagliniCoate2008,HasslerEtAl2003}.
+
+\paragraph{Interest-group microfoundations of the quadratic--linear family under the lifting condition.}
+Everything above, the cube bound $13/2$ included, concerns affine interest-group
+polities that sit next to one example economy. The remainder of this
+section leaves them. The same non-identification holds on the whole family of
+\Cref{sec:four-regimes}, through a separate accounting object that leaves the
+interest-group polity of this appendix untouched (that polity has no direct
+state benefit $wx$ and requires strict signs on the state--sanction cross terms, while the family allows
+$r=0$ and $n=0$). An \emph{interest-group microfoundation} of a family member's government payoffs consists of
+target groups with state valuations $b_J,b_K>0$ and a compliance transfer
+$\kappa>0$ between them, baseline political weights $t_J,t_K>0$ with a common
+sanction slope $\nu_T\ge0$, and sender groups gaining $g_H>0$ and losing $Q>0$
+per unit of sanction, with weights $(u_0+Q+rx)/g_H$ and one, subject to
+\[
+t_Jb_J-t_Kb_K=v,\qquad \nu_T(b_J-b_K)=n,\qquad \kappa(t_J-t_K)=\ell .
+\]
+The direct state benefit $wx$, the sanctioning cost $\tfrac q2s^2$, the
+compliance--sanction cross term $kas$ and the target's sanction cost $cs$ are kept at unit
+weight. Every weight is strictly positive on the feasible cube.
+
+\begin{lemma}[Interest-group microfoundations: representation and existence]
+\label{lem:welfare-completion}
+For every interest-group microfoundation the politically weighted group sums equal
+$\Us(x,a,s)$ and $\Ut(x,a,s)$ at every state and action, so the government
+game and every constructed equilibrium are the member's own, and aggregate
+welfare is
+\[
+W(x,a,s)=\bigl(w+b_J-b_K\bigr)x+\bigl(g_H-Q-c\bigr)s-\tfrac q2s^2-kas .
+\]
+Every member has a microfoundation with any prescribed net sanction coefficient
+$\eta=g_H-Q-c$ and any $b_J-b_K>0$. Microfoundations with $b_J=b_K$ exist exactly
+at the members with $n=0$, and there at every $\eta$.
+\end{lemma}
+
+\begin{proof}
+The representation is algebra in the three displayed equations
+(\path{govS_eq}, \path{govT_eq}, \path{welfare_eq}); existence takes $b_K=1$,
+$b_J=1+B$, $\kappa=2\ell b_J/v$, $t_K=v/(2B)$, $t_J=t_K+\ell/\kappa$,
+$\nu_T=n/B$, $Q=|c+\eta|+1$ and $g_H=Q+c+\eta$
+(\path{exists_welfareCompletion}); these are choices inside an existence
+proof, not restrictions on the class, and the class does not require
+$b_J>b_K$. Since $\nu_T(b_J-b_K)=n$, equal valuations force $n=0$; and at
+$n=0$ the record $b_J=b_K=1$, $t_K=1$, $t_J=1+v$, $\kappa=\ell/v$, $\nu_T=0$,
+with the same $Q$ and $g_H$, is a microfoundation at every $\eta$, whatever the
+transition and the state--sanction cross term $r$ (\path{exists_completion_bJ_eq_bK_iff},
+\path{exists_equalValuation_completion}). The microfoundation of
+\Cref{cor:planner-efficient-boundary} is of this kind.
+\end{proof}
+
+The family has its own version of \Cref{prop:welfare-nonidentification}, with
+these microfoundations in place of the accounting representations used there.
+
+\begin{proposition}[Welfare non-identification on the family]
+\label{prop:family-welfare-nonidentification}
+Take a member of the quadratic--linear family in the class that satisfies
+the lifting condition, the entrenchment condition and the forward-looking relief condition
+\textup{(RL)}, and at which the sender's response at full non-compliance at its
+constructed value is non-decreasing in the state, as under the increasing-differences condition \eqref{eq:rally-margin} (\Cref{app:proofs:placable}).
+There are two interest-group microfoundations such that, at every initial state
+and every common planner discount factor $\beta\in[0,1)$, discounted aggregate
+welfare along the four constructed equilibria is ranked
+\[
+11\succ10\succ00\sim01\quad\text{by one},\qquad
+00\sim01\succ10\succ11\quad\text{by the other}.
+\]
+\end{proposition}
+
+\begin{proof}[Proof of \Cref{prop:family-welfare-nonidentification}]
+For the two ranking microfoundations take $b_J-b_K=1$, so that the state
+coefficient is $K=w+1>0$. The constructed equilibria of cases $00$ and $01$ have
+the zero sanction and one state path, and $W(x,a,0)$ does not depend on $a$,
+so they tie. Along the other two the target maintains non-compliance, the target-only
+sanction is the stage vertex, at least $u_0/q$, and the forward-looking
+sanction exceeds it by at least the foresight premium \eqref{eq:sender-wedge} at every
+date, while the state paths are ordered $00\le10\le11$. With $\eta=q+1$ every
+flow comparison is strictly positive in the direction of more sanctions; with
+$\eta$ below $-(w+1)/\min\{u_0/q,\text{premium}\}-1$ it is strictly negative,
+since a state difference is at most one. The flows are bounded, so the strict
+termwise comparison survives discounting, including at $\beta=0$
+(\path{exists_completions_reversing_regime_ranking_of_response_monotone}; the
+form under the increasing-differences condition, \path{exists_completions_reversing_regime_ranking}, is its
+corollary).
+\end{proof}
+
+\begin{corollary}[A planner-efficient boundary]
+\label{cor:planner-efficient-boundary}
+Let a member have $r=n=0$. Then there is a microfoundation with $W=\Us$ such that,
+at the planner discount $\beta_S$, the play of every equilibrium in $\mathcal E$
+at which the target maintains full non-compliance --- full non-compliance and its sanction rule,
+at every state --- attains the planner's optimum against every
+time-dependent plan over both actions, from every start.
+\end{corollary}
+
+\begin{proof}
+Take
+$b_J=b_K=1$, $t_J=1+v$, $t_K=1$, $\kappa=\ell/v$, $Q=1$ and $g_H=1+c+u_0$;
+then $W=\Us$, the sender's constructed value satisfies
+$W(x,a,s)+\beta_S V_S(\F(x,s))\le\Us(x,0,s)+\beta_S V_S(\F(x,s))\le V_S(x)$
+with equality at full non-compliance and the dynamic best response to it, and the bounded
+verification theorem of \path{Foundations/InfiniteHorizonVerification.lean}
+concludes (\path{exists_planner_efficient_completion}). That inequality holds
+on all of $r=n=0$. Every full-non-compliance equilibrium has the constructed values
+and plays the constructed response, so the compared plan is that
+equilibrium's policy and sanction rule, with neither the entrenchment condition nor the increasing-differences condition
+(\path{exists_planner_efficient_completion_of_policy_zero}); the form at the
+constructed equilibrium under those two conditions is
+\path{exists_planner_efficient_completion_at_equilibrium}, the flatness the
+increasing-differences condition forces at $r=0$ is \path{flat_of_margin_of_r_eq_zero}, and the
+inhabitant is \path{placableBoundary_planner_efficient_at_equilibrium}. The
+statement concerns one microfoundation and one planner discount: it is an
+existence boundary for any universal strict-inefficiency sentence, not
+generic efficiency.
+\end{proof}
+
+Such an equilibrium exists exactly when full non-compliance is a target best reply
+at the constructed values; under the entrenchment condition and a non-decreasing
+response the constructed equilibrium of \Cref{prop:placable-family} is one.
+The corollary needs neither the entrenchment condition nor the increasing-differences condition. Through the increasing-differences condition it reaches only flat
+transitions: at $r=0$ that condition forces a flat transition certificate,
+$M_{\mathrm{mix}}=0$ and $M_{\mathrm{cx}}\,g_{\mathrm{hi}}=0$, as under the
+partial-adjustment law and every additively separable transition with convex state
+sections. The boundary is inhabited by the member with $r=n=0$ whose transition is the partial-adjustment law
+(\Cref{app:formalization}); no member with $r=n=0$, a non-flat transition and a
+full-non-compliance equilibrium is exhibited.
+
+The quantifier order is: for every member there exist two microfoundations that
+work for every start and every planner discount. The microfoundations depend on
+the member; no claim is made about every microfoundation, about all equilibria, or
+about magnitudes. Three accounting choices carry the statement and are choices,
+not consequences of the government game: $wx$ counted at unit social weight;
+compliance as a pure transfer between the two target groups, which is what
+makes the constructed equilibria of cases $00$ and $01$ tie; and group benefits unrestricted in size, with
+the inverse political weight compensating. The microfoundations retain the
+compliance--sanction cross term $kas$ at unit weight, while the compliance transfer $\kappa a$
+cancels between the two target groups; counting a term at unit weight is a
+convention, not a demonstration that it is a resource loss. A bounded class
+is treated in \Cref{prop:welfare-interval} below. A ranking
+of the constructed equilibria is not a planner-efficiency verdict: under the first microfoundation a
+planner would want the maximal sanction, not the interior equilibrium one, so
+the forward-looking equilibrium is still planner-inefficient there;
+\Cref{cor:planner-efficient-boundary} is what shows that inefficiency itself
+is not universal.
+
+\paragraph{What a restriction on the microfoundations identifies.}
+With cardinal group benefits free and political weights compensating,
+non-identification is what one should expect. The next proposition says what a
+restriction buys. Along the constructed equilibria of the two non-compliance cases compliance is zero, so the
+welfare gap is affine in the net sanction coefficient; the restriction is on the
+sender side only, and the target side of the microfoundation is held fixed.
+
+\begin{proposition}[Partial identification with fixed exposure and bounded hawk weights]
+\label{prop:welfare-interval}
+Let a member satisfy the entrenchment condition, with the sender's response at
+full non-compliance at its constructed value non-decreasing in the state (as under
+the increasing-differences condition \eqref{eq:rally-margin}; \Cref{app:proofs:placable}), fix an
+initial state and a planner discount
+$\beta\in[0,1)$, and let $\Delta X$, $\Delta S$ and
+$\Delta S_2$ be the discounted differences between the constructed equilibria of the forward-looking and the
+target-only cases in the state, the sanction and the squared sanction.
+\begin{enumerate}[label=(\roman*)]
+\item For every interest-group microfoundation,
+$V^{11}-V^{10}=K\,\Delta X+\eta\,\Delta S-\tfrac q2\Delta S_2$ with
+$K=w+b_J-b_K$ and $\eta=g_H-Q-c$; the three differences do not depend on the
+microfoundation, and $\Delta S\ge m/(1-\beta)>0$ with $m$ the foresight premium
+\eqref{eq:sender-wedge}.
+\item Fix the commercial lobby's exposure $Q=\bar Q>0$ and require the hawks'
+political weight to satisfy $\underline\theta\le(u_0+\bar Q+rx)/g_H\le\bar\theta$
+at every feasible state, with $0<\underline\theta$, $0<\bar\theta$. This class is
+non-empty if and only if
+$\underline\theta\,(u_0+\bar Q+r)\le\bar\theta\,(u_0+\bar Q)$, and on it $\eta$
+ranges over exactly
+$\bigl[(u_0+\bar Q+r)/\bar\theta-\bar Q-c,\;(u_0+\bar Q)/\underline\theta-\bar Q-c\bigr]$,
+every value being attained with the target side, hence $K$, unchanged.
+\item With the target side fixed, the set of welfare gaps over the class is the
+closed interval with endpoints
+$K\Delta X-\tfrac q2\Delta S_2+\eta\,\Delta S$ at the two ends of that range.
+On a non-empty class, among its microfoundations with the given state coefficient
+$K$ --- a set that contains those with the given target side --- the
+equilibrium of the forward-looking case ranks strictly first at every microfoundation exactly when
+the lower endpoint is positive, and strictly last exactly when the upper
+endpoint is negative; both strict rankings occur exactly when the endpoints have
+opposite strict signs, and then at microfoundations that keep the whole target side.
+An endpoint at zero leaves a weak ordering, and the interval $\{0\}$ a tie.
+\item A weight band alone need not identify the sign. For any band straddling
+one, $\underline\theta<1<\bar\theta$, unrestricted exposure permits both
+rankings: with the target side kept, one microfoundation with weights inside the
+band ranks the equilibrium of the forward-looking case strictly above that of the target-only case and
+another ranks it strictly below. Nothing is claimed for a band that does not
+straddle one.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) is \Cref{lem:welfare-completion} along paths on which $as=0$, with bounded
+flows summed termwise, and the foresight premium at every date
+(\path{regimeValue11_sub_10_eq}, \path{dS_ge}). (ii): the weight rises with the
+state because $r\ge0$, so the two bounds are
+$(u_0+\bar Q+r)/\bar\theta\le g_H\le(u_0+\bar Q)/\underline\theta$; the
+representation equations involve neither $g_H$ nor $Q$, so any $g_H$ in that
+range can be installed without touching the target side
+(\path{hawkBounded_iff}, \path{hawkBounded_nonempty_iff},
+\path{hawkBounded_eta_mem}, \path{exists_withSender_hawkBounded_eta}, whose
+attaining microfoundation is the given one with $g_H$ and $Q$ replaced and every
+other field kept). (iii) follows from
+(i), (ii) and $\Delta S>0$ (\path{gap_mem_interval}, \path{gap_attained_withSender},
+\path{forall_gap_pos_iff}, \path{forall_gap_neg_iff}, \path{exists_both_signs_iff},
+and \path{exists_withSender_both_signs_of_straddle}, which names the two
+microfoundations). (iv): with $g_H=(u_0+Q)/\underline\theta$
+the weights stay in the band once $Q$ is large and
+$\eta=(1/\underline\theta-1)Q+u_0/\underline\theta-c\to+\infty$; with
+$g_H=(u_0+Q+r)/\bar\theta$ they stay in the band and $\eta\to-\infty$
+(\path{exists_withSender_weightBounded_eta_gt},
+\path{exists_withSender_weightBounded_eta_lt},
+\path{exists_withSender_weightBounded_reversal}; each names its microfoundation as
+the given one with $g_H$ and $Q$ replaced). Each of the theorems on the constructed equilibria
+cited is stated under the increasing-differences condition and is the corollary of a sibling that
+assumes only the non-decreasing response
+(\path{regimeValue11_sub_10_eq_of_response_monotone},
+\path{dS_ge_of_response_monotone}, \path{gap_mem_interval_of_response_monotone},
+\path{gap_attained_withSender_of_response_monotone},
+\path{forall_gap_pos_iff_of_response_monotone},
+\path{forall_gap_neg_iff_of_response_monotone},
+\path{exists_both_signs_iff_of_response_monotone},
+\path{exists_withSender_both_signs_of_straddle_of_response_monotone},
+\path{exists_withSender_weightBounded_reversal_of_response_monotone}); the
+theorems on the microfoundations alone read neither the entrenchment condition nor the increasing-differences condition.
+\end{proof}
+
+The restricted class is a definition over the microfoundation's own data, not a
+hypothesis on the governments' game: payoffs and constructed equilibria are
+untouched. It is one restriction among many; holding the target side fixed is
+substantive, and the proposition identifies the ranking of two constructed equilibria, not a
+planner optimum. The interval is conditional on accounting information the
+governments' behavior does not supply; its sharpness does not supply it
+either. What it shows is where the information has to come from:
+group exposures, not political weights alone.

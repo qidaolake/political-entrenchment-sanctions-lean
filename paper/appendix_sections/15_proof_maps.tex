@@ -1,0 +1,351 @@
+\section{How the results are proved: maps of the arguments}
+\label{app:proof-maps}
+
+The figures in this section show how the paper's results are built. Each box says in
+words what a condition requires, what a step constructs, or what a result states. A solid
+arrow means that the box at its tail is used to obtain the box at its head. A dashed arrow
+means that two results are compared. A dotted arrow marks a step that the result does not
+need. Shaded boxes are conditions, plain boxes are steps, and boxes with a heavy border are
+results. Below each figure, three lines say what the result proves, what it uses, and the
+route of the proof; the proofs themselves are in the sections the figures cite.
+
+\tikzset{
+  pm/cond/.style={draw, rounded corners=2pt, fill=black!7, align=left, inner sep=3pt,
+    font=\scriptsize},
+  pm/step/.style={draw, align=left, inner sep=3pt, font=\scriptsize},
+  pm/res/.style={draw, line width=1.1pt, align=left, inner sep=3pt, font=\scriptsize},
+  pm/note/.style={align=left, inner sep=1pt, font=\scriptsize\itshape},
+  pm/arr/.style={-{Stealth[length=1.7mm]}, semithick},
+  pm/cmp/.style={-{Stealth[length=1.7mm]}, semithick, dashed},
+  pm/opt/.style={-{Stealth[length=1.7mm]}, semithick, dotted},
+}
+
+\subsection{The overall structure}
+\label{app:proof-maps:overall}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[node distance=2.6mm and 7mm]
+% conditions (left column)
+\node[pm/cond, text width=3.7cm] (law) at (0,0)
+  {\textbf{Law of motion} (F1)--(F5): the state persists, rises with the sanction, is kept by
+   a sanction equal to it, and moves toward the sanction. Used throughout.};
+\node[pm/cond, text width=3.7cm, below=of law] (myo)
+  {\textbf{Myopic conditions} (Assumptions 1--3): in one period the sender never sanctions
+   fully and lifts the sanction at full compliance; relief is worth its price.};
+\node[pm/cond, text width=3.7cm, below=of myo] (conc)
+  {\textbf{Concavity} (Assumption 4): the sender has exactly one optimal sanction.
+   Maintained on the class.};
+\node[pm/cond, text width=3.7cm, below=of conc] (entr)
+  {\textbf{Entrenchment and increasing differences} (Assumptions 5--6): the target values the
+   entrenchment a sanction builds at least as much as its pain; a more entrenched adversary
+   makes sanctioning more attractive.};
+\node[pm/cond, text width=3.7cm, below=of entr] (int)
+  {\textbf{Interiority and lifting} (Assumptions 7--8): a forward-looking sender never
+   sanctions fully and lifts the sanction at full compliance.};
+\node[pm/cond, text width=3.7cm, below=of int] (four)
+  {\textbf{Four-case conditions}: compliance neutrality, (T6) and (RL).};
+\node[pm/cond, text width=3.7cm, below=of four] (lock)
+  {\textbf{Lock-in conditions}: value sets, monotonicity and the level condition on a high
+   basin; for entry, (F1)--(F4).};
+\node[pm/cond, text width=3.7cm, below=of lock] (rep)
+  {\textbf{Interest-group representation}: each government's payoff is a weighted sum of
+   its groups' welfare.};
+% constructions (middle column)
+\node[pm/step, text width=4.1cm, right=of myo] (m1)
+  {\textbf{The myopic benchmark}: the least compliance $a^{00}(x)$ ends the myopic
+   sanction, and with zero sanctions the state erodes.};
+\node[pm/step, text width=4.1cm, right=of conc, yshift=-3mm] (m2)
+  {\textbf{The sender against full non-compliance}: its value is the fixed point of a
+   contraction; its response is unique and above the myopic sanction.};
+\node[pm/step, text width=4.1cm, right=of int, yshift=4mm] (m3)
+  {\textbf{The target's reply}: full non-compliance is its unique best reply; with the
+   target's value, this is an equilibrium in $\mathcal E$.};
+\node[pm/step, text width=4.1cm, right=of lock] (m4)
+  {\textbf{The high basin}: on it the sender's response stays at or above the state.};
+\node[pm/step, text width=4.1cm, right=of rep] (m5)
+  {\textbf{Rescaling}: government payoffs fix only weighted sums of group welfare.};
+% results (right column)
+\node[pm/res, text width=3.7cm, right=of m1] (r1)
+  {\Cref{prop:myopic-benchmark}: without foresight, sanctions end and the state falls to
+   zero.};
+\node[pm/res, text width=3.7cm, right=of m2] (r2)
+  {\Cref{thm:regime-separation}: with foresight, the target does not comply, sanctions
+   persist, and the state converges above $\underline s$.};
+\node[pm/res, text width=3.7cm, right=of law, xshift=4.1cm+7mm+3mm] (r3)
+  {\Cref{thm:dominance}: at a fixed target policy, foresight never lowers the sanction.};
+\node[pm/res, text width=3.7cm, right=of m3] (r5)
+  {\Cref{prop:collapse-threshold,prop:patience-existence}: patience decides between relief
+   and non-compliance (with Assumptions 7--8).};
+\node[pm/res, text width=3.7cm, right=of m4] (r4)
+  {\Cref{prop:lock-in}: the state never leaves the basin, sanctions never fall, and a long
+   temporary shock carries the state there.};
+\node[pm/res, text width=3.7cm, right=of four, xshift=4.1cm+7mm+3mm] (r6)
+  {\Cref{thm:four-cells}: the four cases (with Assumptions 5--8).};
+\node[pm/res, text width=3.7cm, right=of m5] (r7)
+  {\Cref{prop:welfare-nonidentification}: the game does not pin down the welfare ranking.};
+% arrows
+\draw[pm/arr] (myo) -- (m1);
+\draw[pm/arr] (m1) -- (r1);
+\draw[pm/arr] (conc.east) -- (m2.west);
+\draw[pm/arr] (entr.east) -- (m3.west);
+\draw[pm/arr] (m2) -- (m3);
+\draw[pm/arr] (m3.north east) -- (r2.south west);
+\draw[pm/cmp] (r1) -- (r2);
+\draw[pm/arr] (m3) -- (r5);
+\draw[pm/arr] (law.east) -- (r3.west);
+\draw[pm/arr] (lock) -- (m4);
+\draw[pm/arr] (m4) -- (r4);
+\draw[pm/arr] (four.east) -- (r6.west);
+\draw[pm/arr] (m3.south east) -- (r6.north west);
+\draw[pm/arr] (rep) -- (m5);
+\draw[pm/arr] (m5) -- (r7);
+\draw[pm/cmp] (r2.east) to[out=-30, in=30, looseness=0.6] (r7.east);
+\end{tikzpicture}
+\captionof{figure}{The structure of the argument. Left: the conditions, in words. Middle: what the
+proofs construct from them. Right: the paper's results. The law of motion is used by every
+construction; its one arrow marks the result that needs nothing else from the class
+(\Cref{thm:dominance}). Interiority and lifting are named in the result boxes that use
+them. The dashed arrows mark comparisons: \Cref{thm:regime-separation} compares with the benchmark,
+and \Cref{prop:welfare-nonidentification} ranks the two equilibria.}
+\label{fig:proof-map-overall}
+\end{minipage}\par\medskip
+
+\noindent\textit{Reading.} Three conditions matter most. Concavity makes the sender's response
+unique, the entrenchment condition makes full non-compliance the target's best reply, and
+increasing differences make the sender's response rise with the state. The myopic
+conditions give the benchmark. The other conditions each serve particular results.\par
+
+\subsection{The constructed equilibrium, \Cref{prop:myopic-benchmark} and \Cref{thm:regime-separation}}
+\label{app:proof-maps:main}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[node distance=3mm and 6mm]
+\node[pm/step, text width=6.2cm] (s1) at (0,0)
+  {\textbf{Step 1.} The sender's value against full non-compliance is the fixed point of a
+   contraction on a set of value functions. Its best response is unique and continuous.};
+\node[pm/step, text width=6.2cm, below=of s1] (s2)
+  {\textbf{Step 2.} The response lies strictly above the myopic sanction (the foresight
+   premium). Under Assumptions 7--8 it is also below the maximum and zero at full
+   compliance.};
+\node[pm/step, text width=6.2cm, below=of s2] (s3)
+  {\textbf{Step 3.} Full non-compliance is the target's unique best reply: compliance lowers
+   the sanction, and the entrenchment that sanction builds is worth more than its pain.};
+\node[pm/step, text width=6.2cm, below=of s3] (s4)
+  {\textbf{Step 4.} The response rises with the state. The target's value is the fixed point
+   of a second contraction. Full non-compliance with the two values is an equilibrium in
+   $\mathcal E$.};
+\node[pm/res, text width=6.2cm, below=of s4] (eq)
+  {\textbf{The constructed equilibrium} (\Cref{prop:placable-family}).};
+\node[pm/step, text width=6.2cm, below=of eq] (s6)
+  {\textbf{Step 6.} The state builds up toward $\underline s$ and lies strictly above the
+   myopic path at every positive date.};
+\node[pm/step, text width=6.2cm, below=of s6] (s7)
+  {\textbf{Step 7.} The closed loop rises with the state, so the path is monotone and
+   converges to $x^{11}_\infty$, where the sanction equals the state; $x^{11}_\infty>\underline s$.};
+\node[pm/res, text width=6.2cm, below=of s7] (t3)
+  {\Cref{thm:regime-separation}: (i) non-compliance and a sanction above the myopic one;
+   (ii) build-up and the gap above the benchmark; (iii) convergence above $\underline s$.};
+% inputs (left)
+\node[pm/cond, text width=3.3cm, left=of s1] (a4) {Concavity (Assumption 4); bounds of the law of motion.};
+\node[pm/cond, text width=3.3cm, left=of s2] (a78) {Interiority and lifting (Assumptions
+  7--8): only for the extra properties.};
+\node[pm/cond, text width=3.3cm, left=of s3] (a5) {Entrenchment condition (Assumption 5).};
+\node[pm/cond, text width=3.3cm, left=of s4] (a6) {Increasing differences (Assumption 6).};
+\node[pm/cond, text width=3.3cm, left=of s6] (f) {(F2)--(F3) and the lower bound on the
+  sanction slope.};
+% the benchmark and the separate step (right)
+\node[pm/cond, text width=3.6cm, right=of s1] (a13) {Myopic conditions (Assumptions 1--3).};
+\node[pm/step, text width=3.6cm, below=of a13] (s5)
+  {\textbf{Step 5.} The myopic case: the least compliance $a^{00}(x)$ ends the sanction and
+   is the target's unique optimum; the state erodes at least geometrically.};
+\node[pm/res, text width=3.6cm, below=of s5] (p2) {\Cref{prop:myopic-benchmark}.};
+\node[pm/step, text width=3.6cm, right=of s7, dotted] (s8)
+  {\textbf{Step 8} (separate). If the closed loop contracts, the steady state is unique and
+   attracts every path (\Cref{prop:activation-not-hysteresis}).};
+% arrows
+\draw[pm/arr] (a4) -- (s1);
+\draw[pm/opt] (a78) -- (s2);
+\draw[pm/arr] (a5) -- (s3);
+\draw[pm/arr] (a6) -- (s4);
+\draw[pm/arr] (a5.south east) -- (s4.north west);
+\draw[pm/arr] (f) -- (s6);
+\draw[pm/arr] (s1) -- (s2);
+\draw[pm/arr] (s2) -- (s3);
+\draw[pm/arr] (s3) -- (s4);
+\draw[pm/arr] (s4) -- (eq);
+\draw[pm/arr] (eq) -- (s6);
+\draw[pm/arr] (s6) -- (s7);
+\draw[pm/arr] (s7) -- (t3);
+\draw[pm/arr] (a13) -- (s5);
+\draw[pm/arr] (s5) -- (p2);
+\draw[pm/cmp] (p2.south) |- (s6.east);
+\draw[pm/opt] (s7) -- (s8);
+\end{tikzpicture}
+\captionof{figure}{The proof of \Cref{prop:myopic-benchmark} and \Cref{thm:regime-separation}
+(\Cref{app:proofs:placable}, panels E and F). Steps 1--4 construct the equilibrium with
+full non-compliance; Steps 6--7 follow its path. Step 5 solves the benchmark, and the
+dashed arrow is the comparison in (ii). The dotted arrows mark what the theorem does not
+need: the extra properties of Step 2, and Step 8.}
+\label{fig:proof-map-main}
+\end{minipage}\par\medskip
+
+\noindent\textit{Proves.} Both forward-looking: non-compliance, positive sanctions, and a state
+that converges above $\underline s$; both myopic: relief and a state that falls to zero.\par
+\noindent\textit{Uses.} Assumptions 1--6, the law of motion and the bounds of the class.\par
+\noindent\textit{Route.} Construct the sender's value against full non-compliance first, check
+that full non-compliance is then the target's best reply, and close the equilibrium with the
+target's value; then follow the path.\par
+
+\subsection{The comparison at a fixed target policy (\Cref{thm:dominance})}
+\label{app:proof-maps:dominance}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[node distance=3mm and 5mm]
+\node[pm/cond, text width=3.4cm] (f3) at (0,0) {(F3): a higher sanction leaves a weakly
+  higher next state.};
+\node[pm/cond, text width=3.4cm, below=of f3] (vm) {The sender's continuation value does not
+  fall with the state.};
+\node[pm/step, text width=3.6cm, right=of f3, yshift=-6mm] (c1) {So the continuation term
+  $\beta_S\Vs(\F(x,s))$ does not fall with the sanction.};
+\node[pm/step, text width=3.6cm, right=of c1] (c2) {Adding a term that does not fall with
+  the sanction cannot lower the largest optimal sanction.};
+\node[pm/res, text width=3.2cm, right=of c2] (t4) {\Cref{thm:dominance}:
+  $\sigM(x,\alpha(x))\le\sigDynTop_{\Vs}(x,\alpha(x))$.};
+\draw[pm/arr] (f3.east) -- (c1.west);
+\draw[pm/arr] (vm.east) -- (c1.west);
+\draw[pm/arr] (c1) -- (c2);
+\draw[pm/arr] (c2) -- (t4);
+\end{tikzpicture}
+\captionof{figure}{The proof of \Cref{thm:dominance} (\Cref{app:proof-dominance}). It needs no
+concavity, no equilibrium and none of the bounds of the class.}
+\label{fig:proof-map-dominance}
+\end{minipage}\par\medskip
+
+\noindent\textit{Proves.} At any fixed target policy and any state, a sender that values a more
+entrenched adversary sanctions at least as much as a myopic sender.\par
+\noindent\textit{Uses.} (F3) and a sender value that does not fall with the state.\par
+\noindent\textit{Route.} A monotone comparison of the largest maximizers of two objectives that
+differ by a term rising in the sanction.\par
+
+\subsection{Lock-in (\Cref{prop:lock-in})}
+\label{app:proof-maps:lockin}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[node distance=3mm and 6mm]
+\node[pm/cond, text width=3.6cm] (sets) at (0,0) {\textbf{Value sets}: the values lie in closed
+  sets; sender values are Lipschitz; the target policy is the one they induce.};
+\node[pm/cond, text width=3.6cm, below=of sets] (lev) {\textbf{Level condition} (b): raising a
+  lower sanction up to the state gains more today than the continuation can lose.};
+\node[pm/cond, text width=3.6cm, below=of lev] (mono) {\textbf{Monotonicity} (a): interval
+  dominance on the basin, so the largest optimal sanction rises with the state.};
+\node[pm/cond, text width=3.6cm, below=of mono] (ent) {(F1)--(F4), and full sanctions raise
+  every state below the basin.};
+\node[pm/step, text width=4.4cm, right=of lev, yshift=8mm] (l1) {On the basin the sender's
+  response is at least the state and the threshold $\bar x$.};
+\node[pm/step, text width=4.4cm, below=of l1] (l2) {A sanction at least the state does not let
+  the state fall (by (F3)--(F4)).};
+\node[pm/step, text width=4.4cm, right=of mono, yshift=-3mm] (l3) {The state does not fall and
+  the response rises with the state, so the sanction does not fall.};
+\node[pm/step, text width=4.4cm, right=of ent, yshift=-4mm] (l4) {A sanction held at the
+  maximum long enough lifts every state into the basin; play restarts there.};
+\node[pm/res, text width=3.4cm, right=of l1, yshift=-5mm] (r12) {(i) the state never leaves
+  $[\bar x,1]$; (ii) $s_t\ge\bar x$.};
+\node[pm/res, text width=3.4cm, right=of l3] (r3) {(iii) $s_t\le s_{t+1}$.};
+\node[pm/res, text width=3.4cm, right=of l4] (r4) {Entry: (i)--(iii) after a long enough
+  temporary shock.};
+\draw[pm/arr] (sets.east) -- (l1.west);
+\draw[pm/arr] (lev.east) -- (l1.west);
+\draw[pm/arr] (l1) -- (l2);
+\draw[pm/arr] (l2) -- (r12);
+\draw[pm/arr] (mono) -- (l3);
+\draw[pm/arr] (l2) -- (l3);
+\draw[pm/arr] (l3) -- (r3);
+\draw[pm/arr] (ent) -- (l4);
+\draw[pm/arr] (l4) -- (r4);
+\end{tikzpicture}
+\captionof{figure}{The proof of \Cref{prop:lock-in} (\Cref{thm:persistence} in \Cref{app:proofs} and
+the shock theorems of \Cref{app:persistence}). The level condition gives no exit; the
+monotonicity condition adds the rising sanction; entry needs only the law of motion.}
+\label{fig:proof-map-lockin}
+\end{minipage}\par\medskip
+
+\noindent\textit{Proves.} Once the state is in a high basin, equilibrium play keeps it there
+with sanctions that never fall, and a long enough temporary shock carries it there.\par
+\noindent\textit{Uses.} The value sets, the level condition, the monotonicity condition, and
+for entry (F1)--(F4) with full sanctions raising every state below the basin. No condition on
+how the target ranks sanctions.\par
+\noindent\textit{Route.} A level argument for the sanction, then the law of motion for the state,
+then monotonicity for the sanction path.\par
+
+\subsection{The four cases (\Cref{thm:four-cells})}
+\label{app:proof-maps:four}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[node distance=9mm and 16mm]
+\node[pm/res, text width=4.6cm] (c00) at (0,0) {\textbf{00}, both myopic
+  (\Cref{prop:myopic-benchmark}): compliance $a^{00}(x)$ ends the sanction; the state goes
+  to $0$.};
+\node[pm/res, text width=4.6cm, right=of c00] (c01) {\textbf{01}, sender only
+  (\Cref{prop:sender-only}): compliance $a^{01}(x)>a^{00}(x)$ ends the sanction; the state
+  goes to $0$.};
+\node[pm/res, text width=4.6cm, below=of c00] (c10) {\textbf{10}, target only
+  (\Cref{prop:target-only}): full non-compliance; the myopic sanction $\sigM(x,0)$; the state
+  goes to $x^{10}_\infty>0$.};
+\node[pm/res, text width=4.6cm, below=of c01] (c11) {\textbf{11}, both forward-looking
+  (\Cref{thm:regime-separation}): full non-compliance; a sanction above the myopic one; the
+  state goes above $x^{10}_\infty$.};
+\draw[pm/arr] (c00) -- node[above, pm/note, text width=1.5cm, align=center] {relief costs more} (c01);
+\draw[pm/arr] (c10) -- node[above, pm/note, text width=1.5cm, align=center] {premium on top} (c11);
+\draw[pm/arr] (c00) -- node[left, pm/note, text width=2.1cm, align=right] {relief turns into non-compliance} (c10);
+\draw[pm/arr] (c01) -- node[right, pm/note, text width=2.1cm] {relief turns into non-compliance} (c11);
+\node[pm/note, above=2mm of c00] {myopic sender};
+\node[pm/note, above=2mm of c01] {forward-looking sender};
+\end{tikzpicture}
+\captionof{figure}{The four cases of one economy (\Cref{thm:four-cells}). A downward arrow adds the
+target's foresight; a rightward arrow adds the sender's. Conditions: Assumptions 5--8,
+compliance neutrality, (T6) and (RL); the components are in
+\Cref{sec:moved-main-2026-10-13:components} and their proofs in \Cref{app:proofs:placable}.}
+\label{fig:proof-map-four}
+\end{minipage}\par\medskip
+
+\noindent\textit{Proves.} The target's foresight decides between relief and non-compliance;
+the sender's foresight changes the price of relief, or the level at which the state settles.\par
+\noindent\textit{Uses.} Assumptions 5--8, compliance neutrality, (T6) and (RL).\par
+\noindent\textit{Route.} Solve each case on its own, then compare neighboring cases, which differ
+in one discount factor.\par
+
+\subsection{Welfare non-identification (\Cref{prop:welfare-nonidentification})}
+\label{app:proof-maps:welfare}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[node distance=3mm and 6mm]
+\node[pm/res, text width=3.6cm] (b) at (0,0) {\Cref{prop:myopic-benchmark}: the benchmark
+  has no sanctions.};
+\node[pm/res, text width=3.6cm, below=of b] (f) {\Cref{thm:regime-separation}: the
+  forward-looking equilibrium sanctions at least $\underline s$ every period.};
+\node[pm/cond, text width=3.6cm, below=of f] (rs) {\Cref{prop:welfare-rescaling}: scaling a
+  group's welfare and dividing its weight leaves the game unchanged.};
+\node[pm/step, text width=4.6cm, right=of f] (ch) {Choose the sender groups' net gain per
+  unit of sanction, large and positive in one representation and large and negative in the
+  other; make compliance a transfer within the target country.};
+\node[pm/step, text width=3.6cm, right=of ch] (fl) {Then each period's welfare flow is ranked
+  the same way at every date, so discounted welfare is too.};
+\node[pm/res, text width=3.6cm, below=of fl] (p9) {\Cref{prop:welfare-nonidentification}:
+  the two representations rank the equilibria in opposite ways.};
+\draw[pm/arr] (b.east) -- (ch.west);
+\draw[pm/arr] (f) -- (ch);
+\draw[pm/arr] (rs.east) -- (ch.west);
+\draw[pm/arr] (ch) -- (fl);
+\draw[pm/arr] (fl) -- (p9);
+\end{tikzpicture}
+\captionof{figure}{The proof of \Cref{prop:welfare-nonidentification} (\Cref{app:proofs:welfare}).}
+\label{fig:proof-map-welfare}
+\end{minipage}\par\medskip
+
+\noindent\textit{Proves.} Two interest-group representations of the same government payoffs
+rank the benchmark and the forward-looking equilibrium in opposite ways, at every start and
+every common planner discount factor.\par
+\noindent\textit{Uses.} Assumptions 1--5 and a sender response at full non-compliance that does
+not fall with the state.\par
+\noindent\textit{Route.} The game fixes only weighted sums of group welfare, and the two
+equilibria differ by a sanction of at least $\underline s$ in every period.\par

@@ -1,0 +1,121 @@
+% =====================================================================
+%  SHARED PREAMBLE  --  sanctions_preamble.tex
+%
+%  Included by all four root documents:
+%     sanctions_jet_draft.tex      (the submission manuscript)
+%     sanctions_jet_appendix.tex   (the appendix reference document)
+%     sanctions_jet_notes.tex      (the staging / other-information document)
+%     sanctions_formal_supplement.tex (the online formal-verification supplement)
+%
+%  This file is NOT a document.  It carries only packages, theorem
+%  environments, and macros, so the four roots cannot drift apart in
+%  notation.  Anything document-specific (title, numbering scheme,
+%  \externaldocument wiring) belongs in the root that needs it.
+% =====================================================================
+
+% ---------- Packages ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+% xr-hyper resolves \ref/\Cref/\eqref/\cite targets that live in a sibling
+% document (main <-> appendix <-> notes).  It MUST be loaded before hyperref.
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+\usepackage{aliascnt}
+% thmtools removed 2026-08-07.  It was loaded but never used --- no
+% \declaretheorem, no \listoftheorems, nothing but the \usepackage line ---
+% and its current release (v0.76, 2023-05-04) patches \newtheorem in a way
+% that breaks a shared-counter declaration such as
+% \newtheorem{lemma}[theorem]{Lemma} under the 2026-06-01 LaTeX kernel
+% ("Command \c@lemma already defined").  No newer thmtools is available.
+% The theorem block below uses only amsthm, which handles it correctly.
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage[expansion=false]{microtype}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{natbib}
+\usepackage{xurl}
+\urlstyle{tt}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc,shapes.geometric}
+\usepackage{pdflscape}
+
+% ---------- Theorem Environments ----------
+% Lemmas, propositions, corollaries, definitions and remarks share the theorem counter through
+% alias counters (2026-10-11), so that cleveref names each by its own type: with a plain shared
+% counter every \Cref of a proposition printed "Theorem". Their numbers expand to \thetheorem at
+% print time, so the appendix's \numberwithin{theorem}{section} numbers them A.1, A.2, ... as before.
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\renewcommand{\thelemma}{\thetheorem}\renewcommand{\theHlemma}{\theHtheorem}
+\crefname{lemma}{Lemma}{Lemmas}\Crefname{lemma}{Lemma}{Lemmas}
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\renewcommand{\theproposition}{\thetheorem}\renewcommand{\theHproposition}{\theHtheorem}
+\crefname{proposition}{Proposition}{Propositions}\Crefname{proposition}{Proposition}{Propositions}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\renewcommand{\thecorollary}{\thetheorem}\renewcommand{\theHcorollary}{\theHtheorem}
+\crefname{corollary}{Corollary}{Corollaries}\Crefname{corollary}{Corollary}{Corollaries}
+
+% Appendix sections must be cited as "Appendix C", never "Section C".
+% This mattered little while the paper was one document; once the appendix
+% is its own artefact, "Section C" points at a section the manuscript does
+% not have.  The \crefalias that activates these lives immediately after
+% \appendix in the shared sanctions_appendix_body.tex index, so it applies in BOTH the
+% standalone appendix build and the COMBINED build.
+\crefname{appendix}{Appendix}{Appendices}
+\Crefname{appendix}{Appendix}{Appendices}
+\crefname{subappendix}{Appendix}{Appendices}
+\Crefname{subappendix}{Appendix}{Appendices}
+
+\theoremstyle{definition}
+\newtheorem{assumption}{Assumption}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\renewcommand{\thedefinition}{\thetheorem}\renewcommand{\theHdefinition}{\theHtheorem}
+\crefname{definition}{Definition}{Definitions}\Crefname{definition}{Definition}{Definitions}
+\crefname{assumption}{Assumption}{Assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
+
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\renewcommand{\theremark}{\thetheorem}\renewcommand{\theHremark}{\theHtheorem}
+\crefname{remark}{Remark}{Remarks}\Crefname{remark}{Remark}{Remarks}
+
+% ---------- Commands ----------
+% Central sentence of a paragraph (2026-10-11): each paragraph's central sentence is wrapped in
+% \central{...}. It prints as ordinary text; sanctions_jet_review.tex defines \centralmarks before
+% loading the draft, which colours every central sentence for review.
+\ifdefined\centralmarks
+  \newcommand{\central}[1]{\textcolor{blue!55!black}{#1}}
+\else
+  \newcommand{\central}[1]{#1}
+\fi
+\newcommand{\R}{\mathbb{R}}
+% Indicator. Was \mathbbm{1} from the bbm package; bbm lives in
+% texlive-fonts-extra, which the CI TeX subset does not install, and the
+% macro is used nowhere in the three documents. \mathbf carries the same
+% glyph role with no extra package. Restore bbm here if the
+% blackboard-bold indicator is ever wanted.
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\Us}{U_S}
+\newcommand{\Ut}{U_T}
+\newcommand{\Vs}{V_S}
+\newcommand{\Vt}{V_T}
+\newcommand{\basin}{\mathcal{B}}
+\newcommand{\sigDyn}{\sigma^{\mathrm{dyn}}}
+\newcommand{\sigDynTop}{\sigma^{\mathrm{dyn}}}
+\newcommand{\alphaM}{\alpha^{\mathrm{M}}}
+\newcommand{\sigM}{\sigma^{\mathrm{M}}}
+\newcommand{\F}{F}
+\newcommand{\JSgroup}{\mathsf{J}_S}
+\newcommand{\KSgroup}{\mathsf{K}_S}
+\newcommand{\JTgroup}{\mathsf{J}_T}
+\newcommand{\KTgroup}{\mathsf{K}_T}

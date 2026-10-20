@@ -1,0 +1,204 @@
+\section*{How to read this appendix}
+
+\paragraph{Where the main text's proofs are.} Each subsection of the main text
+opens with a footnote that points here; the map collects those pointers.
+\begin{itemize}
+\item Section~\ref{sec:model} (the model): the bounds of the class and the precise conditions
+in panel~A0 of \Cref{app:proofs:placable} and in
+\Cref{sec:moved-main-2026-10-13:conditions}; the closed-form constants in
+\Cref{app:closedforms}; the parametric examples in \Cref{sec:model:examples}; the
+example economies in \Cref{app:witness,app:fourgroup}, and the numerical ones, among them the dual-basin
+economy, in \Cref{sec:moved-main-2026-10-15,app:dual-basin-economy}; existence in \Cref{app:existencemachinery}.
+\item Section~\ref{sec:model:myopic} (the myopic benchmark) and Section~\ref{sec:results:main} (foresight against it):
+panel~F of \Cref{app:proofs:placable}; the component statements in
+\Cref{sec:moved-main-2026-10-13:components}.
+\item Section~\ref{sec:results:wedge} (the target's and the sender's parts): \Cref{app:proofs:branch} and
+\Cref{app:proof-dominance}; the strict comparison in
+\Cref{sec:moved-main-2026-10-13:strict}.
+\item Section~\ref{sec:results:lockin} (lock-in): \Cref{app:persistence}; the low basin in
+\Cref{thm:lowbasin}; an equilibrium with both basins in \Cref{app:dual-basin-economy}.
+\item Section~\ref{sec:results:patience} (patience): \Cref{app:proofs:threshold,app:proofs:scope}, and
+the general conditions in \Cref{sec:moved-main-2026-10-13:bracket}.
+\item The end of Section~\ref{sec:results:patience} (minmax and uniqueness): the statements in
+\Cref{sec:moved-main-2026-10-13:security}, proved in \Cref{app:proofs:scope}.
+\item Section~\ref{sec:welfare} (welfare): the proofs in \Cref{app:proofs:welfare};
+\Cref{app:fourgroup} and \Cref{sec:moved-main-2026-10-13:welfare} for the
+interest-group polity and the family's microfoundations.
+\item Section~\ref{sec:discussion:horizons} (one government forward-looking): the component statements in
+\Cref{sec:moved-main-2026-10-13:components}, proved in \Cref{app:proofs:placable};
+the welfare reversal across the four cases in \Cref{app:proofs:welfare}.
+\item Section~\ref{sec:discussion} (discussion): \Cref{app:persistence,app:decomposition-path}.
+\end{itemize}
+
+
+\paragraph{How the appendix is organized.} The appendix has three parts, and each of
+the two larger parts puts what the main text needs before derivative material.
+Part~I holds the general results, which hold for abstract payoffs and transitions in the
+class, with no functional form. What the main text needs comes first: maps of how the
+results are proved (\Cref{app:proof-maps}); the conditions in
+full and the component statements of the main results
+(\Cref{sec:moved-main-2026-10-13}); the proofs (\Cref{app:proofs}), among them the
+construction on the class under the lifting condition with its class-membership panel
+(\Cref{app:proofs:placable}); persistence, temporary shocks and lock-in, with the low
+basin, relief and the exit duration (\Cref{app:persistence}); and the two-channel
+decomposition and the path of the state (\Cref{app:decomposition-path}). The derivative
+and supplementary results follow: the existence machinery (\Cref{app:existencemachinery}),
+the assumption-discharge routes (\Cref{app:dischargers}), the robustness and boundary
+results (\Cref{app:supporting-results}) and further results on persistence and the long
+run (\Cref{app:moved-ak}). Part~II holds the examples: the ones the main text uses, the
+parametric families with the benchmark economy (\Cref{app:witness}), the numerical
+example economies (\Cref{app:numerical-examples}) and the microfounded interest-group
+example (\Cref{app:fourgroup}); then further example economies
+(\Cref{app:further-examples}) and the closed-form constants of the parametric family
+(\Cref{app:closedforms}). Part~III places the paper in the literature
+(\Cref{app:literature}). The formalization map, which lists for every statement the
+machine-checked declaration that proves it, is in the formal verification supplement.
+Every cross-reference in the manuscript resolves into this document.
+
+\section*{Notation and symbols}
+
+This list collects the symbols used repeatedly in the manuscript and
+appendix. Symbols confined to a single proof, proposition, or certificate
+table are defined locally where they first appear.
+
+\begin{longtable}{@{}p{0.25\textwidth}p{0.69\textwidth}@{}}
+\toprule
+Symbol & Meaning\\
+\midrule
+\endfirsthead
+\toprule
+Symbol & Meaning\\
+\midrule
+\endhead
+$t;\ x_t,\ a_t,\ s_t$
+& Date $t\in\mathbb N$; political state, target compliance, and sender
+sanction at date $t$, each of the three taking values in $[0,1]$.\\
+$\F(x,s)$
+& General state-transition law. Conditions \textup{(F1)--(F5)} impose
+continuity, monotonicity, diagonal fixed points, and strict adjustment
+toward the current sanction.\\
+$\delta$
+& Adjustment rate in the partial-adjustment law
+$\F(x,s)=(1-\delta)x+\delta s$.\\
+$\beta_T,\beta_S$
+& target and sender discount factors.\\
+$\Ut,\Us$
+& target and sender one-period government objectives.\\
+$\Vt,\Vs$
+& target and sender continuation-value functions.\\
+$T_T,T_S$
+& target and sender Bellman operators.\\
+$\gamma_F$
+& Optional inherited-state Lipschitz modulus of $\F$ at a fixed sanction.\\
+$J_S(x,a,s;\Vs)$
+& Dynamic sender objective
+$\Us(x,a,s)+\beta_S\Vs(\F(x,s))$.\\
+$\sigM$
+& The sender's myopic best response.\\
+$\sigDyn_{\Vs},\ \sigDynTop_{\Vs}$
+& The sender's dynamic argmax and its greatest selection, the dynamic best
+response, at continuation value $\Vs$.\\
+$\alpha,\ \alphaM$
+& Equilibrium target policy and the independently optimized myopic target
+policy.\\
+$\alpha_{V_T,V_S}$
+& target argmax policy induced by a value pair in
+$\mathcal C_T\times\mathcal C_S$.\\
+$E,\ \mathcal E$
+& A stationary feedback Stackelberg equilibrium
+$E=(\Vt,\Vs,\alpha)$ and the set of all such equilibria.\\
+$M=(\alphaM,\sigM)$
+& Myopic equilibrium. This roman $M$ is distinct from the
+bold row-Lipschitz matrix $\mathbf M$ below.\\
+$(x_t^E,s_t^E),\ (x_t^M,s_t^M)$
+& Realized state and sanction paths of the equilibrium and of the myopic
+equilibrium from the common initial state $x_0$.\\
+$\bar x_T,\bar x_S;\ \bar x;\ \basin$
+& target and sender tipping thresholds; their joint pivot
+$\bar x=\max\{\bar x_T,\bar x_S\}$; and the high basin
+$\basin=[\bar x,1]$.\\
+$\bar s$
+& Sanction-floor parameter used to construct the flip sets.\\
+$\mathcal C_T,\mathcal C_S$
+& target and sender value sets.\\
+$L_{S,x}^{\alpha},\ K_S$
+& Composite sender stage-payoff state modulus and the resulting Lipschitz
+constant of the sender's value set. The latter is distinct from the sans-serif
+commercial-lobby label $\KSgroup$.\\
+$m_S,\ c_\sigma$
+& sender stage lower-slope level and strict-concavity modulus.\\
+$\mathcal F_T(\bar s),\
+  \mathcal F_S(\bar s;m_S)$
+& target and sender upper flip sets used to derive the basin thresholds.\\
+$x_S^0,\ x_S(a)$
+& Static sender flip and the sender's per-action flip threshold.\\
+$\mathbf M$
+& Joint Bellman row-Lipschitz matrix with entries
+$\beta_T,L_{TS},L_{ST},\beta_{S,\mathrm{row}}$.\\
+$\rho(\mathbf M)$
+& Spectral radius of the row-Lipschitz matrix.\\
+$R(x),\ G(x)$
+& Sanction rule of the equilibrium and closed-loop state-update map,
+$R(x)=\sigDynTop_{\Vs}(x,\alpha(x))$ and $G(x)=\F(x,R(x))$.\\
+$00,\,01,\,10,\,11$
+& The four cases of one economy, target-first: the first index is $1$
+when the target is forward-looking ($\beta_T>0$) and $0$ when it is myopic, the
+second the same for the sender; $R^{ij}$, $L^{ij}$ and $a^{ij}$ are the
+sanction rule, the limit of the political state and the target policy in case
+$ij$ (\Cref{sec:four-regimes}).\\
+$w_{\mathrm{lo}}$, $w_{\mathrm{hi}}$, $q$, $\bar Q$, $r_{\mathrm{lo}}$,
+$r_{\mathrm{hi}}$, $k_{\mathrm{lo}}$, $k_{\mathrm{hi}}$, $u_{\mathrm{lo}}$,
+$u_{\mathrm{hi}}$, $\sigma_x$, $\tau_x$
+& The class's sender rates: state slope, sanction curvature, state--sanction
+cross rate, substitution rate and marginal return to the first
+unit of sanction, each as a lower and an upper bound, and the state
+semiconcavity and semiconvexity moduli (panel~A0 of
+\Cref{app:proofs:placable}).\\
+$\ell_{\mathrm{lo}}$, $\ell_{\mathrm{hi}}$, $p_{\mathrm{lo}}$, $c$,
+$v_{\mathrm{lo}}$, $n_{\mathrm{lo}}$, $v_{\mathrm{hi}}$, $n_{\mathrm{hi}}$
+& The target's rates: compliance cost, sanction pain, and the state slope
+$v+ns$ at sanction $s$, each as a lower and an upper bound (panel~A0).\\
+$\underline s$
+& The lower bound $\sigM(0,0)$: the myopic sanction at full non-compliance at the lowest
+state ($u_0/q$ on the quadratic--linear family when $u_0\le q$, as under
+interiority).\\
+$(q,u_0,k,r,w,\ell,c,n,v)$
+& The quadratic--linear family's nine payoff coefficients: sanction-cost curvature,
+baseline marginal return to sanctioning, substitution rate, the sender's
+state--sanction cross term, sender state valuation, compliance cost, target
+sanction pain, the target's state--sanction cross term and target state
+valuation (\Cref{sec:model:family}); the transition's slope bounds and moduli
+$g_{\mathrm{lo}},g_{\mathrm{hi}},d_{\mathrm{lo}},d_{\mathrm{hi}},M_x,M_m,M_s,
+M_{\mathrm{cx}},M_{\mathrm{mix}},M_{\mathrm{cs}}$ are defined in
+\Cref{app:proofs:placable}.\\
+$x_F,\ x_L$
+& Least basin fixed point of $G$ and the limit selected from the basin's
+lower endpoint.\\
+$\sigma_{\mathrm{real}}$
+& A sanction rule held fixed in a transition-law comparison.\\
+$d_{\F},\eta_{\F},\widehat N_{\F}$
+& Full-sanction drift, its minimum below the basin, and the resulting
+conservative shock-duration bound.\\
+$P_3,\ h$
+& The labeled parameter point $P_3$ of the mechanism-active example economy (a point,
+distinct from the persistence condition P3 of \Cref{thm:persistence}) and the
+half-width of the box transition shock used in the purification
+construction.\\
+$\JSgroup,\KSgroup,\JTgroup,\KTgroup$
+& Pro-sanction coalition, sender commercial lobby, target regime bloc,
+and target opposition in the interest-group polity. Sans-serif lettering
+distinguishes these group labels from value-function constants.\\
+$W_g,\theta_g,\ W$
+& Welfare of group $g$, its political weight, and aggregate welfare,
+obtained by setting political weights to one.\\
+$g_J,q_K,b_J,b_K,k_S,d_s$
+& Interest-group welfare coefficients: sender sanction benefit and loss,
+target state valuations, sender sanctioning-cost curvature, and target
+sanction-cost rate.\\
+$\beta$ (planner)
+& Planner discount factor; it is local to that comparison and is distinct
+from the government discount factors $\beta_T,\beta_S$.\\
+\bottomrule
+\end{longtable}
+
+\clearpage

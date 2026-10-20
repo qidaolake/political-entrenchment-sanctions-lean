@@ -1,0 +1,72 @@
+% @econ-contract section
+% id: APPENDIX_INDEX
+% role: Order the appendix in three parts: general results for abstract payoffs and transitions in the class (conditions and component statements, proofs, persistence and lock-in, existence, discharge routes, supporting results, further statements); examples (parametric families and the roster, numerical economies, closed-form constants, the interest-group example); the literature (the author's decision, 2026-10-20); within each part, what the main text needs comes before derivative and supplementary material (2026-10-20).
+% question_answered: Where is each exact statement and proof?
+% required_inputs: The main sections.
+% output_handoff: None.
+% claim_ceiling: Exact statements and proofs of results the main text states; machine-checked statements as recorded in the formalization map.
+% exclusions: New claims not stated or summarised in the main text.
+% exact_ref: file:appendix_sections/07_formalization_map.tex#label=app:formalization
+% source_role: file:appendix_sections/07_formalization_map.tex#label=app:formalization => The formal supplement's formalization map, which records the Lean declaration behind each statement; it establishes formal derivation, not economic correspondence.
+% support_status: VERIFIED
+% status: HUMAN_CONFIRMED
+% human_confirmed_at: 2026-10-01
+% decision_ref: suggestions/2026-10-01-manuscript-rebuild/01_STRUCTURE_PROPOSAL.md#author-decisions-recorded
+% confirmation_scope: Appendix role and the D1 moves.
+% amended_at: 2026-10-20 (three parts, general results and examples separated, on the author's "see whether we can have a generalized form abstract functional form appendix versus a numerical example appendix please, make it more organized"; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#appendix-in-three-parts-and-the-one-sided-cases-paragraph-2026-10-20); 2026-10-20 (within each part, what the main text needs before derivative material; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#appendix-needed-versus-derivative-2026-10-20); 2026-10-20 (proof maps open Part I; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#proof-maps-and-reading-the-lean-statements-2026-10-20)
+% reopen_if: A section moves between the main text and the appendix.
+% @end-econ-contract
+% =====================================================================
+%  SHARED APPENDIX INDEX  --  sanctions_appendix_body.tex
+%
+%  This file is NOT a document.  It is \input by BOTH:
+%     sanctions_jet_appendix.tex   -> standalone appendix PDF
+%     sanctions_jet_draft.tex      -> only in COMBINED mode
+%  so the two builds cannot diverge.  It begins at \appendix, inputs the
+%  ordered files under appendix_sections/, and ends before the bibliography,
+%  which each root supplies for itself.
+% =====================================================================
+
+\appendix
+
+% Everything below is an appendix, so cleveref must call it one.  Without
+% these two lines \Cref{app:closedforms} typesets as "Section C" -- which,
+% now that the appendix is a separate document, names a section the
+% manuscript does not contain.  (The \crefnames are in sanctions_preamble.tex.)
+\crefalias{section}{appendix}
+\crefalias{subsection}{subappendix}
+\crefalias{subsubsection}{subappendix}
+
+% Ordered appendix-section index; section bodies live in appendix_sections/.
+\input{appendix_sections/00_notation}
+
+% A group heading inside a part: what the main text needs, then derivative material.
+\providecommand{\appendixgroup}[1]{\par\bigskip\noindent{\large\bfseries #1}\par\nopagebreak\medskip}
+
+% Part I: results that hold for abstract payoffs and transitions in the class.
+\part{General results: abstract payoffs and transitions}
+\appendixgroup{What the main text needs: the conditions, the construction and the proofs}
+\input{appendix_sections/15_proof_maps}
+\input{appendix_sections/11_moved_statements_2026_10_13}
+\input{appendix_sections/01_headline_proofs}
+\input{appendix_sections/09_persistence_and_imposed_episodes}
+\input{appendix_sections/13_decomposition_and_path}
+\appendixgroup{Derivative and supplementary results}
+\input{appendix_sections/06_existence_and_long_run_law}
+\input{appendix_sections/02_assumption_discharge_routes}
+\input{appendix_sections/07_supporting_results}
+\input{appendix_sections/08_moved_statements}
+
+% Part II: parametric families and numerical economies.
+\part{Examples: parametric families and numerical economies}
+\appendixgroup{The examples the main text uses}
+\input{appendix_sections/04_witness_parameter_vectors}
+\input{appendix_sections/12_numerical_examples}
+\input{appendix_sections/05_microfounded_four_group_witness}
+\appendixgroup{Further examples and constants}
+\input{appendix_sections/14_further_examples}
+\input{appendix_sections/03_closed_form_constants}
+
+% Part III: the literature.
+\part{Literature}
+\input{appendix_sections/10_related_literature}

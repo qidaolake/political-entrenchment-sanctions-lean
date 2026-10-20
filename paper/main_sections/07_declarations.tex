@@ -1,0 +1,70 @@
+% @econ-contract section
+% id: DECLARATIONS_STATEMENTS
+% role: Carry the required author declarations.
+% question_answered: Competing interests, funding, contributions, AI use, data availability.
+% required_inputs: Author records.
+% output_handoff: None.
+% claim_ceiling: Declarations only; no scientific claim.
+% exclusions: Any scientific claim.
+% support_status: NOT_APPLICABLE
+% status: HUMAN_CONFIRMED
+% human_confirmed_at: 2026-10-01
+% decision_ref: suggestions/2026-10-01-manuscript-rebuild/01_STRUCTURE_PROPOSAL.md#author-decisions-recorded
+% confirmation_scope: Section role only; the declarations' content is the author's.
+% reopen_if: Journal requirements or the author's declarations change.
+% amended_at: 2026-10-19 (data availability names the release v1.30-submission; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#submission-release-2026-10-19); 2026-10-20 (the repository link; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#repository-link-and-acemoglu-notes-2026-10-20); 2026-10-20 (the release is public at the new repository; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#public-repository-2026-10-20)
+% @end-econ-contract
+\section*{Declarations}
+
+% Coauthors' confirmation of no competing interests requested 2026-10-11; pending.
+\paragraph{Declaration of competing interest.} The authors declare no
+competing financial interests or personal relationships that could have
+influenced the work reported in this paper.
+
+\paragraph{Funding.} This research received no specific grant from any
+funding agency in the public, commercial, or not-for-profit sectors.
+
+\paragraph{CRediT author statement.} Xiaofeng Gong:
+Conceptualization, Formal analysis, Methodology, Software, Validation,
+Visualization, Writing -- original draft, and Writing -- review and
+editing. Yuechuan Zhao: Conceptualization, and Writing -- review and
+editing. Chunping Zhong: Conceptualization, and Writing -- review and
+editing.
+
+\paragraph{Data availability.} No empirical data were used. The complete
+Lean~4 formalization that machine-checks the core results of this paper, as
+mapped in the formal supplement, is archived as the tagged release
+\texttt{v1.30-submission} of the corresponding author's repository and accompanies this submission as supplementary material: a
+source archive built from that release by
+\texttt{scripts/Build-CoreBundle.ps1 -Submission}, which excludes the
+third-party reference libraries and the internal staging documents. The release is
+public at \url{https://github.com/qidaolake/political-entrenchment-sanctions-lean}, with the
+manuscript, the Online Appendix and the formal supplement attached to it; a deposit with a DOI
+will accompany publication.
+
+\paragraph{Declaration of generative AI in the writing and formalization
+process.} During the preparation of this work the authors used Claude
+(Anthropic) and Codex (OpenAI) to assist the Lean~4 proof development
+and the drafting and editing of the manuscript. Each core result is
+independently verified by the Lean~4 kernel, passing a
+\texttt{\#print axioms} check that depends only on \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}; no core result relies
+on the assistants' unverified output. The authors reviewed and edited all
+content and take full responsibility for it.
+
+\paragraph{Formalization methods.} The Lean~4 development was written with
+assistant-generated suggestions for proof steps and lemma search. The
+selection of the statements to formalize, the economic interpretation of
+every formal statement, and the correspondence map between the manuscript
+and the declarations were made and reviewed by the authors, and the Lean~4
+kernel independently checks every proof term in the archived release. A
+kernel check certifies a formal statement; it does not certify that an
+informal economic sentence translates that statement faithfully, which is
+why the correspondence is recorded as a separately reviewed map in the
+formal supplement.
+
+
+% ---------------------------------------------------------------------
+% COMBINED mode only: inline the appendix so that a single PDF carries
+% both the manuscript and the appendix under one bibliography.
+% ---------------------------------------------------------------------

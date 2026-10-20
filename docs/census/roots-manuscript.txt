@@ -1,0 +1,279 @@
+# Manuscript roots for the hypothesis census (doc 68, round E).
+# One line per (label, backing declaration). A label may have several
+# declarations when the manuscript statement bundles existence,
+# identification and convergence. The mapping was taken from the
+# formalization map's primary-identifier table and completed by hand for the
+# results promoted in rounds A-D and corrected in round F (doc 70, B1-B6); the four assumption blocks of the model
+# section are mapped to the certificate fields that carry them, in the
+# census's manuscript-match notes rather than here.
+prop:tipping | target_tipping_threshold
+prop:tipping | sender_tipping_threshold
+prop:placable-family | ChordEconomyRelief.both_channels_active_of_margin
+prop:placable-family | ChordEconomy.VSstar_fix
+prop:placable-family | exists_member_response_monotone_not_margin
+prop:placable-family | rally_softening_interval_iff
+prop:placable-family | lossOffset_iff_v_ge
+prop:placable-family | ChordEconomyCs.reliefSharp_uniform_iff
+prop:placable-family | sigV_feasible_iff
+prop:placable-family | PlacableEconomyF.derived_fields
+thm:four-cells | ChordEconomyCs.four_cell_generalF'
+thm:four-cells | ChordEconomyCs.four_cell_rule_chain_of_policy_zero
+thm:regime-separation | ChordEconomyRelief.myopic_dynamic_equilibrium_separation_generalF
+prop:target-only | ChordEconomy.target_only_regime_generalF_core
+prop:target-only | ChordEconomyTwoSided.target_only_regime_generalF
+prop:target-only | PlacableEconomyF.targetOnlyPath_error_le_geometric
+prop:target-only | PlacableEconomyF.steady10_lt_of_r_lt
+prop:target-only | PlacableEconomyF.vertex_lt_of_r_lt
+prop:sender-only | ChordEconomyCs.sender_only_regime_generalF'
+prop:sender-only | ChordEconomyCs.senderOnlyEquilibriumTop'
+prop:sender-only | ChordEconomyCs.zeroLevel_continuousOn
+thm:existence | ValueClass2.exists_feedbackStackelbergTop_from_valueClass2_with_membership_schur
+thm:existence | ValueClass2.existsUnique_fixedPoint_in_carrier_schur
+thm:corner-existence | feedbackStackelbergTop_corner_of_substituted_stage_strictDecr
+thm:b2-benchmark | b2NonMono_three_goals_dominance
+thm:b2-benchmark | b2_integrated_mechanism_active_generalF_witness
+prop:primitive-persistence | SymbolicEconomyF.persistence_generalF
+prop:primitive-persistence | SymbolicEconomyF.persistence_generalF_semiconcave
+thm:persistence | standardCompliance_persistence_generalF_from_package
+thm:persistence | standardCompliance_persistence_generalF_from_sender_package
+thm:persistence | jointPreferenceBasinTopF_sanctions_ge_entry
+thm:persistence | standardCompliance_persistence_generalF_local_star
+thm:persistence | persistence_package_not_unique_steady_state
+cor:nontermination | equilibriumTop_tailF_no_relief_of_ratchet
+prop:longrun | dynamicTopLockInPathF_tendsto_steadyState_full_of_strictAdjustment
+prop:order-selection | equilibriumTop_tendsto_order_selected_fixedPoint_of_stepMonotoneOn
+cor:order-selection-identified | equilibriumTop_tendsto_order_selected_fixedPoint_identified_of_stepMonotoneOn
+prop:derived-interval | equilibriumTop_attraction_on_derived_interval_of_stepMonotoneOn
+thm:lowbasin | standardCompliance_low_basin_generalF_of_sender_level
+cor:initial-condition-selection | dualParams_initial_condition_selects
+prop:derived-dividing-line | equilibriumTop_derived_dual_basins
+prop:derived-dividing-line | equilibriumTop_derived_dual_basins'
+thm:dominance | theorem2_dynamic_dominates_myopic_at_same_alpha
+prop:strict-dominance | all_stage_lt_dynamic_of_greatest_stage_improvement_of_wedge_le
+prop:strict-dominance | all_stage_lt_dynamic_of_greatest_stage_improvement_mono
+cor:pathwise-dominance | StandardComplianceLocalCoreCertificate.pathwise_dominance_generalF
+prop:activation-not-hysteresis | placableAffine_unique_attracting_state
+prop:activation-not-hysteresis | ChordEconomyRelief.closedLoop_unique_attracting_of_lt_one
+prop:activation-not-hysteresis | ChordEconomyRelief.closedLoop_unique_attracting_of_sharp_lt_one
+prop:activation-not-hysteresis | placableQuadDiag_unique_attracting_state
+thm:shock | standardCompliance_min_drift_shock_generalF_from_sender_package_of_preBasinAscent
+cor:shock-transition-strength | AbstractGame.fullShockDrift_minima_horizon_mono_of_top_transition_le
+thm:finite-episode | equilibriumTop_post_episode_nonexit_generalF
+thm:finite-episode | equilibriumTop_highEpisode_nonexit_generalF_of_heldAscent
+thm:finite-episode | ChordEconomy.placable_post_episode_nonexit_of_policy_zero
+thm:finite-episode | equilibriumTop_post_episode_no_relief_of_ratchet
+thm:relief-exit | reliefPathF_uniform_fullReliefExitHorizon_of_postBasinDescent
+prop:post-relief-persistence | temporary_relief_post_relief_low_persistence_generalF_of_postBasinDescent
+prop:post-relief-persistence | temporary_relief_post_relief_anti_generalF_of_postBasinDescent
+prop:two-sided-one-equilibrium | dualParams_two_sided_regimes
+prop:discounted-stationary-welfare | KaempferLowenberg.FourGroup.stationaryPlannerValue_lockin_dominated_iff
+thm:four-cells | ChordEconomyCs.both_channels_active_of_relief
+thm:four-cells | placableReliefOnly_not_flip
+prop:affine-welfare-gap | KaempferLowenberg.FourGroup.pathValue_affineCorner_gap
+prop:affine-welfare-gap | KaempferLowenberg.FourGroup.affineCornerGap_pos_iff
+prop:affine-welfare-gap | KaempferLowenberg.FourGroup.affineCornerGap_pos_all_discounts_iff
+prop:affine-welfare-gap | fourGroupCertHawkScaled_gap_neg
+prop:planner-optimum-lower-bound | fgcPlannerOptimalValue_eq
+prop:planner-optimum-lower-bound | fgc_plannerOptimalValue_gap_eq_equilibrium
+prop:flip-route | standardCompliance_three_goals_from_stage_flip_generalF_of_preBasinAscent
+prop:flip-route | sfCert_three_goals_generalF
+thm:existence | ValueClass2.feedbackStackelbergTop_unique_in_carrier_schur
+prop:family-welfare-nonidentification | PlacableEconomyFcs.exists_completions_reversing_regime_ranking
+cor:planner-efficient-boundary | PlacableEconomyF.exists_planner_efficient_completion
+thm:regime-separation | ChordEconomy.responsePath_ge_stage_add_wedge
+thm:regime-separation | ChordEconomyTwoSided.targetOnlySanction_add_wedge_le_dynamicSanction
+cor:planner-efficient-boundary | PlacableEconomyF.exists_planner_efficient_completion_of_policy_zero
+lem:welfare-completion | PlacableEconomyF.exists_welfareCompletion
+prop:steady-gap | PlacableEconomyF.dynamicPath_limit_ge_steady10_add_gap
+rem:wedge-sharp | placableBoundary_wedge_attained
+prop:branch-invariance | defiance_branch_invariance_generalF
+prop:branch-invariance | ChordEconomyTwoSided.equilibriumTop_of_margin_α_eq_zero
+prop:relief-participation | ChordEconomy.relief_participation_of_policy_zero
+prop:relief-participation | ChordEconomy.no_date_zero_transfer_supports_relief_at_defiance
+prop:relief-participation | ChordEconomy.no_date_zero_transfer_supports_relief
+prop:relief-participation | lossOffset_relief_period_benefits_target
+prop:history-deviations | FeedbackStackelbergEquilibriumTop.leader_optimal_against_history_deviation_top
+prop:history-deviations | FeedbackStackelbergEquilibriumTop.follower_optimal_against_history_deviation_top
+prop:history-deviations | FeedbackStackelbergEquilibriumTop.follower_node_optimal_against_history_deviation_top
+prop:bracket | ChordEconomy.targetObj_strictAntiOn_of_sharp
+prop:bracket | ChordEconomyRelief.VTdef_lowerSlope
+prop:bracket | ChordEconomyRelief.equilibriumTop_sharp
+prop:bracket | ChordEconomyRelief.gSharp_balance
+prop:bracket | ChordEconomyCs.zeroLevelAt_lipschitz
+prop:bracket | ChordEconomyCs.VTrel_lipschitz
+prop:bracket | ChordEconomyCs.reliefEquilibriumTop
+prop:bracket | ChordEconomyCs.defiance_not_maxOn_of_relief_side
+prop:bracket | ChordEconomyCs.bracket_sides_disjoint
+prop:bracket | ChordEconomyCs.collapse_sides'
+prop:bracket | exists_bracket_both_sides_nonaffine
+prop:monotone-uniqueness | ChordEconomy.target_lowerSlope_of_rule_monotone
+prop:monotone-uniqueness | ChordEconomy.policy_eq_zero_of_rule_monotone
+prop:monotone-uniqueness | ChordEconomy.unique_equilibrium_of_rule_monotone
+prop:welfare-interval | PlacableEconomyFcs.regimeValue11_sub_10_eq
+prop:welfare-interval | PlacableEconomyF.hawkBounded_nonempty_iff
+prop:welfare-interval | PlacableEconomyFcs.gap_mem_interval
+prop:welfare-interval | PlacableEconomyFcs.gap_attained_withSender
+prop:welfare-interval | PlacableEconomyFcs.gap_attained
+prop:welfare-interval | PlacableEconomyFcs.exists_both_signs_of_straddle
+prop:welfare-interval | PlacableEconomyFcs.exists_weightBounded_reversal
+lem:welfare-completion | PlacableEconomyF.exists_completion_bJ_eq_bK_iff
+lem:welfare-completion | PlacableEconomyF.exists_equalValuation_completion
+prop:welfare-interval | PlacableEconomyFcs.forall_gap_pos_iff
+prop:welfare-interval | PlacableEconomyFcs.forall_gap_neg_iff
+prop:welfare-interval | PlacableEconomyFcs.exists_both_signs_iff
+prop:welfare-interval | PlacableEconomyFcs.exists_withSender_both_signs_of_straddle
+prop:welfare-interval | PlacableEconomyFcs.exists_withSender_weightBounded_reversal
+# Manuscript rebuild, 2026-10-01 (author decisions D2, D4, D5): the four short propositions of
+# Section 3, each mapped to the declarations it states (headline rows 52-59).
+prop:patience-existence | ChordEconomyRelief.exists_defiance_equilibrium_mono_βT
+prop:patience-existence | ChordEconomyRelief.balance_of_le_βT
+prop:security | ChordEconomy.reliefPayoff_isLeast_history
+prop:security | ChordEconomy.reliefPayoff_isGreatest_history
+prop:security | ChordEconomy.reliefPayoff_le_V_T
+prop:identification | ChordEconomy.unique_equilibrium_of_rule_monotone
+prop:identification | ChordEconomy.no_zero_rule_equilibrium
+# Round 2026-10-03 (Lean batch A of the second ChatGPT review; N135-N138, promoted on the
+# user's word after the HPC build): the exact window of the affine member (affine-only), the
+# closed threshold, the closed existence set (general F), and two existence witnesses.
+prop:affine-window | aw_zero_rule_iff
+prop:affine-window | aw_full_defiance_iff
+prop:affine-window | aw_window_at_β₁
+prop:affine-window | aw_continuum
+prop:collapse-threshold | ChordEconomyCs.collapse_equilibrium_threshold_le
+prop:collapse-threshold | ChordEconomyCs.exists_defiance_equilibrium_at_betaStar
+prop:defiance-closed | ChordEconomy.exists_defiance_equilibrium_of_tendsto
+prop:defiance-closed | ChordEconomy.defianceExistence_sInf_mem
+prop:core-outside-chord | defiance_core_outside_chord_class
+prop:interior-witness | strict_interior_equilibrium_in_chord_class
+# Round BF (2026-10-03, on the author's word): the general exact thresholds, with the affine
+# window restated as their instance.
+prop:exact-thresholds | ChordEconomyCs.exists_relief_equilibrium_iff
+prop:exact-thresholds | ChordEconomyCs.VTrel_monotone
+prop:exact-thresholds | ChordEconomyCs.reliefBestReply_anti_βT
+prop:exact-thresholds | ChordEconomyCs.reliefBestReply_of_tendsto
+prop:exact-thresholds | ChordEconomyCs.reliefExistenceSet_eq_Ioc
+prop:exact-thresholds | ChordEconomyRelief.defianceExistenceSet_eq_Ico
+prop:exact-thresholds | ChordEconomyCs.reliefExistence_lt_margin
+prop:affine-window | aw_general_hypotheses
+prop:affine-window | aw_exact_thresholds
+# Renovation round BG-0 (2026-10-06, plan item BG0.1, on the author's word): the five
+# appendix results cited from the main text that had no census row, so neither the census
+# nor the unused-binder probe had ever read their binders.
+prop:dynamic-stake | no_dynamic_floor_of_antitone_state_chord
+prop:dynamic-stake | dynamic_stake
+prop:dynamic-stake | dynamic_stake_equilibrium
+prop:ratchet-dichotomy | AbstractGame.AbsorbingTop.ratchet_dichotomy
+prop:ratchet-dichotomy | AbstractGame.AbsorbingTop.rule_top_eq_one_of_floor
+prop:ratchet-dichotomy | AbstractGame.AbsorbingTop.successor_top_eq_one_of_floor
+prop:absorbing-obstruction | AbstractGame.AbsorbingTop.no_equilibrium_of_slope_and_top_gain
+prop:level-floor | weakFloor_dynamicTopStepF_mem_basin
+prop:level-floor | WeakFloorBasinTop.of_jointPreferenceBasinTop_reindexed
+prop:certified-equilibria | senderValue_lowerSlope_of_policy_chord
+prop:certified-equilibria | ChordEconomy.V_S_lowerSlope_of_antitone
+prop:certified-equilibria | ChordEconomy.equilibrium_sanction_ge_wedge_of_antitone
+# Renovation Phase B (rounds BH-1 to BH-3, 2026-10-06, on the author's word): replacements above
+# where the new root has fewer hypotheses and the same conclusion; these rows add class forms
+# and roots whose conclusion differs in shape (docs/RENOVATION-PLAN-2026-10-06.md).
+thm:existence | ValueClass2.feedbackStackelbergTop_unique_in_carrier_schur_of_mem
+thm:corner-existence | feedbackStackelbergTop_corner_of_substituted_stage_le
+thm:persistence | standardCompliance_persistence_generalF_level_star
+cor:initial-condition-selection | equilibriumTop_initial_condition_selects_generalF_of_sender_basins
+prop:steady-gap | ChordEconomy.fixedPoint_ge_limit10_add_gap
+prop:steady-gap | ChordEconomyTwoSided.dynamicPath_limit_ge_limit10_add_gap
+prop:placable-family | chSigV_feasible_iff
+prop:placable-family | ChordEconomyRelief.both_channels_active_of_margin_stage
+thm:regime-separation | ChordEconomyRelief.myopic_dynamic_equilibrium_separation_generalF_stage
+prop:activation-not-hysteresis | ChordEconomyRelief.unique_attracting_state_of_sharp_lt_one
+prop:security | AbstractGame.Params.reliefPayoff_isLeast_history
+prop:security | AbstractGame.Params.reliefPayoff_isGreatest_history
+prop:security | AbstractGame.Params.reliefPayoff_le_V_T
+prop:collapse-threshold | ChordEconomyRelief.collapse_defianceExistenceSet
+prop:collapse-threshold | ChordEconomyRelief.collapse_exact_thresholds
+# Renovation Phase C (rounds BH-4 to BH-6 and BI.2, 2026-10-07, on the author's word): the
+# monotone-response siblings beside the rally-margin roots, and the general witness and planner
+# theorems beside their instances.
+thm:regime-separation | ChordEconomyRelief.myopic_dynamic_equilibrium_separation_generalF_stage_of_response_monotone
+thm:regime-separation | ChordEconomy.targetOnlySanction_add_wedge_le_dynamicSanction_of_response_monotone
+prop:target-only | ChordEconomy.target_only_regime_generalF_of_response_monotone
+thm:four-cells | ChordEconomyCs.four_cell_generalF'_of_response_monotone
+prop:steady-gap | ChordEconomy.dynamicPath_limit_ge_limit10_add_gap_of_response_monotone
+prop:steady-gap | PlacableEconomyF.dynamicPath_limit_ge_steady10_add_gap_of_response_monotone
+prop:family-welfare-nonidentification | PlacableEconomyFcs.exists_completions_reversing_regime_ranking_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.regimeValue11_sub_10_eq_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.gap_mem_interval_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.gap_attained_withSender_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.gap_attained_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.exists_both_signs_of_straddle_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.exists_weightBounded_reversal_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.forall_gap_pos_iff_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.forall_gap_neg_iff_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.exists_both_signs_iff_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.exists_withSender_both_signs_of_straddle_of_response_monotone
+prop:welfare-interval | PlacableEconomyFcs.exists_withSender_weightBounded_reversal_of_response_monotone
+thm:persistence | persistence_package_not_unique_steady_state_generalF
+prop:flip-route | sfFCert_three_goals_generalF
+prop:flip-route | sfqbCert_three_goals_generalF
+prop:planner-optimum-lower-bound | KaempferLowenberg.FourGroup.plannerOptimalValue_eq_of_upperChords
+prop:planner-optimum-lower-bound | KaempferLowenberg.FourGroup.plannerOptimalValue_eq_of_nonpos
+prop:affine-welfare-gap | KaempferLowenberg.FourGroup.exists_hawkRescale_cornerF_gap_neg
+prop:affine-welfare-gap | KaempferLowenberg.FourGroup.exists_hawkRescale_cornerF_gap_pos
+prop:no-cycles | rulePathF_no_cycles
+prop:no-cycles | equilibrium_no_cycles
+prop:no-cycles | ChordEconomyRelief.myopic_no_cycles
+prop:no-cycles | ChordEconomyCs.senderOnly_no_cycles
+prop:no-cycles | ChordEconomy.targetOnly_no_cycles
+prop:no-cycles | ChordEconomyTwoSided.dynamic_no_cycles
+# Step 2 (2026-10-10), provisional labels until the paper adopts them.
+thm:lq-benchmark | LQData.characterisation
+thm:lq-benchmark | LQData.relief_iff
+thm:lq-benchmark | LQData.defiance_iff
+thm:lq-benchmark | LQData.no_relief_above
+prop:collapse-relief-threshold | ChordEconomyRelief.collapse_regimes_tight
+prop:collapse-relief-threshold | ChordEconomyRelief.collapse_relief_iff_tight
+prop:lq-continuum | LQData.threshold_continuum
+prop:lq-relief-unique | LQData.relief_unique_carrier
+prop:lq-entrenchment | LQData.entrenchment
+cor:lq-comparative-statics | LQData.comparative_statics_βS
+cor:lq-comparative-statics | LQData.comparative_statics_w
+cor:lq-comparative-statics | LQData.comparative_statics_δ
+cor:lq-comparative-statics | LQData.betaStar_indep
+prop:lq-nonunique-above | lw_witness
+thm:lq-affine-classification | AQClass.lq_affineQuad_classification
+cor:lq-relief-unique-class | AQClass.lq_affineQuad_relief_unique_below_betaR
+cor:lq-defiance-end | AQClass.lq_affineQuad_defiance
+prop:affine-window-whole | AWWhole.aw_exists_on_window
+thm:four-cells-net | ChordEconomyCs.four_cell_net
+thm:regime-separation-net | ChordEconomyRelief.myopic_dynamic_equilibrium_separation_net
+prop:target-only-net | ChordEconomyRelief.target_only_regime_net
+prop:target-only-net | ChordEconomyRelief.target_only_limit_lt_net
+prop:placable-family-net | ChordEconomyRelief.placable_family_defiance_net
+prop:net-not-loss-offset | exists_netDefiance_not_lossOffset
+prop:net-not-loss-offset | exists_netDefiance_not_lossOffset_nonaffine
+thm:dominance-zero-stake | dynamicTopRealizedRule_eq_stageTopRule_of_stateFree
+prop:hostile-sender | ChordEconomy.hostile_wedge
+prop:hostile-sender | ChordEconomy.hostile_relief_price
+prop:hostile-sender | ChordEconomy.hostile_sanction_pos
+prop:hostile-sender | ChordEconomy.hostile_full_defiance_bounds
+prop:target-only-any-stake | ChordEconomy.target_only_regime_any_stake
+prop:target-only-any-stake | ChordEconomyRelief.myopic_regime_any_stake
+rem:hostile-sharp | hsw_full_defiance_bounds
+# Lock-in in the main text (2026-10-11): prop:lock-in restates thm:persistence (i)-(iii) and thm:shock.
+prop:lock-in | standardCompliance_persistence_generalF_from_sender_package
+prop:lock-in | standardCompliance_min_drift_shock_generalF_from_sender_package_of_preBasinAscent
+# National welfare at the dual-basin economy (Lean round D, 2026-10-12).
+prop:entrenchment-welfare | db_political_parts_zero_at_full_trade
+prop:entrenchment-welfare | dbσ_eq_zero_of_le
+prop:entrenchment-welfare | db_entrenchment_loss_after_episode
+prop:entrenchment-welfare | dualRep_rule_eq_zero
+prop:entrenchment-welfare | dualRep_rule_eq_zero_of_carrier
+# Welfare in general abstract form (Lean round W, 2026-10-15; promoted to the main text
+# 2026-10-16). The census document lists them from the next HPC round.
+prop:welfare-rescaling | Sanctions.Welfare.InterestGroupRep.exists_rescaleS_ranks
+prop:welfare-nonidentification | Sanctions.Examples.ChordEconomyRelief.exists_reps_reversing_myopic_forward_ranking
+prop:zero-sanction-planner | Sanctions.Welfare.zeroSanction_planner_optimal
+prop:planner-efficient-persistence | Sanctions.Examples.ChordEconomy.planner_efficient_rep_at_policy_zero
+# Layout decisions of 2026-10-16 (Lean round W2): the myopic benchmark is a main-text result,
+# the welfare reversal is stated for the benchmark against the forward-looking equilibrium, and
+# the four-case reversal moved to the Online Appendix.
+prop:myopic-benchmark | ChordEconomyRelief.myopic_dynamic_equilibrium_separation_generalF_stage
+prop:welfare-nonidentification-four | Sanctions.Examples.ChordEconomyCs.exists_reps_reversing_regime_ranking

@@ -1,0 +1,605 @@
+% @econ-contract section
+% id: RESULTS_HORIZONS
+% role: Establish on the class what foresight adds to the myopic benchmark (thm:regime-separation: defiance, a sanction above the myopic sanction, a state path above the benchmark's, a positive steady state, also at every full-defiance equilibrium); split the difference into the Target's part (myopic relief against the entrenchment condition) and the Sender's part (the foresight premium and the fixed-policy comparison); then lock-in, the role of the Target's patience, and the minmax bound and uniqueness in words. The cases with one government forward-looking are in the discussion (sec:discussion:horizons).
+% question_answered: What does foresight add to the myopic benchmark, what does each government's incentive contribute, and which conclusions extend beyond the constructed equilibria?
+% required_inputs: MODEL_ENVIRONMENT (objects, the class, the myopic benchmark and its assumptions, the equilibrium concept).
+% output_handoff: The comparison of the forward-looking equilibrium with the benchmark and its quantified scope, used by the welfare section (the two constructed equilibria) and the discussion (the four cases, scope and persistence).
+% claim_ceiling: The constructed forward-looking equilibrium against the myopic benchmark, and the same conclusions at every full-defiance equilibrium; a same-policy foresight premium; lock-in under its stated conditions; existence inheritance under monotonicity and balance; an exact threshold only on the tight collapse class; a value bound in every top-selector equilibrium and identification only in the nondecreasing-rule class (stated in words).
+% exclusions: The proofs (Online Appendix, one footnote per subsection); the four cases (sec:discussion:horizons); the component statements, the strict comparison, the minmax and uniqueness propositions and the relief/defiance inequalities (Online Appendix, sec:moved-main-2026-10-13); welfare.
+% exact_ref: tex-label:sec:results
+% support_status: VERIFIED
+% status: HUMAN_CONFIRMED
+% human_confirmed_at: 2026-10-01
+% decision_ref: suggestions/2026-10-01-manuscript-rebuild/01_STRUCTURE_PROPOSAL.md#author-decisions-recorded
+% confirmation_scope: Section role, claim ceiling, and the four short propositions (D2, D5).
+% reopen_if: A principal result, its hypotheses, or the order of the moves changes.
+% amended_at: 2026-10-11 (lock-in subsection and prop:lock-in; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#lock-in-in-the-main-text); 2026-10-11 (no 'horizon'; no wording about what the paper is not; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#plain-framing-2026-10-11); 2026-10-13 (exposition: results in order of importance, Tier-3 statements moved to the Online Appendix, prop:two-sided-one-equilibrium moved in, one proof footnote per subsection; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#exposition-2026-10-13); 2026-10-15 (the dual-basin economy and prop:two-sided-one-equilibrium moved back to the Online Appendix, app:dual-basin-economy, on the author's word; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md); 2026-10-16 (layout decisions D1-D5: the main comparison is the forward-looking equilibrium against the myopic benchmark of the model section, the two governments' parts follow it, and the four cases moved to the discussion; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#layout-myopic-benchmark-first-2026-10-16); 2026-10-16 (structure plan S1-S7 against the cited papers; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#structure-plan-s1-s7-2026-10-16); 2026-10-19 (coauthor wording review: wording of the coauthor's line-by-line revision applied where not wrong; sender/target in lower case; non-compliance for defiance; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#coauthor-wording-review-2026-10-19); 2026-10-20 (RESULTS_LOCKIN_READING: the absorbing basin and the lasting effect of a temporary event, Acemoglu and Robinson 2008, 2001; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#acemoglu-comparison-and-model-exposition-2026-10-20); 2026-10-20 (subsection openings in the style of Acemoglu and coauthors, N187; the claims unchanged; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#acemoglu-style-subsection-openings-2026-10-20); 2026-10-20 (plain-language reminders at the mathematics, N188; formal statements unchanged; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#plain-language-reminders-at-the-mathematics-2026-10-20); 2026-10-20 (equation prose in the forms of Acemoglu and Robinson 2008, N189; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#equation-prose-in-the-style-of-acemoglu-and-robinson-2026-10-20); 2026-10-20 (two footnote pointers follow the low-basin theorem and post-relief persistence into the persistence section of the Online Appendix; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#appendix-needed-versus-derivative-2026-10-20)
+% @end-econ-contract
+\section{Equilibrium analysis: foresight and sanction persistence}
+\label{sec:results}
+\label{sec:existence}
+
+% @econ-contract paragraph
+% id: RESULTS_ROADMAP
+% role: Say what the section establishes, and keep existence, uniqueness and value bounds apart.
+% depends_on: RESULTS_HORIZONS
+% handoff: The main comparison.
+% support_status: NOT_APPLICABLE
+% status: PROPOSED
+% @end-econ-contract
+\central{This section compares forward-looking governments with the myopic
+benchmark.} \Cref{sec:existence:placable} shows that foresight turns relief into
+non-compliance and keeps sanctions and the political state positive.
+\Cref{sec:results:wedge} bounds the sender's part of that difference. \Cref{sec:results:lockin} gives conditions under which a high
+political state stays high, \Cref{sec:results:patience} asks how patient the
+target must be and collects two further consequences
+of non-compliance. Each subsection opens with a footnote that says where its proofs are.
+Existence, uniqueness within a stated set and value bounds are kept separate, each
+under the hypotheses of its own result.
+
+\subsection{Comparison with the myopic benchmark}
+\label{sec:existence:placable}
+\label{sec:results:main}
+
+% @econ-contract paragraph
+% id: RESULTS_CLASS_PURPOSE
+% role: Explain how the full-defiance equilibrium is constructed (prop:placable-family, stated in the Online Appendix), and state thm:regime-separation, the comparison of the forward-looking equilibrium with the myopic benchmark (the main theorem since 2026-10-16).
+% depends_on: RESULTS_ROADMAP
+% handoff: The table and the reading.
+% exact_ref: tex-label:thm:regime-separation
+% exact_ref: tex-label:prop:placable-family
+% exact_ref: tex-label:sec:moved-main-2026-10-13
+% exact_ref: tex-label:app:proofs:placable
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{We now turn to the main result: when both governments are forward-looking, the same
+economy supports an equilibrium with persistent non-compliance and indefinite sanctions.}\footnote{\Cref{thm:regime-separation}
+is proved in panel~F of \Cref{app:proofs:placable} of the Online Appendix, and the
+full-non-compliance equilibrium it uses (\Cref{prop:placable-family}) is constructed in
+the same appendix; the component statements are in
+\Cref{sec:moved-main-2026-10-13}.} Stage
+payoffs, feasible sets, and the transition law are identical to the benchmark; only
+the discount factors are positive. Superscripts index the case: $00$ for the myopic
+benchmark, $11$ for the case with two forward-looking governments. The non-compliance
+equilibrium is constructed in two steps. First, the sender's value under full
+non-compliance is derived as the fixed point of its Bellman operator; at every state,
+the forward-looking sanction is then strictly higher than the corresponding myopic
+sanction $\sigM(x,0)$, the sanction a myopic sender sets at state $x$ against full
+non-compliance. Second, under the entrenchment and increasing-differences
+conditions, full non-compliance is the target's unique best reply to that response, and
+the two value functions paired with the full-non-compliance policy constitute an
+equilibrium in $\mathcal E$. Recall that $\mathcal E$ is the set of stationary feedback
+Stackelberg equilibria (\Cref{sec:model:equilibrium}) and that $\underline s$ is the least
+sanction a myopic sender imposes on a non-compliant target (\Cref{sec:model:objectives}).
+
+\begin{theorem}[Foresight vs.\ the myopic benchmark]
+\label{thm:regime-separation}
+For every economy in the class satisfying
+Assumptions~\ref{ass:stage-interiority}--\ref{ass:dynamic-complementarity}, there
+exists an equilibrium in $\mathcal E$ such that:
+\begin{enumerate}[label=(\roman*)]
+\item the target maintains full non-compliance at every state, and the sender's
+sanction level lies strictly above the myopic sanction $\sigM(x,0)$;
+\item from every initial state the amount by which the political state falls short of
+$\underline s$ shrinks at least geometrically; starting from a common initial state,
+the state lies strictly above the path of the myopic benchmark
+(\Cref{prop:myopic-benchmark}) at every positive date;
+\item the state converges to a steady state $x^{11}_\infty>\underline s$, at which the
+sanction level equals the state level.
+\end{enumerate}
+\end{theorem}
+
+% @econ-contract display
+% id: TAB_MYOPIC_FORWARD
+% role: Show, for the myopic benchmark and the forward-looking equilibrium, the compliance, the sanction and the long-run state.
+% evidence_represented: prop:myopic-benchmark and thm:regime-separation.
+% permitted_inference: The behavior and the limits of the two constructed equilibria, under the stated conditions.
+% reader_takeaway: Foresight turns relief into defiance, and sanctions and the political state then stay positive.
+% claim_supported: RESULTS_MAIN_READING
+% source_artifact: paper/main_sections/03_equilibrium_and_comparative_statics.tex
+% caption_scope: The two constructed equilibria only.
+% exact_ref: tex-label:thm:regime-separation
+% exact_ref: tex-label:prop:myopic-benchmark
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\begin{table}[htbp]
+\centering\footnotesize
+\caption{The myopic benchmark and the forward-looking equilibrium of one economy:
+compliance, sanction and the limit of the political state. Stage payoffs, feasible
+actions and the transition are the same in both columns; the conditions of
+\Cref{thm:regime-separation} are maintained.}
+\label{tab:myopic-forward}
+\begin{tabular}{@{}p{0.16\linewidth}p{0.38\linewidth}p{0.4\linewidth}@{}}
+\toprule
+ & myopic governments (\Cref{prop:myopic-benchmark}) & forward-looking governments (\Cref{thm:regime-separation}) \\
+\midrule
+compliance & $a^{00}(x)$, the least that ends the myopic sanction & full non-compliance (compliance $0$) \\
+sanction & zero at every state & strictly above the myopic sanction $\sigM(x,0)$, and below $1$ under interiority \\
+political state & falls to $0$, at least geometrically & above the benchmark's path at every positive date; converges to a steady state above $\underline s$, which may depend on the start \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% @econ-contract paragraph
+% id: RESULTS_MAIN_READING
+% role: Read the theorem against the benchmark: foresight turns relief into defiance (the investment logic of the entrenchment condition), the forward-looking Sender sanctions more than the myopic sanction, the state settles at a positive level; the conclusions hold at every full-defiance equilibrium; both discount factors move together, and where the separate roles are found.
+% depends_on: RESULTS_CLASS_PURPOSE
+% handoff: The two governments' parts.
+% merged_from: RESULTS_FOUR_CELLS_READING (its defiance reading), 2026-10-16
+% exact_ref: tex-label:thm:regime-separation
+% exact_ref: tex-label:prop:myopic-benchmark
+% exact_ref: tex-label:tab:myopic-forward
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Foresight shifts outcomes from relief to non-compliance, and under
+non-compliance both sanctions and the political state remain positive.} Conclusion (ii)
+implies that a state that starts below $\underline s$ rises toward $\underline s$ or above
+it, because its shortfall from $\underline s$ shrinks at least geometrically. Conclusion
+(iii) says that $x^{11}_\infty$, the long-run political state when both governments look
+ahead, lies above $\underline s$; at this state the sanction equals the state, so by
+\textup{(F4)} the state stays there. In the myopic
+benchmark of \Cref{prop:myopic-benchmark}, the target accommodates and the state
+erodes to zero (\Cref{tab:myopic-forward}). The forward-looking target instead chooses
+non-compliance because, under the entrenchment condition, the entrenchment generated
+by sanctions is worth at least as much as the immediate pain they impose, making it
+unprofitable to trade compliance for relief. For its part, the forward-looking sender
+sanctions a non-compliant target more heavily than a myopic sender would. The state
+then converges to a positive level from any initial condition, declining toward it
+from sufficiently high starting points. Under interiority (\Cref{ass:interiority}), the
+sender never imposes full sanctions. Conclusions (i)--(iii) hold at every equilibrium
+in $\mathcal E$ with full target non-compliance---not only at the constructed
+equilibrium---because all such equilibria share the same constructed values and
+sanction rule. The steady-state limit may depend on initial conditions unless the
+equilibrium law of motion is contractive in state distances
+(\Cref{sec:results:lockin}).
+
+\central{The theorem changes both discount factors at once, holding every other
+primitive fixed.} It shows that foresight makes sanctions persist; it does not by
+itself say which government's foresight does what. \Cref{sec:results:wedge} bounds
+the sender's part of the difference, and
+\Cref{sec:discussion:horizons} solves the cases in which only one government looks
+forward.
+
+\subsection{The sender's foresight premium}
+\label{sec:results:wedge}
+\label{sec:compstat}
+
+% @econ-contract paragraph
+% id: RESULTS_WEDGE
+% role: Give the Sender's part: the closed-form lower bound on the foresight premium, what each term measures, and the fixed-policy comparison behind it (the foresight premium along paths and the long-run gap over the Target-only case moved to sec:discussion:horizons, 2026-10-16).
+% depends_on: RESULTS_MAIN_READING
+% handoff: The fixed-policy comparison.
+% exact_ref: tex-label:eq:sender-wedge
+% exact_ref: tex-label:rem:wedge-sharp
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The comparison so far concerns the equilibrium as a whole; we next isolate the sender's
+contribution, the foresight premium: the amount by which the sender's forward-looking
+sanction exceeds its myopic sanction at a given compliance level.} This premium has a closed-form lower bound at
+full non-compliance that increases with the sender's stake in the political
+state.\footnote{The bound
+and the attainment example are proved in \Cref{app:proofs:branch} of the Online
+Appendix; the comparison at a fixed target policy and its strict form in
+\Cref{app:proof-dominance}.} Under interiority, at every state the forward-looking sender's sanction
+under non-compliance exceeds the myopic sanction $\sigM(x,0)$ (the myopic sender's sanction against full
+non-compliance) by at least a strictly positive closed-form bound. The numerator captures the minimum increase in the
+sender's discounted value from a unit of sanctions via the next-period state: the
+sender's per-period stake in the state, discounted over the state's persistence rate,
+multiplied by the minimum response of the next-period state to sanctions. The
+denominator---the maximum curvature of the sender's sanctioning cost function---converts
+this marginal gain into a sanction increase. The bound rises with the sender's
+discount factor, its stake in the state, and the responsiveness of the transition to
+sanctions; its general form is given by \eqref{eq:sender-wedge} in the Online Appendix. These lower bounds hold for fixed primitives. The bound is attained at one
+example economy, so its coefficient cannot be uniformly scaled up across the class.
+The foresight premium rests on a comparison that holds broadly outside the class. Recall that $\sigM$ is the myopic best response and
+$\sigDynTop_{\Vs}$ the dynamic best response, which also counts the value $\Vs$ of the next
+state; $\alpha$ is a target policy.
+
+\begin{theorem}[Dynamic vs.\ myopic sanctions at a fixed target policy]
+\label{thm:dominance}
+Let $\Vs$ be a bounded continuous sender continuation value that is non-decreasing in
+the political state. For any target policy $\alpha\colon[0,1]\to[0,1]$ and every state
+$x\in[0,1]$,
+\begin{equation}
+\sigM(x,\alpha(x))
+\le
+\sigDynTop_{\Vs}(x,\alpha(x)).
+\label{eq:thm-dominance-same-alpha}
+\end{equation}
+In particular, inequality \eqref{eq:thm-dominance-same-alpha} holds at every
+equilibrium $E=(\Vt,\Vs,\alpha)\in\mathcal E$ whose sender value is non-decreasing in
+the state.
+\end{theorem}
+
+% @econ-contract paragraph
+% id: RESULTS_THREE_COMPARISONS
+% role: Give the reason for thm:dominance, its strict form in words (prop:strict-dominance, stated in the Online Appendix), and the direct and indirect effects against the myopic equilibrium, read as the Sender's and the Target's parts of the move from the benchmark (2026-10-16).
+% depends_on: RESULTS_WEDGE
+% handoff: Lock-in.
+% exact_ref: tex-label:thm:dominance
+% exact_ref: tex-label:prop:strict-dominance
+% exact_ref: tex-label:cor:pathwise-dominance
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The intuition relies on monotonicity: at a fixed target policy, a higher
+sanction leaves a weakly higher successor state, so a non-decreasing continuation value
+can only increase the largest of the optimal sanctions.} Inequality
+\eqref{eq:thm-dominance-same-alpha} thus implies that a sender that values a more
+entrenched adversary never sanctions less than a myopic sender facing the same
+compliance. The comparison holds under general
+transition rules and requires neither an equilibrium nor restriction to high states.
+Every stage maximizer, not only the selected one, lies weakly below the forward-looking
+sanction. The inequality becomes strict when no sanction below the greatest stage
+maximizer yields a higher continuation value (automatic when the continuation value is
+non-decreasing) and, for some sanction level, the discounted continuation gain from
+moving to that level outweighs the stage loss relative to the greatest stage
+maximizer. This version requires no concavity, differentiability, or positive
+discount.
+
+Relative to the myopic equilibrium at its own target policy, the forward-looking
+equilibrium sanctions at least as heavily at every state when its sender value is
+non-decreasing, its target complies no more, and the sender's myopic best response does
+not increase with compliance. The difference operates through two separate channels at
+each state where the forward-looking target complies no more than the myopic one: lower
+target compliance can only raise the myopic best response (the indirect effect), and
+sender foresight can only raise sanctions at that compliance level (the direct effect,
+\Cref{thm:dominance}). At the level of the sanction rule, these two effects---the
+target's part and the sender's part---sum to the total difference between
+\Cref{prop:myopic-benchmark} and \Cref{thm:regime-separation}.
+
+\subsection{Sanction lock-in and history dependence}
+\label{sec:results:lockin}
+
+% @econ-contract paragraph
+% id: RESULTS_LOCKIN
+% role: Say what lock-in means here, link it from the defiance result to the Sender's side, and state the lock-in proposition at its scope with its own symbols defined.
+% depends_on: RESULTS_THREE_COMPARISONS
+% handoff: The conditions one by one.
+% exact_ref: tex-label:thm:persistence
+% exact_ref: tex-label:thm:shock
+% exact_ref: tex-label:sec:assumptions
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The results so far describe constructed equilibria. We now show that, under the
+conditions stated below, persistence sustains itself once it starts, a property we call
+lock-in: once the political state reaches a high level, equilibrium play keeps it there,
+the state never exits a high basin, and sanctions never decline.}\footnote{\Cref{prop:lock-in} restates the persistence
+and temporary-shock theorems of \Cref{app:persistence} in the Online Appendix,
+which also gives their value sets, the constants of the level condition and the
+shock length; the low-basin counterpart is
+\Cref{thm:lowbasin}, and an equilibrium with both basins in
+\Cref{app:dual-basin-economy}.} Whereas the non-compliance result focuses on the target
+side, lock-in incorporates the sender's incentives. Under the conditions below,
+raising sanctions to match the state is profitable for the sender across the entire high
+basin---from a threshold $\bar x$ up to the upper bound---and a sanction at or above the
+current state prevents the state from falling. The result requires none of the
+class-wide bounds: it holds at every equilibrium of any economy satisfying its
+conditions. A temporary shock---a finite period of exogenously set sanctions---can move
+the state into the high basin. In the proposition, $E=(\Vt,\Vs,\alpha)$ is an equilibrium:
+the two governments' value functions and the target's policy.
+
+\begin{proposition}[Lock-in]
+\label{prop:lock-in}
+Let $E=(\Vt,\Vs,\alpha)\in\mathcal E$ and let $[\bar x,1]$ be a high basin of states.
+Suppose that the equilibrium value functions lie within closed sets of bounded
+continuous functions, with sender values Lipschitz-continuous in the state, and that
+the target policy is the one induced by these value functions. Suppose further that, at
+every pair of values in those sets (with the induced target policy substituted):
+\begin{enumerate}[label=(\alph*)]
+\item \emph{monotonicity}: on the high basin, the sender's objective satisfies the
+interval dominance order in the sanction and the state \citep{QuahStrulovici2009}, so the largest of its optimal sanctions rises with the state; and
+\item \emph{level condition}: at every state in the basin, raising sanctions from any
+lower level up to the current state level increases the sender's current payoff by more
+than the maximum possible change in its discounted continuation value.
+\end{enumerate}
+Then from every initial state $x_0\in[\bar x,1]$, the equilibrium path
+$s_t=\sigDynTop_{\Vs}(x_t,\alpha(x_t))$ and $x_{t+1}=\F(x_t,s_t)$ satisfies for all
+$t\ge0$:
+\begin{enumerate}[label=(\roman*)]
+\item $x_t\in[\bar x,1]$;
+\item $s_t\ge\bar x$;
+\item $s_t\le s_{t+1}$.
+\end{enumerate}
+If in addition the transition satisfies \textup{(F1)--(F4)} and full sanctions raise
+every state below the basin, then from any initial state a temporary shock holding
+sanctions at the maximum level for a sufficient duration moves the state into
+$[\bar x,1]$ once the shock ends, and properties \textup{(i)--(iii)} hold along the
+equilibrium path of $E$ restarted from that state.
+\end{proposition}
+
+% @econ-contract paragraph
+% id: RESULTS_LOCKIN_READING
+% role: Read the two parts of prop:lock-in against the political economy of persistent power: the high basin as an absorbing region (Acemoglu and Robinson 2008) and a temporary event with a lasting effect (Acemoglu and Robinson 2001) (N184, N186, 2026-10-20).
+% depends_on: RESULTS_LOCKIN
+% handoff: The conditions of the proposition.
+% exact_ref: bib:AcemogluRobinson2008#p=279
+% source_role: bib:AcemogluRobinson2008#p=279 => Corollary 2: when investment in de facto power is not always profitable for the elite, 'democracy can become an absorbing state' (read 2026-10-20, N184); comparison, not support.
+% exact_ref: bib:AcemogluRobinson2001#p=939
+% source_role: bib:AcemogluRobinson2001#p=939 => Because 'the threat of revolution is often only transitory', the elite is 'forced to make a credible commitment to future income redistribution', which extending voting rights achieves (read 2026-10-20, N186); comparison, not support.
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Property~(i) makes the high basin an absorbing region of the equilibrium
+path.} In words, (i) the state never falls below $\bar x$; (ii) the sanction never falls
+below $\bar x$; (iii) the sanction never falls from one date to the next. Democracy can become an absorbing state in the same sense in
+\citet[Corollary~2, p.~279]{AcemogluRobinson2008}, when investment in de facto power is
+no longer always profitable for the elite. The entry result gives a temporary event a
+lasting effect, as in \citet[p.~939]{AcemogluRobinson2001}, where a transitory threat
+of revolution forces the elite to extend the franchise; there the lasting change runs
+through the credibility of concessions, here through the political state that the
+shock moves.
+
+% @econ-contract paragraph
+% id: RESULTS_LOCKIN_CONDITIONS
+% role: Discuss the conditions of prop:lock-in one by one, say which conclusion uses which, and state the weaker form that holds on the class at every full-defiance equilibrium.
+% depends_on: RESULTS_LOCKIN
+% handoff: Low sanctions entrenched, and persistence without hysteresis.
+% exact_ref: tex-label:thm:persistence
+% exact_ref: tex-label:thm:finite-episode
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The conclusions of \Cref{prop:lock-in} rely on different subsets of its
+conditions.} For economies in the class satisfying interiority and the lifting
+condition, a weaker form of lock-in holds at every full-non-compliance equilibrium. The
+set-based conditions restrict equilibrium value functions to sets of bounded functions
+with Lipschitz sender values, and require the target policy to be the one induced by
+the value pair. The monotonicity condition ensures the sender's response (with the
+target policy substituted) is non-decreasing in the state across the basin. The level
+condition requires that, at each basin state, raising sanctions from any lower level up
+to the state increases the sender's current payoff by more than any associated change in discounted continuation value. Both conditions are imposed pointwise across all
+value pairs in the sets. The no-exit properties (i) and (ii) rely only on the set
+conditions and the level condition; the non-decreasing sanction property (iii)
+additionally requires the monotonicity condition. No assumption on how the target ranks
+sanction levels is needed. The entry result additionally requires conditions \textup{(F1)--(F4)}
+and that full sanctions raise every state below $\bar x$; the Online Appendix provides
+an explicit sufficient shock duration.
+
+For the class of economies satisfying interiority and the lifting condition, at every
+equilibrium with full target non-compliance, once a temporary shock moves the state to
+or above $\underline s$ (the least sanction a myopic sender imposes on a non-compliant target), the state remains there and
+sanctions never fall below $\underline s$.
+
+% @econ-contract paragraph
+% id: RESULTS_LOCKIN_PEACE
+% role: State the low-basin dual and initial-condition selection in words, and separate persistence from dependence on initial conditions.
+% depends_on: RESULTS_LOCKIN_CONDITIONS
+% handoff: Target patience and the existence of defiance.
+% exact_ref: tex-label:thm:lowbasin
+% exact_ref: tex-label:cor:initial-condition-selection
+% exact_ref: tex-label:prop:activation-not-hysteresis
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The argument also runs in reverse: the political state can entrench low
+sanctions as well as high ones.} Under low-basin versions of the conditions, the state
+remains in the basin and realized sanctions never rise for any starting point within
+a low basin. When a single equilibrium satisfies the sender's conditions on
+both a high basin and a disjoint low basin below it, the initial state selects between
+the two basins within that equilibrium. Persistence can also hold independently of
+initial conditions: for economies in the class satisfying interiority, the lifting
+condition, and the entrenchment and increasing-differences conditions, and whose
+equilibrium law of motion has an explicit Lipschitz constant strictly below one, the
+constructed equilibrium has exactly one steady state. Every initial state converges to
+this state, and temporary sanction shocks have no permanent effect on the long-run
+limit.
+
+% @econ-contract paragraph
+% id: DISC_RELIEF_EXIT
+% role: Imposed relief: the crossing, the condition on the resumed equilibrium under which de-escalation lasts, and the comparison of entry and exit durations (moved from the Discussion, 2026-10-16, structure plan S2).
+% depends_on: RESULTS_LOCKIN_PEACE
+% handoff: Target patience and the existence of defiance.
+% exact_ref: tex-label:thm:relief-exit
+% exact_ref: tex-label:prop:post-relief-persistence
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\label{sec:discussion:persistence}
+\central{The reverse experiment---a temporary suspension of sanctions---can reduce the
+state below a given level within a computable time horizon.}\footnote{Entry and exit durations, persistence after relief, the reading of the
+lock-in conditions and the example economies that meet them are in
+\Cref{app:persistence,app:witness} of the Online
+Appendix.} After entry into a
+high basin, equilibrium play generates no endogenous exit, but relief remains
+mechanically feasible: the transition law still erodes the state under low sanctions.
+Whether de-escalation persists then depends on the resumed equilibrium: it persists
+if the equilibrium's sanction rule remains at or below the state level for states
+below that threshold. Entry and exit durations derive from different segments of the same transition
+function, so they need not be equal. For any transition symmetric under reflection of
+the unit square, $\F(1-x,1-s)=1-\F(x,s)$ (the state moves up toward a sanction above it in the same way as
+it moves down toward one below it), such as the partial-adjustment law, the
+exit-duration bound (before rounding to integer periods) exceeds the entry-duration
+bound
+exactly when that level lies below one half.
+
+\subsection{Target patience and non-compliance equilibria}
+\label{sec:results:patience}
+\label{sec:results:bracket}
+
+% @econ-contract paragraph
+% id: RESULTS_COLLAPSE
+% role: State the exact threshold discount factor for full defiance on the tight class (prop:collapse-threshold), its hypotheses in words, and what it means.
+% depends_on: RESULTS_LOCKIN_PEACE
+% handoff: A more patient Target keeps the full-defiance equilibrium.
+% exact_ref: tex-label:prop:collapse-threshold
+% exact_ref: tex-label:prop:bracket
+% exact_ref: tex-label:prop:defiance-closed
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The analysis so far compares a myopic with a forward-looking target. A natural question
+is how patient the target must be for non-compliance to prevail; the comparison extends
+across discount factors and collapses to a single threshold in the linear--quadratic
+special case.}\footnote{The
+threshold, the general sufficient conditions for relief and for non-compliance, the
+exact thresholds and the inheritance by a more patient target are proved in
+\Cref{app:proofs:threshold,app:proofs:scope} of the Online Appendix, and branch
+invariance in \Cref{app:proofs:branch}; the general conditions, the precise
+conditions of the special case and the closed form of the threshold are stated in
+\Cref{sec:moved-main-2026-10-13:bracket}.} In this special case: the transition responds to sanctions at a constant
+rate, which combined with $\F(x,x)=x$ makes it affine; the curvature of the sender's
+sanctioning cost is constant; the substitution rate, the target's compliance cost, its
+sanction pain, and its valuation of the state are all constant; the target's payoff has
+no state--sanction cross term; and the curvature bounds on the sender's value and its
+state-dependent payoff are zero. The target's \emph{net cost} of sanctions equals their
+pain minus the compliance cost of ending them.
+
+\begin{proposition}[Threshold discount factor for full non-compliance]
+\label{prop:collapse-threshold}
+In the linear--quadratic special case, for an economy satisfying interiority, the
+myopic relief condition, and the lifting condition, there exists a threshold discount
+factor $\beta_T^*$ (in closed form in the Online Appendix) such that an equilibrium in
+$\mathcal E$ with full non-compliance at every state exists if and only if
+$\beta_T\ge\beta_T^*$. When $\beta_T^*<1$, these discount factors span the interval
+$[\beta_T^*,1)$.
+\end{proposition}
+
+% @econ-contract paragraph
+% id: RESULTS_THRESHOLD_READING
+% role: Read the threshold in words (2026-10-16, no constants of the special case in the main text): what raises and lowers it, the case beta_T* >= 1, and why the Sender's patience does not move it.
+% depends_on: RESULTS_COLLAPSE
+% handoff: The more patient Target.
+% merged_from: RESULTS_SENDER_BRACKET
+% exact_ref: tex-label:prop:collapse-threshold
+% exact_ref: bib:AcemogluJensen2015#scope=Lemma2-Prop1
+% source_role: bib:AcemogluJensen2015#scope=Lemma2-Prop1 => Already-cited robust discount-factor comparative statics for a single agent's dynamic program and for aggregates; positioning of the one-government patience comparison, not support for a result.
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The threshold balances the target's net cost of sanctions against the value of
+the entrenchment they build.} In words, an equilibrium with full non-compliance exists
+exactly when the target's discount factor $\beta_T$ is at least $\beta_T^*$. It rises with this net cost and falls with the target's
+valuation of the political state. The non-existence result applies across all
+equilibria in $\mathcal E$: below $\beta_T^*$, no equilibrium exhibits full
+non-compliance. When the net cost equals or exceeds the target's valuation of the
+political state, $\beta_T^*\ge1$ and no discount factor can support full
+non-compliance. The sender's patience changes the level of its response, and thus the
+compliance threshold for relief, but in the special case it does not shift the target's
+threshold, which depends on the target's costs, pain, state valuation, and discount
+factor. \citet[Lemma~2, Proposition~1]{AcemogluJensen2015} derive robust
+discount-factor comparative statics for single-agent dynamic programs and for
+aggregates of price-taking agents; our result concerns one government's patience in a
+two-player strategic setting.
+
+% @econ-contract paragraph
+% id: RESULTS_PATIENCE
+% role: State that existence of a full-defiance equilibrium is inherited by a more patient Target, at its exact hypotheses, with the slope condition in words.
+% depends_on: RESULTS_THRESHOLD_READING
+% handoff: Why patience preserves defiance.
+% exact_ref: tex-label:prop:patience-existence
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Outside the special case, the sufficient conditions for relief and for
+non-compliance need not coincide at a single discount factor, but a more patient target
+still preserves the full-non-compliance equilibrium.} The target's \emph{slope
+condition} at a non-negative slope is the condition under which its value under full
+non-compliance rises with the state at least at that slope. It requires that the
+target's per-period stake under sanctions cover the slope effect---net of state
+persistence---plus the portion of sanction pain left uncompensated by entrenchment at
+that slope, scaled by the responsiveness of the sender's reaction to changes in the
+state. Under the entrenchment condition, the slope condition holds at the slope that
+the entrenchment condition uses.
+
+\begin{proposition}[Greater target patience preserves the full-non-compliance equilibrium]
+\label{prop:patience-existence}
+Consider two economies in the class that differ only in the target's discount factor,
+with $\beta_T\le\beta_T'$. Suppose the sender's response at full non-compliance at its
+constructed value is non-decreasing in the state, and the slope condition holds at
+some non-negative slope for the less patient economy. Then:
+\begin{enumerate}[label=(\roman*)]
+\item the slope condition holds at the same slope for the more patient economy; and
+\item if an equilibrium in $\mathcal E$ with full non-compliance at every state exists
+at $\beta_T$, one exists at $\beta_T'$.
+\end{enumerate}
+\end{proposition}
+
+% @econ-contract paragraph
+% id: RESULTS_PATIENCE_READING
+% role: Read prop:patience-existence: why greater patience preserves defiance, and what the slope condition is for (restored from the pre-exposition text after the claim check).
+% depends_on: RESULTS_PATIENCE
+% handoff: The general sufficient conditions and branch invariance.
+% exact_ref: tex-label:prop:patience-existence
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Under these two conditions, if full non-compliance is an equilibrium at a given
+target discount factor, it remains an equilibrium at every higher discount factor.}
+This result extends to discount factors for which neither sufficient condition holds.
+The sender's value function and best response at full non-compliance are identical
+across both economies. Greater target patience increases the value of the entrenchment
+that compliance would forgo, since compliance lowers the sender's response; the net gain
+from non-compliance is therefore preserved. The slope condition ensures that the
+target's value under full non-compliance is non-decreasing in the state, as required for
+the argument; assuming this monotonicity directly at either economy also suffices. The
+result is a comparative statics result for the viability of a single profile---full
+non-compliance at all states---as an equilibrium.
+
+% @econ-contract paragraph
+% id: RESULTS_BRACKET_WORDS
+% role: State in words the general sufficient conditions for relief and defiance, the gap between them, the exact thresholds and the continuum example, and branch invariance (Tier 3 and 4; statements in the Online Appendix).
+% depends_on: RESULTS_PATIENCE_READING
+% handoff: The Target's minmax payoff and uniqueness.
+% merged_from: RESULTS_CERTIFICATES; RESULTS_BRANCH_INVARIANCE
+% exact_ref: tex-label:prop:bracket
+% exact_ref: tex-label:prop:exact-thresholds
+% exact_ref: tex-label:prop:affine-window
+% exact_ref: tex-label:prop:branch-invariance
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Across the full class of economies, sufficient conditions on the target's
+discount factor for relief and for non-compliance, their exact thresholds, and the
+result that patience---like every other target parameter---shapes whether a
+full-non-compliance equilibrium exists but not its equilibrium trajectory are all
+stated in \Cref{sec:moved-main-2026-10-13:bracket} of the Online Appendix.}
+
+\label{sec:results:security}
+\label{sec:results:identification}
+
+% @econ-contract paragraph
+% id: RESULTS_SECURITY
+% role: State in words the minmax bound and the uniqueness among non-decreasing sanction rules under the strong entrenchment condition (Tier 3: prop:security, prop:identification, stated in the Online Appendix), and why.
+% depends_on: RESULTS_BRACKET_WORDS
+% handoff: Welfare.
+% merged_from: RESULTS_SECURITY_ACCOUNTING; RESULTS_IDENTIFICATION
+% note: 2026-10-16 (structure plan S4): no longer its own subsection; the comparison with history-dependent strategies and the conflict literature moved here from the Discussion.
+% exact_ref: tex-label:prop:security
+% exact_ref: tex-label:prop:identification
+% exact_ref: bib:PhelanStacchetti2001#scope=paper
+% source_role: bib:PhelanStacchetti2001#scope=paper => Already-cited sequential equilibria supported by history-dependent strategies with public sunspots; the class of strategies the minmax bound covers; positioning only.
+% exact_ref: bib:Powell2004#scope=paper
+% source_role: bib:Powell2004#scope=paper => Already-cited conflict model stating its results through minmax payoffs over all equilibria; a comparison point, not support.
+% exact_ref: bib:KraininWiseman2016#scope=paper
+% source_role: bib:KraininWiseman2016#scope=paper => Already-cited all-equilibrium patience result in a conflict model at a common discount factor; a comparison point, not support for this paper's bound.
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Under the strong entrenchment condition, non-compliance also bounds how far
+the sender can lower the target's payoff and, across the class, pins down every
+equilibrium with a non-decreasing sanction rule.}\footnote{Both results are stated in
+\Cref{sec:moved-main-2026-10-13} and proved in \Cref{app:proofs:scope} of the
+Online Appendix.} The \emph{strong entrenchment
+condition} strengthens \Cref{ass:loss-offset} by removing the
+offset from entrenchment's softening of the pain of additional sanctions, making it a
+more demanding requirement; only the two results in this paragraph rely on it.
+Permanent relief---with the target maintaining non-compliance throughout---then
+constitutes the harshest treatment the sender can impose: the resulting payoff equals
+the target's minmax payoff in pure strategies. The target can guarantee itself this
+payoff by maintaining non-compliance in every period against any history-dependent
+sanction strategy, and every equilibrium in $\mathcal E$ yields the target at least this
+payoff. History-dependent strategies of this form, together with a random signal that all
+players observe, support the sequential equilibria of \citet{PhelanStacchetti2001}, and the minmax payoff is the
+standard object through which the conflict literature characterizes all-equilibrium
+results \citep{Powell2004,KraininWiseman2016}. The intuition is that, under the strong
+form, the entrenchment built by sanctions is worth at least as much to the target as
+the associated pain. Under the same condition, across the class, every equilibrium with
+a sanction rule non-decreasing in the state exhibits full non-compliance, along with the
+constructed values and response; no equilibrium exhibits zero sanctions at every state.
+The next section turns from the governments' incentives to welfare.

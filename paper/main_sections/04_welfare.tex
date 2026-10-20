@@ -1,0 +1,242 @@
+% @econ-contract section
+% id: WELFARE_BOUNDARY
+% role: Separate the governments' game from a social ranking on the abstract class: interest-group representations and the accounting identity (def:interest-group-representation, eq:welfare-identity); the game does not fix the welfare ranking (prop:welfare-rescaling, prop:welfare-nonidentification); a sufficient condition for zero sanctions to be socially optimal (prop:zero-sanction-planner); persistent play can be socially optimal (prop:planner-efficient-persistence). The Kaempfer--Lowenberg polity and the quadratic--linear family are witnesses in the Online Appendix. (2026-10-15: national welfare at the dual-basin economy moved to the Online Appendix with the economy, app:entrenchment-welfare, on the author's word. 2026-10-16: the general form promoted from the notes on the author's word; prop:family-welfare-nonidentification returned to the Online Appendix as a witness.)
+% question_answered: Do the governments' incentives, or a persistent equilibrium, tell us whether sanctions are socially wasteful?
+% required_inputs: RESULTS_HORIZONS (the four constructed equilibria) and the assumptions of the model section.
+% output_handoff: The welfare boundary used by the discussion and the conclusion.
+% claim_ceiling: Non-identification of the welfare ranking of the myopic benchmark and the forward-looking equilibrium on the class, by the existence of two representations (and, stated in the discussion, of the four constructed equilibria); a sufficient condition for zero sanctions to be socially optimal, for any bounded welfare flow; the existence, under compliance neutrality, of one representation under which full-defiance equilibrium play is socially optimal at the Sender's discount factor; a welfare loss at one example economy of one polity. No general welfare ranking, no efficiency verdict without group primitives, no optimal relief policy.
+% exclusions: Any empirical welfare estimate; the polity's algebra, the family's microfoundations and the partial identification (Online Appendix, app:fourgroup); the proofs (app:proofs:welfare).
+% exact_ref: tex-label:prop:welfare-nonidentification
+% exact_ref: tex-label:prop:planner-efficient-persistence
+% support_status: VERIFIED
+% status: HUMAN_CONFIRMED
+% human_confirmed_at: 2026-10-01
+% decision_ref: suggestions/2026-10-01-manuscript-rebuild/01_STRUCTURE_PROPOSAL.md#author-decisions-recorded
+% confirmation_scope: Section role and claim ceiling (D1: welfare as its own section).
+% reopen_if: The completion class, the planner discount, or the comparison set changes.
+% amended_at: 2026-10-12 (opens with national welfare at the dual-basin economy, Lean round D; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#framing-2026-10-12); 2026-10-13 (exposition: per-period payoff table, the polity in words with its algebra moved to the Online Appendix, one proof footnote per subsection; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#exposition-2026-10-13); 2026-10-16 (welfare in general abstract form, Lean round W, promoted on the author's "yes promote"; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#section-4-promoted-in-general-form-2026-10-16); 2026-10-16 (layout decisions D1-D5: non-identification for the myopic benchmark against the forward-looking equilibrium, Lean round W2; the four-case reversal and the partial identification moved to the discussion; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#layout-myopic-benchmark-first-2026-10-16); 2026-10-19 (coauthor wording review: wording of the coauthor's line-by-line revision applied where not wrong; sender/target in lower case; non-compliance for defiance; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#coauthor-wording-review-2026-10-19); 2026-10-20 (subsection openings in the style of Acemoglu and coauthors, N187; the claims unchanged; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#acemoglu-style-subsection-openings-2026-10-20); 2026-10-20 (plain-language reminders at the mathematics, N188; formal statements unchanged; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#plain-language-reminders-at-the-mathematics-2026-10-20); 2026-10-20 (equation prose in the forms of Acemoglu and Robinson 2008, N189; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#equation-prose-in-the-style-of-acemoglu-and-robinson-2026-10-20)
+% @end-econ-contract
+\section{Welfare analysis}
+\label{sec:welfare}
+\label{sec:policy:welfare}
+
+\subsection{Interest-group framework and aggregate welfare}
+\label{sec:welfare:object}
+
+% @econ-contract paragraph
+% id: WELFARE_OBJECT
+% role: State, as the section's finding, that the governments' game alone does not determine a welfare ranking; give the Iran evidence that insiders' interests can gain from relief; define an interest-group representation and aggregate welfare on the abstract class, state the accounting identity, and place the Kaempfer--Lowenberg polity as one structured representation.
+% depends_on: WELFARE_BOUNDARY
+% handoff: The rescaling and non-identification results.
+% exact_ref: tex-label:def:interest-group-representation
+% exact_ref: tex-label:eq:welfare-identity
+% exact_ref: tex-label:app:fourgroup
+% exact_ref: bib:DracaGarredSticklandWarrinnier2023#pp=159-161,197
+% source_role: bib:DracaGarredSticklandWarrinnier2023#pp=159-161,197 => Event-study evidence (abstract, introduction and conclusion read 2026-10-02) that listed firms of the Revolutionary Guard's and the Supreme Leader's conglomerates rose by more than other listed firms on news of progress toward sanctions relief; a caution that insiders' economic interests are exposed to sanctions, measuring neither the political state nor welfare.
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{We now turn to welfare. Because government payoffs weight the interest groups to which
+each government is accountable, the game alone does not pin down a welfare ranking.}\footnote{The
+interest-group polity's algebra and its sign conditions are in
+\Cref{app:fourgroup} of the Online Appendix.} Even insider
+economic interests can gain from relief. In Iran, listed firms affiliated with the
+conglomerates of the Revolutionary Guard and the Supreme Leader gained more than other
+listed firms following news of progress toward sanctions relief in 2012--2015
+\citep{DracaGarredSticklandWarrinnier2023}. This evidence concerns the economic
+interests of insiders, not the political state variable, which captures their political
+power. Welfare analysis therefore requires its own set of primitives.
+
+\begin{definition}[Interest-group representation]
+\label{def:interest-group-representation}
+An \emph{interest-group representation} of government payoffs consists of finite sets
+of sender groups and target groups, and, for each group $g$, a welfare function
+$W_g(x,a,s)$ and a political weight $\theta_g(x,a,s)$---positive at every feasible state
+and action---such that for every state and action
+\[
+\Us=\sum_{g\in\text{Sender}}\theta_g\,W_g,\qquad \Ut=\sum_{g\in\text{Target}}\theta_g\,W_g .
+\]
+That is, each government's payoff is a weighted sum of the welfare of the groups it
+answers to, and $\theta_g$ is the weight of group $g$.
+\emph{Aggregate welfare} is defined as $W=\sum_g W_g$, with every group weighted
+equally. A \emph{planner} ranks paths of states and actions by discounted aggregate
+welfare, using a discount factor $\beta\in[0,1)$ specific to the planner.
+\end{definition}
+
+Group welfare functions are unrestricted; political weights follow the standard
+tradition of \citet{GrossmanHelpman1994} and \citet{Becker1983}, deriving from each
+group's political pressure. At every state and action,
+\begin{equation}
+\Us+\Ut=W+\sum_g(\theta_g-1)\,W_g .
+\label{eq:welfare-identity}
+\end{equation}
+Thus the sum of the two governments' payoffs deviates from aggregate welfare by the sum
+over groups of each group's welfare multiplied by its political weight minus one. The
+interest-group polity of \citet{Kaempfer1988}---with a pro-sanction group and a
+commercial lobby in the sender country, and a regime-aligned group and an opposition in
+the target country---constitutes an economically structured representation: four sign
+conditions on its coefficients deliver the game's stage assumptions.
+
+\subsection{Indeterminacy of welfare rankings}
+\label{sec:welfare:nonidentification}
+
+% @econ-contract paragraph
+% id: WELFARE_RESCALING
+% role: State that a government's payoff fixes only the weighted sum of its groups' welfare, and prop:welfare-rescaling (rescaling one group leaves the game unchanged and can make the planner rank two paths either way) on any representation.
+% depends_on: WELFARE_OBJECT
+% handoff: Non-identification on the class.
+% exact_ref: tex-label:prop:welfare-rescaling
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{The source of this indeterminacy is simple: a government's payoff pins down only the
+weighted sum of its groups' welfare, not the welfare of each individual group.}\footnote{The proofs of
+\Cref{prop:welfare-rescaling,prop:welfare-nonidentification} are in
+\Cref{app:proofs:welfare} of the Online Appendix.} Multiplying one group's welfare by a
+positive factor while dividing its political weight by the same factor leaves
+government payoffs---and thus the game and its equilibria---unchanged, and changes
+aggregate welfare by exactly the change in that group's welfare
+(\Cref{prop:welfare-rescaling} of the Online Appendix). If a group is strictly better
+off along one path than another by a uniform margin, and welfare is bounded along both
+paths, there exists some scaling factor that makes the planner rank the first path
+strictly above the second at every planner discount factor.
+
+% @econ-contract paragraph
+% id: WELFARE_NONIDENTIFICATION
+% role: State prop:welfare-nonidentification on the class for the myopic benchmark against the forward-looking equilibrium, under the hypotheses of that comparison (Lean round W2, 2026-10-16), explain why both rankings are available, and name the polity and the family as structured witnesses; the four-case version and the partial identification are in sec:discussion:horizons.
+% depends_on: WELFARE_RESCALING
+% handoff: Planner optimality and persistent play.
+% merged_from: WELFARE_FAMILY
+% exact_ref: tex-label:prop:welfare-nonidentification
+% exact_ref: tex-label:prop:family-welfare-nonidentification
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+When applied to the myopic benchmark and the forward-looking equilibrium, this same
+degree of freedom reverses their welfare ranking.
+
+\begin{proposition}[Welfare non-identification on the class]
+\label{prop:welfare-nonidentification}
+Consider an economy in the class satisfying
+Assumptions~\ref{ass:stage-interiority}--\ref{ass:loss-offset}, and for which the
+sender's response at full non-compliance at its constructed value is non-decreasing in
+the state, as under \Cref{ass:dynamic-complementarity}. There exist two interest-group
+representations of its government payoffs---each with two groups per country and
+positive constant weights---such that, at every initial state and every common planner
+discount factor $\beta\in[0,1)$, discounted aggregate welfare ranks the forward-looking
+equilibrium of \Cref{thm:regime-separation} strictly above the myopic benchmark of
+\Cref{prop:myopic-benchmark} under one representation, and strictly below it under the
+other.
+\end{proposition}
+
+\central{Both rankings are feasible because government payoffs impose no restriction on
+how valuable sanctions are to the underlying groups.} The two representations assign to
+sender groups a net gain per unit of sanctions of either sign, and make compliance a
+transfer between groups within the target country. The benchmark involves no
+sanctions, and the forward-looking equilibrium imposes sanctions of at least
+$\underline s$ (the least sanction a myopic sender imposes on a non-compliant target) in every period, so a sufficiently large net gain of either sign orders
+the two welfare flows at every date. Both representations are accounting constructs.
+Two economically grounded examples are provided in \Cref{app:fourgroup} of the Online
+Appendix: in the Kaempfer--Lowenberg polity, two adjacent polities with the same game
+structure reverse the ranking of zero sanctions versus full sanctions; within the
+quadratic--linear family, linear microfoundations reverse the ranking of the four cases
+(\Cref{prop:family-welfare-nonidentification}). This ranking reversal extends to the
+four cases analyzed in \Cref{sec:discussion:horizons}.
+
+\subsection{Optimal policy and persistent sanctions}
+\label{sec:welfare:efficiency}
+\label{sec:welfare:costly}
+
+% @econ-contract paragraph
+% id: WELFARE_ZERO_SANCTION_PLANNER
+% role: State prop:zero-sanction-planner for any bounded welfare flow and any transition with the stated chords, read its condition (the first unit of sanction does not pay socially), and give the polity's instance and its costly persistent equilibrium.
+% depends_on: WELFARE_NONIDENTIFICATION
+% handoff: Persistent play can be socially optimal.
+% merged_from: WELFARE_ONE_POLITY
+% exact_ref: tex-label:prop:zero-sanction-planner
+% exact_ref: tex-label:prop:planner-optimum-lower-bound
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{We next ask when a social planner would impose sanctions at all: whether zero sanctions
+are socially optimal depends on whether the first unit of sanctions yields positive net
+social returns.}\footnote{The proofs of
+\Cref{prop:zero-sanction-planner,prop:planner-efficient-persistence} are in
+\Cref{app:proofs:welfare} of the Online Appendix.}
+
+\begin{proposition}[When zero sanctions are socially optimal]
+\label{prop:zero-sanction-planner}
+Let $W$ be a per-period welfare function bounded over all feasible states and actions,
+and let $\beta\in[0,1)$ be the planner's discount factor. Suppose there exist a
+compliance rule $\hat\alpha$ and constants $\eta$, $B$, $\lambda\ge0$ and $L$ such that,
+for all feasible states $x\le x'$, compliance levels $a$, and sanction levels $s$,
+\begin{enumerate}[label=(\roman*)]
+\item $W(x,a,s)\le W(x,\hat\alpha(x),0)+\eta\,s$: at zero sanctions, the compliance rule
+$\hat\alpha(x)$ maximizes welfare, and sanctions add at most $\eta$ per unit;
+\item $W(x',\hat\alpha(x'),0)-W(x,\hat\alpha(x),0)\le B\,(x'-x)$: at zero sanctions,
+welfare rises with the state at most at rate $B$;
+\item $\F(x',0)-\F(x,0)\le\lambda\,(x'-x)$ and $\F(x,s)-\F(x,0)\le L\,s$: without
+sanctions the state persists at most at rate $\lambda$, and a unit of sanction raises the
+next state by at most $L$;
+\end{enumerate}
+and that
+\[
+\eta+\beta\,\frac{\max\{B,0\}}{1-\beta\lambda}\,L\le0,\qquad \beta\lambda<1 .
+\]
+Then the path with zero sanctions and compliance rule $\hat\alpha$ achieves the
+planner's optimum against every time-dependent plan over both actions, from every
+feasible starting point.
+\end{proposition}
+
+\central{The condition requires that the first unit of sanctions yields non-positive
+net social returns.} The return has two parts. The direct part is $\eta$, the social return of a unit of
+sanctions within the period. The indirect part, $\beta\max\{B,0\}L/(1-\beta\lambda)$, is the
+most that the higher state left by sanctions can add: a unit of sanction raises the next
+state by at most $L$, the state persists at a rate of at most $\lambda$, each unit of state
+adds at most $\max\{B,0\}$ to welfare per period, and the planner discounts at $\beta$.
+Their sum must be non-positive. When welfare under zero sanctions does not increase with the state
+($B\le0$), the condition reduces to $\eta\le0$. The monotonicity of the transition law,
+\textup{(F2)--(F3)}, is the only model property the proposition uses. In the
+Kaempfer--Lowenberg polity, $\eta$ equals the sender groups' net gain from a unit of
+sanctions minus the target's direct cost, and $B$ equals the difference between the
+two target groups' valuations of the state (\Cref{prop:planner-optimum-lower-bound}).
+For one example economy of that polity, equilibrium play supports full sanctions against
+full non-compliance from every starting point, while zero sanctions achieve the planner's
+optimum, and equilibrium welfare falls strictly short of the optimum at every starting
+point and every planner discount factor.
+
+% @econ-contract paragraph
+% id: WELFARE_EFFICIENCY
+% role: Separate a ranking of the four constructed equilibria from planner efficiency, and state prop:planner-efficient-persistence on the class under compliance neutrality: one representation makes the play of every full-defiance equilibrium socially optimal at the Sender's discount factor.
+% depends_on: WELFARE_ZERO_SANCTION_PLANNER
+% handoff: The discussion (what the welfare boundary implies for interpretation).
+% exact_ref: tex-label:prop:planner-efficient-persistence
+% exact_ref: tex-label:cor:planner-efficient-boundary
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\central{Persistence and efficiency are distinct questions.} A welfare ranking of
+constructed equilibria compares equilibrium trajectories; efficiency compares equilibrium play to every feasible path.
+
+\begin{proposition}[Persistent play can be socially optimal]
+\label{prop:planner-efficient-persistence}
+Consider an economy in the class satisfying compliance neutrality
+\eqref{eq:zero-sanction-neutrality}. There exists an interest-group
+representation---with two groups per country and positive constant weights---whose
+aggregate welfare coincides with the sender's payoff $\Us$, such that for every
+equilibrium in $\mathcal E$ with full target non-compliance, at the planner discount
+factor $\beta_S$, equilibrium play achieves the planner's optimum against every
+time-dependent plan over both actions, from every feasible starting point.
+\end{proposition}
+
+Compliance reduces the sender's marginal return to sanctioning, and under compliance
+neutrality it has no value to the sender in the absence of sanctions, so compliance
+never increases the sender's payoff. A planner who evaluates welfare using the sender's
+payoff at the sender's discount factor therefore faces the same problem as the sender
+against full non-compliance, and equilibrium play solves it. Under the entrenchment
+condition and a sender response at full non-compliance that is non-decreasing in the
+state, the forward-looking equilibrium of \Cref{thm:regime-separation} satisfies this
+property. For the quadratic--linear family, the corresponding result for specifications without
+state--sanction cross terms admits a witness with linear microfoundations (\Cref{cor:planner-efficient-boundary}). The
+discussion first solves the cases in which only one government looks forward, and then
+asks whether a persistent sanction is permanent.

@@ -1,0 +1,68 @@
+\section{Numerical example economies}
+\label{app:numerical-examples}
+
+This section collects the two numerical economies the paper uses. The
+partial-adjustment example is a member of the quadratic--linear family at which the
+four-case theorem holds in all four cases, together with every coefficient vector near
+it. The dual-basin economy lies outside the class of the main text; at it one
+equilibrium has both a high and a low basin, and the initial state selects between
+them. The general results these economies illustrate are in Part~I; the parametric
+families they belong to are in \Cref{app:witness}.
+
+\subsection{The partial-adjustment example}
+\label{sec:moved-main-2026-10-15}
+
+The main text now states only parametric examples. The numerical example used in
+this appendix as \emph{the partial-adjustment example} is the following member of
+the quadratic--linear family \eqref{eq:ql-family} with the partial-adjustment law
+\eqref{eq:affine}.
+The \emph{partial-adjustment example} has $q=k=3$, $u_0=w=\ell=1$,
+$r=\tfrac12$, $c=4$, $n=0$ and $v=30$, transition $\F(x,s)=(x+s)/2$ and both
+discount factors $\tfrac12$. Every coefficient
+vector within $1/20$ of it, with $n\ge0$ and the same transition and discount
+factors, is also an economy in the class, and there \Cref{thm:four-cells} holds in all four cases.
+
+\subsection{The dual-basin economy}
+\label{app:dual-basin-economy}
+
+\central{The main text presented this economy until 2026-10-15; it now states
+only parametric examples, and the economy's definition and its two-sided
+statement are here.} The \emph{dual-basin economy} has payoffs
+\[
+\Us(x,a,s)=a-\tfrac12s^2+s\bigl(2x-\tfrac12-2a\bigr),\qquad
+\Ut(x,a,s)=\tfrac{19}{10}x-\tfrac15a-\tfrac{9}{10}s,
+\]
+transition $\F(x,s)=(9x+s)/10$, the partial-adjustment law at speed $1/10$, and
+discount factors $\beta_T=9/10$ and $\beta_S=1/2$. The sender gains from
+compliance and pays a convex cost of sanctioning. The term $2xs$ is its
+government's political return to sanctioning an entrenched adversary, and
+compliance lowers its marginal value of sanctioning. The target incumbent values
+the political state at rate $19/10$, and compliance and sanctions both cost it.
+Because the term $2xs$ makes the sender's marginal return to sanctioning rise with
+the state, its best response in the one-period game against full non-compliance is no
+sanction at every state up to $1/4$ and the full sanction from $3/4$ up. Its
+marginal return to sanctioning a non-compliant target is negative at low states, so the
+economy lies outside the class of the main text.
+
+\begin{proposition}[Both basins at one equilibrium]
+\label{prop:two-sided-one-equilibrium}
+At the dual-basin economy there is an equilibrium in $\mathcal E$ such that, from
+every initial state $x_0\in[0,1]$: a temporary sanction shock at full sanctions,
+of length $\widehat N_{\F}(19/20)$, is followed by permanent residence in
+$[19/20,1]$ with the realized sanction equal to $1$ at every later date; and a
+temporary suspension of sanctions of length $\widehat N^{R}_{\F}(1/10)$ is followed by
+permanent residence in $[0,1/10]$ with the realized sanction equal to $0$ at
+every later date. Here $\widehat N^{R}_{\F}(1/10)$ is $9/10$ divided by the
+smallest one-period fall $x-\F(x,0)$ over $x\in[1/10,1]$, rounded up.
+\end{proposition}
+
+The two lengths are $190$ and $90$ periods; they are upper bounds on what entry
+needs, valid from every start. The state under full sanctions from $x_0=0$
+enters the high basin at $t=29$, and the state under zero sanctions from $x_0=1$
+enters the low basin at $t=22$. In the equilibrium the target's value rises with the state at rate $10$,
+so a sanction's pain $9/10$ exactly offsets the discounted value of the
+entrenchment it builds, $\beta_T\cdot\tfrac1{10}\cdot10$: the target's objective
+does not depend on the sanction, and it maintains non-compliance in both basins.
+\Cref{sec:mechanism:bistability} discusses the two basins, and the formalization
+map lists the declarations that prove the statement.
+

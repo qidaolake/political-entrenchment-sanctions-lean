@@ -1,0 +1,267 @@
+\section{The two-channel decomposition and the path of the state}
+\label{app:decomposition-path}
+
+This section holds three results that the main text states in words. The forward-looking
+gap splits exactly into the target's part and the sender's part
+(Section~\ref{sec:results:wedge}); when initial conditions matter, the limiting sanction is
+positive (Section~\ref{sec:results:main}); and a sanction rule that does not fall with the
+state produces no conflict cycle (Section~\ref{sec:discussion:path}).
+
+\subsection{The path of the state under a sanction rule}
+\label{app:state-path}
+
+\paragraph{Dependence on initial conditions implies a positive limiting sanction.}
+\begin{proposition}[Limit dependence and the limiting sanction]
+\label{prop:limit-dependence}
+Let the transition satisfy zero-sanction descent, $\F(x,0)<x$ for every
+$x\in(0,1]$ (the erosion half of strict adjustment), and let $R$ be a
+continuous feasible sanction rule. If the natural paths of $R$ from two
+starts converge to two different limits, then from at least one of them the
+limiting sanction $R(x_\infty)$ is strictly positive: a limit state $x_\infty$
+of a path under $R$ is a fixed point of $x\mapsto\F(x,R(x))$, and a fixed point
+with $R(x_\infty)=0$ can only be $x_\infty=0$
+(\path{rulePathF_limit_isFixed}, \path{exists_pos_limit_sanction_of_limit_dependence},
+\path{Theory/LockIn/LimitDependence.lean}). The converse fails: at the affine
+member of the quadratic--linear family under the lifting condition the non-compliance equilibrium's closed loop has one
+globally stable steady state with a positive sanction
+(\path{placableAffine_unique_attracting_state}).
+\end{proposition}
+
+\paragraph{A non-decreasing rule produces no conflict cycle.}
+\begin{proposition}[No conflict cycles under a non-decreasing rule]
+\label{prop:no-cycles}
+Let $R$ be a sanction rule that maps $[0,1]$ into itself and is
+non-decreasing in the state there, and let the state follow
+$x_{t+1}=\F(x_t,R(x_t))$ from $x_0\in[0,1]$, with sanctions $s_t=R(x_t)$. Then:
+\begin{enumerate}[label=(\roman*)]
+\item the state path and the sanction path are monotone in $t$, in the same
+direction, and both converge;
+\item if $x_{n+k}=x_n$ for some $n\ge0$ and some $k\ge1$, then $x_{n+j}=x_n$ for
+every $j\ge0$; in particular a periodic path is constant.
+\end{enumerate}
+Both conclusions hold in every equilibrium in $\mathcal E$ whose sanction rule is
+non-decreasing in the state, and in the constructed equilibrium of each of the four cases of
+\Cref{thm:four-cells} at the hypotheses under which it is constructed, that of case
+$11$ under the increasing-differences condition \eqref{eq:rally-margin} or with a non-decreasing
+response.
+\end{proposition}
+
+\begin{proof}
+By \textup{(F2)}, \textup{(F3)} and the monotonicity of $R$, the closed loop
+$G(y)=\F(y,R(y))$ is non-decreasing on $[0,1]$ (\path{ruleStepF_le_of_le}). If
+$x_1\ge x_0$, induction gives $x_{t+1}=G(x_t)\ge G(x_{t-1})=x_t$ for every $t$,
+and if $x_1\le x_0$ the reverse; the sanctions $R(x_t)$ move in the same
+direction (\path{rulePathF_monotone_or_antitone},
+\path{rulePathF_ruleSanctionsF_monotone_or_antitone}). Both sequences are
+bounded, so both converge, with no continuity of $R$
+(\path{rulePathF_ruleSanctionsF_tendsto}); when $R$ is continuous the limit state
+is a rest point of $G$, as in Step~7 of the proof of
+\Cref{thm:regime-separation}. For (ii), a monotone path with $x_{n+k}=x_n$ and
+$k\ge1$ has $x_{n+1}=x_n$, so $x_n$ is a rest point of $G$ and the path stays
+there (\path{rulePathF_const_of_return}, \path{rulePathF_periodic_const}). The
+equilibrium form takes $R$ to be the sanction rule of the equilibrium, whose values lie in $[0,1]$
+(\path{equilibrium_no_cycles}). In the four cases the rule is zero in $00$ and
+$01$ (\path{myopicRule_eq_zero}, \path{senderOnlyRule_eq_zero'}), the myopic
+sanction $\sigM(x,0)$ in $10$, non-decreasing by \textup{(S7)}
+(\path{targetOnlyRule_monotoneOn}), and the dynamic best response at full non-compliance in $11$,
+non-decreasing under the increasing-differences condition (\path{responsePath_monotoneOn_of_margin});
+the four statements are \path{myopic_no_cycles}, \path{senderOnly_no_cycles},
+\path{targetOnly_no_cycles} and \path{dynamic_no_cycles}
+(\path{dynamicOf_no_cycles} with a non-decreasing response). General in $\F$.
+\end{proof}
+
+Along deterministic equilibrium paths in this model, a conflict cycle therefore
+needs a sanction rule that falls with the state somewhere. No equilibrium in the
+paper is shown to have one: the dual-basin equilibrium's rule is shown to be
+non-decreasing only on its two basins, and \Cref{prop:identification} does not
+cover a falling rule. The cycles of \citet{AcemogluWolitzky2014} rest on
+misperceived actions and limited memory, which this model does not have.
+
+\subsection{The forward-looking gap splits into two components}
+\label{app:two-channel}
+
+The dynamic--myopic comparison is described in the text as two forces: the target
+incumbent's own valuation of the political state its compliance leads to, and the
+switch from the sender's myopic best response to its dynamic best response. That
+description is exact, and the ordering condition the argument consumes is weaker
+than the one stated in \Cref{sec:results}. Both points are recorded here.
+
+\paragraph{Three objectives and two components.}
+Fix a feasible state $x$ and a target continuation value $\Vt$, and write, as
+functions of compliance $a\in[0,1]$,
+\begin{align}
+J^{MM}_x(a)&:=\Ut\bigl(x,a,\sigM(x,a)\bigr),
+\label{eq:JMM}\\
+J^{TM}_x(a)&:=\Ut\bigl(x,a,\sigM(x,a)\bigr)
+   +\beta_T\,\Vt\bigl(\F(x,\sigM(x,a))\bigr),
+\label{eq:JTM}\\
+J^{FF}_x(a)&:=\Ut\bigl(x,a,\sigDynTop_{\Vs}(x,a)\bigr)
+   +\beta_T\,\Vt\bigl(\F(x,\sigDynTop_{\Vs}(x,a))\bigr).
+\label{eq:JFF}
+\end{align}
+$J^{MM}$ is the objective the myopic target maximizes and $J^{FF}$ is the
+integrand of the target Bellman equation \eqref{eq:T-bellman}, so both are
+objects the equilibrium already carries. The middle object $J^{TM}$ --- a target
+that values continuation but faces the \emph{myopic} sender --- is a device. It
+is not a third equilibrium concept, and no maximizer of it is constructed
+anywhere in what follows.
+
+The total forward-looking gap is $\Delta_x:=J^{FF}_x-J^{MM}_x$. Its two
+components are the two steps between the three objectives:
+\begin{equation}
+C_x:=J^{TM}_x-J^{MM}_x,
+\qquad
+S_x:=J^{FF}_x-J^{TM}_x.
+\label{eq:two-channels}
+\end{equation}
+$C_x$ is the \emph{target-continuation} component --- what the incumbent's own
+political-survival motive adds, holding the sender's behavior fixed --- and
+$S_x$ is the \emph{sender-response-switch} component, what changes for the target
+purely because the sender it faces is forward-looking.
+
+\begin{proposition}[Exact two-component decomposition]
+\label{prop:two-channel}
+At every feasible $x$ and every $a\in[0,1]$,
+\begin{equation}
+\Delta_x(a)=C_x(a)+S_x(a),
+\label{eq:decomposition}
+\end{equation}
+with no residual and no cross term. Moreover
+$C_x(a)=\beta_T\,\Vt\bigl(\F(x,\sigM(x,a))\bigr)$, so the target-continuation
+component is $\beta_T$ times the target's continuation value at the successor state, which the separated-primitive
+route signs directly.
+\end{proposition}
+
+\eqref{eq:decomposition} is an identity, not an approximation; the content is
+that \eqref{eq:JMM}--\eqref{eq:JFF} are the right three objectives, and that the
+sender response is the only thing that moves between $J^{TM}$ and $J^{FF}$.
+
+The split earns its place because the two components have different logical
+status. $C_x$ is signed under three conditions stated separately from the
+baseline transition primitives: compliance placates, sanctions pass through
+strictly to the successor state, and the target's continuation value is
+increasing on the reached successors. Only the first is close to baseline; the
+transition primitives give weak monotonicity in the sanction rather than strict,
+and an increasing target value is not a baseline property at all. $S_x$ is not
+signed even under those. Both sender best responses falling in compliance, the dynamic one lying
+above the stage one, and the target's payoff rising in the sanction together do
+\emph{not} determine whether $S_x$ rises or falls. The component reads the
+target's payoff \emph{difference} between the two responses, which turns on the
+\emph{gap} between them and not on their level alone --- and that gap may widen
+with compliance. Any route to the
+compliance ordering must therefore either sign $S_x$ separately or dominate it.
+The switch from the stage to the dynamic best response of the sender thus has an
+\emph{ambiguous} effect on the target's compliance incentive under the baseline;
+that is a scope delimiter, not a claim that the intended ordering typically
+fails.
+
+\paragraph{Only the net movement is needed.}
+Asking each component to behave separately is stronger than the ordering requires.
+Because \eqref{eq:decomposition} is exact, the comparison never sees the components
+apart --- only their sum. The exact condition is that across any rise in
+compliance from $a_L$ to $a_H$,
+\begin{equation}
+S_x(a_H)-S_x(a_L)\;<\;C_x(a_L)-C_x(a_H),
+\label{eq:net-channel}
+\end{equation}
+which permits $S_x$ to \emph{rise} --- to work against the ordering --- provided
+the target-continuation component gives up strictly more. Condition
+\eqref{eq:net-channel} is \emph{equivalent} to a strictly decreasing $\Delta_x$,
+so it is an accounting restatement of the gap condition rather than a new
+assumption: the route was always net, and reading it component by component conceals
+the trade-off. \citet{QuahStrulovici2012} is why a component-by-component sign
+argument is stronger than a condition on the aggregate --- single crossing is not
+preserved by addition except under stringent conditions --- but
+\eqref{eq:net-channel} is not theirs; it is a corollary of the exact
+decomposition above.
+
+Two boundaries travel with it, and both are one-directional. The condition is
+\emph{cardinal}, a strict inequality between differences, and it is therefore
+\emph{strictly stronger} than the ordinal relation \eqref{eq:sc-lower} below:
+\eqref{eq:net-channel} implies \eqref{eq:sc-lower}, and the converse fails.
+Single crossing survives an arbitrary strictly increasing transformation of
+either objective and a difference condition does not, so the two are ordered
+rather than incomparable --- on $[0,1]$ the pair $f(a)=a^{3}$, $g(a)=a$ stands in
+the ordinal relation while $f-g$ rises over $[9/10,1]$. And the sufficient route
+in which the switch gap weakly falls while the target gap strictly falls is
+strictly stronger again than \eqref{eq:net-channel}, since it forbids exactly the
+adverse switch the net condition tolerates. The two-leg \emph{ordinal} route below is a
+different sufficient condition again, constraining each leg separately against
+the intermediate objective rather than the aggregate; we do not claim an
+implication either way between it and \eqref{eq:net-channel}.
+
+\paragraph{The ordering condition is ordinal.}
+\Cref{sec:results} states the comparison under a strictly decreasing total
+gap. That is sufficient but stronger than necessary. Say that $f$ is
+\emph{strictly single-crossing lower} than $g$ on $A$ when, for all $a_L<a_H$ in
+$A$,
+\begin{equation}
+f(a_L)\le f(a_H)
+\quad\Longrightarrow\quad
+g(a_L)<g(a_H).
+\label{eq:sc-lower}
+\end{equation}
+
+\begin{proposition}[Ordinal form of the compliance ordering]
+\label{prop:ordinal-ordering}
+If $J^{FF}_x$ is strictly single-crossing lower than $J^{MM}_x$ on $[0,1]$, then
+every maximizer of $J^{FF}_x$ lies weakly below every maximizer of $J^{MM}_x$. A
+strictly decreasing $\Delta_x$ implies \eqref{eq:sc-lower}, so the gap
+condition is one route to it. Relation \eqref{eq:sc-lower} is transitive:
+if $J^{FF}_x$ is strictly single-crossing lower than $J^{TM}_x$, and $J^{TM}_x$
+than $J^{MM}_x$, the conclusion follows for the pair $(J^{FF}_x,J^{MM}_x)$.
+\end{proposition}
+
+No continuity, concavity, compactness, or uniqueness enters, and the conclusion
+is about the argmax \emph{correspondences} rather than about a chosen selection
+from either. The transitivity clause is what makes \eqref{eq:decomposition}
+usable rather than merely descriptive: the two components can be discharged one at
+a time against $J^{TM}_x$, with different tools and at different strengths,
+without a maximizer of $J^{TM}_x$ ever being exhibited.
+
+The relations here are, one for one, those of \citet{AmirRietzke2025}: their
+Definition~1 is the weak form below, their identity-difference order is the
+cardinal gap condition, their Lemma~2(ii) is the mixed composition, and the
+auxiliary problem they insert between two objectives is $J^{TM}_x$; we cite
+them for the method. Their Theorem~1(i) also supplies a converse on a
+one-dimensional choice set: the weak relation holds if and only if the argmax
+sets are strong-set ordered for every ordered pair of feasible sets, so the
+whole content sits on two-point sets
+(\path{sCLowerOn_iff_pairwise_meet_join}); the weak relation is not one
+sufficient condition among others but what the strong-set conclusion is.
+
+\paragraph{Only one leg needs to be strict.}
+Asking both legs for \eqref{eq:sc-lower} demands the most from the leg that can
+supply the least, since the sender-response-switch component's sign is not fixed by
+the primitives at all. Write $f\preceq_{SC}g$ for the two-clause \emph{weak}
+form: a weak rise in $f$ forces a weak rise in $g$, and a strict rise forces a
+strict rise. Then
+\[
+J^{FF}_x\preceq_{SC}J^{TM}_x,
+\qquad
+J^{TM}_x\prec_{SC}J^{MM}_x
+\]
+already gives $J^{FF}_x\prec_{SC}J^{MM}_x$, so the conclusion of
+\Cref{prop:ordinal-ordering} still orders \emph{every} pair of maximizers. The
+switch component is asked only not to reverse the comparison; the target's own
+continuation motive carries the strictness. The mirror composition --- strict
+switch, weak target --- is available and is not the version we recommend.
+
+Two cautions travel with the weak relation. On its own it orders the argmax
+\emph{correspondences} in the strong set order, and hence their extremal
+elements, but not an arbitrary selection from each: two constant objectives
+satisfy it with every action maximizing both. That is precisely why one leg must
+remain strict. And the weak relation is not the weakest hypothesis delivering the
+conclusion --- two argmax sets can be ordered while it fails away from the
+maximizers; its value is that it is selection-robust and does not depend on where
+the unknown maximizers sit.
+
+\paragraph{The step for the direct effect of the sender's foresight is local.}
+The comparison at a fixed target action, $\sigM(x,a)\le\sigDynTop_{\Vs}(x,a)$, does not need
+$\Vs$ monotone at every state. It needs only that the sender's continuation term,
+read at the current state as a function of the sanction, does not fall over
+feasible sanctions; global monotonicity of $\Vs$ is one way of supplying that.
+Weaker still, it suffices that the continuation term not prefer the
+dynamic best response to the myopic best response wherever the former lies
+below the latter --- a condition on the two responses alone. Each of these is a weakening of
+its predecessor, so nothing that discharged the earlier form is lost.

@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+
+% =====================================================================
+%  ROOT 2 of 4 --- THE APPENDIX REFERENCE DOCUMENT
+%
+%  Compiles the shared appendix index (sanctions_appendix_body.tex), whose
+%  ordered inputs live in appendix_sections/, as a standalone PDF.  The same index is inlined by the manuscript in
+%  COMBINED mode, so the two artefacts can never diverge in content.
+%
+%  Numbering is appendix-local (A.1, B.2, ...), so nothing here collides
+%  with the manuscript's Theorem 1..N / equation (1)..(N).  References
+%  that point back into the manuscript ("Theorem 4", "Section 3",
+%  "(12)") are resolved from sanctions_jet_draft.aux through xr-hyper.
+% =====================================================================
+
+\input{sanctions_preamble}
+
+\externaldocument[][nocite]{sanctions_jet_draft}
+\externaldocument[][nocite]{sanctions_formal_supplement}
+
+% Appendix-local numbering.
+\numberwithin{equation}{section}
+\numberwithin{theorem}{section}
+
+\title{Online Appendix to\\
+       \emph{Political Entrenchment and the Persistence of Economic Sanctions}}
+\author{Xiaofeng Gong\thanks{Corresponding author. Department of
+Economics, University of Connecticut, 365 Fairfield Way, Unit 1063,
+Storrs, CT 06269-1063, USA. Email:
+\texttt{xiaofeng.gong@uconn.edu}. Telephone: +1 857-384-2289.}
+\and Yuechuan Zhao\thanks{National Academy of Economic Strategy, Chinese Academy of
+Social Sciences, Beijing, China. Email: \texttt{zhaoyuechuan@ucass.edu.cn}.}
+\and Chunping Zhong\thanks{National Academy of Economic Strategy, Chinese Academy of
+Social Sciences, Beijing, China. Email: \texttt{cpzenith@163.com}.}}
+\date{October 2026}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+This appendix accompanies the manuscript \emph{Political Entrenchment and the
+Persistence of Economic Sanctions}. Part~I holds the general results, which hold for
+abstract payoffs and transitions; Part~II holds the parametric families and the
+numerical example economies; Part~III holds the literature. In Parts~I and~II, what
+the main text needs comes first and derivative material follows. Part~I opens with maps
+of how the results are proved (\Cref{app:proof-maps}). The Lean~4 development and the
+paper sources are public at \url{https://github.com/qidaolake/political-entrenchment-sanctions-lean}.  Results and equations are numbered locally (Lemma~A.1,
+equation~(B.2), \dots).  Cross-references of the form ``Theorem~4'',
+``Section~3'', or ``(12)'' point into the manuscript, not into this
+document.
+
+\medskip
+
+\input{sanctions_appendix_body}
+
+\bibliographystyle{econ-aea}
+\bibliography{annote}
+
+\end{document}

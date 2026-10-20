@@ -1,0 +1,73 @@
+/.lake
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+
+# Derived paper builds. The two submission artefacts
+# (sanctions_jet_draft.pdf, sanctions_jet_appendix.pdf) ARE tracked; these
+# two are not -- the combined PDF is just the split pair bound together,
+# and the notes PDF is internal. Rebuild both with scripts/Build-Paper.ps1.
+sanctions_jet_combined.pdf
+sanctions_jet_notes.pdf
+
+# Derived plain-text / Word exports of the paper. NEVER commit or circulate
+# these: on 2026-07-28 an external reviewer read a .txt export frozen three
+# days earlier and faulted the paper for an omission the live sections had
+# already fixed. Ship the PDF built by scripts/Build-Paper.ps1 instead.
+# (paper/sanctions_highlights.txt is AUTHORED, not derived, and stays tracked.)
+sanctions_jet_draft.txt
+sanctions_jet_appendix.txt
+sanctions_jet_combined.txt
+sanctions_jet_draft.docx
+
+# Local zip
+Sanctions.zip
+/SanctionPublicChoiceLean.zip
+/dist/
+SanctionPublicChoiceLean-core*.zip
+
+# Obsolete root-level paper copies. Authoritative PDFs live in paper/.
+/sanctions_jet_*.pdf
+
+# Audit-zip backups — see docs/AUDIT-BACKUP-CLEANUP.md.
+# Per the 2026-05-29 rule, all rolled-over audit zips live under
+# backups/. This folder is local-only and never committed or shipped
+# in the audit zip itself.
+/backups/
+
+# Scratch work belongs outside the repository or in docs/archive/ when retained.
+/tmp/
+
+# Local tool state (CodeGraph index, editor config)
+/.codegraph/
+/.cursor/
+
+# Python scratch bytecode
+__pycache__/
+*.pyc
+
+# --- Reference libraries: LOCAL ONLY, never distributed --------------------
+# BookRefer/ and PaperRefer/ hold third-party copyrighted material: complete
+# textbooks (Aliprantis-Border, Puterman, Stokey-Lucas, Topkis,
+# Aubin-Frankowska), ~120 published-paper PDFs, and arXiv source bundles.
+# They are research infrastructure (CLAUDE.md Rule 6 directs work to them) and
+# they must NOT be redistributed: publishing them would be infringement, and
+# the submission artifact is deposited under the author's name.
+#
+# Untracked 2026-08-09. The files stay on disk for local work; the shipped
+# package cites them through docs/REFERENCES.md instead, which carries the
+# bibliographic pointers with DOIs and no copyrighted content.
+/BookRefer/
+/PaperRefer/
+
+# Legacy paper hand-off bundle name; no script regenerates it since the
+# paper/ split (kept ignored)
+paper.zip

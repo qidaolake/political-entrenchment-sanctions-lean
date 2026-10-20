@@ -1,0 +1,211 @@
+\documentclass[11pt]{article}
+
+% =====================================================================
+%  ROOT 1 of 4 --- THE SUBMISSION MANUSCRIPT
+%
+%  Sibling documents:
+%     sanctions_jet_appendix.tex   appendix reference document
+%     sanctions_jet_notes.tex      staging / other information (not submitted)
+%     sanctions_formal_supplement.tex  online formal-verification supplement
+%
+%  Two build modes (see scripts/Build-Paper.ps1):
+%
+%    SPLIT   (default)  the appendix is a separate PDF; cross-references
+%                       into it are resolved through xr-hyper.
+%    COMBINED           define \COMBINEDAPPENDIX and the appendix body is
+%                       inlined, reproducing a single self-contained PDF
+%                       with one unified bibliography:
+%                         pdflatex "\def\COMBINEDAPPENDIX{}\input{sanctions_jet_draft}"
+%
+%  New paper material does NOT get written here first.  It lands in an
+%  appropriate file under note_sections/ and is promoted only on the author's decision
+%  (project rule: CLAUDE.md Rule 21).
+% =====================================================================
+
+\input{sanctions_preamble}
+
+% Resolve \Cref{app:...} etc. against the standalone appendix document.
+% In COMBINED mode the appendix labels are defined locally, so importing
+% them again would collide -- hence the guard.
+\ifdefined\COMBINEDAPPENDIX\else
+  \externaldocument[][nocite]{sanctions_jet_appendix}
+\fi
+\externaldocument[][nocite]{sanctions_formal_supplement}
+
+\title{Political Entrenchment and the Persistence of Economic Sanctions}
+% Corresponding author. Add ORCID iD before submission
+% (Elsevier Editorial Manager requires both for the corresponding author).
+\author{Xiaofeng Gong\thanks{Corresponding author. Department of
+Economics, University of Connecticut, 365 Fairfield Way, Unit 1063,
+Storrs, CT 06269-1063, USA. Email:
+\texttt{xiaofeng.gong@uconn.edu}. Telephone: +1 857-384-2289.}
+\and Yuechuan Zhao\thanks{National Academy of Economic Strategy, Chinese Academy of
+Social Sciences, Beijing, China. Email: \texttt{zhaoyuechuan@ucass.edu.cn}.}
+\and Chunping Zhong\thanks{National Academy of Economic Strategy, Chinese Academy of
+Social Sciences, Beijing, China. Email: \texttt{cpzenith@163.com}.}}
+\date{October 2026}
+
+% @econ-contract master
+% id: PAPER_MASTER_PLAN
+% central_question: When sanctions move a political state that both governments value, can forward-looking incentives make sanctions persist where myopic ones would end them, and what does each government's foresight contribute?
+% provisional_answer: At common non-discount primitives on the stated class, the myopic benchmark ends sanctions through relief while forward-looking governments sustain them under defiance with a positive long-run state; the Target's horizon decides accommodation against defiance and the Sender's horizon decides the compliance that relief buys or the sanction sustained under defiance; the defiance channel extends beyond the displayed profiles at stated quantifiers, and government incentives do not identify the social ranking.
+% claim_ceiling: The myopic benchmark and the constructed forward-looking equilibrium, and the four cases in the discussion; existence inheritance under monotonicity hypotheses; a value bound in every top-selector equilibrium; uniqueness only in the nondecreasing-rule class; exactness only on the tight collapse class; welfare non-identification on the class by two representations, a sufficient condition for planner-optimal zero sanctions, and one representation under which full-defiance play is planner-optimal; no global uniqueness, complete classification, empirical or policy claim.
+% principal_result_chain: Equilibrium environment and the myopic benchmark; the forward-looking equilibrium against it, with the Target's part and the Sender's wedge and same-policy dominance; lock-in; scope of the defiance channel (patience, security value, identification, certificates, exact collapse); welfare boundary; persistence is not hysteresis.
+% reader_order: Abstract; Introduction (with literature); Model; Equilibrium and comparative statics; Welfare; Discussion; Conclusion; Appendix.
+% build_order: Appendix intake; Model; Equilibrium and comparative statics; Welfare; Discussion; Introduction; Abstract; Conclusion.
+% source_layout: SECTION_OWNED
+% canonical_entrypoint: sanctions_jet_draft.tex
+% status: HUMAN_CONFIRMED
+% human_confirmed_at: 2026-10-01
+% decision_ref: suggestions/2026-10-01-manuscript-rebuild/01_STRUCTURE_PROPOSAL.md#author-decisions-recorded
+% confirmation_scope: Question, answer, claim ceiling, result chain, section order (D1), main-text propositions (D2, D5), headline pinning (D4).
+% reopen_if: The question, the claim ceiling, the order of the principal moves, or the section layout changes.
+% @end-econ-contract
+
+\begin{document}
+
+\maketitle
+
+% @econ-contract paragraph
+% id: ABSTRACT_SUMMARY
+% role: State the model and its mechanism in the manner of Acemoglu and coauthors (N185), then the claims at their proved scope (the roles of the two governments' patience in the constructed equilibria, lock-in, welfare beyond the example economy, the Lean check), with no manuscript notation.
+% amended_at: 2026-10-11 (fewer claims, lock-in added; the author: "cut down the number of the things on the abstract"); 2026-10-13 (argument plan: the problem first, "we show", "in one equilibrium", "beyond the example economy"; same claims); 2026-10-19 (coauthor wording review: wording of the coauthor's line-by-line revision applied where not wrong; sender/target in lower case; non-compliance for defiance; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#coauthor-wording-review-2026-10-19); 2026-10-20 (N185 promoted: "We develop a dynamic model", the environment in plain sentences, the claims and their scope words unchanged, the Lean 4 sentence kept on the author's "maybe still add the usage of lean 4"; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#acemoglu-comparison-and-model-exposition-2026-10-20)
+% depends_on: PAPER_MASTER_PLAN
+% handoff: The introduction.
+% exact_ref: tex-label:sec:results
+% support_status: VERIFIED
+% status: PROPOSED
+% @end-econ-contract
+\begin{abstract}
+\central{We develop a dynamic model in which economic sanctions shift the balance of
+political power within the target country.} Each period the target chooses how far
+to comply and the sender responds with sanctions. Sanctions raise political
+entrenchment, the de facto power of target-side constituencies aligned with continued
+confrontation, and both governments value this state. For a general class of economies, the
+model provides conditions under which myopia makes sanctions unravel: the target
+adjusts compliance just enough to induce sanction removal. When both governments are
+forward-looking, the target maintains non-compliance and sanctions persist
+indefinitely, even under complete information. The target's patience determines
+whether relief or non-compliance prevails, while a forward-looking sender raises the
+steady-state level of political entrenchment. Under stated conditions, a sufficiently
+long temporary sanction shock locks in persistent sanctions. The game alone does not
+pin down a welfare ranking. The core results are formally verified via machine-checked
+proofs in Lean~4.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords:} economic sanctions; persistence and
+hysteresis; dynamic political economy; feedback Stackelberg equilibrium;
+political entrenchment; path dependence.
+
+\smallskip
+\noindent\textbf{JEL classification:} C73; D72; F51; C61; D74.
+
+% Elsevier Highlights are submitted separately and are intentionally
+% omitted from the manuscript PDF.
+
+% Section files follow the thin-root layout used by the reference project.
+% @econ-contract include
+% id: INCLUDE_INTRO
+% file: main_sections/01_introduction.tex
+% section_contract: INTRO_FRAME
+% role: Pose the question and the experiment, state the three contributions at proved strength, and place them in the literature.
+% question_answered: What question, how, and with what claim ceiling?
+% required_inputs: All result sections (written last).
+% output_handoff: Question, answer, ceiling and roadmap.
+% claim_ceiling: The master plan's ceiling.
+% status: HUMAN_CONFIRMED
+% @end-econ-contract
+\input{main_sections/01_introduction}
+% @econ-contract include
+% id: INCLUDE_MODEL
+% file: main_sections/02_model.tex
+% section_contract: MODEL_ENVIRONMENT
+% role: Define the complete environment, the general class, the myopic benchmark with its one result, and the forward-looking equilibrium concept.
+% question_answered: Who acts, in what order, with what information, objectives and restrictions?
+% required_inputs: The accepted paper question.
+% output_handoff: Objects, conditions, the benchmark and the solution concept for Section 3.
+% claim_ceiling: Definitions and the myopic benchmark only.
+% status: HUMAN_CONFIRMED
+% @end-econ-contract
+\input{main_sections/02_model}
+% @econ-contract include
+% id: INCLUDE_RESULTS
+% file: main_sections/03_equilibrium_and_comparative_statics.tex
+% section_contract: RESULTS_HORIZONS
+% role: Compare forward-looking governments with the myopic benchmark, split the difference into the two governments' parts, and say how far the defiance channel reaches, each result at its own quantifier.
+% question_answered: What does foresight add to the benchmark, what does each government's incentive contribute, and what extends beyond the constructions?
+% required_inputs: MODEL_ENVIRONMENT.
+% output_handoff: Proved horizon roles and their scope, for the welfare and discussion sections.
+% claim_ceiling: As in the master plan; no global uniqueness or complete classification.
+% status: HUMAN_CONFIRMED
+% @end-econ-contract
+\input{main_sections/03_equilibrium_and_comparative_statics}
+% @econ-contract include
+% id: INCLUDE_WELFARE
+% file: main_sections/04_welfare.tex
+% section_contract: WELFARE_BOUNDARY
+% role: Separate the political ranking of the constructed regimes from a social ranking.
+% question_answered: Do government incentives or a persistent equilibrium identify social welfare?
+% required_inputs: RESULTS_HORIZONS.
+% output_handoff: The welfare boundary for the discussion and the conclusion.
+% claim_ceiling: Non-identification on the class; a sufficient planner condition; planner-optimal persistent play under one representation; one costly polity.
+% status: HUMAN_CONFIRMED
+% @end-econ-contract
+\input{main_sections/04_welfare}
+% @econ-contract include
+% id: INCLUDE_DISCUSSION
+% file: main_sections/05_discussion.tex
+% section_contract: DISCUSSION_INTERPRETATION
+% role: Solve the cases with one government forward-looking (the four-case theorem, moved from Section 3), then interpret persistence, relief, the case material and the limits of the results; no new results.
+% question_answered: What do the results imply, and what do they not establish?
+% required_inputs: RESULTS_HORIZONS, WELFARE_BOUNDARY, app:persistence.
+% output_handoff: The interpretation boundary for the conclusion.
+% claim_ceiling: The four-case theorem and summaries at stated scope; case material as motivation only.
+% status: HUMAN_CONFIRMED
+% @end-econ-contract
+\input{main_sections/05_discussion}
+% @econ-contract include
+% id: INCLUDE_CONCLUSION
+% file: main_sections/06_conclusion.tex
+% section_contract: CONCLUSION_ANSWER
+% role: Answer the question at its proved scope and state its limits.
+% question_answered: What was established, and where does it stop?
+% required_inputs: All result sections.
+% output_handoff: None.
+% claim_ceiling: The master plan's ceiling; no policy prescription.
+% status: HUMAN_CONFIRMED
+% @end-econ-contract
+\input{main_sections/06_conclusion}
+% @econ-contract include
+% id: INCLUDE_DECLARATIONS
+% file: main_sections/07_declarations.tex
+% section_contract: DECLARATIONS_STATEMENTS
+% role: Carry the required author declarations.
+% question_answered: Competing interests, funding, contributions, AI use, data availability.
+% required_inputs: Author records.
+% output_handoff: None.
+% claim_ceiling: Declarations only; no scientific claim.
+% status: HUMAN_CONFIRMED
+% @end-econ-contract
+\input{main_sections/07_declarations}
+
+\ifdefined\COMBINEDAPPENDIX
+% @econ-contract include
+% id: INCLUDE_APPENDIX_BODY
+% file: sanctions_appendix_body.tex
+% section_contract: APPENDIX_INDEX
+% role: Inline the appendix in the combined build only; the split build cross-references the standalone appendix.
+% question_answered: Where are the exact statements, proofs, constructed economies and the formalization map?
+% required_inputs: All main sections.
+% output_handoff: None.
+% claim_ceiling: Exact statements and proofs of the results the main text states; no further claim.
+% status: HUMAN_CONFIRMED
+% @end-econ-contract
+  \input{sanctions_appendix_body}
+\fi
+
+\bibliographystyle{econ-aea}
+\bibliography{annote}
+
+\end{document}

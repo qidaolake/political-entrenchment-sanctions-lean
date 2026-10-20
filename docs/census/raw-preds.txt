@@ -1,0 +1,105 @@
+CENSUS-HEAD 
+CENSUS-TOOLCHAIN leanprover/lean4:v4.29.1
+CENSUS-CMD censusPreds
+CENSUS-REQUESTED 22
+/home/xig16106/spcl-lean-work/tmp/_census_probe_e2526108a13a48ac85647c314215cd47.lean:58:48: warning: `String.trim` has been deprecated: Use `String.trimAscii` instead
+
+Note: The updated constant has a different type:
+  String → String.Slice
+instead of
+  String → String
+/home/xig16106/spcl-lean-work/tmp/_census_probe_e2526108a13a48ac85647c314215cd47.lean:58:64: warning: `String.trim` has been deprecated: Use `String.trimAscii` instead
+
+Note: The updated constant has a different type:
+  String → String.Slice
+instead of
+  String → String
+PRED-BEGIN Sanctions.AbstractGame.Params.ContinuationChangesSenderChoiceAt
+TYPE Sanctions.AbstractGame.Params → BoundedContinuousFunction ↑Sanctions.S ℝ → ℝ → ℝ → Prop
+BODY fun p V_S x a => ∀ s ∈ Sanctions.I, IsMaxOn (fun t => p.U_S x a t + p.β_S * p.senderSanctionContinuation V_S x t) Sanctions.I s → ¬IsMaxOn (fun t => p.U_S x a t) Sanctions.I s
+PRED-END
+PRED-BEGIN Sanctions.AbstractGame.Params.ContinuationChangesTargetChoiceAt
+TYPE Sanctions.AbstractGame.Params → (ℝ → ℝ → ℝ) → BoundedContinuousFunction ↑Sanctions.S ℝ → ℝ → Prop
+BODY fun p ρ V_T x => ∀ a ∈ Sanctions.I, IsMaxOn (fun b => p.U_T x b (ρ x b) + p.β_T * p.targetComplianceContinuation ρ V_T x b) Sanctions.I a → ¬IsMaxOn (fun b => p.U_T x b (ρ x b)) Sanctions.I a
+PRED-END
+PRED-BEGIN Sanctions.AbstractGame.Params.DynamicArgmaxUnique
+TYPE Sanctions.AbstractGame.Params → BoundedContinuousFunction ↑Sanctions.S ℝ → Prop
+BODY fun p V_S => ∀ x ∈ Sanctions.S, ∀ (a s₁ s₂ : ℝ), s₁ ∈ Sanctions.I → s₂ ∈ Sanctions.I → IsMaxOn (fun s' => p.U_S x a s' + p.β_S * V_S (Sanctions.clipS' (p.F x s'))) Sanctions.I s₁ → IsMaxOn (fun s' => p.U_S x a s' + p.β_S * V_S (Sanctions.clipS' (p.F x s'))) Sanctions.I s₂ → s₁ = s₂
+PRED-END
+PRED-BEGIN Sanctions.AbstractGame.Params.TargetArgmaxUnique
+TYPE Sanctions.AbstractGame.Params → Sanctions.AbstractGame.Params.Val → Sanctions.AbstractGame.Params.Val → Prop
+BODY fun p V_T V_S => ∀ x ∈ Sanctions.S, ∀ (a₁ a₂ : ℝ), a₁ ∈ Sanctions.I → a₂ ∈ Sanctions.I → IsMaxOn (fun a => p.joint_T_integrand V_T V_S x a) Sanctions.I a₁ → IsMaxOn (fun a => p.joint_T_integrand V_T V_S x a) Sanctions.I a₂ → a₁ = a₂
+PRED-END
+PRED-BEGIN Sanctions.AbstractGame.Params.ValueLipschitzWith
+TYPE BoundedContinuousFunction ↑Sanctions.S ℝ → ℝ → Prop
+BODY fun V K => ∀ (y₁ y₂ : ↑Sanctions.S), |V y₂ - V y₁| ≤ K * Dist.dist y₁ y₂
+PRED-END
+PRED-BEGIN Sanctions.AbstractGame.Params.StrictAdjustment
+TYPE Sanctions.AbstractGame.Params → Prop
+BODY fun p => (∀ ⦃x s : ℝ⦄, x ∈ Set.Icc 0 1 → s ∈ Set.Icc 0 1 → s < x → p.F x s < x) ∧ ∀ ⦃x s : ℝ⦄, x ∈ Set.Icc 0 1 → s ∈ Set.Icc 0 1 → x < s → x < p.F x s
+PRED-END
+PRED-BEGIN Sanctions.IntervalDominanceOrder.IDOFamilyOn
+TYPE Set ℝ → Set ℝ → (ℝ → ℝ → ℝ) → Prop
+BODY fun S T F => ∀ ⦃t t' : ℝ⦄, t ∈ T → t' ∈ T → t ≤ t' → Sanctions.IntervalDominanceOrder.IntervalDominanceOrderOn S (fun s => F s t') fun s => F s t
+PRED-END
+PRED-BEGIN Sanctions.AbstractGame.Params.TargetCombinedChordOn
+TYPE (p : Sanctions.AbstractGame.Params) → p.ValueClass2 → ℝ → ℝ → Prop
+BODY fun p D xT sbar => ∀ (V_T : D.CarrierT) (V_S : D.CarrierS), ∀ x ∈ Set.Icc xT 1, ∀ s₁ ∈ Set.Icc (Max.max x sbar) 1, ∀ s₂ ∈ Set.Icc (Max.max x sbar) 1, s₁ ≤ s₂ → p.U_T x (D.α_on V_T V_S x) s₁ + p.β_T * ↑V_T (Sanctions.clipS' (p.F x s₁)) ≤ p.U_T x (D.α_on V_T V_S x) s₂ + p.β_T * ↑V_T (Sanctions.clipS' (p.F x s₂))
+PRED-END
+PRED-BEGIN Sanctions.AbstractGame.Params.SenderPersistenceBasinTop
+TYPE Sanctions.AbstractGame.Params → BoundedContinuousFunction ↑Sanctions.S ℝ → (ℝ → ℝ) → ℝ → ℝ → Prop
+BODY <opaque>
+PRED-END
+PRED-BEGIN Sanctions.TransitionChords.SanctionLowerChord
+TYPE (ℝ → ℝ → ℝ) → ℝ → Prop
+BODY fun F d => ∀ ⦃x s₁ s₂ : ℝ⦄, x ∈ Set.Icc 0 1 → s₁ ∈ Set.Icc 0 1 → s₂ ∈ Set.Icc 0 1 → s₁ ≤ s₂ → d * (s₂ - s₁) ≤ F x s₂ - F x s₁
+PRED-END
+PRED-BEGIN Sanctions.TransitionChords.SanctionUpperChord
+TYPE (ℝ → ℝ → ℝ) → ℝ → Prop
+BODY fun F d => ∀ ⦃x s₁ s₂ : ℝ⦄, x ∈ Set.Icc 0 1 → s₁ ∈ Set.Icc 0 1 → s₂ ∈ Set.Icc 0 1 → s₁ ≤ s₂ → F x s₂ - F x s₁ ≤ d * (s₂ - s₁)
+PRED-END
+PRED-BEGIN Sanctions.TransitionChords.CornerStateChord
+TYPE (ℝ → ℝ → ℝ) → ℝ → ℝ → Prop
+BODY fun F glo ghi => ∀ ⦃y₁ y₂ : ℝ⦄, y₁ ∈ Set.Icc 0 1 → y₂ ∈ Set.Icc 0 1 → y₁ ≤ y₂ → glo * (y₂ - y₁) ≤ F y₂ 1 - F y₁ 1 ∧ F y₂ 1 - F y₁ 1 ≤ ghi * (y₂ - y₁)
+PRED-END
+PRED-BEGIN Sanctions.TransitionChords.SanctionSemiconcave
+TYPE (ℝ → ℝ → ℝ) → ℝ → Prop
+BODY fun F M => ∀ x ∈ Set.Icc 0 1, Sanctions.Semiconcave.SemiconcaveOnSet (fun s => F x s) (Set.Icc 0 1) M
+PRED-END
+PRED-BEGIN Sanctions.Semiconcave.StateChordBandAll
+TYPE (ℝ → ℝ → ℝ) → ℝ → ℝ → Prop
+BODY fun F glo ghi => ∀ s ∈ Set.Icc 0 1, Sanctions.Semiconcave.StateChordBand (fun y => F y s) glo ghi
+PRED-END
+PRED-BEGIN Sanctions.MixedChordBound
+TYPE (ℝ → ℝ → ℝ) → ℝ → Prop
+BODY fun F M => ∀ ⦃x₁ x₂ s₁ s₂ : ℝ⦄, x₁ ∈ Set.Icc 0 1 → x₂ ∈ Set.Icc 0 1 → s₁ ∈ Set.Icc 0 1 → s₂ ∈ Set.Icc 0 1 → |F x₂ s₂ - F x₁ s₂ - (F x₂ s₁ - F x₁ s₁)| ≤ M * |x₂ - x₁| * |s₂ - s₁|
+PRED-END
+PRED-BEGIN Sanctions.Semiconcave.SemiconcaveOnSet
+TYPE (ℝ → ℝ) → Set ℝ → ℝ → Prop
+BODY fun v X c => ∀ x₁ ∈ X, ∀ x₂ ∈ X, ∀ (t : ℝ), 0 ≤ t → t ≤ 1 → t * v x₁ + (1 - t) * v x₂ - v (t * x₁ + (1 - t) * x₂) ≤ c / 2 * (t * (1 - t) * (x₁ - x₂) ^ 2)
+PRED-END
+PRED-BEGIN Sanctions.Semiconcave.SemiconvexOnSet
+TYPE (ℝ → ℝ) → Set ℝ → ℝ → Prop
+BODY fun v X c => ∀ x₁ ∈ X, ∀ x₂ ∈ X, ∀ (t : ℝ), 0 ≤ t → t ≤ 1 → v (t * x₁ + (1 - t) * x₂) - (t * v x₁ + (1 - t) * v x₂) ≤ c / 2 * (t * (1 - t) * (x₁ - x₂) ^ 2)
+PRED-END
+PRED-BEGIN Sanctions.Semiconcave.JointSemiconcaveOn
+TYPE (ℝ → ℝ → ℝ) → Set ℝ → Set ℝ → ℝ → ℝ → ℝ → Prop
+BODY fun Φ X A σ ρ q => ∀ x₁ ∈ X, ∀ x₂ ∈ X, ∀ a₁ ∈ A, ∀ a₂ ∈ A, ∀ (t : ℝ), 0 ≤ t → t ≤ 1 → t * Φ x₁ a₁ + (1 - t) * Φ x₂ a₂ - Φ (t * x₁ + (1 - t) * x₂) (t * a₁ + (1 - t) * a₂) ≤ t * (1 - t) / 2 * (σ * (x₁ - x₂) ^ 2 + 2 * ρ * |x₁ - x₂| * |a₁ - a₂| - q * (a₁ - a₂) ^ 2)
+PRED-END
+PRED-BEGIN Sanctions.MilgromShannon.IncreasingDifferencesOn
+TYPE Set ℝ → Set ℝ → (ℝ → ℝ → ℝ) → Prop
+BODY fun S T f => ∀ ⦃s s' x x' : ℝ⦄, s ∈ S → s' ∈ S → s ≤ s' → x ∈ T → x' ∈ T → x ≤ x' → f s' x - f s x ≤ f s' x' - f s x'
+PRED-END
+PRED-BEGIN Sanctions.MilgromShannon.SingleCrossingOn
+TYPE Set ℝ → Set ℝ → (ℝ → ℝ → ℝ) → Prop
+BODY fun S T f => ∀ ⦃x y t t' : ℝ⦄, x ∈ S → y ∈ S → x ≤ y → t ∈ T → t' ∈ T → t ≤ t' → (f x t ≤ f y t → f x t' ≤ f y t') ∧ (f x t < f y t → f x t' < f y t')
+PRED-END
+PRED-BEGIN Sanctions.AbstractGame.Params.TransitionStateLipschitzWith
+TYPE Sanctions.AbstractGame.Params → ℝ → Prop
+BODY fun p γ_F => ∀ (x₁ x₂ s : ℝ), s ∈ Sanctions.I → |p.F x₂ s - p.F x₁ s| ≤ γ_F * |x₂ - x₁|
+PRED-END
+PRED-BEGIN Sanctions.AbstractGame.Params.TransitionStateLipschitzOnWith
+TYPE Sanctions.AbstractGame.Params → ℝ → Prop
+BODY fun p γ_F => ∀ x₁ ∈ Sanctions.I, ∀ x₂ ∈ Sanctions.I, ∀ s ∈ Sanctions.I, |p.F x₂ s - p.F x₁ s| ≤ γ_F * |x₂ - x₁|
+PRED-END
+CENSUS-DONE 22

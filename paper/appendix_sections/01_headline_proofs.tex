@@ -1,0 +1,2496 @@
+\section{Proofs of the results on the general class}
+\label{app:proofs}
+
+This appendix proves the three main theorems.
+
+\subsection{Proof of \Cref{thm:persistence} (persistence on the basin)}
+
+\paragraph{Step 1: Threshold characterization of the basin.}
+Define the one-sided sanction-preference thresholds
+$\bar x_T,\bar x_S$ as the smallest values such that the following two
+monotonicity conditions hold for all states at and above the
+respective threshold ($x\in[\bar x_S,1]$ for the sender condition,
+$x\in[\bar x_T,1]$ for the target condition):
+\begin{itemize}
+\item (Sender, ordinal) after substituting the target policy induced by
+the value sets, the family
+$\widetilde J_{\Vt,\Vs}(s,x)$ satisfies interval dominance in
+$(s,x)$ on $[0,1]\times\basin$; single crossing in $(s,x)$ is a
+sufficient discharger.
+\item (Target combined slope condition) $\Ut(x,\alpha(x),\cdot)+\beta_T\Vt(\F(x,\cdot))$
+is non-decreasing in $s$ on $[\max(x,\bar x_T),1]$.
+\end{itemize}
+The basin is $\basin=[\max(\bar x_T,\bar x_S),1]$. By
+\Cref{ass:sender,ass:target}, both monotonicity conditions hold for
+every $x\in\basin$.
+
+\paragraph{Step 2: Forward invariance.}
+Fix $x_0\in\basin$. We must show $\sigDynTop_{\Vs}(x_0,\alpha(x_0))
+\ge\max(x_0,\bar x)$: the sender's dynamic best response sits at or
+above the basin pivot. This is a statement about the \emph{level} of
+the sender's upper argmax, and it is important to be precise about
+which condition delivers it. It is \emph{not} \Cref{ass:sender}. An
+ordinal condition --- Milgrom-Shannon single crossing, or the weaker
+interval dominance the certificate actually carries (\Cref{rem:ido})
+--- constrains how the upper argmax \emph{moves} as a parameter rises;
+it does not say where that argmax \emph{lies} relative to
+$\max(x_0,\bar x)$ when the continuation $\Vs$ is an arbitrary,
+possibly non-monotone, member of the $K_S$-Lipschitz value set
+$\mathcal C_S$ --- a member whose continuation payoff may fall by as
+much as
+$K_S|\F(x,s_2)-\F(x,s_1)|$ when the sanction rises from $s_1$ to
+$s_2$.
+
+What Step 2 uses is the \emph{cardinal transition-adjusted slope condition}
+\eqref{eq:F-adjusted-sender-chord}, instantiated \emph{below} the
+pivot in the pivot-star form of (P5): at each basin state $x$, the sender's
+stage-payoff gain from raising any sanction $s<\max(x,\bar x)$ to the pivot
+must exceed $\beta_S K_S|\F(x,\max(x,\bar x))-\F(x,s)|$.
+(\Cref{rem:wedge-equivalence} records the same
+strict inequality on the complementary range $[\max(x,\bar
+x),1]$, where what it discharges is the \emph{ordinal} condition. The
+level argument needs the inequality on the sub-pivot range instead,
+and the sub-pivot range is where the machine-checked certificate
+carries it. The two are distinct conditions, and neither is used in
+place of the other.) Under the sub-pivot slope condition the stage gain strictly
+exceeds the worst-case Lipschitz absorption of the continuation, so
+every sanction \emph{below} the pivot gives a strictly lower value of
+$J_S(x_0,\alpha(x_0),\cdot;\Vs)$ than the pivot itself, for every
+$\Vs\in\mathcal C_S$, and hence no maximizer lies below it
+(\Cref{lem:single-crossing}(b) below). That gives
+$\sigDynTop_{\Vs}(x_0,\alpha(x_0))\ge\max(x_0,\bar x)$.
+
+Two disclosures follow, and we state them plainly. First, the level
+clause is proved under a cardinal condition that \Cref{ass:sender}
+does not supply; the machine-checked certificate carries that
+condition --- a stage lower-slope field on the sub-pivot range, a
+Lipschitz field for the value set, and the transition-adjusted slope condition --- as explicit
+hypotheses, alongside its ordinal field. A reader who wishes to keep
+the sender-side assumption set purely ordinal must take the level
+bound itself as a primitive: an ordinal condition on the parametrized
+family fixes the comparative static, not the location of the argmax,
+and against a $K_S$-Lipschitz continuation that may decline in $s$ the
+location has to be won by a cardinal comparison of the stage gain with
+the worst-case continuation loss. Second, the cardinal condition does
+\emph{not} displace the ordinal condition: the certificate carries
+both, as separate fields, and they discharge different steps --- the
+cardinal condition the \emph{level} (this step); the ordinal interval-dominance
+condition of \Cref{rem:ido} the \emph{direction}, namely the monotone
+upper argmax in the state used in Step 4 below. The comparison at a
+fixed target policy (\Cref{thm:dominance}) instead uses monotonicity of the
+equilibrium sender value over successor states.
+
+Hence $s^E_0\ge\max(x_0,\bar x)\ge x_0$. By sanction monotonicity and
+the diagonal condition,
+\[
+x^E_1=\F(x_0,s^E_0)\ge\F(x_0,x_0)=x_0\ge\bar x,
+\]
+so $x^E_1\in\basin$. This is the general-$\F$ argument. Under
+\eqref{eq:affine} the displayed inequality becomes
+$(1-\delta)x_0+\delta s^E_0\ge x_0$. Induction yields
+$x^E_t\in\basin$ for all $t\ge0$.
+
+\paragraph{Step 3: Sanction floor.}
+The Step-2 floor argument is stated at an arbitrary basin state, not
+only at $x_0$: for every $x\in\basin$ we have
+$\sigDynTop_{\Vs}(x,\alpha(x))\ge\max(x,\bar x)$. By Step 2 the
+equilibrium path stays in $\basin$, so $s^E_t\ge\max(x^E_t,\bar
+x)\ge x^E_t$ for every $t\ge0$. Feeding $s^E_t\ge x^E_t$ into the
+transition \eqref{eq:transition} and using the monotonicity (F3)
+together with the diagonal normalization (F4) gives
+$x^E_{t+1}=\F(x^E_t,s^E_t)\ge\F(x^E_t,x^E_t)=x^E_t$; hence the state
+path is non-decreasing and $x^E_t\ge x_0$ for every $t$. Therefore
+$s^E_t\ge\max(x^E_t,\bar x)\ge\bar x$, which is conclusion (ii).
+The proof actually establishes the stronger inherited-state bound
+$s^E_t\ge\max(x_0,\bar x)$. This argument uses only the Step-2 floor
+and the transition; in particular it does not presuppose Step 4.
+
+\paragraph{Step 4: Sanction monotonicity.}
+We show $s^E_t\le s^E_{t+1}$. The state path is non-decreasing,
+$x^E_{t+1}\ge x^E_t$, by Step 3. The sender's dynamic best response
+$\sigDynTop_{\Vs}(x,\alpha(x))$ is non-decreasing in $x$ on the basin.
+This is the one sender-side step that is purely \emph{ordinal}: it is
+the monotone-upper-argmax conclusion applied to the parametric
+variation in the state $x$, and in the formalization it is run off the
+interval-dominance field the certificate carries (\Cref{rem:ido}), for
+which single crossing is sufficient but not necessary. No cardinal
+bound enters here. Hence $s^E_{t+1}\ge s^E_t$.
+
+\paragraph{Single-crossing lemma.}
+\begin{lemma}[Sender dynamic objective: direction and level]
+\label{lem:single-crossing}
+Fix a value pair
+$(\Vt,\Vs)\in\mathcal C_T\times\mathcal C_S$, with
+$\Vs\in\mathrm{Lip}_{K_S}$, and write
+$\widetilde J_{\Vt,\Vs}$ for
+\eqref{eq:sender-policy-substituted}. Then:
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Direction; ordinal.)} Under \Cref{ass:sender},
+the greatest maximizer of
+$s\mapsto\widetilde J_{\Vt,\Vs}(s,x)$ is non-decreasing in
+$x\in\basin$. Single crossing in $(s,x)$ is a sufficient stronger
+condition.
+\item \emph{(Level; cardinal.)} Write $\hat x=\max(x,\bar x)$. Under the
+transition-adjusted slope condition \eqref{eq:F-adjusted-sender-chord}, in its
+pivot-star instance $s_1=s<\hat x=s_2$, the upper argmax of
+$s\mapsto\widetilde J_{\Vt,\Vs}(s,x)$ on $[0,1]$ lies in $[\hat x,1]$.
+\end{enumerate}
+Neither clause implies the other. Clause (a) is silent below the
+pivot, so it cannot deliver (b); and the stage slope in clause (b)
+holds only below the pivot, whereas deriving single crossing on the
+whole choice axis $[0,1]$ from the cardinal condition requires the stage
+lower slope on all of $[0,1]$, not merely
+below the pivot. The certificate accordingly carries a field for each.
+\end{lemma}
+
+\begin{proof}
+(a) This is the monotone-greatest-argmax implication of the
+interval-dominance condition in \Cref{ass:sender}. Milgrom--Shannon
+single crossing in $(s,x)$ upcasts to interval dominance with no side
+conditions (\Cref{rem:ido}).
+
+(b) For the level
+conclusion --- that the upper argmax lies in $[\max(x,\bar x),1]$ ---
+we use the cardinal transition-adjusted slope condition on the sub-pivot range,
+\emph{not} clause (a) and \emph{not} any monotonicity
+of $\Vs$. For $\Vs\in\mathcal C_S=\mathrm{Lip}_{K_S}$ and any
+$s<\hat x$, the continuation increment from $s$ to the pivot is
+bounded by its worst-case Lipschitz absorption,
+$\beta_S\bigl|\Vs(\F(x,\hat x))-\Vs(\F(x,s))\bigr|\le\beta_S
+K_S|\F(x,\hat x)-\F(x,s)|$, while
+\eqref{eq:F-adjusted-sender-chord} says that the stage gain from $s$ to
+$\hat x$ strictly exceeds this allowance; hence
+$\widetilde J_{\Vt,\Vs}(s,x)<\widetilde J_{\Vt,\Vs}(\hat x,x)$ for every
+$s<\hat x$ and \emph{for every} $\Vs\in\mathcal C_S$ --- using only the
+$K_S$-Lipschitz bound, valid even for non-monotone $\Vs$ --- so no
+maximizer lies below $\hat x$; no two sub-pivot sanctions are compared.
+(This is why the certificate carries \emph{both}
+sender-side conditions rather than one, and why the two clauses above
+are stated separately. The ordinal interval-dominance field
+(\Cref{rem:ido}) delivers the
+comparative-statics direction: the monotone upper argmax of Step 4.
+The cardinal
+stack --- the stage lower slope on the sub-pivot range, the Lipschitz
+constant $K_S$ of the value set, and the actual transition displacement ---
+separately pins the \emph{level}. Under the affine law it is sufficient
+to verify a lower slope $m_S$ and $\beta_S K_S\delta<m_S$. Neither does the
+other's job: the ordinal form does not pin the level against a
+general, possibly non-monotone, Lipschitz continuation; and the cardinal condition,
+in the sub-pivot form the level argument uses, says nothing above the
+pivot. Only when the stage lower slope is strengthened to the whole
+choice axis $[0,1]$ does the cardinal condition
+additionally discharge the ordinal field.)
+\end{proof}
+
+Steps 2 and 3 use neither A1 nor the target condition: conclusions (i) and (ii)
+rest on the level condition alone, at any equilibrium with a $K_S$-Lipschitz
+sender value at which the sub-pivot slope condition holds
+(\path{standardCompliance_persistence_generalF_level_star}), and A1 enters only
+in Step 4. This completes the proof of \Cref{thm:persistence}.
+
+\subsection{Proof of \Cref{thm:dominance} (dynamic versus myopic sanction at a fixed target policy)}
+\label{app:proof-dominance}
+
+Fix any target policy $\alpha^{\circ}\colon[0,1]\to[0,1]$ and any
+state $x$; neither an equilibrium nor the basin enters the argument. We
+compare the sender's myopic best response and
+its dynamic best response at the \emph{same} target
+action $\alpha^{\circ}(x)$, holding all other arguments fixed. The
+proof is Milgrom--Shannon monotone comparative statics in the sender
+continuation value $\Vs$.
+
+\paragraph{Step 1: The dynamic objective single-crosses the myopic one in $s$.}
+Fix $x$ and $a=\alpha^{\circ}(x)$. The sender's forward-looking
+objective and its myopic ($\Vs\equiv0$) limit are
+\[
+J_S(x,a,s;\Vs)=\Us(x,a,s)+\beta_S\Vs(\F(x,s)),
+\qquad
+J_S(x,a,s;0)=\Us(x,a,s),
+\]
+so their difference is the continuation term alone,
+\[
+J_S(x,a,s;\Vs)-J_S(x,a,s;0)=\beta_S\,\Vs(\F(x,s)).
+\]
+The value $\Vs$ is non-decreasing in the state by hypothesis (Step~4),
+and $\F(x,\cdot)$ is non-decreasing by \textup{(F3)};
+hence $s\mapsto\Vs(\F(x,s))$ is non-decreasing, and the difference
+$\beta_S\Vs(\F(x,s))$ is non-decreasing in $s$. A difference non-decreasing in
+$s$ is exactly the increasing-differences / single-crossing condition that
+Milgrom--Shannon require \citep{MilgromShannon1994} --- and here it is sourced
+by the \emph{monotonicity} of $\Vs$, not by the pointwise level of any value
+function. (Pointwise order alone is insufficient: a value pointwise above the
+myopic $0$ need not have larger $s$-increments; monotonicity of $\Vs$ is the
+property that does.)
+
+\paragraph{Step 2: The upper argmax of the dynamic objective lies weakly above the myopic one.}
+By Milgrom--Shannon Theorem~4 in its upper-extremal form (equivalently,
+Topkis' monotonicity-of-the-maximum theorem \citep{topkis1998}), when an
+objective differs from a comparator by a function non-decreasing in $s$, the
+upper element of its argmax is at least the comparator's. Specializing to
+$a=\alpha^{\circ}(x)$ with comparator $J_S(\cdot\,;0)$:
+\[
+\max\arg\max_s J_S(x,\alpha^{\circ}(x),s;0)
+\ \le\ \max\arg\max_s J_S(x,\alpha^{\circ}(x),s;\Vs).
+\]
+
+\paragraph{Step 3: The myopic limit is $\Vs\equiv0$.}
+The myopic best response $\sigM(x,a)$ is by definition the
+element of the stage-payoff argmax. Because the continuation term
+vanishes when $\Vs\equiv0$, this is also the upper element of the
+dynamic-objective argmax evaluated at the zero continuation value.
+The dynamic best response $\sigDynTop_{\Vs}(x,a)$ is the
+corresponding upper element at the continuation value
+$\Vs$. Therefore, at $a=\alpha^{\circ}(x)$,
+\[
+\begin{aligned}
+\sigM(x,\alpha^{\circ}(x))
+  &=\max\arg\max_s
+    J_S(x,\alpha^{\circ}(x),s;\Vs\equiv0),\\
+\sigDynTop_{\Vs}(x,\alpha^{\circ}(x))
+  &=\max\arg\max_s
+    J_S(x,\alpha^{\circ}(x),s;\Vs).
+\end{aligned}
+\]
+
+\paragraph{Step 4: Monotonicity of $\Vs$ (explicit, and derived on gain-ball invariant sets).}
+The single-crossing in Step~1 rests on $\Vs$ being non-decreasing in the
+state --- \emph{not} on any sign normalization of $\Us$.  Accordingly
+\Cref{thm:dominance} states it explicitly.  At the certificate-complete
+example economy it is a theorem about the geometry of the invariant set: the
+sender's invariant set is the zero-based gain ball
+$\{V:\lVert V\rVert_\infty\le M,\ \mathrm{Lip}(V)\le K,
+\ V(y_2)-V(y_1)\ge g_S(y_2-y_1)\text{ for }y_1\le y_2\}$ with $g_S\ge0$, so
+every member is
+non-decreasing.  Lean records the two-step implication in
+\path{monotone_of_mem_valLipGainBall} and
+\path{theorem2_dynamic_dominates_myopic_at_same_alpha_of_mem_valLipGainBall},
+with the theorem at the concrete example economy
+\path{eeCert_same_alpha_dynamic_dominance_from_gain_carrier}.
+For other economies, Banach cone preservation gives an alternative discharge
+\emph{if} $\Us(\cdot,\alpha(\cdot),s)$ is state-monotone; this is
+\path{V_S_monotone_of_integrand_monotone}.  A bare Lipschitz value set
+alone supplies neither route, so A1--A3 by themselves must not be read as a
+proof of $\Vs$ monotonicity.
+
+\paragraph{Step 5: Combining.}
+Steps~1--4 give
+\[
+\sigM(x,\alpha^{\circ}(x))\le\sigDynTop_{\Vs}(x,\alpha^{\circ}(x)),
+\]
+which is \eqref{eq:thm-dominance-same-alpha}, at every state and for every
+bounded continuous non-decreasing $\Vs$
+(\path{theorem2_dynamic_dominates_myopic_at_same_alpha}); in particular it
+holds at every equilibrium whose sender value is non-decreasing.
+
+\paragraph{Every stage maximizer, not only the selected one.}
+The comparison does not depend on how ties in the stage problem are broken.
+Under the same non-decreasing $\Vs$, every maximizer $m$ of the stage payoff
+$s\mapsto\Us(x,a,s)$ on $[0,1]$ satisfies $m\le\sigDynTop_{\Vs}(x,a)$: Step~2
+with $m$ in place of the selected myopic best response gives a maximizer of
+$J_S$ at or above $m$, and $\sigDynTop_{\Vs}$ is the greatest one
+(\path{exists_dynamic_argmax_ge_of_stage_max},
+\texttt{stage\_max\_le\_$\sigma$\_dyn\_top}). As rules, the greatest myopic
+best response to any target policy lies weakly below the dynamic best
+response at every state
+(\path{stageTopRule_le_dynamicTopRealizedRule}). Every comparison is against
+the dynamic best response, the greatest maximizer of $J_S$. The claim that every stage maximizer
+lies below every maximizer of $J_S$ is false under a non-decreasing
+value alone: with a constant $\Vs$ the two objectives differ by a constant,
+so they have the same maximizers, and a tied stage argmax then has a stage
+maximizer above a maximizer of $J_S$. The strict
+ordering of all maximizers holds under the conditions of
+\Cref{prop:strict-dominance}.
+
+\paragraph{Specialization to the different-$\alpha$ form.}
+Taking $\alpha^{\circ}=\alphaM$ on the myopic side and
+$\alpha^{\circ}=\alpha$ on the dynamic side, the fixed-policy
+inequality \eqref{eq:thm-dominance-same-alpha} yields the
+different-$\alpha$ corollary under (a) $\alpha(x)\le\alphaM(x)$ at the
+states compared, and (b) pointwise monotonicity of $\sigM(x,\cdot)$
+non-increasing in the compliance argument. Condition (b) is a
+comparative static and needs the cross sign, not the own sign: it
+follows from decreasing differences of $\Us$ in $(s,a)$ --- the
+``compliance placates'' condition $\partial^2\Us/\partial s\,\partial a\le0$
+of \Cref{sec:model} --- which orders the unique stage maximizer under
+\Cref{ass:concavity} and, without uniqueness, orders the greatest stage
+maximizer (\path{isMaxOn_max_of_monotone_diff}, an exchange inequality).
+A nonpositive own derivative $\partial\Us/\partial a\le0$ does not imply
+it: $\Us=-(s-a)^2-2a$ has that sign and the unique maximizer $s=a$,
+increasing in compliance. Both conditions hold for the standard
+Kaempfer--Lowenberg payoff family, whose cross term carries the required
+sign, but are extraneous to the substantive Milgrom--Shannon content of
+\Cref{thm:dominance}.
+
+\paragraph{Proof of \Cref{prop:strict-dominance} (strict comparison at a fixed target policy).}
+Fix $x$, $a$ and $\Vs$. Write $\Gamma(s)=\Vs(\F(x,s))$ for the
+sender's continuation value at the successor state $\F(x,s)$ and
+$J(s)=\Us(x,a,s)+\beta_S\Gamma(s)$ for the forward-looking objective. The map
+$s\mapsto\Us(x,a,s)$ is continuous, so its maximizers on the compact interval
+$[0,1]$ form a nonempty closed set with a greatest element $m$
+(\path{exists_greatest_stage_maximizer}). Every stage maximizer therefore lies
+weakly below $m$, which is the first conclusion. For the second, let $t$ be a
+stage maximizer and $\hat s$ a maximizer of $J$ on $[0,1]$, and suppose
+$\hat s\le t$, so that $\hat s\le m$. Stage optimality of $m$ gives
+$\Us(x,a,\hat s)\le\Us(x,a,m)$, and the comparison of continuation values gives
+$\Gamma(\hat s)\le\Gamma(m)$. The model maintains $\beta_S\in[0,1)$, and $\beta_S\ge0$
+preserves the second inequality after discounting. So $J(\hat s)\le J(m)$.
+Rearranged, the hypothesis at $s'$ says $J(m)<J(s')$, so $J(\hat s)<J(s')$ at a feasible
+$s'$, which contradicts the optimality of $\hat s$. Hence $t<\hat s$
+(\path{all_stage_lt_dynamic_of_greatest_stage_improvement_of_wedge_le}). The
+argument compares $\Gamma$ only at pairs $(d,m)$ with $d\le m$, and it uses
+the discount only through $\beta_S\ge0$. It uses no concavity,
+differentiability or uniqueness, and it does not claim that a maximizer of $J$
+exists. A non-decreasing $\Gamma$ is one way to supply the comparison
+(\path{all_stage_lt_dynamic_of_greatest_stage_improvement_mono}). \qed
+
+\subsection{Proof of \Cref{thm:shock} (temporary shocks and their asymptotic effect)}
+
+Let $z_0=0$ and $z_{t+1}=\F(z_t,1)$ be the full-sanction path from the
+worst feasible initial state. The drift
+$d_{\F}(x)=\F(x,1)-x$ is continuous by \textup{(F1)} and strictly
+positive on $[0,\bar x]$ by full-sanction ascent below the basin, which
+\textup{(F5)} implies. Compactness therefore gives
+an attained positive minimum
+\[
+\eta_{\F}(\bar x)
+=\min_{x\in[0,\bar x]}d_{\F}(x)>0.
+\]
+As long as $z_t<\bar x$,
+\[
+z_{t+1}-z_t=d_{\F}(z_t)\ge\eta_{\F}(\bar x).
+\]
+Induction gives $z_t\ge t\eta_{\F}(\bar x)$ while all preceding
+iterates remain below $\bar x$. Consequently
+\[
+\widehat N_{\F}(\bar x)
+=\left\lceil\frac{\bar x}{\eta_{\F}(\bar x)}\right\rceil
+\]
+must satisfy $z_{\widehat N_{\F}(\bar x)}\ge\bar x$: otherwise every
+earlier iterate would be pre-basin, the induction would apply through
+$\widehat N_{\F}(\bar x)$, and the definition of the ceiling would
+contradict $z_{\widehat N_{\F}(\bar x)}<\bar x$.
+
+Now start the same temporary shock from any $x_0\in[0,1]$.
+Monotonicity of $\F$ in the inherited state implies inductively that
+the resulting shocked path lies weakly above $z_t$ at every date.
+Thus
+$x_{\widehat N_{\F}(\bar x)}
+\ge z_{\widehat N_{\F}(\bar x)}\ge\bar x$
+uniformly over $x_0$. The shocked path is non-decreasing, so every
+longer shock also brings the state into the basin. Conclusions (i)--(iii) of
+\Cref{thm:persistence}, which do not read the target condition P4, give the stated
+post-shock conclusions from that date
+(\path{standardCompliance_min_drift_shock_generalF_from_sender_package_of_preBasinAscent}).
+
+Under the partial-adjustment law \eqref{eq:affine},
+$1-x_t=(1-\delta)^t(1-x_0)$. Therefore the
+$N_*(\bar x,\delta)$ displayed immediately after \Cref{thm:shock} is a valid
+uniform choice,
+and is generally sharper than the minimum-drift bound because it uses
+the exact affine trajectory.
+
+\begin{proof}[Proof of \Cref{cor:shock-transition-strength}]
+Write
+$d_i(x)=\F_i(x,1)-x$ and let $x_2\in[0,\bar x]$ attain the minimum
+$\eta_{\F_2}(\bar x)=d_2(x_2)$. The hypothesis $\F_1(x,1)\le\F_2(x,1)$ is
+equivalent to $d_1(x)\le d_2(x)$ on the pre-basin interval. Hence
+\[
+\eta_{\F_1}(\bar x)
+\le d_1(x_2)
+\le d_2(x_2)
+=\eta_{\F_2}(\bar x).
+\]
+If $\F_1(x,1)<\F_2(x,1)$ throughout the interval, the middle
+inequality is strict. The first law's ascent makes $\eta_{\F_1}(\bar x)>0$,
+and that hypothesis passes the ascent to the second law, so both minima
+are positive with no adjustment hypothesis on $\F_2$; since $\bar x\ge0$,
+\[
+\frac{\bar x}{\eta_{\F_2}(\bar x)}
+\le
+\frac{\bar x}{\eta_{\F_1}(\bar x)}.
+\]
+Monotonicity of the natural-number ceiling gives the stated weak
+duration comparison. It cannot generally be strengthened because the
+ceiling is locally constant.
+
+Under the affine law,
+\[
+d_\delta(x)
+=\bigl((1-\delta)x+\delta\bigr)-x
+=\delta(1-x).
+\]
+This function is decreasing in $x$, so its minimum on
+$[0,\bar x]$ is attained at $\bar x$ and equals
+$\delta(1-\bar x)$. Substitution gives the displayed
+minimum-drift duration and its monotonicity in $\delta$.
+\end{proof}
+
+\subsection{The class under the lifting condition: class-membership panel and proofs of
+\Cref{prop:placable-family}, \Cref{thm:regime-separation},
+\Cref{prop:sender-only}, \Cref{prop:target-only} and \Cref{thm:four-cells}}
+\label{app:proofs:placable}
+
+Every formula in this subsection is transcribed from the formalization at
+the implementation head, with the source's quantifiers and domains; the
+declarations are listed in \Cref{app:formalization}. The main text names
+the conditions; this is the complete certificate and the argument. The
+formalization states every result of \Cref{sec:four-regimes} on the class of
+panel~A0, whose stage payoffs are abstract (\path{Examples/ChordEconomy.lean},
+the structures \texttt{ChordEconomy} and \texttt{ChordEconomyCs}). Panels A--G
+then write the argument for the quadratic--linear family, whose rates are exact
+and whose constants have closed forms; each of the family's rates is an instance of
+a one-sided rate of panel~A0, and the formalization proves every step with the
+one-sided rates, as listed at the end of A0. The family is an instance of the
+class (\path{toChord}, \path{toChordCs}), so every family formula below is a
+theorem at the family's members. Panel~H is written on the class itself, as
+\Cref{prop:target-only} is stated, with the family's closed forms in its
+Step~4; panel~I assembles \Cref{thm:four-cells}.
+
+\subsubsection*{A0. The class}
+
+\textbf{Stage payoffs.} $\Us$ and $\Ut$ are jointly continuous. Each condition
+holds for arguments in $[0,1]$ and, where an increment is signed, for ordered
+arguments; it is a difference-quotient inequality, so no differentiability is assumed. For
+the sender (the formalization's S2--S12):
+\begin{enumerate}[label=(S\arabic*)]
+\item \emph{state Lipschitz at full non-compliance}:
+$|\Us(x_2,0,s)-\Us(x_1,0,s)|\le w_{\mathrm{hi}}|x_2-x_1|$;
+\item \emph{state lower slope at every compliance}:
+$\Us(x_2,a,s)-\Us(x_1,a,s)\ge w_{\mathrm{lo}}(x_2-x_1)$ for $x_1\le x_2$, with
+$w_{\mathrm{lo}}>0$;
+\item \emph{strong concavity in the sanction}, at every real compliance:
+$s\mapsto\Us(x,a,s)$ is $(-q)$-semiconcave on $[0,1]$; $q>0$ is not a separate
+condition but follows from the concavity condition below;
+\item \emph{curvature ceiling}: $s\mapsto\Us(x,a,s)$ is $\bar Q$-semiconvex on
+$[0,1]$;
+\item \emph{joint semiconcavity at full non-compliance} in (state, sanction), with
+moduli $(\sigma_x,r_{\mathrm{hi}},q)$ in the form of (T3), $\sigma_x\ge0$;
+\item \emph{state semiconvexity at full non-compliance}, with modulus $\tau_x\ge0$;
+\item \emph{increasing differences at full non-compliance}:
+$(\Us(x',0,s')-\Us(x',0,s))-(\Us(x,0,s')-\Us(x,0,s))\ge r_{\mathrm{lo}}(x'-x)(s'-s)$
+for $x\le x'$, $s\le s'$, with $r_{\mathrm{lo}}\ge0$;
+\item \emph{the cross rate is at most $r_{\mathrm{hi}}$}, in absolute value and
+at every compliance;
+\item \emph{substitution}:
+$(\Us(x,a',s')-\Us(x,a',s))-(\Us(x,a,s')-\Us(x,a,s))\le-k_{\mathrm{lo}}(a'-a)(s'-s)$
+for $a\le a'$, $s\le s'$, with $k_{\mathrm{lo}}>0$, and, where a result reads
+it, the \emph{upper substitution rate} $k_{\mathrm{hi}}$: the same cross difference is at most
+$k_{\mathrm{hi}}(a'-a)|s'-s|$ in absolute value;
+\item \emph{upper bound on the marginal return}: $\Us(x,0,t)-\Us(x,0,s)\ge(s-t)\bigl(q(s+t)/2-u_{\mathrm{hi}}\bigr)$
+for $t\le s$;
+\item \emph{lower bound on the marginal return}: $\Us(x,0,s)-\Us(x,0,t)\ge(s-t)\bigl(u_{\mathrm{lo}}-\bar Q(s+t)/2\bigr)$
+for $t\le s$, with $u_{\mathrm{lo}}>0$.
+\end{enumerate}
+For the target (the formalization's T2--T7):
+\begin{enumerate}[label=(P\arabic*)]
+\item \emph{compliance cost}:
+$-\ell_{\mathrm{hi}}(a_2-a_1)\le\Ut(x,a_2,s)-\Ut(x,a_1,s)\le-\ell_{\mathrm{lo}}(a_2-a_1)$
+for $a_1\le a_2$, with $\ell_{\mathrm{lo}}>0$;
+\item \emph{sanction pain}:
+$p_{\mathrm{lo}}(s_2-s_1)\le\Ut(x,a,s_1)-\Ut(x,a,s_2)\le c\,(s_2-s_1)$ for
+$s_1\le s_2$, with $p_{\mathrm{lo}}>0$;
+\item \emph{state slope, indexed by the sanction}:
+$(v_{\mathrm{lo}}+n_{\mathrm{lo}}s)(x_2-x_1)\le\Ut(x_2,a,s)-\Ut(x_1,a,s)$ for
+$x_1\le x_2$, with $v_{\mathrm{lo}}>0$ and $n_{\mathrm{lo}}\ge0$, and
+$|\Ut(x_2,a,s)-\Ut(x_1,a,s)|\le(v_{\mathrm{hi}}+n_{\mathrm{hi}}s)|x_2-x_1|$. These
+are envelopes on the value of entrenchment at each sanction, not cross rates
+(on the family $n_{\mathrm{lo}}=n_{\mathrm{hi}}=n$ is the target's state--sanction
+cross term, which softens the pain); the quartic member of \Cref{app:witness} has
+$n_{\mathrm{lo}}>n_{\mathrm{hi}}$.
+\end{enumerate}
+The formalization splits the class. (S8), the upper bound in (P1), the lower
+bound in (P2) and the upper envelope in (P3) form a relief extension
+(\path{ChordEconomyRelief}, round BC), read by the relief-side results, the
+Lipschitz estimates and the sharp sufficient condition for non-compliance; \Cref{prop:relief-participation},
+\Cref{prop:branch-invariance}, \Cref{prop:certified-equilibria} and
+\Cref{prop:monotone-uniqueness} hold on the base class
+(\path{ChordEconomy}), and the enriched subclass extends the relief extension.
+Since round BJ the base class is slimmer in three further ways. The two-sided
+curvature data --- (S6), and the transition's state-section semiconvexity
+$M_{\mathrm{cx}}$ and bound $M_{\mathrm{mix}}$ on mixed differences of panel~A --- form a
+two-sided extension (\path{ChordEconomyTwoSided}), which the relief extension
+extends; only the two-sided invariant set (the modulus $\sigma_C$ below, and through it
+the route through the increasing-differences condition to a monotone response
+and $L_{\mathrm{resp}}$) and a
+route to a monotone rule from bounds on the target's policy
+(\path{Examples/PlacableSenderPolicyClass.lean}) read them. The upper
+substitution rate of (S9) is a condition of the base results that read it
+(\path{PlacationCeiling}), the sanction floor of
+\Cref{prop:certified-equilibria} among them, and a field of the relief
+extension. And $q>0$ is a
+theorem: the concavity condition puts $q$ above
+$\beta_S(\sigma_Vd_{\mathrm{hi}}^2+K_SM_s)$, which is non-negative because the
+Riccati closure gives $\sigma_V\ge0$. Every member the formalization exhibits
+lies in the two-sided extension and has an upper substitution rate, so the
+further generality these changes give the base class is not yet illustrated
+by an example.
+The myopic best response $\sigma(x,a)$ ($\sigM(x,a)$ in the main text), a field
+of the game (\Cref{sec:model}), is the
+maximizer of $\Us(x,a,\cdot)$ on $[0,1]$, unique by (S3); on the family it is the
+clipped vertex, and in general it has no closed form. The class also requires it
+to vary continuously with $(x,a)$; since round BJ this is a condition of the
+class rather than of the game (\texttt{ChordEconomy.$\sigma$\_continuous}), kept
+because the class's results on the four cases compare with the myopic sender
+(\Cref{app:moved-ad}). \emph{Compliance
+neutrality}, $\Us(x,a,0)=\Us(x,0,0)$, is a hypothesis of the relief-side results
+only (the sender-only case, \Cref{thm:four-cells}, the relief equilibrium);
+the all-equilibria floor of \Cref{prop:certified-equilibria} reads its one-sided
+pairwise form (a larger concession is never worth more to the sender at zero
+sanction) and \Cref{prop:relief-participation} its form against full non-compliance.
+All three hold on the family, where $\Us(x,a,0)=wx$.
+
+\textbf{Constants.} With $M_U$ and $M_{T,0}$ the suprema of $|\Us|$ and $|\Ut|$
+on the cube (not fields),
+\[
+K_S=\frac{w_{\mathrm{hi}}}{1-\beta_Sg_{\mathrm{hi}}},\quad
+g_S=\frac{w_{\mathrm{lo}}}{1-\beta_Sg_{\mathrm{lo}}},\quad
+M_S=\frac{2M_U}{1-\beta_S},\quad
+M_T=\frac{2M_{T,0}}{1-\beta_T},\quad
+\mu=q-\beta_S\bigl(\sigma_Vd_{\mathrm{hi}}^2+K_SM_s\bigr),
+\]
+\[
+\varrho=r_{\mathrm{hi}}+\beta_S\bigl(\sigma_Vg_{\mathrm{hi}}d_{\mathrm{hi}}+K_SM_m\bigr),\qquad
+\sigma_{\mathrm{img}}=\sigma_x+\beta_S\bigl(\sigma_Vg_{\mathrm{hi}}^2+K_SM_x\bigr)+\frac{\varrho^2}{\mu},
+\]
+\[
+A=u_{\mathrm{hi}}+\beta_SK_Sd_{\mathrm{hi}},\qquad
+\underline s=\sigma(0,0),\qquad
+g_T=\frac{v_{\mathrm{lo}}+n_{\mathrm{lo}}\underline s}{1-\beta_Tg_{\mathrm{lo}}},\qquad
+\sigma_C=\frac{\tau_x+\beta_SK_SM_{\mathrm{cx}}}{1-\beta_Sg_{\mathrm{hi}}^2},
+\]
+\[
+M_{\mathrm{tot}}=\bar Q+\beta_S\bigl(\sigma_Cd_{\mathrm{hi}}^2+K_SM_{\mathrm{cs}}\bigr),\qquad
+L_{\mathrm{resp}}=r_{\mathrm{hi}}+\beta_S\bigl(\bar\sigma g_{\mathrm{hi}}d_{\mathrm{hi}}
++(K_S+2\bar\sigma)M_{\mathrm{mix}}\bigr),\ \ \bar\sigma=\max(\sigma_V,\sigma_C),
+\]
+and $L_{\mathrm{loop}}=g_{\mathrm{hi}}+d_{\mathrm{hi}}L_{\mathrm{resp}}/\mu$. The
+lower bound $\underline s$ is the myopic sanction at full non-compliance at the lowest state,
+below which the response at non-compliance never falls.
+
+\textbf{The certificate.} A member of the class satisfies (curvature) $\mu>0$,
+the concavity condition, and (Riccati closure) $\sigma_{\mathrm{img}}\le\sigma_V$,
+and nothing else is a condition of membership.
+Interiority, $A<q$, and the myopic relief condition,
+$\ell_{\mathrm{hi}}\bar Q<k_{\mathrm{lo}}p_{\mathrm{lo}}$, are hypotheses of the
+results that read them, not fields (\path{Interior}, \path{StageRelief}; round
+BC). Interiority implies myopic interiority $u_{\mathrm{hi}}<q$, that a myopic
+sender never sanctions fully (\path{uhi_lt_q}), and the result that the
+sender's forward-looking incentive changes behavior, the strict foresight premium above
+the stage choice, the myopic equilibrium,
+the target-only case and the convergence of the forward-looking path read
+only that; the remaining results, among them the interior bound on the
+dynamic best response (the cap $A/q<1$), the sender-only case, the relief
+side and the four cases, keep interiority. The myopic relief condition is read by
+the myopic equilibrium of \Cref{thm:regime-separation} and by the threshold
+discount factor $\beta_T^*$, and in the four cases it follows from the forward-looking
+relief condition (\path{stageRelief_of_reliefSharp}).
+The hypotheses of the propositions that read them are (the lifting condition)
+$A\le k_{\mathrm{lo}}$ --- which implies the myopic lifting condition
+$u_{\mathrm{hi}}<k_{\mathrm{lo}}$ (\path{uhi_lt_k}), all that the myopic
+equilibrium reads; the sender-only case, the relief side and the four cases
+keep the lifting condition ---, the entrenchment condition $c\le\beta_Td_{\mathrm{lo}}g_T$, the
+one-period ranking $\ell_{\mathrm{hi}}<\underline s\,p_{\mathrm{lo}}$, under which
+full compliance beats full non-compliance in the one-period problem, the increasing-differences condition (RM)
+with $r_{\mathrm{lo}}$ on its right, and the forward-looking relief condition (RL)
+$\ell_{\mathrm{hi}}M_{\mathrm{tot}}<k_{\mathrm{lo}}p_{\mathrm{lo}}$. The concavity
+condition $\mu>0$ and the closure admit some $\sigma_V\ge0$ exactly under the discriminant
+condition of panel~A with $N=B_0Q+C_0^2$,
+$L=(1-\beta_Sg_{\mathrm{hi}}^2)Q+B_0D-2C_0\beta_Sg_{\mathrm{hi}}d_{\mathrm{hi}}$,
+$B_0=\sigma_x+\beta_SK_SM_x$ and $C_0=r_{\mathrm{hi}}+\beta_SK_SM_m$
+(\path{chSigV_feasible_iff}).
+
+\textbf{Replacements.} Panels A--G use the family's exact rates. On the class
+the stage vertex $(u_0+rx)/q$ is replaced by $\sigma(x,0)$ and $u_0/q$
+by $\underline s$; the linear bound $u_0-ka+rx\le u_0+r$ on the marginal return by (S10); the
+stage state rate $rs+w\in[w,r+w]$ by (S1) and (S2); the decreasing differences
+$-ksa$ by (S9); the exact cross rate $r$ by (S7) from below and (S8) from above;
+the stage curvature $q$ by (S3) from below and (S4) from above; the costs $\ell a$,
+the pain $c-nx$ and the target's state rate $v+ns$ by (P1)--(P3); and
+$\Us(x,a,0)=wx$ by compliance neutrality. The sharp rate of sanction reduction uses the
+argmax shift under a nonlinear tilt (\path{argmax_shift_ge_tilt_of_semiconvex_interior})
+in place of the linear shift, the foresight premium uses the shifted-argmax bound under
+$\bar Q$-semiconvexity in place of the exact quadratic, and the zero level is
+the least zero of an antitone family (\path{Foundations/ZeroLevel.lean}). The
+family's closed forms that have no one-sided counterpart stay on the family:
+the target-only steady state $u_0/(q-r)$ and its rate, the comparisons across
+economies in $r$, the interest-group microfoundations, and the coefficient box.
+
+\subsubsection*{A. Primitives}
+
+\textbf{Stage payoffs.} With state $x$, compliance $a$ and sanction $s$ in
+$[0,1]$,
+\[
+\Us(x,a,s)=-\tfrac q2 s^2+s(u_0-ka+rx)+wx,
+\qquad
+\Ut(x,a,s)=-\ell a+s(nx-c)+vx .
+\]
+Coefficient signs supplied: $u_0>0$, $r\ge0$, $w>0$, $\ell>0$, $n\ge0$, $k>0$,
+$v>0$, and $c>n$ (hence $c>0$): the sanction hurts the target at every state.
+The lifting condition implies $k>0$, the entrenchment condition with interiority implies $v>0$, and
+the myopic relief condition implies $c>n$; since these three are hypotheses of the
+results that read them, not conditions of membership, the signs are supplied
+(see C). The sign $q>0$ is \emph{derived}, from the concavity condition (see C).
+Discount factors
+$\beta_S,\beta_T\in(0,1)$.
+
+\textbf{Transition.} $\F$ satisfies \textup{(F1)--(F4)} on the square and,
+in addition, five slope and curvature bounds with nonnegative moduli, each stated for
+arguments in $[0,1]$; a sixth, \textup{(T6)}, is carried by the enriched
+subclass on which the sender-only case, \Cref{thm:four-cells}, the theorem
+that both forward-looking incentives change behavior without the one-period
+ranking (\path{both_channels_active_of_relief}, after
+\Cref{thm:four-cells}) and the relief and no-non-compliance sides of
+\Cref{prop:bracket} are stated:
+\begin{enumerate}[label=(T\arabic*)]
+\item \emph{State slope bound} $0\le g_{\mathrm{lo}}\le g_{\mathrm{hi}}\le1$:
+for every $s$ and every $y_1\le y_2$,
+$g_{\mathrm{lo}}(y_2-y_1)\le\F(y_2,s)-\F(y_1,s)\le g_{\mathrm{hi}}(y_2-y_1)$.
+\item \emph{Sanction slope bound} $0<d_{\mathrm{lo}}\le d_{\mathrm{hi}}$: for
+every $x$ and every $s_1\le s_2$,
+$d_{\mathrm{lo}}(s_2-s_1)\le\F(x,s_2)-\F(x,s_1)\le d_{\mathrm{hi}}(s_2-s_1)$.
+\item \emph{Joint semiconcavity} with moduli $M_x,M_m,M_s\ge0$: for
+all $x_1,x_2,s_1,s_2$ and $t\in[0,1]$,
+\begin{align*}
+&t\F(x_1,s_1)+(1-t)\F(x_2,s_2)-\F\bigl(tx_1+(1-t)x_2,\;ts_1+(1-t)s_2\bigr)\\
+&\qquad\le\frac{t(1-t)}2\Bigl(M_x(x_1-x_2)^2+2M_m|x_1-x_2|\,|s_1-s_2|+M_s(s_1-s_2)^2\Bigr).
+\end{align*}
+In the source this is the predicate \texttt{JointSemiconcaveOn} with
+third modulus $-M_s$; the literal content is the display, which bounds how
+far $\F$ lies \emph{below} its chords. Nothing about concavity of $\F$ is
+assumed; the affine law has all three moduli zero.
+\item \emph{State-section semiconvexity} with modulus $M_{\mathrm{cx}}\ge0$:
+for every $s$, every $x_1,x_2$ and $t\in[0,1]$,
+$\F(tx_1+(1-t)x_2,s)-\bigl(t\F(x_1,s)+(1-t)\F(x_2,s)\bigr)
+\le\tfrac{M_{\mathrm{cx}}}2\,t(1-t)(x_1-x_2)^2$,
+which bounds how far a state section lies \emph{above} its chords; zero for
+convex sections and for the affine law.
+\item \emph{Bound on mixed differences} with modulus $M_{\mathrm{mix}}\ge0$: for all
+$x_1,x_2,s_1,s_2$,
+$\bigl|(\F(x_2,s_2)-\F(x_1,s_2))-(\F(x_2,s_1)-\F(x_1,s_1))\bigr|
+\le M_{\mathrm{mix}}|x_2-x_1|\,|s_2-s_1|$;
+zero for the affine law and for every additively separable transition.
+\item \emph{Sanction-section semiconvexity} with modulus $M_{\mathrm{cs}}\ge0$:
+for every $x$, every $s_1,s_2$ and $t\in[0,1]$,
+$\F(x,ts_1+(1-t)s_2)-\bigl(t\F(x,s_1)+(1-t)\F(x,s_2)\bigr)
+\le\tfrac{M_{\mathrm{cs}}}2\,t(1-t)(s_1-s_2)^2$; zero for the affine law and
+for convex sanction sections, $1/5$ at the non-affine member. It is a field
+of the enriched subclass (\texttt{ChordEconomyCs}; \texttt{PlacableEconomyFcs}
+on the family), not of the class:
+it is consumed by the sender-only case, by \Cref{thm:four-cells}, where it
+bounds the curvature of
+the sender's objective from below, by the theorem after \Cref{thm:four-cells}
+that both forward-looking incentives change behavior without the one-period
+ranking, and by the relief and no-non-compliance sides of
+\Cref{prop:bracket}, through $M_{\mathrm{tot}}$. \Cref{prop:placable-family},
+\Cref{thm:regime-separation} and \Cref{prop:target-only} are stated
+without it.
+\end{enumerate}
+A supplied modulus $\sigma_V\ge0$ completes the data; it is closed by the
+Riccati inequality in C and appears on no paper-facing statement as a free
+parameter. Its existence is part of membership of the class: a member is one for
+which some $\sigma_V$ satisfies (curvature) and (Riccati closure), so the
+pair is a restriction on the primitives, not a preference coefficient.
+\begin{remark}[Why the modulus is supplied]
+\label{rem:curvature-obstructions}
+Semiconcavity in the sense of \citet{CannarsaSinestrari2004} is the property
+the sender's invariant set keeps, and two machine-checked refutations say why it must
+be kept by a supplied modulus rather than derived: the maintained transition
+class alone admits members whose closed loop preserves no curvature cone
+(\path{maxJoinTransition_closedLoop_not_semiconcave},
+\path{minMeetTransition_closedLoop_not_semiconvex}), and the affine extreme
+point $\F(x,s)=s$ with a single-peaked sender loss, whose stage argmax is
+unique, continuous, monotone and Lipschitz, has a closed loop with two kinks
+of opposite sign that kill every semiconcavity and every semiconvexity modulus
+at once (\path{clampedPeakSender_closedLoop_not_semiconcave},
+\path{clampedPeakSender_closedLoop_not_semiconvex}). The same phenomenon
+appears for bilevel programs in Example~3 of \citet{ChenLiSo2025}, where the
+lower level's argmax destroys the curvature the upper level needs; the
+constrained case is left open there, and the supplied modulus with its
+Riccati closure is the answer this family gives.
+\end{remark}
+
+The concavity condition and the Riccati closure, two inequalities in the
+supplied modulus $\sigma_V$, admit some $\sigma_V\ge0$ exactly when $Q>0$,
+$0<L<2Q$ and $L^2\ge4DN$ in the primitives alone, where, in this paragraph
+only,
+\[
+Q=q-\beta_SK_SM_s,\qquad D=\beta_Sd_{\mathrm{hi}}^2,\qquad
+N=\beta_SK_SM_x\,Q+(r+\beta_SK_SM_m)^2,
+\]
+\[
+L=(1-\beta_Sg_{\mathrm{hi}}^2)\,Q+\beta_SK_SM_x\,D
+-2\,(r+\beta_SK_SM_m)\,\beta_Sg_{\mathrm{hi}}d_{\mathrm{hi}}
+\]
+(\path{sigV_feasible_iff}, whose source also names the products inlined here;
+the vertex $\sigma_V=L/(2D)$ then certifies). The modulus need not be
+supplied. With the denominator cleared, closure is the quadratic inequality
+$D\sigma^2-L\sigma+N\le0$, whose least root
+$\sigma_-=(L-\sqrt{L^2-4DN})/(2D)$ is nonnegative, satisfies curvature and
+closure, and is at most every feasible modulus (\path{sigVLeast_curv},
+\path{sigVLeast_closure}, \path{sigVLeast_least}); the member re-certified at
+$\sigma_-$ has a larger $\mu$, a smaller $\varrho$, a smaller response
+Lipschitz constant and a smaller sharp loop constant
+(\path{LloopSharp_withLeastModulus_le}), so every quantitative bound below is
+tightest there. The members supply the rational $\sigma_V=1$ for display
+($\sigma_-=10-7\sqrt2$ at the affine member); a different feasible modulus
+gives different constants --- at the vertex $\sigma_V=10$ the sharp loop
+constant of the affine member is exactly $1$
+(\path{placableAffineVertex_LloopSharp}) --- and every bound uses one
+consistently chosen modulus. At the members $(Q,L,N,D)=(3,5/2,1/4,1/8)$ and
+$(3,1623/700,25/28,9/50)$.
+
+\subsubsection*{B. Derived constants}
+\[
+K_S=\frac{r+w}{1-\beta_Sg_{\mathrm{hi}}},\quad
+g_S=\frac{w}{1-\beta_Sg_{\mathrm{lo}}},\quad
+M_S=\frac{q/2+u_0+k+r+w}{1-\beta_S},\quad
+\mu=q-\beta_S\bigl(\sigma_Vd_{\mathrm{hi}}^2+K_SM_s\bigr),
+\]
+\[
+\varrho=r+\beta_S\bigl(\sigma_Vg_{\mathrm{hi}}d_{\mathrm{hi}}+K_SM_m\bigr),\qquad
+\sigma_{\mathrm{img}}=\beta_S\bigl(\sigma_Vg_{\mathrm{hi}}^2+K_SM_x\bigr)+\frac{\varrho^2}{\mu},
+\]
+\[
+A=u_0+r+\beta_SK_Sd_{\mathrm{hi}},\qquad
+g_T=\frac{v+nu_0/q}{1-\beta_Tg_{\mathrm{lo}}},\qquad
+M_T=\frac{c+v}{1-\beta_T},\qquad
+\sigma_C=\frac{\beta_SK_SM_{\mathrm{cx}}}{1-\beta_Sg_{\mathrm{hi}}^2},
+\]
+\[
+L_{\mathrm{resp}}=r+\beta_S\bigl(\bar\sigma g_{\mathrm{hi}}d_{\mathrm{hi}}
++(K_S+2\bar\sigma)M_{\mathrm{mix}}\bigr),\ \ \bar\sigma=\max(\sigma_V,\sigma_C),
+\qquad
+L_{\mathrm{loop}}=g_{\mathrm{hi}}+d_{\mathrm{hi}}\cdot\frac{L_{\mathrm{resp}}}{\mu}.
+\]
+$K_S$ is the state-Lipschitz modulus of the sender's value (stage rate
+$r s+w\le r+w$ compounded through the upper bound on the transition's state
+slope); $g_S$ its lower state slope (the stage state rate $w$ at $s=0$, through
+the lower bound on that slope); $M_S$ the
+sup-norm radius; $\mu$ the strong-concavity modulus of the sender's dynamic
+objective in the sanction; $A$ an upper bound on the sender's dynamic marginal
+return to the first unit of sanction, at full non-compliance (a bound, not
+the derivative of a value that need not be differentiable); $g_T$ the
+target's lower value slope --- the direct valuation $v$ plus the cross term
+$n$ at $u_0/q$, compounded through the lower bound on the transition's state
+slope, and at $n=0$ equal
+to $v/(1-\beta_Tg_{\mathrm{lo}})$; when $u_0\le q$, as under interiority,
+$u_0/q$ is the lower bound $\underline s$ (\path{toChord_sfloor}), below
+which the response at non-compliance never falls on either invariant set.
+
+\subsubsection*{C. The certificate}
+A member of the family satisfies
+\begin{align*}
+&\text{(curvature)}& \beta_S\bigl(\sigma_Vd_{\mathrm{hi}}^2+K_SM_s\bigr)&<q
+\quad(\text{i.e. }\mu>0),\\
+&\text{(Riccati closure)}& \sigma_{\mathrm{img}}&\le\sigma_V,
+\end{align*}
+together with the signs $k>0$, $v>0$ and $n<c$. Four further conditions are
+hypotheses of the propositions that read them, not conditions of membership,
+so that each case of the family is stated on the same structure:
+\begin{align*}
+&\text{(interiority)}& A&<q,\\
+&\text{(myopic relief condition)}& \ell q&<k(c-n),\\
+&\text{(the lifting condition)}& A&\le k,\\
+&\text{(entrenchment condition)}& c&\le\beta_Td_{\mathrm{lo}}g_T .
+\end{align*}
+As on the class of panel~A0, interiority and the myopic relief condition are
+hypotheses rather than fields since round BJ (the predicates
+\path{PlacableEconomyF.Interior} and \path{PlacableEconomyF.StageRelief},
+hypotheses \path{hInt} and \path{hSR}); the family keeps only the sign of the
+second, $n<c$, which that condition implies (\path{hcn_of_stageRelief}). A result
+that reads interiority only through $u_0\le q$, under which $\underline s=u_0/q$,
+takes that alone in
+its bridge to the class (\path{toChord_sfloor}).
+The lifting condition is read by the results in which full compliance ends the
+sanction (the myopic and sender-only cases, the zero level of
+\Cref{app:proofs:placable}); the entrenchment condition by the results in which the
+forward-looking target maintains non-compliance (the target-only and forward-looking cases, the
+target's invariant set). In the source they are the predicates
+\path{ChordEconomy.Placable} and \path{ChordEconomy.LossOffset} (on the family
+\path{PlacableEconomyF.Placable} and \path{PlacableEconomyF.LossOffset}, to which
+they reduce through \path{toChord}), and the corresponding hypotheses are named
+\path{hP} and \path{hTM} throughout.
+Derived from the membership conditions and the slope bounds, with nothing
+separately supplied: $\sigma_V\ge0$ (Riccati closure with $\mu>0$), and hence
+$q>0$ (the concavity condition puts $q$ above a sum of non-negative terms); under
+interiority $q>A>0$, as $A\ge u_0>0$, and so $u_0<q$; under the lifting condition
+$k\ge A>u_0+r$;
+under the entrenchment condition with interiority $v>c-n$ (the condition cleared of its
+denominator, using $g_{\mathrm{lo}}+d_{\mathrm{lo}}\le1$ from the two lower
+slope bounds and the diagonal, and $u_0<q$);
+$g_{\mathrm{lo}}\le g_{\mathrm{hi}}$ and $d_{\mathrm{lo}}\le d_{\mathrm{hi}}$ (the
+slope bounds between $0$ and $1$); $0\le M_{\mathrm{mix}}$ (the mixed bound at the
+corners); $d_{\mathrm{lo}}\le1$ (the sanction slope bound at state $0$ between sanctions $0$
+and $1$); and feasibility of $\F$ on the square (monotonicity and the
+diagonal). In the source six of these (feasibility, the two orderings,
+$0\le M_{\mathrm{mix}}$, $q>0$, $\sigma_V\ge0$) are theorems of the
+structure, not fields (\path{PlacableEconomyF.derived_fields}, from
+\path{mem_Icc_of_mono_of_diag}, \path{StateChordBandAll.rates_le},
+\path{sanctionChord_rates_le}, \path{MixedChordBound.nonneg},
+\path{plSigV_nonneg_of_closure}, and for $q>0$ the concavity condition,
+\path{PlacableEconomyF.hq}, in place of interiority, \path{plq_pos_of_interior},
+since round BJ); the signs $k>0$, $v>0$ and $n<c$, which the lifting condition, the entrenchment
+condition and the myopic relief condition used to imply, are fields since those became
+hypotheses; a member supplies the remaining conditions only. The one-period ranking $\ell q<u_0(c-n)$ --- the endpoint comparison under which
+full compliance beats full non-compliance in the one-period problem --- is not a field: it
+implies the myopic relief condition through the lifting condition ($u_0\le k$), and it is a
+hypothesis of the clause of \Cref{prop:placable-family} that the forward-looking
+incentives change behavior
+(\path{targetStage_one_gt_zero}, \path{both_channels_active_of_margin}) and of
+the dischargers \path{reliefSharp_of_scaled_Mtot_le} and
+\path{reliefSharp_of_Mtot_eq_q}; on the enriched subclass \textup{(RL)}
+implies the myopic relief condition ($q\le M_{\mathrm{tot}}$) and replaces the
+one-period ranking in that clause (\path{both_channels_active_of_relief}). The entrenchment
+condition is stated at the refined slope $g_T$; the strong entrenchment condition
+$c\le\beta_Td_{\mathrm{lo}}v/(1-\beta_Tg_{\mathrm{lo}})$ implies it
+(\path{hTMargin_of_old}) and coincides with it at $n=0$, and the inclusion
+is strict off the affine law: at $\F=$ \path{quadDiagF} with
+$(q,u_0,k,r,w,\ell,c,n,v)=(3,2,3,\tfrac1{100},\tfrac3{10},\tfrac35,1,\tfrac1{100},\tfrac{1199}{300})$
+every field holds, the entrenchment condition reads $1\le1201/1200$, and the
+strong entrenchment condition fails, $1199/1200<1$ (\path{placableFloor},
+\path{exists_floor_member_not_old}). Equivalently
+$v\ge c(1-\beta_Tg_{\mathrm{lo}})/(\beta_Td_{\mathrm{lo}})-nu_0/q$
+(\path{lossOffset_iff_v_ge}): a sufficient valuation threshold, not a
+behavioral boundary (\path{loss_offset_converse_counterexample}, cited in
+\Cref{sec:existence:placable}). The increasing-differences condition
+\[
+\beta_S\bigl(\sigma_Cg_{\mathrm{hi}}d_{\mathrm{hi}}+(K_S+2\sigma_C)M_{\mathrm{mix}}\bigr)\le r
+\tag{RM}
+\]
+is a hypothesis of the composed-equilibrium and separation theorems, never a
+field; at $M_{\mathrm{cx}}=M_{\mathrm{mix}}=0$ it reads $0\le r$. It is used
+only to make the sender's response at full non-compliance, computed at the
+constructed value $\Vs^\ast$, non-decreasing in the state (Step~4 of panel~E,
+\path{responsePath_monotoneOn_of_margin}), and the formalization states the
+following results under that condition instead: the composed equilibrium
+(\path{equilibriumTop}, \path{both_channels_active_of_response_monotone}), the
+separation and the convergence of \Cref{thm:regime-separation}
+(\path{myopic_dynamic_equilibrium_separation_generalF_stage_of_response_monotone},
+\path{dynamicPath_tendsto_of_response_monotone}), \Cref{prop:target-only}(iv)
+(\path{target_only_regime_generalF_of_response_monotone}), case $11$ of
+\Cref{thm:four-cells} (\path{four_cell_generalF'_of_response_monotone}),
+\Cref{prop:steady-gap}, \Cref{prop:welfare-nonidentification},
+\Cref{prop:family-welfare-nonidentification} and \Cref{prop:welfare-interval}; the forms under the condition are their corollaries,
+and \Cref{prop:activation-not-hysteresis} is still stated under the condition.
+The non-decreasing response is a condition on an endogenous object, the
+maximizer of the sender's objective at a value that is itself a fixed point,
+so it cannot be checked from the primitives alone; (RM) is a condition on the
+primitives and the supplied moduli that implies it, and the main text states
+the condition for that reason. The condition
+is not empty on the class: at a transition with concave state sections
+(\path{quadDiagF} with its arguments swapped, \path{quadDiagFSwap}, not
+affine at any rate and not $0$-semiconvex in the state) and
+$(q,u_0,k,r,w,\ell,c,n,v)=(3,1,3,\tfrac{9}{278},1,1,4,\tfrac1{100},20)$,
+every field holds and (RM) holds with equality, its left side
+$\beta_S\sigma_Cg_{\mathrm{hi}}d_{\mathrm{hi}}=9/278=r$ strictly positive
+(\path{placableRallyBinding}, \path{exists_binding_rally_member}); the
+mixed term is zero there. The condition restricts the supplied moduli,
+not the game: \path{placableQuadDiag} re-certified with the state-section
+modulus $M_{\mathrm{cx}}=4$ violates (RM), its left side $270/287$ exceeding
+$r=1/2$, while its response at non-compliance --- the same function as at the modulus
+$0$ --- is monotone (\path{exists_member_response_monotone_not_margin}), so the
+non-decreasing response is strictly weaker than (RM) for the supplied moduli.
+No economy that fails (RM) under every choice of moduli is exhibited, and no
+member of the enriched subclass that fails (RM) is exhibited for the forms of
+\Cref{thm:four-cells} or of the welfare results; whether the response at the binding member would stay
+monotone under a smaller $r$ is open. The forward-looking relief
+condition
+\[
+\ell\,M_{\mathrm{tot}}<k(c-n),\qquad
+M_{\mathrm{tot}}=q+\beta_S\bigl(\sigma_Cd_{\mathrm{hi}}^2+K_SM_{\mathrm{cs}}\bigr),
+\tag{RL}
+\]
+is likewise a theorem hypothesis, of the sender-only case and
+\Cref{thm:four-cells} on the enriched subclass. It is the sharp form of the
+earlier two-branch relief condition $2\ell\max\{M_{\mathrm{tot}},k\}<k(c-n)$, which
+implies it (\path{reliefSharp_of_relief}) and under which the machine-checked
+headline rows are still stated; at the two example economies of the subclass (RL) reads
+$3<12$ and $45/14<12$, on the whole affine coefficient box of
+\Cref{app:witness:openbox} it holds with $M_{\mathrm{tot}}=q$, and wherever
+$u_0M_{\mathrm{tot}}\le kq$ --- in particular wherever $M_{\mathrm{tot}}=q$,
+by the lifting condition --- it follows from the one-period ranking (a hypothesis) alone, through the identity
+$q\,(k(c-n)-\ell M_{\mathrm{tot}})=(kq-u_0M_{\mathrm{tot}})(c-n)+M_{\mathrm{tot}}(u_0(c-n)-\ell q)$
+(\path{reliefSharp_of_scaled_Mtot_le}, \path{reliefSharp_of_Mtot_eq_q}).
+The condition $u_0M_{\mathrm{tot}}\le kq$ is the largest on the other
+coefficients under which the one-period ranking discharges (RL) for every compliance cost
+(\path{reliefSharp_uniform_iff}): outside it, the midpoint of
+$(k(c-n)/M_{\mathrm{tot}},\,u_0(c-n)/q)$ is a cost that passes the one-period ranking and
+fails (RL).
+The gap between the two forms is inhabited
+off the affine law: at $\F=$ \path{quadDiagF} with
+$(q,u_0,k,r,w,\ell,c,n,v)=(3,2,3,\tfrac1{100},\tfrac3{10},\tfrac35,1,\tfrac1{100},5)$
+every family condition holds, (RL) reads $6393/3500<297/100$, and the two-branch
+form fails (\path{placableSharpRelief},
+\path{exists_sharp_relief_member_not_old}); there
+$u_0M_{\mathrm{tot}}=2131/350\le9=kq$ while $M_{\mathrm{tot}}>q$, so the
+larger discharger applies and the $M_{\mathrm{tot}}=q$ one does not
+(\path{placableSharpRelief_relief_disch}).
+
+The four restrictions that mention the cross term $n$ --- its sign, the
+one-period ranking, the entrenchment condition and (RL) --- hold together exactly when
+$\max\{0,n_{\min}\}\le n<\min\{c-\ell q/u_0,\,c-\ell M_{\mathrm{tot}}/k\}$
+with $n_{\min}=(c(1-\beta_Tg_{\mathrm{lo}})/(\beta_Td_{\mathrm{lo}})-v)\,q/u_0$
+(\path{rally_softening_interval_iff}; with the family's own condition, the
+myopic relief condition, in place of the one-period ranking, exactly when
+$\max\{0,n_{\min}\}\le n<c-\ell M_{\mathrm{tot}}/k$,
+\path{rally_softening_interval_iff'}): a larger cross term $n$ relaxes the
+entrenchment condition and tightens the two accommodation conditions. The interval is one of
+sufficient conditions, not the set of economies in which the target maintains non-compliance.
+
+\textbf{Economic interpretation and cost.} Curvature and closure say the sender's
+own cost curvature out-curves what the continuation can add, so the
+forward-looking sanction problem is strictly concave and its solution
+unique; they are regularity, not behavior. Interiority says that even at
+full non-compliance and the top of the state space the first unit of sanction is
+worth less than its marginal cost at $s=1$, so the sender never sanctions
+fully. The lifting condition says the target's compliance can buy the whole of that
+marginal return, so full compliance is met with no sanction. The myopic relief condition says
+that at the stage, compliance is worth buying at the margin: below the
+relief level a unit of it purchases $k/q$ units of sanction reduction worth at least
+$c-n$ each, more than its cost $\ell$; the one-period ranking $\ell q<u_0(c-n)$ is the
+endpoint form of the same comparison, full compliance against full non-compliance. The entrenchment condition says the
+target's per-unit sanction pain is covered by the discounted value of the
+entrenchment that sanction builds, at the target's lower value slope --- the
+direct valuation $v$ plus the cross term $n$ at $u_0/q$, the lower bound below which
+the sanction never falls when $u_0\le q$, as under interiority; this is
+a substantive statement about a government that values political
+entrenchment more than it dislikes the sanction, and it is what makes the
+forward-looking target maintain non-compliance. The sender's positive valuation $w$ of the
+state is a political objective of the sanctioning government, not a
+national-welfare gain. (RM) says the stage complementarity $r$ between the
+state and the sanction covers two forward-looking forces against a monotone
+response: saturation of the continuation (bounded by $\sigma_C$) and
+cross-effectiveness of the transition (bounded by $M_{\mathrm{mix}}$). It is the
+price of transition generality, paid only by transitions with concave state
+sections or cross-curvature.
+
+\subsubsection*{D. Invariant sets of value functions}
+\[
+\begin{aligned}
+\mathcal C_S=\{V:\ &\|V\|\le M_S,\ V\text{ is }K_S\text{-Lipschitz},\
+V(y_2)-V(y_1)\ge g_S(y_2-y_1)\text{ for }y_1\le y_2,\\
+&V\circ\operatorname{clip}\text{ is }\sigma_V\text{-semiconcave on }[0,1]\},
+\end{aligned}
+\]
+$\mathcal C_S^2=\mathcal C_S\cap\{V\circ\operatorname{clip}\text{ is }\sigma_C\text{-semiconvex on }[0,1]\}$,
+and
+$\mathcal C_T=\{V:\ \|V\|\le M_T,\ V(y_2)-V(y_1)\ge g_T(y_2-y_1)\text{ for }y_1\le y_2\}$.
+All three are closed in the sup norm and nonempty (the affine value
+$y\mapsto g\,y$ with the right slope lies in each).
+
+\begin{proposition}[Two-sided target value]
+\label{prop:target-two-sided}
+On the relief class, let $\gamma_T=g_{\mathrm{hi}}+d_{\mathrm{hi}}L_{\mathrm{resp}}/\mu$
+be the sharp loop constant and suppose $\beta_T\gamma_T<1$. Then the target value
+of every equilibrium whose sender value lies in the two-sided invariant set is
+$K_T$-Lipschitz in the state, with $K_T=L_U/(1-\beta_T\gamma_T)$ and
+$L_U=\max\{v_{\mathrm{hi}},v_{\mathrm{hi}}+n_{\mathrm{hi}}\}+cL_{\mathrm{resp}}/\mu$
+($v+n+cL_{\mathrm{resp}}/\mu$ on the family)
+(\path{equilibrium_V_T_lipschitz_of_carrier}; Hinderer 4.2(c) through the
+invariant closed set of $K_T$-Lipschitz values, \path{targetFix_lipschitz}).
+This covers the constructed equilibrium (\path{VTstar_lipschitz}) and, with no
+further condition, the non-compliance-profile value (\path{VTdef_lipschitz}). For $s_1\le s_2$
+the target's discounted continuation gain from the higher sanction is at most
+$\beta_TK_Td_{\mathrm{hi}}(s_2-s_1)$, which needs only $\beta_T\gamma_T<1$
+(\path{VTdef_continuation_upper}); with a nondecreasing response it is at least
+$\beta_Tg\,d_{\mathrm{lo}}(s_2-s_1)$ at every slope $g\ge0$ satisfying the
+slope condition, in particular at $g_T$ under the entrenchment condition
+(\path{VTdef_continuation_lower}, \path{VTstar_continuation_bracket}).
+$\beta_T\gamma_T<1$ is a hypothesis of the theorems that read it, not a field;
+$K_T$ and $L_U$ are closed forms in existing constants.
+\end{proposition}
+
+\begin{proposition}[Certified equilibria]
+\label{prop:certified-equilibria}
+Let $E$ be any equilibrium in $\mathcal E$ of an economy in the class whose target
+policy is nonincreasing in the state, on a member at which a larger concession
+is never worth more to the sender at zero sanction (automatic on the family).
+Then the sender's value has state slope
+at least $g_S=w_{\mathrm{lo}}/(1-\beta_Sg_{\mathrm{lo}})$ (\path{V_S_lowerSlope_of_antitone}),
+and, if the member also has an upper substitution rate
+$k_{\mathrm{hi}}$ (\path{PlacationCeiling}; the family has one, $k$), at every
+state the realized sanction is at least
+$\min\{(u_{\mathrm{lo}}+r_{\mathrm{lo}}x-k_{\mathrm{hi}}\alpha(x)+\beta_Sg_Sd_{\mathrm{lo}})/\bar Q,\,1\}$;
+on the family this is the stage vertex at the policy's compliance plus the
+foresight premium $\beta_Sg_Sd_{\mathrm{lo}}/q$
+(\path{equilibrium_sanction_ge_wedge_of_antitone}).
+The general theorem (\path{senderValue_lowerSlope_of_policy_chord},
+\path{Theory/Equilibrium/CertifiedEquilibria.lean}) is stated over the
+abstract game: the sender operator at any continuous policy is a contraction
+on the whole value space, the lower-slope cone is closed, nonempty and
+invariant under a joint state-slope condition, so the unique fixed point lies in it; on
+the class, under the pairwise neutrality, that condition reduces to the policy being
+nonincreasing in the state (\path{chord_of_antitone}). Nothing is said about equilibria whose compliance
+rises with entrenchment, and no equilibrium beyond the constructed ones is
+asserted to exist.
+\end{proposition}
+
+\subsubsection*{E. Proof of \Cref{prop:placable-family}}
+
+\emph{Step 1: the sender's value.} The sender Bellman operator at full
+non-compliance,
+\[
+(\mathsf T_SV)(x)=\max_{s\in[0,1]}\Us(x,0,s)+\beta_SV(\F(x,s)),
+\]
+maps $\mathcal C_S$ into itself: the sup bound is the stage bound geometrically
+summed; the $K_S$-Lipschitz bound is the stage rate $r+w$ plus
+$\beta_SK_Sg_{\mathrm{hi}}$ through (T1); the lower slope $g_S$ is the stage
+state rate $w$ plus $\beta_Sg_Sg_{\mathrm{lo}}$ through (T1), the maximum being
+taken pointwise in $x$; and the semiconcavity of the image is the Schur
+modulus $\sigma_{\mathrm{img}}=\sigma+\varrho^2/\mu$ of a supremum over $s$
+of a function that is jointly semiconcave with moduli $(\sigma,\varrho,\mu)$ in
+$(x,s)$, which requires the concavity condition $\mu>0$ in the same clause (the
+modulus is undefined without it) --- the stage term contributes $(0,r,q)$, the continuation
+contributes $\beta_S$ times the composition moduli obtained from (T3) and
+the invariant set's $\sigma_V$ --- and the closure inequality makes it at most
+$\sigma_V$. The operator is a $\beta_S$-contraction in the sup norm, so it
+has a unique fixed point $\Vs^\ast\in\mathcal C_S$ (Banach). Because $\mu>0$,
+the objective $s\mapsto\Us(x,a,s)+\beta_S\Vs^\ast(\F(x,s))$ is $\mu$-strongly
+concave, so the maximizer $\rho(x,a)$ is unique and, by the maximum theorem,
+continuous in $x$; it coincides with the dynamic best response of
+\Cref{sec:model}.
+
+\emph{Step 2: the response is interior, zero at full compliance, and above the myopic sanction.}
+Cap: for $t\le s$ the stage satisfies
+$\Us(x,a,t)-\Us(x,a,s)\ge(s-t)\bigl(q(s+t)/2-(u_0+r)\bigr)$ because the
+linear coefficient $u_0-ka+rx$ is at most $u_0+r$, while the continuation is
+$\beta_SK_Sd_{\mathrm{hi}}$-Lipschitz in $s$ by (T2); a maximizer of a
+$q$-strongly concave function with initial difference quotient at most $L_0=u_0+r$
+plus an $L$-Lipschitz perturbation lies at or below $(L_0+L)/q=A/q$, and
+$A/q<1$ by interiority. The lifting condition: at $a=1$ and any $s>0$ the objective's
+change from $s=0$ is at most $s(u_0+r-k+\beta_SK_Sd_{\mathrm{hi}})-\tfrac q2s^2
+=s(A-k)-\tfrac q2s^2<0$, so $\rho(x,1)=0$. Foresight premium: the continuation is
+nondecreasing in $s$ ((T2) and $g_S\ge0$), so $\rho(x,a)$ lies weakly above the
+stage maximizer; at $a=0$ the stage maximizer is the vertex
+$(u_0+rx)/q$, and moving the sanction up from it by
+$\varepsilon\le\min\{1-\text{vertex},\ \beta_Sg_Sd_{\mathrm{lo}}/q\}$ costs the
+stage $\tfrac q2\varepsilon^2$ and gains the continuation at least
+$\beta_Sg_Sd_{\mathrm{lo}}\varepsilon$, which is larger. So the vertex is not
+a maximizer of $J_S$, no maximizer of $J_S$ is a stage maximizer (the sender's
+forward-looking incentive changes behavior), and $\rho(x,0)>(u_0+rx)/q\ge u_0/q$.
+
+\emph{Step 3: the target maintains non-compliance, and the stage disagrees.} Fix
+$\Vt\in\mathcal C_T$ and $\Vs\in\mathcal C_S$. The response is antitone in
+$a$ (the stage has decreasing differences $-ksa$ in $(s,a)$, and the argmax
+is unique), so raising $a$ from $a_1$ to $a_2$ lowers the sanction by
+$\Delta\rho\ge0$. The target's objective
+$\Ut(x,a,\rho(x,a))+\beta_T\Vt(\F(x,\rho(x,a)))$ changes by at most
+$-\ell(a_2-a_1)+\Delta\rho\,(c-nx)-\beta_Tg_Td_{\mathrm{lo}}\Delta\rho
+\le-\ell(a_2-a_1)+\Delta\rho\,(c-\beta_Td_{\mathrm{lo}}g_T)<0$,
+using (T2) for the state loss, the lower slope $g_T$ for the value loss, and
+the entrenchment condition. So $a=0$ is the unique maximizer at every value pair in
+$\mathcal C_T\times\mathcal C_S$. At
+the stage, full compliance gives $-\ell+vx$ (the sanction is zero), while
+full non-compliance gives $\rho(x,0)(nx-c)+vx\le-(u_0/q)(c-n)+vx<-\ell+vx$ by the
+one-period ranking, the hypothesis of that clause of \Cref{prop:placable-family};
+so no forward-looking target maximizer is a stage maximizer (the target's
+forward-looking incentive changes behavior). Under
+\textup{(RL)} on the enriched subclass the same follows without the one-period ranking: a
+compliance $a\le\min\{1,\mu\rho(x,0)/(2k)\}$ keeps the response positive, the
+sharp rate of sanction reduction gives $\rho(x,0)-\rho(x,a)\ge ka/M_{\mathrm{tot}}$, and the
+stage gain is at least $a\,(k(c-nx)/M_{\mathrm{tot}}-\ell)>0$
+(\path{target_channel_active_of_relief}).
+
+\emph{Step 4: the monotone response and the composed equilibrium.} Under
+(RM), a condition on members of the two-sided extension of panel~A0, to which
+the family belongs, on $\mathcal C_S^2$ the sender's objective has increasing
+differences in
+(sanction; state): the stage cross-difference is exactly $r\,\Delta x\,\Delta s$,
+and the continuation's is bounded below by
+$-\beta_S\bigl(\sigma_Cg_{\mathrm{hi}}d_{\mathrm{hi}}+(K_S+2\sigma_C)M_{\mathrm{mix}}\bigr)\Delta x\,\Delta s$
+through the semiconvexity $\sigma_C$ of $\Vs^\ast\circ\operatorname{clip}$ and
+(T1), (T2), (T5). With a unique argmax, increasing differences make
+$\rho(\cdot,0)$ nondecreasing on $[0,1]$. This is the only use of (RM): from
+here on only that monotonicity is read, and the formalization builds the
+composed equilibrium from it (\path{equilibriumTop}; the form under the increasing-differences
+condition, \path{equilibriumTop_of_margin}, is its instance). Given that, the target operator at
+the response, $(\mathsf T_TV)(x)=\Ut(x,0,\rho(x,0))+\beta_TV(\F(x,\rho(x,0)))$,
+maps $\mathcal C_T$ into itself: the sup bound is direct, and the lower slope
+$g_T$ is preserved because the stage payoff at non-compliance rises by at least
+$v+n\rho\ge v+nu_0/q$ per unit of state (the response never falls below
+$u_0/q$, \path{responsePath_ge_sfloor}), and a higher state gives a weakly
+higher sanction and hence, through (T1) and the entrenchment condition, a continuation
+gain that at least offsets the stage loss $-(c-nx)\Delta\rho$. It is a
+$\beta_T$-contraction;
+its fixed point $\Vt^\ast$ and $\alpha\equiv0$ complete
+$(\Vt^\ast,\Vs^\ast,0)\in\mathcal E$, with both forward-looking incentives changing behavior by Steps 2
+and 3. $\Vs^\ast\in\mathcal C_S^2$ because $\sigma_C$ is the fixed point of
+the linear closure $\sigma\mapsto\beta_S(\sigma g_{\mathrm{hi}}^2+K_SM_{\mathrm{cx}})$.
+
+\subsubsection*{F. Proof of \Cref{prop:myopic-benchmark} and \Cref{thm:regime-separation}}
+
+\emph{Step 5: the myopic case.} With $\beta_S=\beta_T=0$ the sender's
+problem is the stage problem, whose unique maximizer is the clipped vertex
+$\max\{0,\min\{1,(u_0-ka+rx)/q\}\}$; it is zero exactly when
+$a\ge a^{00}(x):=(u_0+rx)/k$, which lies in $(0,1)$ because $u_0+r<k$. For
+$a\ge a^{00}(x)$ the target's payoff is $-\ell a+vx$, strictly decreasing;
+for $a<a^{00}(x)$ it is $-\ell a+\tfrac{u_0-ka+rx}q(nx-c)+vx$, whose slope
+in $a$ is $-\ell+\tfrac kq(c-nx)>0$ because $\ell q<k(c-n)\le k(c-nx)$, the
+myopic relief condition (\path{myopic_target_lt}). So
+$a^{00}(x)$ is the unique optimum, the realized sanction is zero, and the
+values $wx$ and $vx-\ell a^{00}(x)$ satisfy the two Bellman equations of
+\Cref{sec:model} at zero discount, where the dynamic best responses reduce to the
+myopic best response because the stage objective is strictly concave in the
+sanction. Convergence to zero: (T2) at state $x$ between sanctions $0$ and $x$, with
+$\F(x,x)=x$, gives $\F(x,0)\le(1-d_{\mathrm{lo}})x$, hence
+$x_t\le(1-d_{\mathrm{lo}})^tx_0$.
+
+\emph{Step 6: the forward-looking paths.} Write $b=u_0/q$ and
+$\rho(y)=\rho(y,0)\in(b,A/q]$ by Step 2. The lower bound on the build-up of the state: when $y\le b$, (T2)
+between sanctions $y$ and $b$ gives $\F(y,\rho(y))\ge\F(y,b)\ge y+d_{\mathrm{lo}}(b-y)$,
+and the comparison recursion $z_{t+1}=z_t+d_{\mathrm{lo}}(b-z_t)$ from $z_0=0$
+gives $x_t\ge b\bigl(1-(1-d_{\mathrm{lo}})^t\bigr)$; the affine minorant is
+used only at $y\le b$. From a common start the forward-looking state strictly
+exceeds the myopic one: at $t=1$,
+$\F(x_0,\rho(x_0))-\F(x_0,0)\ge d_{\mathrm{lo}}\rho(x_0)>0$, and
+monotonicity of $\F$ in the state propagates the strict gap. None of this
+uses monotonicity of $\rho$.
+
+\emph{Step 7: convergence.} The response $\rho$ is continuous without further conditions;
+when it is nondecreasing, as Step~4 gives under (RM), the closed loop
+$G(y)=\F(y,\rho(y))$ is nondecreasing and continuous on $[0,1]$; its orbit from any $x_0$ is monotone, hence
+convergent to a fixed point $x^{11}_\infty$. Since $\F(x^{11}_\infty,\rho(x^{11}_\infty))=x^{11}_\infty=\F(x^{11}_\infty,x^{11}_\infty)$ and
+$d_{\mathrm{lo}}>0$, (T2) forces $\rho(x^{11}_\infty)=x^{11}_\infty$, and $\rho$'s range gives
+$b<x^{11}_\infty\le A/q$ (\path{dynamicPath_tendsto_of_response_monotone}). The limit
+may depend on $x_0$; what is unique is the
+\emph{state} at which sanction equals state along that orbit, not the
+equilibrium.
+
+\emph{Step 8: the contraction bound (separate).} By strong concavity
+$\mu$ and the fact that the objective's dependence on the state is
+$L_{\mathrm{resp}}|x-y|$-Lipschitz in the sanction (through $r$, (T1), (T2),
+(T5) and $\bar\sigma$), the maximizers satisfy
+$|\rho(x)-\rho(y)|\le L_{\mathrm{resp}}|x-y|/\mu$ (the sharp argmax
+stability bound, from the strong-concavity inequality at $t\rho(x)+(1-t)\rho(y)$ and $t\downarrow0$;
+the midpoint inequality of the first formalization gave the factor four); then
+$|G(x)-G(y)|\le g_{\mathrm{hi}}|x-y|+d_{\mathrm{hi}}|\rho(x)-\rho(y)|
+\le L_{\mathrm{loop}}|x-y|$. When $L_{\mathrm{loop}}<1$ the steady state is
+unique and globally stable (\Cref{prop:activation-not-hysteresis}); this
+is not an ingredient of Steps 1--7.
+
+\textbf{Two views of one concept.} Write $E^{00}\in\mathcal E(p^{00})$ for
+the myopic case and $E^{11}\in\mathcal E(p)$ for the forward-looking one;
+the game is the same, only the discount factors differ. The
+comparison at a fixed target policy of \Cref{sec:results} and
+this equilibrium comparison, in which both governments re-optimize, are distinct. The two mixed cases are
+\Cref{prop:target-only} and \Cref{prop:sender-only}, and
+\Cref{thm:four-cells} orders all four; no interaction theorem is claimed
+beyond those directions.
+
+\subsubsection*{G. Proof of \Cref{prop:sender-only}}
+
+\emph{Step 1 (the zero-sanction value).} Let
+$\mathcal R V(x)=w\,x+\beta_S\,V(\F(x,0))$ on the two-sided sender invariant set of
+panel D (sup-norm at most $M_S$, state-Lipschitz $K_S$, lower slope $g_S$,
+$\sigma_V$-semiconcave and $\sigma_C$-semiconvex through the clip). $\mathcal
+R$ is a $\beta_S$-contraction (\path{relaxOp_contracting}) and maps that
+set to itself (\path{relaxOp_mem2}): the norm and Lipschitz legs use the
+upper bound on the transition's state slope at $s=0$; the lower-slope leg uses
+the lower bound on that slope;
+semiconcavity of the composition $V\circ\F(\cdot,0)$ follows from the joint
+semiconcavity (T3) restricted to $s_1=s_2=0$, with composed modulus
+$\sigma_x+\beta_S(\sigma_Vg_{\mathrm{hi}}^2+K_SM_x)\le\sigma_V$ by the Riccati closure
+(\path{chSig_le_SigV}); semiconvexity follows from the state-section
+semiconvexity (T4) through the composition lemma of
+\path{Foundations/SemiconvexComposition}. Its fixed point $\Vs^{01}$
+(\path{VS01}, \path{VS01_fix}) is the value of the path along which the
+sanction is zero forever. Nothing about the target has been used: this is why
+the sender's value can be written down before the target's policy is known.
+
+\emph{Step 2 (the response and its two curvatures).} At $\Vs^{01}$ the sender's
+dynamic objective in the sanction is
+$\psi_{x,a}(s)=\Us(x,a,s)+\beta_S\Vs^{01}(\F(x,s))$. It is $\mu$-strongly
+concave, as in panel E, so its maximizer $\rho(x,a)$ is unique and, by the
+maximum theorem, jointly continuous on $[0,1]\times\mathbb R$
+($\rho$\path{01_continuousOn}). It is also $M_{\mathrm{tot}}$-semiconvex in $s$
+with
+$M_{\mathrm{tot}}=q+\beta_S(\sigma_Cd_{\mathrm{hi}}^2+K_SM_{\mathrm{cs}})$
+(\path{senderObj_semiconvex}): the stage term contributes $q$, and the
+continuation term is the composition of a $\sigma_C$-semiconvex, $K_S$-Lipschitz
+value with a sanction section whose slopes lie in $[d_{\mathrm{lo}},d_{\mathrm{hi}}]$
+and which is $M_{\mathrm{cs}}$-semiconvex (T6). This is the only step of this proof
+that uses (T6); the same ceiling $M_{\mathrm{tot}}$ enters the relief and
+no-non-compliance sides of \Cref{prop:bracket}.
+
+\emph{Step 3 (the rate of sanction reduction).} Since $\Us$ is linear in $a$ with slope $-ks$,
+$\psi_{x,a}=\psi_{x,a'}+k(a'-a)\,s$ for $a<a'$. The shift lemma of
+\path{Foundations/SemiconvexArgmaxShift} says that if $\psi$ is
+$M$-semiconvex on $[0,1]$ with an interior maximizer $s'$, and $s$ maximizes
+$\psi+\lambda u$ with $\lambda>0$, then $s-s'\ge\min\{\lambda/M,\,1-s'\}$,
+and $s-s'\ge\lambda/M$ outright when $s<1$: at an interior maximizer $z$ of
+an $M$-semiconvex function the semiconvexity inequality through $z-\eta$ and $y$,
+read with $\eta\to0$ on both sides of $z$, is the quadratic lower support
+$\psi(y)\ge\psi(z)-\tfrac M2(y-z)^2$; applying it to $\psi$ at $s'$ and to
+$\psi+\lambda u$ at $s$, each evaluated at the other maximizer, and adding
+gives $\lambda(s-s')\le M(s-s')^2$, where $s-s'>0$ by the coarse shift
+lemma, so that dividing gives $s-s'\ge\lambda/M$
+(\path{argmax_shift_ge_of_semiconvex_linear_sharp}; the quadratic
+$-\tfrac M2(u-z)^2$ attains the bound, so nothing sharper holds on the
+class). Hence, for $a<a'<a^{01}(x)$, where both responses are interior
+($\rho(x,a')>0$ below the zero level and $\rho<1$ by interiority),
+\[
+\rho(x,a)-\rho(x,a')\;\ge\;\frac{k(a'-a)}{M_{\mathrm{tot}}}
+\]
+($\rho$\path{01_shift_ge_linear}).
+
+\emph{Step 4 (the zero level).} Let $Z(x)=\{a\in[0,1]:\rho(x,a)=0\}$. It is
+nonempty by the lifting condition ($\rho(x,1)=0$) and closed by continuity, so
+$a^{01}(x)=\min Z(x)$ exists (\path{zeroLevel}, \path{zeroLevel_mem}).
+The response is antitone in $a$, so $\rho(x,a)=0$ for $a\ge a^{01}(x)$ and
+$\rho(x,a)>0$ for $a<a^{01}(x)$ ($\rho$\path{01_eq_zero_of_ge},
+$\rho$\path{01_pos_of_lt}). At the myopic relief level $a^{00}(x)=(u_0+rx)/k$
+the stage marginal at $s=0$ vanishes but the continuation marginal does not:
+$\Vs^{01}$ has lower slope $g_S>0$ and the sanction section has lower slope bound
+$d_{\mathrm{lo}}>0$, so a small positive sanction beats zero
+($\rho$\path{01_pos_at_myopicPolicy}). Hence $a^{00}(x)<a^{01}(x)$
+(\path{myopicPolicy_lt_zeroLevel}); this is the foresight premium. Letting
+$a'\uparrow a^{01}(x)$ in Step 3, with $\rho(x,a')\ge0$, gives for $a<a^{01}(x)$
+($\rho$\path{01_ge_of_lt_sharp}; no continuity of the response is needed)
+\[
+\rho(x,a)\;\ge\;\frac{k\,(a^{01}(x)-a)}{M_{\mathrm{tot}}}.
+\]
+This is the untruncated per-unit rate of sanction reduction.
+
+\emph{Step 5 (the target's optimum).} With $\beta_T=0$ the target maximizes
+$\tau_x(a)=-\ell a+\rho(x,a)(nx-c)+v\,x$ over $[0,1]$
+(\path{tObj01}). For $a>a^{01}(x)$, $\rho=0$ and $\tau_x(a)=-\ell a+v\,x<\tau_x(a^{01}(x))$
+(\path{tObj01_lt_of_gt}). For $a<a^{01}(x)$, write $\Delta=a^{01}(x)-a\in(0,1]$;
+then, by Step~4 and $c-nx\ge c-n>0$,
+\[
+\tau_x(a^{01}(x))-\tau_x(a)=(c-nx)\rho(x,a)-\ell\Delta
+\;\ge\;\Delta\Bigl(\frac{k(c-n)}{M_{\mathrm{tot}}}-\ell\Bigr)>0
+\]
+by the forward-looking relief condition (RL) $\ell M_{\mathrm{tot}}<k(c-n)$
+(\path{tObj01_lt_of_lt'}). So $a^{01}(x)$ is the unique maximizer
+(\path{zeroLevel_isMaxOn'}, \path{zeroLevel_argmax_unique'}). (RL) is
+a per-unit benefit--cost condition: the sanction pain avoided per unit of
+compliance, at the rate of sanction reduction $k/M_{\mathrm{tot}}$ and the lowest price
+$c-n$, exceeds the unit compliance cost $\ell$. The two-branch form
+$2\ell\max\{M_{\mathrm{tot}},k\}<k(c-n)$ under which the headline rows are
+stated implies it (\path{reliefSharp_of_relief}), and those rows are
+recovered as corollaries (\path{tObj01_lt_of_lt}, \path{zeroLevel_isMaxOn}).
+
+\emph{Step 6 (continuity of the zero level).} Fix $x_0$ and $\varepsilon>0$.
+If $a^{01}(x_0)-\varepsilon<0$ the lower bound $a^{01}(x)>a^{01}(x_0)-\varepsilon$
+holds by feasibility; otherwise $\rho(x_0,a^{01}(x_0)-\varepsilon)>0$, and joint
+continuity gives
+$\rho(x,a^{01}(x_0)-\varepsilon)>0$ for $x$ near $x_0$, so $a^{01}(x)>a^{01}(x_0)-\varepsilon$.
+Conversely, if $a^{01}(x)>a^{01}(x_0)+\varepsilon$ then Step 4 gives
+$\rho(x,a^{01}(x_0))\ge k\varepsilon/M_{\mathrm{tot}}>0$, while
+$\rho(x,a^{01}(x_0))\to\rho(x_0,a^{01}(x_0))=0$; so $a^{01}(x)\le a^{01}(x_0)+\varepsilon$ for
+$x$ near $x_0$ (\path{zeroLevel_continuousOn}, from the general continuity of the
+least zero under a linear rate of sanction reduction, \path{ZeroLevel.level_continuousOn}). The policy is extended to
+$\mathbb R$ through the clip ($\alpha$\path{01}, $\alpha$\path{01_continuous}).
+
+\emph{Step 7 (the two Bellman equations).} Take $V_S=\Vs^{01}$,
+$\alpha=a^{01}$ and $V_T(x)=v\,x-\ell a^{01}(x)$ (\path{VT01}). The sender's
+equation holds because the maximizer of $\psi_{x,a^{01}(x)}$ is $\rho(x,a^{01}(x))=0$,
+so the maximum equals $\Us(x,a^{01}(x),0)+\beta_S\Vs^{01}(\F(x,0))=w\,x+\beta_S\Vs^{01}(\F(x,0))=\Vs^{01}(x)$
+by Step 1. The target's equation holds because $\beta_T=0$ and
+$\tau_x(a^{01}(x))=-\ell a^{01}(x)+v\,x$ is the maximum by Step 5, which is also the
+selector-consistency condition. The tuple is an equilibrium of the sender-only case
+(\path{senderOnlyEquilibriumTop}); the equilibrium is not assumed anywhere in
+Steps 1--6, which is what Rule 1 requires of it.
+
+\emph{Step 8 (convergence to zero).} The realized sanction is $\rho(x,a^{01}(x))=0$
+(\path{senderOnlyRule_eq_zero}), so $x_{t+1}=\F(x_t,0)$. The lower bound on the
+transition's sanction slope, between $0$ and $x_t$ and with $\F(x_t,x_t)=x_t$, gives
+$x_t-\F(x_t,0)\ge d_{\mathrm{lo}}x_t$, hence $x_t\le(1-d_{\mathrm{lo}})^tx_0\to0$
+(\path{senderOnlyPath_le_geom}, \path{senderOnlyPath_tendsto_zero}). \qed
+
+\subsubsection*{H. Proof of \Cref{prop:target-only}}
+
+Clauses (i)--(iii) hold on the class of panel~A0 under the entrenchment condition alone
+(\path{target_only_regime_generalF_core}); (iv) adds $u_{\mathrm{hi}}<q$ and
+(RM), on the two-sided extension (\path{target_only_regime_generalF}, the
+corollary of \path{target_only_regime_generalF_of_response_monotone}); the
+closed forms of (iii) are on the family under interiority and the entrenchment condition
+(\path{PlacableEconomyF.targetOnlyPath_tendsto},
+\path{targetOnlyPath_error_le_geometric}), and the family bundle
+\path{target_only_regime_closedForm} adds (RM) for (iv). (T6) is not used. This panel is written
+on the class: $\sigma(x,a)$ is the myopic best response and $\underline s=\sigma(0,0)$.
+
+\emph{Step 1 (the sender).} At $\beta_S=0$ the sender maximizes $\Us(x,a,\cdot)$,
+which is strictly concave by (S3) (\path{stage_strictConcaveOn}), so
+$\sigDynTop_{\Vs}(x,a)=\sigma(x,a)$ for every continuation value
+(\path{Theory/Mechanism/ZeroDiscountSelector.lean}). The sanction rule is
+therefore $\sigma(x,0)$ (\path{targetOnlyRule_eq_stage}), and at
+$\alpha\equiv0$ the sender's equation holds at the stage value
+$\Vs^{10}(x)=\Us(x,0,\sigma(x,0))$ (\path{VS10}). None of the following needs a
+theorem-specific condition. $\sigma(x,\cdot)$ is antitone, by (S9) and uniqueness
+(\path{stage_}$\sigma$\path{_antitoneOn}). $\sigma(\cdot,0)$ is continuous
+(panel~A0) and nondecreasing, by (S7) and uniqueness (\path{stage_argmax_mono}),
+so it never falls below $\underline s$ (\path{sfloor_le}).
+
+\emph{Step 2 (the target and the equilibrium).} The argument of Step~3 of
+panel~E applies with $\sigma(x,\cdot)$ in place of $\rho(x,\cdot)$. Take
+$a_1<a_2$ in $[0,1]$, $\sigma_i=\sigma(x,a_i)$ and $\Vt\in\mathcal C_T$. By (P1)
+and (P2) the stage term changes by at most
+$-\ell_{\mathrm{lo}}(a_2-a_1)+c(\sigma_1-\sigma_2)$, and by (T2) and the slope
+$g_T$ the continuation changes by at most
+$-\beta_Td_{\mathrm{lo}}g_T(\sigma_1-\sigma_2)$. The objective
+$\Ut(x,a,\sigma(x,a))+\beta_T\Vt(\F(x,\sigma(x,a)))$ therefore changes by at most
+$-\ell_{\mathrm{lo}}(a_2-a_1)+(\sigma_1-\sigma_2)(c-\beta_Td_{\mathrm{lo}}g_T)<0$,
+by the entrenchment condition (\path{targetObj10_strictAntiOn}), so $a=0$ is the unique
+maximizer. The operator
+$(\mathsf T_T^{10}V)(x)=\Ut(x,0,\sigma(x,0))+\beta_TV(\F(x,\sigma(x,0)))$ is a
+$\beta_T$-contraction (\path{targetOp10_contracting}). It maps $\mathcal C_T$
+into itself as in Step~4 of panel~E with $\sigma(\cdot,0)$ in place of
+$\rho(\cdot,0)$ (\path{targetOp10_mem}). The sup bound is direct. For
+$y_1\le y_2$, now write $\sigma_i=\sigma(y_i,0)$; the stage term rises by at least
+$(v_{\mathrm{lo}}+n_{\mathrm{lo}}\underline s)(y_2-y_1)-c(\sigma_2-\sigma_1)$
+((P3) at $\sigma_1\ge\underline s$, then (P2)), and the continuation rises by at
+least
+$\beta_Tg_T\bigl(g_{\mathrm{lo}}(y_2-y_1)+d_{\mathrm{lo}}(\sigma_2-\sigma_1)\bigr)$
+((T1), (T2)). With $g_T(1-\beta_Tg_{\mathrm{lo}})=v_{\mathrm{lo}}+n_{\mathrm{lo}}\underline s$
+and the entrenchment condition the sum is at least $g_T(y_2-y_1)$. Step~4 of panel~E gets
+the order $\sigma_1\le\sigma_2$ from (RM); here it comes from (S7). The fixed
+point $\Vt^{10}\in\mathcal C_T$ (\path{VT10}), with $\Vs^{10}$ and
+$\alpha\equiv0$, is an equilibrium in $\mathcal E$ of the target-only case
+(\path{targetOnlyEquilibriumTop}), and at its values every target maximizer is
+$0$ (\path{targetOnlyEquilibriumTop_argmax_unique}). This proves (i) and (ii).
+
+\emph{Step 3 (the path, on the class).} The rule is at least $\underline s$, so
+Step~6 of panel~F with $b=\underline s$ gives
+$x_t\ge\underline s\bigl(1-(1-d_{\mathrm{lo}})^t\bigr)$
+(\path{targetOnlyPath_ge_approach}). The rule is nondecreasing and continuous,
+so, as in Step~7 of panel~F, the orbit of $y\mapsto\F(y,\sigma(y,0))$ converges
+to some $x^{10}_\infty$. (T2) with $d_{\mathrm{lo}}>0$ then forces
+$\sigma(x^{10}_\infty,0)=x^{10}_\infty$, and so $x^{10}_\infty\ge\underline s$
+(\path{ChordEconomy.targetOnlyPath_tendsto}). No theorem-specific condition enters. The class
+result does not say the fixed point is unique, so $x^{10}_\infty$ may depend on $x_0$.
+
+\emph{Step 4 (the family).} Under interiority the myopic best response at non-compliance is
+the vertex $(u_0+rx)/q\in[0,1)$ (\path{targetOnlyRule_eq_vertex}). The family's
+entrenchment condition is the class's, because $u_0\le q$ gives $\underline s=u_0/q$
+(\path{toChord_sfloor}, \path{toChord_lossOffset}). Since $r<q$, the vertex
+fixes only $u_0/(q-r)$ (\path{vertex_eq_self_iff}), so $x^{10}_\infty=u_0/(q-r)$
+from every start (\path{PlacableEconomyF.targetOnlyPath_tendsto}). For the rate,
+the rule is affine about $x^{10}_\infty$ with slope $r/q\in[0,1)$:
+$(u_0+rx)/q-x^{10}_\infty=(r/q)(x-x^{10}_\infty)$ (\path{vertex_sub_steady10}). Suppose
+$x\le x^{10}_\infty$. Then $R=(u_0+rx)/q$ lies in $[x,x^{10}_\infty]$, monotonicity of $\F$
+and the diagonal put $\F(x,R)$ in $[x,R]$, and (T2) gives
+$\F(x,R)-x\ge d_{\mathrm{lo}}(R-x)=d_{\mathrm{lo}}(1-r/q)(x^{10}_\infty-x)$. Hence
+$|\F(x,R)-x^{10}_\infty|\le\bigl(1-d_{\mathrm{lo}}(1-r/q)\bigr)|x-x^{10}_\infty|$; the argument for
+$x\ge x^{10}_\infty$ is symmetric. Iterating gives the centered bound of (iii)
+(\path{CenteredContraction.iterate_abs_le},
+\path{targetOnlyPath_error_le_geometric}). The bound compares each state with
+$x^{10}_\infty$; it does not compare two paths. This proves (iii).
+
+\emph{Step 5 (the forward-looking limit is higher).} Let $u_{\mathrm{hi}}<q$, and
+let the response $\rho=\rho(\cdot,0)$ at $\Vs^\ast$ be nondecreasing, which
+Step~4 of panel~E gives under (RM). From $x_0$ the forward-looking path
+converges to some $x^{11}_\infty$ with $\rho(x^{11}_\infty)=x^{11}_\infty$ (Step~7 of panel~F,
+\path{dynamicPath_tendsto_of_response_monotone}). The strict foresight premium of Step~2 of
+panel~E holds on the class under $u_{\mathrm{hi}}<q$ alone, with $\bar Q$ in
+place of $q$: $\sigma(x,0)<\rho(x)$ at every state (\path{responsePath_gt_stage}).
+Write $x^{10}_t$ and $x^{11}_t$ for the two paths. If $x^{10}_t\le x^{11}_t$,
+then
+$\F(x^{10}_t,\sigma(x^{10}_t,0))\le\F(x^{10}_t,\rho(x^{10}_t))\le\F(x^{11}_t,\rho(x^{11}_t))$,
+because $\rho$ is nondecreasing. By induction the target-only path stays below
+the forward-looking one (\path{rulePathF_le_of_rule_le_and_upper_mono}), so
+$x^{10}_\infty\le x^{11}_\infty$. Equality would give $\sigma(x^{11}_\infty,0)=x^{11}_\infty=\rho(x^{11}_\infty)$, which the foresight premium
+rules out, so $x^{10}_\infty<x^{11}_\infty$
+(\path{targetOnly_limit_lt_dynamic_limit_of_response_monotone}; under (RM),
+\path{targetOnly_limit_lt_dynamic_limit}). On the family, interiority gives
+$u_{\mathrm{hi}}<q$, and the comparison reads $u_0/(q-r)<x^{11}_\infty$ from every start
+(\path{targetOnly_steady_lt_dynamic_steady}). This proves (iv). \qed
+
+\subsubsection*{I. Proof of \Cref{thm:four-cells}}
+
+The theorem puts together results proved above and adds no new estimate. It is
+stated on the enriched subclass of panel~A0 (\path{four_cell_generalF'}). Its
+form with a nondecreasing response in place of (RM) is
+\path{four_cell_generalF'_of_response_monotone}; \path{four_cell_generalF'} is
+that form at the response of Step~4 of panel~E
+(\path{responsePath_monotoneOn_of_margin}), and
+\path{four_cell_generalF}, under the two-branch relief condition, follows from it
+through \path{reliefSharp_of_relief}. Each case uses the following hypotheses.
+
+\emph{Case $00$.} The myopic case, \Cref{prop:myopic-benchmark}, needs the
+myopic relief condition, and here that condition follows from (RL). The sender's stage
+curvature is at most its dynamic one, $\bar Q\le M_{\mathrm{tot}}$
+(\path{Qbar_le_Mtot}), so
+$\ell_{\mathrm{hi}}\bar Q\le\ell_{\mathrm{hi}}M_{\mathrm{tot}}<k_{\mathrm{lo}}p_{\mathrm{lo}}$
+(\path{stageRelief_of_reliefSharp}). Interiority and the lifting condition enter only
+through $u_{\mathrm{hi}}<q$ and $u_{\mathrm{hi}}<k_{\mathrm{lo}}$
+(\path{uhi_lt_q}, \path{uhi_lt_k}). With these, Step~5 of panel~F gives a zero
+realized sanction and $x_t\le(1-d_{\mathrm{lo}})^tx_0\to0$
+(\path{myopicPath_tendsto_zero}).
+
+\emph{Case $01$.} This is \Cref{prop:sender-only}(iii), Step~8 of panel~G
+(\path{senderOnlyPath_tendsto_zero'}). It uses interiority, the lifting condition, (RL),
+compliance neutrality, and (T6) through $M_{\mathrm{tot}}$ (Step~2 of
+panel~G).
+
+\emph{Cases $10$ and $11$.} Apply Step~5 of panel~H, with $u_{\mathrm{hi}}<q$
+from interiority and with the entrenchment condition
+(\path{targetOnly_limit_lt_dynamic_limit_of_response_monotone}). From each $x_0$
+the target-only path converges to $x^{10}_\infty$ with $\sigma(x^{10}_\infty,0)=x^{10}_\infty$, and
+the forward-looking path converges to $x^{11}_\infty$ with $\rho(x^{11}_\infty)=x^{11}_\infty$ and $x^{10}_\infty<x^{11}_\infty$. The
+fixed point is positive because a non-compliant target is sanctioned at every state:
+$x^{10}_\infty=\sigma(x^{10}_\infty,0)>0$ by (S11) with $u_{\mathrm{lo}}>0$
+(\path{stage_argmax_pos}). Case $10$ uses only the entrenchment condition (Steps~1--3 of
+panel~H). Case $11$ also uses $u_{\mathrm{hi}}<q$ and, through the nondecreasing
+response, (RM). Neither case uses the lifting condition, (T6), (RL) or neutrality.
+
+On the family (\path{PlacableEconomyFcs.four_cell_closedForm}), Step~4 of
+panel~H gives $x^{10}_\infty=u_0/(q-r)$ from every start. This is positive because
+$u_0>0$ and interiority gives $r<q$ (\path{steady10_pos}), and Step~5 gives a forward-looking
+limit strictly above it. \qed
+
+\subsection{Consequences for the forward-looking equilibrium of the class under the lifting condition}
+\label{app:proofs:branch}
+
+Throughout this subsection $m=\beta_S g_S d_{\mathrm{lo}}/\bar Q$ abbreviates the
+bound \eqref{eq:sender-wedge} on the sender's foresight premium, $\beta_S w d_{\mathrm{lo}}/\bigl(q(1-\beta_S g_{\mathrm{lo}})\bigr)$
+on the family; it is a combination of the class's rates, not a parameter. $V_S$ and $V_T$ are the values of the
+constructed forward-looking equilibrium of \Cref{prop:placable-family} and
+$R(x)$ its realized sanction at non-compliance.
+
+\paragraph{The premium bound.}
+The proofs below read the premium bound \eqref{eq:sender-wedge} of
+\Cref{sec:results:wedge}. Its proof follows the formalization.
+
+\begin{proof}[Proof of \eqref{eq:sender-wedge}]
+Let the member satisfy interiority. Fix a value
+$V\in\mathcal C_S$ in the sender's invariant set and a state $x\in[0,1]$, and write $\phi(s)=\Us(x,0,s)$,
+$H(s)=\beta_SV(\F(x,s))$ and $s^\circ=\sigma(x,0)$. The response $\rho_V(x)$ at
+non-compliance maximizes $\phi+H$ on $[0,1]$ (\path{response_isMaxOn}); at $V=V_S$ it is
+$R(x)$. \emph{The continuation's lower slope.} For $s_1\le s_2$ in $[0,1]$ the
+lower bound (T2) on the transition's sanction slope gives $\F(x,s_2)-\F(x,s_1)\ge d_{\mathrm{lo}}(s_2-s_1)\ge0$,
+and every value in the invariant set rises by at least $g_S$ per unit of state
+(\path{clip_lowerSlope}). Hence $H(s_2)-H(s_1)\ge L(s_2-s_1)$ with
+$L=\beta_Sg_Sd_{\mathrm{lo}}$. Here $L>0$, because $\beta_S>0$, $d_{\mathrm{lo}}>0$,
+and $g_S>0$ by (S2) and $\beta_Sg_{\mathrm{lo}}<1$.
+\emph{The base objective.} By (S4), $\phi$ is $\bar Q$-semiconvex on $[0,1]$. It
+is maximized at $s^\circ$, and $0<s^\circ<1$: $s^\circ>0$ by (S11)
+(\path{stage_argmax_pos}), and $s^\circ<1$ by myopic interiority $u_{\mathrm{hi}}<q$,
+which interiority implies (\path{uhi_lt_q}, \path{stage_argmax_lt_one}).
+\emph{The shifted maximizer.} Every maximizer $s$ of $\phi+H$ on $[0,1]$ satisfies
+$s\ge \tilde s:=\min\{1,s^\circ+L/\bar Q\}$
+(\path{min_one_shifted_argmax_le_of_semiconvex}). To see this, suppose $s<\tilde s$.
+If $s<s^\circ$, moving to $s^\circ$ does not lower $\phi$ and raises $H$ by at least
+$L(s^\circ-s)>0$. If $s^\circ\le s<\tilde s$, write $s=\lambda s^\circ+(1-\lambda)\tilde s$ with
+$\lambda=(\tilde s-s)/(\tilde s-s^\circ)$. The semiconvexity inequality at $s$ and the quadratic lower
+support at the interior maximizer, $\phi(\tilde s)\ge \phi(s^\circ)-\tfrac{\bar Q}{2}(\tilde s-s^\circ)^2$
+(this step uses $s^\circ>0$;
+\path{quadratic_support_right_of_semiconvex_interior_max}), give
+$\phi(s)\le \phi(\tilde s)+\tfrac{\bar Q}{2}(\tilde s-s)(\tilde s+s-2s^\circ)$. Because $\tilde s\le s^\circ+L/\bar Q$,
+$H(\tilde s)-H(s)\ge L(\tilde s-s)\ge\bar Q(\tilde s-s^\circ)(\tilde s-s)$. Together these give
+$(\phi+H)(\tilde s)-(\phi+H)(s)\ge\tfrac{\bar Q}{2}(\tilde s-s)^2>0$. Either way, $s$ is not a
+maximizer.
+\emph{The interior cap removes the clip.} By the cap in Step~2 of panel~E of
+\Cref{app:proofs:placable}, every maximizer at non-compliance is at most $A/q$
+(\path{dynamicArgmax_le_cap}, \path{responsePath_le_cap}), and $A/q<1$ by
+interiority (\path{cap_lt_one}). So $\tilde s\le\rho_V(x)<1$. Hence $\tilde s=s^\circ+L/\bar Q$
+and $\rho_V(x)\ge\sigma(x,0)+\beta_Sg_Sd_{\mathrm{lo}}/\bar Q$
+(\path{responsePath_ge_stage_add_wedge}). Substituting
+$g_S=w_{\mathrm{lo}}/(1-\beta_Sg_{\mathrm{lo}})$ gives
+$\beta_Sw_{\mathrm{lo}}d_{\mathrm{lo}}/\bigl(\bar Q(1-\beta_Sg_{\mathrm{lo}})\bigr)$
+(\path{wedge_eq}). On the family $\bar Q=q$ and $w_{\mathrm{lo}}=w$
+(\path{toChord}), which gives the family form.
+\emph{Along the paths.} Suppose in addition that the member satisfies the
+entrenchment condition and that its response at full non-compliance is non-decreasing in
+the state, as in \Cref{prop:steady-gap}. These hypotheses name the two
+constructed equilibria. The target-only sanction rule is $\sigma(\cdot,0)$
+(\Cref{prop:target-only}(i); \path{targetOnlyRule_eq_stage}) and the
+forward-looking one is $R$
+(\path{dynamicRule_eq_responsePath_of_response_monotone}), so
+$R(x)\ge\sigma(x,0)+m$ at every state
+(\path{targetOnlyRule_add_wedge_le_dynamicRule_of_response_monotone}). From a
+common start, suppose $x^{10}_t\le x^{11}_t$. Then
+$x^{10}_{t+1}=\F(x^{10}_t,\sigma(x^{10}_t,0))\le\F(x^{10}_t,R(x^{11}_t))
+\le\F(x^{11}_t,R(x^{11}_t))=x^{11}_{t+1}$, using $\sigma(\cdot,0)\le R$,
+monotonicity of $R$, (F3) and (F2). So the forward-looking state path lies above the target-only one at
+every date (\path{rulePathF_le_of_rule_le_and_upper_mono},
+\path{targetOnlyPath_le_dynamicPath_of_response_monotone}). The myopic sanction rule is
+non-decreasing in the state by (S7) and the uniqueness in (S3)
+(\path{stage_argmax_mono}), so
+$\sigma(x^{10}_t,0)+m\le\sigma(x^{11}_t,0)+m\le R(x^{11}_t)$ at every date
+(\path{targetOnlySanction_add_wedge_le_dynamicSanction_of_response_monotone};
+the form under the increasing-differences condition is
+\path{targetOnlySanction_add_wedge_le_dynamicSanction}).
+\end{proof}
+
+\begin{proposition}[The long-run gap]
+\label{prop:steady-gap}
+For every economy in the class satisfying interiority, every fixed point
+$x^{11}_\infty\in[0,1]$ of the dynamic best response at non-compliance and every fixed point $x^{10}_\infty\le x^{11}_\infty$ of the
+myopic sanction rule $x\mapsto\sigma(x,0)$ satisfy
+\[
+x^{11}_\infty-x^{10}_\infty\;\ge\;\frac{\beta_S\,g_S\,d_{\mathrm{lo}}}{\bar Q-r_{\mathrm{lo}}},
+\]
+which on the family, where $x^{10}_\infty=u_0/(q-r)$, reads
+$x^{11}_\infty-u_0/(q-r)\ge qm/(q-r)=\beta_S w d_{\mathrm{lo}}/\bigl((q-r)(1-\beta_S g_{\mathrm{lo}})\bigr)$.
+Under the entrenchment condition and a response at full non-compliance non-decreasing in
+the state (as under the increasing-differences condition \eqref{eq:rally-margin};
+\Cref{app:proofs:placable}), from every initial state the path of the
+constructed forward-looking equilibrium converges to such a fixed point.
+\end{proposition}
+
+\begin{proof}
+The premium bound at $x^{11}_\infty$ reads $x^{11}_\infty=R(x^{11}_\infty)\ge\sigma(x^{11}_\infty,0)+m$, and the myopic sanction rule's
+slope bound (S7) with (S4) gives $\sigma(x^{11}_\infty,0)-x^{10}_\infty\ge r_{\mathrm{lo}}(x^{11}_\infty-x^{10}_\infty)/\bar Q$;
+rearrange, using $r_{\mathrm{lo}}<\bar Q$: the cross difference over the unit
+square, at least $r_{\mathrm{lo}}$ by (S7), is at most the upper bound on the marginal return at the top
+state less the lower bound at the bottom one by (S10) and (S11), and myopic
+interiority $u_{\mathrm{hi}}<q\le\bar Q$ with $u_{\mathrm{lo}}>0$ then gives
+$r_{\mathrm{lo}}<\bar Q$ (\path{rlo_lt_Qbar}; \path{fixedPoint_ge_limit10_add_gap}).
+On the family $x^{11}_\infty=R(x^{11}_\infty)\ge(u_0+r\,x^{11}_\infty)/q+m$; multiply by $q>0$ and divide by $q-r>0$
+(\path{fixedPoint_ge_steady10_add_gap}, \path{steadyGap_eq}). The limit exists
+and is a fixed point by Step~7 of the proof of \Cref{thm:regime-separation},
+which reads only the monotone response
+(\path{dynamicPath_limit_ge_limit10_add_gap_of_response_monotone},
+\path{dynamicPath_limit_ge_steady10_add_gap_of_response_monotone}; the form under the
+increasing-differences condition, \path{dynamicPath_limit_ge_steady10_add_gap}, is a corollary). The bound is a statement about
+the constructed equilibrium at fixed primitives; it is not a comparative
+static in $\beta_S$ of equilibria in which both governments re-optimize, and the limit may depend on the
+start unless the closed loop contracts.
+\end{proof}
+
+\begin{remark}[The premium bound is attained]
+\label{rem:wedge-sharp}
+At the affine member with rate and both discount factors $\tfrac12$, $q=2$,
+$u_0=w=1$ and $r=0$, the constructed sender value is $\tfrac43x+\tfrac89$, the
+dynamic best response to non-compliance is $\tfrac23$ at every state, the stage
+vertex is $\tfrac12$ and $m=\tfrac16$, so \eqref{eq:sender-wedge} holds with
+equality (\path{placableBoundary_wedge_attained}); the value is pinned down by
+uniqueness of the fixed point of the sender's Bellman contraction, not posited.
+Hence no constant larger than one can multiply $m$ in a bound valid at every
+member (\path{wedge_coefficient_cannot_be_raised}). This is an existence
+statement at one affine member: it says nothing about tightness elsewhere, and
+a transition supplied with looser slope bounds yields a smaller $m$ for
+the same game.
+\end{remark}
+
+\begin{proposition}[The path does not depend on the target's parameters]
+\label{prop:branch-invariance}
+Let two games share the transition $\F$ on the square, the sender's discount
+factor $\beta_S$ and the sender's stage payoff at full non-compliance,
+$\Us(x,0,s)$ on the square (on the family, the coefficients $q,u_0,r,w$). Then
+any full-non-compliance equilibria in $\mathcal E$ of the two have the same sender value
+and the same sanction rule at every feasible state, and their state
+paths and realized sanctions coincide from every initial state and at every
+date, whatever the two games' target payoffs and discount factors and sender
+payoffs away from full non-compliance. On economies in the class satisfying their increasing-differences
+and entrenchment conditions the constructed equilibria are such equilibria.
+\end{proposition}
+
+\begin{proof}
+At non-compliance the two games' sender objectives $\Us(x,0,s)+\beta_SV(\F(x,s))$
+are the same function of $(V,x,s)$ on the square (on the family, because the
+compliance--sanction cross term $-kas$ vanishes), so their Bellman operators at the non-compliance
+policy coincide (\path{bellmanS_BCF_zero_eq_of_defiance_section_eq}). Each
+equilibrium's sender value is a fixed point of its operator at its own policy,
+which is full non-compliance, hence of this one
+(\path{V_S_eq_V_S_zero_of_policy_zero}); the operator is a contraction of the
+whole space of bounded continuous values, so the two values coincide
+(\path{senderValue_eq_of_defiance_section_eq}). The sanction rules are then the
+greatest maximizers of the same objective
+(\path{equilibriumRule_eq_of_defiance_section_eq}), and the paths coincide by
+induction (\path{equilibriumPath_eq_of_defiance_section_eq},
+\path{defiance_branch_invariance_generalF}). No theorem-specific condition, invariant set or argmax
+uniqueness is read, and the statement is conditional on the two equilibria;
+for the constructed ones see \path{dynamicSanction_eq_of_sender_side_eq}. It
+does not say that a full-non-compliance equilibrium survives an arbitrary parameter change, it
+does not concern the target's value, which does differ, and off-path responses
+can differ when the payoffs away from non-compliance do.
+\end{proof}
+
+\begin{proposition}[Relief participation]
+\label{prop:relief-participation}
+Let an economy in the class satisfy the entrenchment condition, and let the
+sender's response at full non-compliance at its constructed value be non-decreasing
+in the state (as under the increasing-differences condition \eqref{eq:rally-margin}). Let
+$E=(\Vt,\Vs,\alpha)$ be any equilibrium in $\mathcal E$ at which the target fully
+maintains non-compliance; under these hypotheses one exists, the constructed equilibrium. Write
+$s_0=\min\{1,u_{\mathrm{lo}}/\bar Q\}$ and $G_S=s_0(u_{\mathrm{lo}}-\bar Qs_0/2)>0$,
+the stage-gain floor ($u_0^2/(2q)$ on the family). Fix $x_0\in[0,1]$, a length $N\ge1$ and a compliance sequence $a_t\in[0,1]$, let
+$y_0=x_0$, $y_{t+1}=\F(y_t,0)$ be the state under the zero sanctions of a temporary suspension of sanctions, and
+for $i\in\{S,T\}$ let
+\[
+J_i=\sum_{t<N}\beta_i^{\,t}\,U_i(y_t,a_t,0)+\beta_i^{\,N}V_i(y_N)
+\]
+be government $i$'s value of the spell followed by $E$. Then
+full non-compliance, $a_t\equiv0$, maximizes $J_T$ over compliance sequences, and at
+it $(J_S-V_S(x_0))+(J_T-V_T(x_0))\le-G_S$, so there is no number $\tau$ with
+$V_S(x_0)\le J_S-\tau$ and $V_T(x_0)\le J_T+\tau$. If moreover no compliance
+level raises the sender's payoff above full non-compliance's at zero sanction
+(automatic on the family), then for every compliance sequence
+\[
+V_S(x_0)-J_S\;\ge\;G_S\sum_{t<N}\beta_S^{\,t}\;>\;0,
+\qquad
+V_T(x_0)-J_T\;\ge\;\ell_{\mathrm{lo}}\sum_{t<N}\beta_T^{\,t}a_t\;\ge\;0 .
+\]
+and the joint loss and the absence of $\tau$ hold at every sequence.
+\end{proposition}
+
+\begin{proof}
+\emph{One period, sender.} The myopic sanction $\nu=\sigma(y,0)$ is feasible, so
+the Bellman inequality gives
+$V_S(y)\ge\Us(y,0,\nu)+\beta_SV_S(\F(y,\nu))$. The value is non-decreasing in
+the state and $\F$ in the sanction, so $V_S(\F(y,\nu))\ge V_S(\F(y,0))$; the
+stage gain of $\nu$ over zero is at least $G_S$ by (S11) at $s_0$
+(\path{stage_gain_ge}), and $\Us(y,a,0)\le\Us(y,0,0)$ for every $a$
+(\path{sender_relief_step}). On the family $\nu=(u_0+ry)/q$ and
+$\Us(y,0,\nu)-\Us(y,a,0)=(u_0+ry)^2/(2q)\ge u_0^2/(2q)$
+(\path{toChord_stageGainFloor}). \emph{One period, target.} The
+Bellman equality at non-compliance, with the sanction rule $R$, gives
+$V_T(y)=\Ut(y,0,R(y))+\beta_TV_T(\F(y,R(y)))$, hence
+\begin{align*}
+V_T(y)-\Ut(y,a,0)-\beta_TV_T(\F(y,0))
+&\ge\ell_{\mathrm{lo}}a-cR(y)+\beta_T\bigl[V_T(\F(y,R(y)))-V_T(\F(y,0))\bigr]\\
+&\ge\ell_{\mathrm{lo}}a+\bigl(\beta_Td_{\mathrm{lo}}g_T-c\bigr)R(y)\ge\ell_{\mathrm{lo}}a,
+\end{align*}
+by (P1), (P2), the lower state slope $g_T$ of $V_T$, the lower bound on the transition's
+sanction slope and the entrenchment condition $c\le\beta_Td_{\mathrm{lo}}g_T$
+(\path{target_relief_step}). \emph{The spell.} Multiplying the one-period
+inequalities by $\beta_i^{\,t}$ and summing over $t<N$ telescopes
+(\path{Foundations/FiniteDiscountedTelescope.lean};
+\path{senderReliefValue_add_loss_le}, \path{targetReliefValue_add_cost_le}),
+and the remaining claims are arithmetic: at non-compliance the sender's step needs
+no condition at zero sanction (\path{targetReliefValue_le_defiance},
+\path{relief_joint_loss_at_defiance},
+\path{no_date_zero_transfer_supports_relief_at_defiance}), and at every
+sequence it reads the condition that no compliance level raises the sender's
+payoff at zero sanction (\path{relief_joint_loss},
+\path{no_date_zero_transfer_supports_relief},
+\path{relief_participation_of_margin}). Every full-non-compliance equilibrium has the
+constructed values, so the argument applies to each
+(\path{relief_participation_of_policy_zero_at_defiance},
+\path{relief_participation_of_policy_zero}); the increasing-differences condition entered only
+through the non-decreasing response and to name the constructed equilibrium.
+\end{proof}
+
+The proposition excludes one arrangement: uncompensated zero sanctions for
+finitely many periods, then the same full-non-compliance equilibrium. It says nothing
+about a different continuation equilibrium, a third party's subsidy, payments
+at later dates under unequal discounting, or population welfare, and the last
+clause presupposes transfers valued one for one by both governments, which the
+game does not have. The target's half rests on the entrenchment condition and
+fails outside it: at the economy of \Cref{app:formalization} in which that
+condition fails and non-compliance is nonetheless the unique optimum, a one-period
+temporary suspension of sanctions is worth exactly $\tfrac1{18}$ more to the target than
+the equilibrium, at every state
+(\path{lossOffset_relief_period_benefits_target}) --- compliance is costly, but
+relief that is simply imposed requires none.
+
+\subsection{The bracket in the target's discount factor, and uniqueness in the monotone class}
+\label{app:proofs:threshold}
+
+Round AP made the lifting condition and the entrenchment condition hypotheses of the
+propositions that read them; on one structure both the relief and the non-compliance
+equilibria of the forward-looking target can then be stated. The affine family of
+earlier versions without state--sanction cross terms (an exact threshold $D/(\delta v+(1-\delta)D)$ in the
+target's discount factor) is retired: its content is the instance of the following
+proposition in which the general intermediate range closes to a point.
+
+Write, on an economy in the class with semiconvexity in the sanction (T6), $\mu$
+for the strong-concavity modulus and $M_{\mathrm{tot}}$ for the semiconvexity
+ceiling of the sender's dynamic objective in the sanction, $L_{\mathrm{resp}}/\mu$
+for the response's state Lipschitz rate,
+$L_\alpha=M_{\mathrm{tot}}L_{\mathrm{resp}}/(k_{\mathrm{lo}}\mu)$,
+$K_T^{\mathrm{rel}}=(v_{\mathrm{hi}}+\ell_{\mathrm{hi}}L_\alpha)/(1-\beta_Tg_{\mathrm{hi}})$ and
+$K_T=L_{U_T}/(1-\beta_TL_{\mathrm{loop}})$ (\Cref{app:closedforms}).
+
+\begin{proposition}[The bracket]
+\label{prop:bracket}
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Non-compliance side.} At any target value with lower state slope $g\ge0$
+and any value in the sender's invariant set, full non-compliance is a target optimum at every
+state whenever $c-\ell_{\mathrm{lo}}\mu/k_{\mathrm{hi}}\le\beta_Td_{\mathrm{lo}}g$,
+and the strict unique optimum when the inequality is strict; since
+$\ell_{\mathrm{lo}}>0$, the entrenchment condition implies the strict form at
+$g=g_T$. The target's value at the
+non-compliance profile carries the slope $g$ whenever the sender's response at its
+constructed value is nondecreasing in the state (as under the increasing-differences condition \eqref{eq:rally-margin}) and
+$g(1-\beta_Tg_{\mathrm{lo}})+\max\{0,c-\beta_Td_{\mathrm{lo}}g\}L_{\mathrm{resp}}/\mu\le v_{\mathrm{lo}}+n_{\mathrm{lo}}\underline s$:
+$g_T$ under the entrenchment condition, and $\min\{g_T,g_{\mathrm{eff}}\}$ with
+$g_{\mathrm{eff}}=(v_{\mathrm{lo}}+n_{\mathrm{lo}}\underline s-cL_{\mathrm{resp}}/\mu)/(1-\beta_T(g_{\mathrm{lo}}+d_{\mathrm{lo}}L_{\mathrm{resp}}/\mu))$
+in general, when $cL_{\mathrm{resp}}/\mu<v_{\mathrm{lo}}+n_{\mathrm{lo}}\underline s$ and
+$\beta_T(g_{\mathrm{lo}}+d_{\mathrm{lo}}L_{\mathrm{resp}}/\mu)<1$, the condition
+that keeps the denominator of $g_{\mathrm{eff}}$ positive.
+With that non-decreasing response (under the increasing-differences condition
+\eqref{eq:rally-margin} in particular) and the non-compliance side at that
+slope, in its weak form, the composed non-compliance equilibrium of
+\Cref{prop:placable-family} exists with those values.
+\item \emph{Relief side and no-non-compliance side.} Under interiority, the lifting condition,
+compliance neutrality and the relief side
+$\ell_{\mathrm{hi}}M_{\mathrm{tot}}\le k_{\mathrm{lo}}(p_{\mathrm{lo}}-\beta_Td_{\mathrm{hi}}K_T^{\mathrm{rel}})$,
+the zero level then being the unique target optimum when the inequality is
+strict, there is
+an equilibrium in $\mathcal E$ in which the forward-looking target complies at the
+zero level $a^{01}(x)$ at every state, the realized sanction is zero, the
+sender's value is the zero-sanction value and the target's is the relief
+value, which is $K_T^{\mathrm{rel}}$-Lipschitz because the zero level is
+$L_\alpha$-Lipschitz in the state. Under interiority, the lifting condition,
+$\beta_TL_{\mathrm{loop}}<1$ and the no-non-compliance side
+$\ell_{\mathrm{hi}}M_{\mathrm{tot}}<k_{\mathrm{lo}}(p_{\mathrm{lo}}-\beta_Td_{\mathrm{hi}}K_T)$, full non-compliance is
+not a target best reply at the non-compliance-profile values, so no equilibrium with
+those values has the target maintaining non-compliance.
+\item \emph{An intermediate range, not a point.} Every slope that the target's value
+is shown in (i) to carry is at most
+$g_T$, so every sufficient condition for non-compliance implies the non-compliance side at $g_T$; the
+statements below are about that side, which is itself a sufficient condition where
+the value is shown in (i) to carry $g_T$: under the entrenchment condition, or where the response does
+not move with the state ($L_{\mathrm{resp}}=0$). The non-compliance side at $g_T$ is
+disjoint from the relief side and, under $\beta_TL_{\mathrm{loop}}<1$, from the
+no-non-compliance side. Across members that differ only in $\beta_T$, the sufficient
+condition for non-compliance and the non-compliance side at $g_T$ are inherited by a more patient target,
+the relief side by a less patient
+one, and the no-non-compliance side by a less patient one under
+$\beta_TL_{\mathrm{loop}}<1$ at the more patient member; in their strict forms,
+the non-compliance and relief sides are open conditions on $\beta_T$. Across members that differ only
+in the target's sanction-indexed state rates and pain floor, the non-compliance side
+is inherited by a larger lower envelope slope $n_{\mathrm{lo}}$, the relief side
+by a larger pain floor $p_{\mathrm{lo}}$, and, under the loop condition, the
+no-non-compliance side by a larger $p_{\mathrm{lo}}$ with a smaller $n_{\mathrm{hi}}$
+(on the family, where $n_{\mathrm{lo}}=n_{\mathrm{hi}}=n$ and $p_{\mathrm{lo}}=c-n$,
+the non-compliance side by the larger cross term $n$ and the relief and
+no-non-compliance sides by the smaller). The non-compliance side at
+$g_T$ depends on the sender only through $\mu$, the upper substitution rate
+$k_{\mathrm{hi}}$ and $\underline s$, and the relief side only through
+$M_{\mathrm{tot}}$, the lower substitution rate $k_{\mathrm{lo}}$ and
+$K_T^{\mathrm{rel}}$; both are equalities of the conditions with those constants
+held fixed. Under fourteen tightness conditions --- tight slope bounds
+($g_{\mathrm{lo}}=g_{\mathrm{hi}}$, $d_{\mathrm{lo}}=d_{\mathrm{hi}}=\delta$), zero
+moduli ($\sigma_V=M_s=\tau_x=M_{\mathrm{cx}}=M_{\mathrm{cs}}=M_{\mathrm{mix}}=0$),
+a zero upper envelope slope ($n_{\mathrm{hi}}=0$; then
+$r_{\mathrm{hi}}=n_{\mathrm{lo}}=0$ follow) and the tight pairs
+$\bar Q=q$, $k_{\mathrm{lo}}=k_{\mathrm{hi}}=k$,
+$\ell_{\mathrm{lo}}=\ell_{\mathrm{hi}}=\ell$, $p_{\mathrm{lo}}=c$,
+$v_{\mathrm{lo}}=v_{\mathrm{hi}}=v$ --- the tight slope bounds pin $\F$ to the affine law
+$\F(x,s)=(1-\delta)x+\delta s$ on the square (either tight pair alone does, with
+the fixed diagonal), $\mu=M_{\mathrm{tot}}=q$ and
+$K_T^{\mathrm{rel}}=K_T=g_T$, $L_{\mathrm{resp}}=0$ so that the value is shown in (i) to carry $g_T$,
+the tight slopes sum to one, and the non-compliance side
+holds exactly when $\beta_T>\beta_T^*$ and the other two exactly when
+$\beta_T<\beta_T^*$, with $\beta_T^*=D/(\delta v+(1-\delta)D)$ and $D=c-\ell q/k>0$:
+the exact threshold of the affine setting without cross terms is where the
+intermediate range closes.
+The equalities are sufficient for this closing and are not shown to be
+necessary; the sender's $w$ and $u$ pairs need not be tight.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) The target's deviation from non-compliance to compliance $a$ lowers the response
+by at most $k_{\mathrm{hi}}a/\mu$: a unit of compliance perturbs a
+$\mu$-strongly concave objective with cross rate at most $k_{\mathrm{hi}}$
+(\path{response_sub_le_of_le}, through
+\path{argmax_dist_le_of_strongConcave_lipschitz_perturbation_sharp}). The
+pain saved is at most $c$ per unit of that fall, the continuation lost at
+least $\beta_Td_{\mathrm{lo}}g$ per unit through the lower bound on the transition's sanction slope, and
+the compliance costs at least $\ell_{\mathrm{lo}}a$ (\path{targetObj_strictAntiOn_of_sharp},
+\path{targetArgmax_eq_zero_of_sharp}, \path{sharp_of_lossOffset}); with a weak
+inequality the objective is still non-increasing in compliance, so non-compliance is
+an optimum, which is all existence needs
+(\path{targetObj_antitoneOn_of_sharp_le}, \path{zero_isMaxOn_joint_of_sharp}). The
+target operator at a sender value in the two-sided invariant set, with a monotone
+response, preserves the lower-slope cone at slope $g$ under the slope condition, the
+pain term along the response priced by $L_{\mathrm{resp}}/\mu$
+(\path{targetOp_mem_lowerSlopeCone}); the non-compliance-profile value is the fixed
+point of that contraction on the whole value space and lies in the cone
+(\path{VTdef}, \path{VTdef_lowerSlope}, Stokey--Lucas Corollary~1 to
+Theorem~3.2). Under the entrenchment condition $g_T$ balances (\path{gT_balance}); in general
+$\min\{g_T,g_{\mathrm{eff}}\}$ does (\path{gSharp_balance}: when $L_{\mathrm{resp}}=0$
+any slope at most $g_T$; otherwise $g_T\le g_{\mathrm{eff}}$ is equivalent to
+the entrenchment condition at $g_T$, and $g_{\mathrm{eff}}<g_T$ makes the pain term at
+$g_{\mathrm{eff}}$ nonnegative). The equilibrium is
+\path{equilibriumTop_sharp}, \path{equilibriumTop_gSharp}.
+(ii) The zero level is defined at any value in the two-sided invariant set with the sharp
+rate of sanction reduction below it (\path{zeroLevelAt}, \path{response_ge_of_lt_zeroLevelAt});
+across states the response at a fixed compliance moves by at most
+$L_{\mathrm{resp}}|\Delta x|/\mu$ (\path{response_dist_le_state}), so the zero
+level is $L_\alpha$-Lipschitz (\path{zeroLevelAt_lipschitz}). The relief
+operator $V\mapsto\Ut(y,a^{01}(y),0)+\beta_TV(\F(y,0))$ is a contraction
+preserving the $K_T^{\mathrm{rel}}$-Lipschitz clause (\path{reliefOp_lipschitz},
+\path{VTrel_lipschitz}); the zero level is the unique argmax at the relief
+values (\path{zeroLevel_argmax_unique_rel}) and the equilibrium is
+\path{reliefEquilibriumTop}, with \path{reliefEquilibriumTop_rule_eq_zero}; at
+the weak relief side the zero level is still an optimum and the equilibrium
+exists (\path{jointRel_le_of_lt}, \path{reliefBestReply_of_relief_side_le},
+\path{exists_relief_equilibrium_iff}). The
+non-compliance-profile value is $K_T$-Lipschitz with no further condition
+(\path{VTdef_lipschitz}), and the deviation to the zero level at the
+constructed sender value is profitable under the no-non-compliance side
+(\path{defiance_not_maxOn_of_relief_side},
+\path{no_defiance_equilibrium_of_relief_side}).
+(iii) A slope satisfying the slope condition of (i) is at most $g_T$, since
+the pain term is nonnegative (\path{le_gT_of_balance},
+\path{sharp_gT_of_sharp_of_balance}); at $L_{\mathrm{resp}}=0$ the pain term
+vanishes and $g_T$ balances (\path{gT_balance_of_Lresp_eq_zero}), a situation that
+is affine by hypothesis, since a zero response slope pins the transition to
+$\F(x,s)=\F(1,0)\,x+(1-\F(1,0))\,s$ on the square
+(\path{F_eq_affineF_of_Lresp_eq_zero}); and a slope
+that balances and satisfies the non-compliance side at $\beta_T$ does both at every
+larger $\beta_T$, both sides of the balance moving the right way and the
+sender's constants not depending on $\beta_T$
+(\path{certified_sharp_mono_}$\beta$\path{T}), while the sender's value, and so
+its response, is the same at both members (\path{VSstar_eq_of_sender_side_eq}). \path{bracket_existence_sides_disjoint} for the relief side: the lower
+slope bounds give $g_{\mathrm{lo}}+d_{\mathrm{lo}}\le1$ (\path{glo_add_dlo_le_one}), (P2)
+and (P3) at compliance zero give
+$v_{\mathrm{lo}}+n_{\mathrm{lo}}\underline s\le v_{\mathrm{hi}}+(c-p_{\mathrm{lo}})\underline s$
+(\path{vlo_nlo_floor_le}), and together they give
+$\beta_Td_{\mathrm{lo}}g_T\le\beta_Td_{\mathrm{hi}}K_T^{\mathrm{rel}}+c-p_{\mathrm{lo}}$, with no
+neutrality, the lifting condition or loop condition read;
+\path{bracket_sides_disjoint} for the no-non-compliance side (by $\mu\le M_{\mathrm{tot}}$,
+$d_{\mathrm{lo}}\le d_{\mathrm{hi}}$, $g_T\le K_T$);
+\texttt{sharp\_side\_mono\_$\beta$T}, \texttt{relief\_side\_anti\_$\beta$T},
+\texttt{relief\_side\_notdef\_anti\_$\beta$T}; \path{sharpSideSet_isOpen},
+\path{reliefSideSet_isOpen}; \path{sharp_side_mono_nlo}, \path{relief_side_anti_plo},
+\path{relief_side_notdef_anti};
+\path{sharp_side_eq_of_target_side_eq}, \path{relief_side_eq_of_target_side_eq};
+\path{collapse_mu}, \path{collapse_Mtot}, \path{collapse_KTrel}, \path{collapse_KT},
+\path{collapse_sides}; the tight slopes sum to one
+(\path{glo_add_dlo_eq_one_of_tight}), and either tight pair pins the affine law on
+the square (\path{eq_of_sanctionChords_tight}, \path{eq_of_stateChordBandAll_tight},
+\path{add_eq_one_of_tight}; on the class \path{F_eq_affineF_of_tight_sanction},
+\path{F_eq_affineF_of_tight_state}); $L_{\mathrm{resp}}=0$ there
+(\path{collapse_Lresp}), and the threshold form is
+\path{collapse_threshold}.
+\end{proof}
+
+The three sides are inhabited, at the affine member and off the affine law:
+the members $\beta_T=\tfrac12$ of \Cref{app:formalization} are on the non-compliance
+side, and the same coefficients at $\beta_T=\tfrac18$ are on the relief and
+no-non-compliance sides (\path{placableAffineLo_reliefEquilibrium},
+\path{placableQuadDiagLo_reliefEquilibrium}, \path{placableQuadDiag_sharpEquilibrium},
+\path{exists_bracket_both_sides_nonaffine}). An exact-arithmetic evaluation of
+the sides on a grid of step $1/400$
+(\path{docs/archive/workflow-scratch/bracket_probe3_2026-09-23.py}) finds, at
+the affine member, the relief side up to $0.180$, the non-compliance side at $g_T$
+from $0.185$ and the sufficient condition for non-compliance, at $\min\{g_T,g_{\mathrm{eff}}\}$ below the
+entrenchment condition, from $0.1875$; and at the non-affine member the relief side up to
+$0.145$, the non-compliance side at $g_T$ from $0.2325$ and the sufficient condition for non-compliance from
+$0.235$. The intermediate range, between the relief side and the sufficient condition for
+non-compliance, is open at
+both. At the tight-modulus affine member without cross term ($\sigma_V=0$, $r=0$) the
+response does not move with the state, so the value is shown in (i) to carry $g_T$
+without the entrenchment condition
+(\path{gT_balance_of_Lresp_eq_zero}), and the sides are complementary at
+$\beta_T=2/11$. The intermediate range is therefore not the price of the transition alone:
+it is open at an affine member, which has the sender cross rate $r=1/2$ and the
+supplied modulus $\sigma_V=1$, and it closes to a point at the tight-modulus
+one without cross term; in general its width depends, through the constants of
+(i)--(iii), on the spreads of the slope and rate bounds, the supplied moduli,
+the sender's cross rate and the target's envelope slopes. The sufficient condition for non-compliance holds on
+an upper set of discount factors (\path{certified_sharp_mono_}$\beta$\path{T}).
+So does the existence of a full-non-compliance equilibrium itself, under a monotone
+response and a monotone non-compliance value at one member, inside the intermediate range as well
+(\Cref{prop:patience-existence}). Where the intermediate range closes in (iii), the threshold is an
+equilibrium threshold: a full-non-compliance equilibrium exists exactly when
+$\beta_T\ge\beta_T^*$ (\Cref{prop:collapse-threshold}).
+On the intermediate range these
+sufficient conditions determine no equilibrium, and the equilibria of both sides are members of
+$\mathcal E$, so they inherit \Cref{prop:history-deviations}. On the family, at
+a member with tight moduli and no cross terms the values are affine in the state,
+where the Bellman equation closes in one step \citep{Puterman1994}; off
+it, and on the class wherever a rate pair is split, the values are only slope-
+and Lipschitz-bounded, which is what the intermediate range
+measures.
+
+The two ends of the intermediate range can be characterized exactly in general, as thresholds in the
+target's discount factor along members that differ only in it. The relief end needs one
+condition on the class: the state's lower rate at zero sanction covers the compliance cost
+along the zero level, $\ell_{\mathrm{hi}}L_\alpha\le v_{\mathrm{lo}}$, where
+$L_\alpha=M_{\mathrm{tot}}L_{\mathrm{resp}}/(k_{\mathrm{lo}}\mu)$ is the zero level's state
+Lipschitz rate.
+
+\begin{proposition}[Exact thresholds in the target's discount factor]
+\label{prop:exact-thresholds}
+Consider economies in the class that differ only in the target's discount factor
+$\beta_T\in(0,1)$; (ii) is stated on the relief class, and only (i) needs
+semiconvexity in the sanction \textup{(T6)}.
+\begin{enumerate}[label=(\roman*)]
+\item With \textup{(T6)}, under interiority, the lifting condition and compliance
+neutrality, an equilibrium in $\mathcal E$ whose
+realized sanction is zero at every state exists if and only if the zero level is a target
+best reply at the relief values. If also $\ell_{\mathrm{hi}}L_\alpha\le v_{\mathrm{lo}}$, the
+discount factors at which it exists form an interval $(0,\beta_R]$ whenever they are
+non-empty with supremum $\beta_R<1$.
+\item If the sender's response at full non-compliance is nondecreasing in the state and the
+slope condition of \Cref{prop:bracket}(i) holds at $g=0$,
+$cL_{\mathrm{resp}}/\mu\le v_{\mathrm{lo}}+n_{\mathrm{lo}}\underline s$, the discount factors at
+which an equilibrium in $\mathcal E$ with full non-compliance at every state exists form an interval
+$[\beta_D,1)$ whenever they are non-empty with infimum $\beta_D>0$.
+\item Every discount factor at which an equilibrium in $\mathcal E$ has a zero realized sanction
+at every state is below $c/(d_{\mathrm{lo}}v_{\mathrm{lo}}+cg_{\mathrm{lo}})$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i)~An equilibrium with a zero realized sanction at every state is the relief equilibrium:
+its sender value is the zero-sanction value, its policy the zero level and its target value
+the relief value (\path{relief_equilibrium_of_zero_rule}), so its policy is a best reply
+there. Conversely the best-reply test builds the relief equilibrium
+(\path{reliefEquilibriumOfBestReply}, \path{exists_relief_equilibrium_iff}); the relief
+side of \Cref{prop:bracket}(ii) is one sufficient condition for the test. Under
+$\ell_{\mathrm{hi}}L_\alpha\le v_{\mathrm{lo}}$ the stage payoff along the zero level rises with
+the state, so the relief value is nondecreasing (\path{VTrel_monotone}). Along the common
+zero-sanction path the relief values at $\beta_1\le\beta_2$ solve $V_i=u+\beta_iV_i\circ z$,
+so $\beta_2V_2-\beta_1V_1$ is nondecreasing. A compliance below the zero level draws a sanction
+and raises the successor state, so its gain is smaller at the less patient member; a
+compliance above it draws none, and its gain does not depend on the discount factor. The best
+reply at the more patient member therefore holds at the less patient one
+(\texttt{reliefBestReply\_anti\_$\beta$T}). The best-reply inequalities are weak and the relief
+values converge as the discount factor does, so the set is closed
+(\path{reliefBestReply_of_tendsto}), which gives $(0,\beta_R]$
+(\path{reliefExistenceSet_eq_Ioc}). (ii)~The balance at $g=0$ makes the non-compliance value
+nondecreasing (\path{VTdef_monotone_of_weak_hvL}); \Cref{prop:patience-existence} makes the set
+an upper set, and \Cref{prop:defiance-closed} closes it (\path{defianceExistenceSet_eq_Ico}).
+(iii)~At or above that bound the strong entrenchment condition holds
+(\texttt{lossOffset$_0$\_iff\_$\beta$T\_ge}) and excludes such an equilibrium
+(\path{no_zero_rule_equilibrium}, \path{reliefExistence_lt_margin}). General in $\F$.
+\end{proof}
+
+The proposition does not order the two thresholds: nothing in the class excludes a relief and
+a full-non-compliance equilibrium at the same discount factor. The sufficient conditions of
+\Cref{prop:bracket} lie inside the two sets, the sufficient condition for relief in the first and
+the sufficient condition for non-compliance, with the increasing-differences condition, in the second;
+so when $\beta_R<\beta_D$ the intermediate range they leave
+contains the exact intermediate range $(\beta_R,\beta_D)$.
+
+At the affine member of the family under the lifting condition every hypothesis of \Cref{prop:exact-thresholds} holds:
+$\ell_{\mathrm{hi}}L_\alpha=5/23$ against $v_{\mathrm{lo}}=30$, a response made monotone by the
+increasing-differences condition, and $cL_{\mathrm{resp}}/\mu=20/23$ (\path{aw_general_hypotheses}). There the two
+thresholds can be computed. Write $\beta_R=36/197\approx0.18274$ and
+$\beta_D=(82-7\sqrt2)/394\approx0.18300$.
+
+\begin{proposition}[The exact intermediate range at the affine member]
+\label{prop:affine-window}
+At the affine member of the family under the lifting condition, with coefficients
+$(q,u_0,k,r,w,\ell,c,n,v)=(3,1,3,\tfrac12,1,1,4,0,30)$, transition
+$\F(x,s)=(x+s)/2$ and $\beta_S=\tfrac12$ (\Cref{app:witness:openbox}), and target
+discount factor $\beta_T\in(0,1)$:
+\begin{enumerate}[label=(\roman*)]
+\item an equilibrium in $\mathcal E$ whose realized sanction is zero at every state
+exists if and only if $\beta_T\le\beta_R$;
+\item an equilibrium in $\mathcal E$ with full non-compliance at every state exists if and
+only if $\beta_T\ge\beta_D$;
+\item at $\beta_1=25248/138097$, which satisfies $\beta_R<\beta_1<\beta_D$, neither
+exists, and for every $t\in[0,4/9]$ there is an equilibrium in $\mathcal E$ with policy
+$\alpha(x)=t+287x/4206$ and realized sanction
+$\tfrac{701}{2100}\cdot\tfrac{40-90t}{29}+x/10$; distinct $t$ give distinct policies,
+and for $t<4/9$ the sanction is positive at every state.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Every value is explicit. The dynamic best response is the clipped vertex of the sender's
+concave objective in the sanction (\texttt{$\sigma$\_dyn\_top\_eq\_clip}), and each
+Bellman equation is checked coefficient by coefficient, so each profile is an
+equilibrium of the game itself (\path{awReliefEquilibrium},
+\path{awDefianceEquilibrium}, \path{awEquilibrium}). (i)~If the realized sanction is
+zero at every state, the gap between the sender's value and $4x/3$ at $y$ is half the
+gap at $y/2$, and it is bounded, so it vanishes (\path{eq_zero_of_eq_mul_comp}). The
+target's policy is then the compliance $4/9+x/6$ at which the sanction just ends, and
+its value is affine with slope $179/(6-3\beta_T)$. Maintaining non-compliance at the zero state pays
+exactly when $179\beta_T/(6-3\beta_T)>6$, that is, when $\beta_T>\beta_R$
+(\path{aw_zero_rule_le}, \path{aw_zero_rule_iff}). (ii)~At full non-compliance the sender's
+value is the unique fixed point of its Bellman contraction,
+$\tfrac{10-7\sqrt2}2x^2+(4\sqrt2-4)x+\tfrac{8(2-\sqrt2)}7$, with response
+$\tfrac{8(\sqrt2-1)}7+(3-2\sqrt2)x$. A unit of compliance costs the target one unit
+and, while the sanction is positive, lowers it by $3/D$, where $D=7(2+\sqrt2)/8$ is the
+sender's curvature; a unit of sanction costs the target $P$, its pain less the
+discounted value of the state it builds. Full non-compliance is a best reply exactly when
+$P\le D/3$, and $(P-D/3)\Delta=\tfrac{197}{12}(\beta_D-\beta_T)$ with $\Delta>0$
+(\path{awd_threshold}); below $\beta_D$, complying at $1/10$ at the zero state pays
+(\path{aw_full_defiance_le}, \path{aw_full_defiance_iff}). So the two existence sets are
+the intervals of \Cref{prop:exact-thresholds}, with endpoints $\beta_R$ and $\beta_D$, and
+$\beta_R$ is below the bound of that proposition's part (iii), here $4/17$
+(\path{aw_exact_thresholds}). (iii)~is \texttt{aw$\beta_1$\_mem\_window},
+\path{aw_continuum} and \texttt{aw\_window\_at\_$\beta_1$}.
+\end{proof}
+
+The proposition concerns one member, with the transition $\F(x,s)=(x+s)/2$ fixed, and
+is affine-only. Its first two parts are instances of \Cref{prop:exact-thresholds}. The
+continuum in (iii) is not an instance of a general result: it rests on the target's
+indifference among compliance levels, which needs the family's linear compliance cost and
+the particular discount factor $\beta_1$; with a strictly convex cost the indifference
+disappears (\Cref{prop:interior-witness}). At that member the proposition settles the
+intermediate range in both directions. The
+sufficient conditions are conservative there: the exact bounds lie strictly inside the intermediate range,
+from about $0.180$ to $0.1875$, that they leave. And the exact intermediate range is not empty of
+equilibria: at one discount factor inside it, $\beta_1$, there is a continuum of
+equilibria with compliance rising in the state, while neither endpoint profile is an
+equilibrium. Other policies at $\beta_1$, and the equilibria at other discount factors
+inside the intermediate range, are not classified.
+
+The same structure carries the sender-side counterpart. The lower bound
+$u_{\mathrm{lo}}+\beta_Sg_Sd_{\mathrm{lo}}$ on the sender's dynamic marginal return to
+sanctioning and the upper bound
+$A=u_{\mathrm{hi}}+\beta_SK_Sd_{\mathrm{hi}}$ on that return bracket the lifting condition: when the lower
+bound exceeds an upper substitution rate $k_{\mathrm{hi}}$ that the member
+has, every equilibrium in $\mathcal E$ whose policy is
+nonincreasing in the state carries a sanction of at least
+$(u_{\mathrm{lo}}+\beta_Sg_Sd_{\mathrm{lo}}-k_{\mathrm{hi}})/\bar Q>0$ at every state,
+full compliance included, on a member at which a larger concession is never
+worth more to the sender at zero sanction
+(\path{nonplacable_floor_of_lowerAppetite}, from the premium floor of
+\path{equilibrium_sanction_ge_wedge_of_antitone}); when $A\le k_{\mathrm{lo}}$ full
+compliance ends the sanction (\path{response_at_one}). The lower bound rises
+strictly with the sender's discount factor across members that differ only in
+it (\path{lowerAppetite_lt_of_}$\beta$\path{S_lt}): the floor moves with the sender's
+patience. The upper bound $A$ rises strictly with it too
+(\texttt{A\_lt\_of\_$\beta$S\_lt}).
+
+\begin{proposition}[Uniqueness in the monotone class]
+\label{prop:monotone-uniqueness}
+On an economy in the class satisfying the strong entrenchment condition
+$c\le\beta_Td_{\mathrm{lo}}v_{\mathrm{lo}}/(1-\beta_Tg_{\mathrm{lo}})$ (the entrenchment condition
+at $n_{\mathrm{lo}}=0$, and stronger in general), every equilibrium in $\mathcal E$ whose
+sanction rule is nondecreasing in the state has full non-compliance at every
+feasible state,
+the constructed sender value, the constructed target value, and the
+constructed response as its rule. When the constructed response at full
+non-compliance is non-decreasing in the state as well (as under the increasing-differences
+condition \eqref{eq:rally-margin}), the constructed non-compliance equilibrium exists and
+belongs to the class.
+\end{proposition}
+
+\begin{proof}
+The target's value is
+its own joint integrand at its policy (\path{V_T_eq_at_policy}). At an ordered
+pair of states $y_1\le y_2$ the deficit of the value below the slope
+$v_{\mathrm{lo}}/(1-\beta_Tg_{\mathrm{lo}})$ is at least $\beta_T$ times the deficit
+at a successor pair (\path{slopeDeficit_step}). The comparison sets the lower state
+at its own policy and sanction against the higher state's deviation to full
+non-compliance, which draws a weakly higher sanction, $\Delta s\ge0$, because the rule is
+nondecreasing and the dynamic best response is antitone in compliance. The value at
+$y_1$ is its integrand at its policy and the value at $y_2$ is at least its
+integrand at full non-compliance. The stage difference is at least
+$v_{\mathrm{lo}}\Delta y-c\Delta s$: compliance at $y_1$ only costs, the pain of the
+extra sanction is at most $c$ per unit, and the state is worth at least
+$v_{\mathrm{lo}}$ per unit at full non-compliance, the envelope term
+$n_{\mathrm{lo}}s\,\Delta y$ being nonnegative (P2, P3). The successor of $y_2$
+exceeds that of $y_1$ by at least $g_{\mathrm{lo}}\Delta y+d_{\mathrm{lo}}\Delta s$,
+and the strong entrenchment condition covers the pain. So the infimum $D$ of the deficit over ordered pairs, finite because
+the value is bounded, satisfies $D\ge\beta_TD$ and hence $D\ge0$
+(\path{target_lowerSlope_of_rule_monotone}; no operator on the value space, no
+continuity of the rule and no condition on the policy is used). The deviation from $\alpha(x)$ to full
+non-compliance raises the sanction, because the dynamic best response is antitone in
+compliance under decreasing differences with no uniqueness
+(\texttt{$\sigma$\_dyn\_top\_antitoneOn\_a\_of\_DD}), the pain of the rise is
+covered by the continuation at that slope through the lower bound on the transition's sanction slope,
+and the compliance saved is worth at least $\ell_{\mathrm{lo}}\alpha(x)$; so $\alpha(x)=0$
+(\path{policy_eq_zero_of_rule_monotone}). The two values are then the unique
+fixed points of the two contractions at non-compliance
+(\path{values_eq_of_policy_zero}, \path{unique_equilibrium_of_rule_monotone}). No
+compliance neutrality is read. For the last sentence, the constructed policy
+is constant and its rule is the constructed response, nondecreasing by
+hypothesis (under the increasing-differences condition by \path{responsePath_monotoneOn_of_margin}),
+which puts the constructed equilibrium in the class
+(\path{equilibriumTop_mem_monotone_class}).
+\end{proof}
+
+The class is a hypothesis on the quantifier and the proposition says nothing
+outside it; on the relief side, uniqueness among all equilibria is open.
+The non-compliance core holds over an arbitrary economy, not only the class:
+two slope bounds on the transition, decreasing differences of the sender's payoff in
+(sanction; compliance), four target rates at full non-compliance and the strong entrenchment
+condition give every equilibrium in $\mathcal E$ with a nondecreasing sanction rule a
+target value rising at least at rate $v_{\mathrm{lo}}/(1-\beta_Tg_{\mathrm{lo}})$ and
+full non-compliance at every state, with no condition on the policy and none of the
+sender's curvature, invariant-set, Riccati or interiority conditions read
+(\path{lowerSlope_of_rule_monotone}, \path{policy_eq_zero_of_rule_monotone}); its
+extra generality over the class is illustrated by an economy whose compliance
+cost is not monotone (\Cref{prop:core-outside-chord}). Under the same condition no
+equilibrium in $\mathcal E$ sanctions at zero at every state
+(\path{no_zero_rule_equilibrium}). The condition holds exactly when
+$\beta_T\ge c/(d_{\mathrm{lo}}v_{\mathrm{lo}}+cg_{\mathrm{lo}})$, a patience bound with
+no sender parameter that is sufficient and whose converse is refuted
+(\texttt{lossOffset$_0$\_iff\_$\beta$T\_ge}).
+
+\subsection{Proofs of the patience, minmax-payoff, uniqueness and threshold propositions}
+\label{app:proofs:scope}
+
+\paragraph{Proof of \Cref{prop:patience-existence}.}
+The argument runs on the relief class and reads no semiconvexity of the
+sanction sections \textup{(T6)}; the enriched-subclass statements of the
+headline rows are its corollaries. The two members share the transition, the
+stage payoffs and the sender's discount factor, so the sender's value and its
+response at full non-compliance
+coincide at both (\path{VSstar_eq_of_sender_side_eq}). A full-non-compliance
+equilibrium exists exactly when full non-compliance is a target best reply at the
+constructed values (\texttt{exists\_defiance\_equilibrium\_iff}). Compliance
+lowers the response; with the response nondecreasing in the state and the
+non-compliance value nondecreasing at one member, the discounted continuation
+difference that compliance gives up is nondecreasing in $\beta_T$
+(\path{monotone_sub_of_solves_of_monotone_right}), so the best reply at the less
+patient member is preserved at the more patient one
+(\texttt{exists\_defiance\_equilibrium\_mono\_$\beta$T}; headline row 53). The
+slope condition of \Cref{prop:bracket}(i), which delivers the monotone
+non-compliance value, is itself inherited by the more patient member: its slope side
+is antitone in $\beta_T$ (\path{balanceSide_anti},
+\texttt{balance\_of\_le\_$\beta$T}, \texttt{SameBut$\beta$T.balance\_of\_balance};
+headline row 57). A directional example on the quartic family shows the
+comparison is not vacuous.
+
+\paragraph{Proof of \Cref{prop:security}.}
+The argument reads only the lower bound $g_{\mathrm{lo}}$ on the state slope of the
+transition's zero-sanction section, the lower bound $d_{\mathrm{lo}}$ on its sanction slope
+from zero, three target bounds
+--- a state rate $v_{\mathrm{lo}}\ge0$ at full non-compliance and zero sanction, pain at
+most $c$ per unit at full non-compliance, and compliance that does not pay against a
+zero sanction (used only for the attainment in (i) and (ii)) --- and the
+strong entrenchment condition; it reads nothing of the sender's objective, so it holds over any
+economy with these properties (\path{Theory/Equilibrium/SecurityCore.lean}),
+and the class satisfies them. Let $r_0=x_0$, $r_{t+1}=\F(r_t,0)$ and
+$\underline V_T(x_0)=\sum_t\beta_T^t\Ut(r_t,0,0)$. Against any feasible pure sanction sequence
+$(s_t)$, compare the state under full non-compliance at every date with the zero-sanction path: the
+lower slope bounds make the excess state a discounted accumulation of the sanctions,
+valued at least at rate $v_{\mathrm{lo}}$, while the sanction pain is at most $c$
+per unit, so the payoff gap is at least
+$(\beta_Td_{\mathrm{lo}}v_{\mathrm{lo}}/(1-\beta_Tg_{\mathrm{lo}})-c)\sum_t\beta_T^ts_t$,
+which the strong entrenchment condition makes nonnegative
+(\path{reliefPayoff_le_defiancePayoff}; \path{Foundations/DiscountedChordSum.lean}).
+Against permanent relief, compliance only costs and moves neither the sanction
+nor the state, so no compliance sequence earns more than $\underline V_T$
+(\path{reliefPayoff_isLeast}). In this deterministic game with perfect
+monitoring a pair of pure history-dependent plans generates an open-loop path
+with the same payoff (\path{jointState_eq_openLoopPath},
+\path{jointPayoff_eq_openLoopPayoff}), so an open-loop pure saddle value is the
+minmax and the maxmin over pure history-dependent strategies on both sides
+(\path{isLeast_ceiling_history_of_openLoop_saddle},
+\path{isGreatest_floor_history_of_openLoop_saddle}); under these properties $\underline V_T$ is
+both (\path{reliefPayoff_isLeast_history}, \path{reliefPayoff_isGreatest_history};
+headline rows 55--56), the floor attained by full non-compliance at every date
+(\path{defiance_secures_reliefPayoff_history}). Equilibrium optimality against
+the deviation to full non-compliance at every date gives $\Vt(x_0)\ge\underline V_T(x_0)$ in every
+equilibrium in $\mathcal E$ (\path{reliefPayoff_le_V_T}; headline row 52).
+
+\paragraph{Proof of \Cref{prop:identification}.}
+Part (i) is \Cref{prop:monotone-uniqueness} (\path{unique_equilibrium_of_rule_monotone},
+\path{policy_eq_zero_of_rule_monotone}; headline rows 46 and 54). For (ii), a
+sanction rule that is zero at every state is nondecreasing, so an equilibrium
+with it would fall in the class of (i), which makes the constructed
+response its sanction rule; that response is strictly positive at full non-compliance
+(\Cref{prop:placable-family}), a contradiction (\path{no_zero_rule_equilibrium};
+headline row 58).
+
+\paragraph{Proof of \Cref{prop:collapse-threshold}.}
+Five of the fourteen tightness conditions of \Cref{prop:bracket}(iii) describe
+which bounds are supplied for the economy, not the game. A member of the relief class with
+$\sigma_V=0$ and $d_{\mathrm{lo}}=d_{\mathrm{hi}}$ is the same game as an enriched
+member with the affine law's bounds, $g_{\mathrm{lo}}=g_{\mathrm{hi}}=1-d_{\mathrm{lo}}$
+and $M_s=M_{\mathrm{cx}}=M_{\mathrm{mix}}=M_{\mathrm{cs}}=0$, with the same
+$\beta_T^*$, and interiority and the lifting condition carry over
+(\path{collapseRecert}); so the nine tightness conditions $\sigma_V=\tau_x=n_{\mathrm{hi}}=0$,
+$\bar Q=q$, $k_{\mathrm{lo}}=k_{\mathrm{hi}}$, $\ell_{\mathrm{lo}}=\ell_{\mathrm{hi}}$,
+$p_{\mathrm{lo}}=c$, $v_{\mathrm{lo}}=v_{\mathrm{hi}}$ and $d_{\mathrm{lo}}=d_{\mathrm{hi}}$,
+with interiority, the myopic relief condition and the lifting condition, give the threshold
+on the relief class, with no \textup{(T6)}
+(\path{collapse_equilibrium_threshold_le_tight}). At the re-certified member the
+three sides of \Cref{prop:bracket} collapse at $\beta_T^*$ (\path{collapse_sides'};
+headline row 45) and the transition is the affine law on the square
+(\Cref{prop:bracket}(iii)).
+Above $\beta_T^*$ the non-compliance side holds and the composed non-compliance
+equilibrium exists; below it, under interiority and the lifting condition, the no-non-compliance
+side holds, its loop condition $\beta_TL_{\mathrm{loop}}<1$ being automatic because
+$L_{\mathrm{resp}}=0$ there, so that $L_{\mathrm{loop}}=g_{\mathrm{hi}}$
+(\path{collapse_Lresp'}, \texttt{$\beta$T\_ghi\_lt\_one}), and no equilibrium in
+$\mathcal E$ has full non-compliance, so the non-existence direction
+ranges over every equilibrium in $\mathcal E$
+(\path{collapse_equilibrium_threshold}, which excludes $\beta_T=\beta_T^*$). Members at
+$\beta_T=\tfrac12$ and $\tfrac18$ lie on the two sides, with $\beta_T^*=\tfrac2{11}$
+(\path{Examples/PlacableSenderCollapseWitness.lean}). At $\beta_T=\beta_T^*$ the
+members just above the threshold have the equilibrium, and existence passes to the
+limit (\Cref{prop:defiance-closed}; \path{exists_defiance_equilibrium_at_betaStar}),
+so a full-non-compliance equilibrium exists exactly when $\beta_T^*\le\beta_T$, the
+threshold attained (\path{collapse_equilibrium_threshold_le}; headline row 59).
+So the discount factors with a
+full-non-compliance equilibrium are exactly $[\beta_T^*,1)$
+(\path{collapse_defianceExistenceSet}), and when $\beta_T^*<1$ this is the
+interval $[\beta_D,1)$ of \Cref{prop:exact-thresholds}(ii) with $\beta_D=\beta_T^*$,
+the general theorem applying at the re-certified member, where
+$L_{\mathrm{resp}}=0$ discharges its two hypotheses
+(\path{collapse_exact_thresholds}): the threshold discount factor $\beta_T^*$ is the closed form
+of the exact non-compliance threshold.
+
+\begin{proposition}[Existence of non-compliance is closed in the target's discount factor]
+\label{prop:defiance-closed}
+Consider economies in the class that differ only in the target's discount factor.
+\begin{enumerate}[label=(\roman*)]
+\item If members whose discount factors converge to $\beta_T$ each have an equilibrium in
+$\mathcal E$ with full non-compliance at every state, so does the member at $\beta_T$.
+\item The set of discount factors in $(0,1)$ at which such an equilibrium exists
+contains its infimum whenever that infimum is positive.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+A full-non-compliance equilibrium exists exactly when full non-compliance is a target best reply at
+the constructed values (\texttt{exists\_defiance\_equilibrium\_iff}), and the sender's
+value and response do not depend on $\beta_T$ (\path{VSstar_eq_of_sender_side_eq}).
+Along the common non-compliance path the target values solve $V_n=u+\beta_nV_n\circ z$, so
+$(1-\beta_n)\|V_n-V\|\le|\beta_n-\beta_T|\,\|V\|$; every deviation gain converges, and
+the weak best-reply inequalities pass to the limit
+(\path{defianceBestReply_of_tendsto}, \path{exists_defiance_equilibrium_of_tendsto}).
+Part (ii) applies (i) to members in the set whose discount factors decrease to the
+infimum (\path{defianceExistence_sInf_mem}). General in $\F$.
+\end{proof}
+
+With \Cref{prop:patience-existence} applied at the infimum, the existence set is then
+the interval from the infimum to one. Where the intermediate range closes, part~(i) applied to the members
+just above $\beta_T^*$ gives existence at $\beta_T=\beta_T^*$ in \Cref{prop:collapse-threshold}.
+
+\subsection{Pure history-dependent deviations}
+\label{app:proofs:history}
+
+\begin{proposition}[Stationary equilibria survive pure history-dependent deviations]
+\label{prop:history-deviations}
+\emph{(For the general theory of history-dependent plans against stationary
+ones in discounted dynamic programming see \citet{Strauch1966} and
+\citet{Denardo1967}; the deterministic, perfect-monitoring setting used here
+reduces a history-dependent plan to a dated one.)}
+Let $E=(\Vt,\Vs,\alpha)\in\mathcal E$ and write
+$\sigma=\sigDynTop_{\Vs}$.
+\begin{enumerate}[label=(\roman*)]
+\item With the sender at $\sigma$, every pure target strategy that conditions
+compliance on the whole history of states and actions yields the target, from
+every initial state $x_0$, a discounted payoff of at most $\Vt(x_0)$, which
+$\alpha$ attains.
+\item With the target at $\alpha$, every pure sender strategy that conditions
+the sanction on the whole history yields the sender at most $\Vs(x_0)$, which
+$\sigma(\cdot,\alpha(\cdot))$ attains.
+\item At every state $x$, after every compliance $a\in[0,1]$ on or off the
+equilibrium path, for every sanction $s$ and every pure history-dependent
+continuation of the sender with discounted payoff $\Pi$ from $\F(x,s)$,
+\[
+\Us(x,a,s)+\beta_S\,\Pi\;\le\;\Us\bigl(x,a,\sigma(x,a)\bigr)
++\beta_S\Vs\bigl(\F(x,\sigma(x,a))\bigr).
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The game is deterministic with perfect monitoring. Against a fixed feedback
+rule of the opponent, a pure history-dependent strategy generates from a given
+start one sequence of actions; the dated plan that replays that sequence,
+whatever the state, generates the same states, actions and payoff
+(\path{historyDiscountedPayoff_eq_replay}, in
+\path{Foundations/HistoryDependentDeviations.lean}; dated plans are themselves
+history-dependent strategies, \path{historyState_toHistoryPlan}, so the class
+is larger). The opponent's past actions are functions of the recorded states
+and own actions, so conditioning on them adds nothing. Parts (i) and (ii) are
+then the lifetime verification against dated plans of
+\path{Theory/Equilibrium/TopLifetimeVerification.lean}
+(\path{leader_optimal_against_history_deviation_top},
+\path{follower_optimal_against_history_deviation_top}); the payoff and value
+bounds that verification needs are derived from continuity on the compact
+cube, not assumed. Part (iii) combines the sender's optimality at the node
+$(x,a)$, which the equilibrium carries at every $(x,a)$, with part (ii) from
+the successor state
+(\path{follower_node_optimal_against_history_deviation_top}).
+\end{proof}
+
+The proposition holds for every element of $\mathcal E$, hence for each of the
+four constructed equilibria. It says that a stationary equilibrium of the paper
+is unimprovable by such deviations. It does not characterize the other
+equilibria that history-dependent strategies may support, it does not cover
+randomized strategies, and the target's deviation is a unilateral change of
+its own actions against the sender's fixed contingent response.
+
+\subsection{Proofs of the welfare results of \Cref{sec:welfare}}
+\label{app:proofs:welfare}
+
+The propositions of \Cref{sec:welfare}, the identity \eqref{eq:welfare-identity} and
+\Cref{prop:welfare-nonidentification-four} below are machine-checked in \path{Theory/Welfare/InterestGroup.lean},
+\path{Theory/Welfare/PlannerZeroSanction.lean} and
+\path{Examples/ChordEconomyWelfareGeneral.lean} (\Cref{app:formalization}). None of
+them reads a functional form, a sign condition of an interest-group polity, or a
+parameter value. \Cref{prop:welfare-rescaling} and the identity hold for any pair of
+payoff functions, \Cref{prop:zero-sanction-planner} for any bounded welfare flow
+and any transition with the stated chords, and the others on the class.
+
+\paragraph{The identity \eqref{eq:welfare-identity}.}
+Substituting the two representation identities,
+$\Us+\Ut=\sum_g\theta_gw_g=\sum_gw_g+\sum_g(\theta_g-1)W_g=W+\sum_g(\theta_g-1)W_g$
+at every state and action (\path{payoffs_add_eq}). No sign condition and no
+transition is used.
+
+The rescaling result, which \Cref{sec:welfare:nonidentification} states in words, is the
+following.
+
+\begin{proposition}[Rescaling one group]
+\label{prop:welfare-rescaling}
+Take an interest-group representation and a sender group $g$, and multiply $W_g$
+by a positive factor while dividing $\theta_g$ by the same factor. The governments'
+payoffs, and so the game and its equilibria, are unchanged, and aggregate welfare
+changes by exactly the change in $W_g$. If along two paths of states and
+actions the group's welfare is higher on the first by a uniform positive margin at
+every date, and aggregate welfare and $W_g$ are bounded along both, then for some
+factor the planner ranks the first path strictly above the second at every
+planner discount factor.
+\end{proposition}
+
+\begin{proof}[Proof of \Cref{prop:welfare-rescaling}]
+Replacing $(W_g,\theta_g)$ by $(\varphi W_g,\theta_g/\varphi)$ for a factor $\varphi>0$ leaves the product
+$\theta_gW_g$, and so the sender's representation identity, unchanged, and the new
+weight is positive; the result is a representation of the same payoffs
+(\path{rescaleS}). Aggregate welfare changes only in group $g$'s term, from $W_g$ to
+$\varphi W_g$, and so becomes $W+(\varphi-1)W_g$ (\path{rescaleS_welfare}).
+
+For the ranking, write $W^P_t,W^Q_t$ for aggregate welfare and $W^P_{g,t},W^Q_{g,t}$ for
+group $g$'s welfare at date $t$ along the two paths, all at most $M$ in absolute
+value, with $W^P_{g,t}\ge W^Q_{g,t}+\varepsilon$ for a margin $\varepsilon>0$. Take $\varphi=1+(2M+1)/\varepsilon$. At
+every date
+\[
+\bigl(W^P_t+(\varphi-1)W^P_{g,t}\bigr)-\bigl(W^Q_t+(\varphi-1)W^Q_{g,t}\bigr)
+\ge-2M+(\varphi-1)\varepsilon=1 .
+\]
+The rescaled flows are bounded, so their discounted sums converge absolutely at
+every $\beta\in[0,1)$, and a strict inequality at every date between bounded flows
+survives discounting, since the date-zero term has weight one, also at $\beta=0$
+(\path{tsum_pow_mul_lt_of_forall_lt}, \path{exists_scale_ranks},
+\path{exists_rescaleS_ranks}).
+\end{proof}
+
+\begin{proof}[Proof of \Cref{prop:welfare-nonidentification}]
+\emph{The representations.} For a real $\eta$, give the sender two groups, with
+welfare $2\eta s$ at weight $\tfrac12$ and $\Us-\eta s$ at weight one, and the
+target two groups, with welfare $-\bigl(\Ut(x,0,s)-\Ut(x,a,s)\bigr)$ at weight two
+and $\Ut(x,0,s)+\bigl(\Ut(x,0,s)-\Ut(x,a,s)\bigr)$ at weight one. The weighted sums
+are $\Us$ and $\Ut$ at every state and action, and aggregate welfare is
+\[
+W_\eta(x,a,s)=\Us(x,a,s)+\Ut(x,0,s)+\eta s
+\]
+(\path{etaRep}, \path{etaRep_welfare}). Compliance is a transfer between the two
+target groups.
+
+\emph{The flows.} Along the myopic benchmark the sanction is zero at every date
+(\Cref{prop:myopic-benchmark}), so its flow is
+$W_\eta(x_t,a^{00}(x_t),0)=\Us(x_t,a^{00}(x_t),0)+\Ut(x_t,0,0)$ whatever $\eta$.
+Along the forward-looking equilibrium of \Cref{thm:regime-separation} the target
+maintains full non-compliance, and the realized sanction $s_t$ is at least $\underline s$ at every
+date: the forward-looking response is at least the stage response to full
+non-compliance, which is at least $\underline s$ because it is non-decreasing in the
+state (\path{responsePath_ge_sfloor}). Let $M_b$ bound $|\Us(x,a,s)+\Ut(x,0,s)|$
+on the cube, and let $\eta_+=(2M_b+1)/\underline s$. Writing $W^{00}_t$ and
+$W^{11}_t$ for the two flows under $W_{\eta_+}$,
+\[
+W^{11}_t-W^{00}_t\ge-2M_b+\eta_+s_t\ge1 ;
+\]
+under $W_{-\eta_+}$ the same bound holds with the difference reversed. All flows
+are bounded by $M_b+\eta_+$, so the strict inequalities at every date survive
+discounting at every $\beta\in[0,1)$
+(\path{exists_reps_reversing_myopic_forward_ranking}, with the flows
+\path{repFlowMyopic} and \path{repFlowForward}). The hypotheses are those of
+\Cref{prop:myopic-benchmark} and of the construction in
+\Cref{thm:regime-separation}, with a non-decreasing response in place of the
+increasing-differences condition; compliance neutrality, semiconvexity in the sanction and the forward-looking relief condition are not used. The two representations,
+$W_{\eta_+}$ and $W_{-\eta_+}$, depend on neither the initial state nor the
+planner's discount factor.
+\end{proof}
+
+\paragraph{The four cases.} The same representations reverse the welfare ranking
+of all four constructed equilibria of \Cref{thm:four-cells}.
+
+\begin{proposition}[Welfare non-identification across the four cases]
+\label{prop:welfare-nonidentification-four}
+Take an economy in the class that satisfies the four-case conditions of
+\Cref{thm:four-cells}, with a sender response at full non-compliance at its constructed
+value that is non-decreasing in the state in place of the increasing-differences
+condition. There are two interest-group representations of its government payoffs,
+each with two groups per country and positive constant weights, such that, at every
+initial state and every common planner discount factor $\beta\in[0,1)$, discounted
+aggregate welfare along the four constructed equilibria is ranked
+\[
+11\succ10\succ00\sim01\quad\text{by one},\qquad
+00\sim01\succ10\succ11\quad\text{by the other}.
+\]
+\end{proposition}
+
+\begin{proof}
+Take the representations $W_\eta$ of the previous proof. The hypotheses are those
+under which the four equilibria are constructed in panel~I of
+\Cref{app:proofs:placable}, with a non-decreasing response in place of the increasing-differences condition. Along the equilibria of cases $00$ and $01$ the sanction
+is zero at every date and the two state paths coincide
+(\path{myopicPath_eq_senderOnlyPath_of_reliefSharp}); by compliance neutrality
+$W_\eta(x,a,0)=\Us(x,0,0)+\Ut(x,0,0)$ does not depend on compliance, so the two
+flows coincide at every date and for every $\eta$, and the two cases tie. Along the
+equilibria of cases $10$ and $11$ the target maintains full non-compliance. The realized sanction
+$s^{10}_t$ of case $10$ is the stage response to full non-compliance, at least
+$\underline s$ because that response is non-decreasing in the state, and the
+realized sanction $s^{11}_t$ of case $11$ exceeds $s^{10}_t$ by at least the foresight premium
+$m$ of \eqref{eq:sender-wedge} at every date
+(\path{targetOnlySanction_add_wedge_le_dynamicSanction_of_response_monotone}). Let
+$\mu=\min\{\underline s,m\}>0$, let $M_b$ bound $|\Us(x,0,s)+\Ut(x,0,s)|$ on the
+cube, and let $\eta_+=(2M_b+1)/\mu$. Writing $W^{ij}_t$ for the flow of case $ij$
+under $W_{\eta_+}$,
+\[
+W^{11}_t-W^{10}_t\ge-2M_b+\eta_+\bigl(s^{11}_t-s^{10}_t\bigr)\ge1,
+\qquad
+W^{10}_t-W^{00}_t\ge-2M_b+\eta_+s^{10}_t\ge1 ;
+\]
+under $W_{-\eta_+}$ the same bounds hold with every difference reversed. All
+flows are bounded by $M_b+\eta_+$, so the strict inequalities at every date
+survive discounting at every $\beta\in[0,1)$
+(\path{exists_reps_reversing_regime_ranking}).
+\end{proof}
+
+\begin{proof}[Proof of \Cref{prop:zero-sanction-planner}]
+Let $V(x)$ be the planner's value of the path with zero sanctions and compliance
+$\hat\alpha$ from $x$. It is bounded and satisfies
+$V(x)=W(x,\hat\alpha(x),0)+\beta V(\F(x,0))$
+(\path{discountedPayoff_stationary_eq}).
+
+\emph{Step 1: $V$ rises with the state at a rate of at most
+$K=\max\{B,0\}/(1-\beta\lambda)$.} For $x\le x'$, the two zero-sanction paths
+$x_t,x'_t$ stay ordered by \textup{(F2)}, and by (iii) their gap is at most
+$\lambda^t(x'-x)$ (\path{zeroPath_ordered}). By (ii),
+$V(x')-V(x)=\sum_t\beta^t\bigl(W(x'_t,\hat\alpha(x'_t),0)-W(x_t,\hat\alpha(x_t),0)\bigr)
+\le\sum_t\beta^t\max\{B,0\}\lambda^t(x'-x)=K(x'-x)$.
+
+\emph{Step 2: $V$ is a Bellman supersolution of the planner's problem.} At every
+feasible $(x,a,s)$, by (i), by Step~1 with $\F(x,0)\le\F(x,s)$ from \textup{(F3)},
+by (iii) and since $K\ge0$,
+\[
+W(x,a,s)+\beta V(\F(x,s))
+\le W(x,\hat\alpha(x),0)+\beta V(\F(x,0))+\bigl(\eta+\beta KL\bigr)s
+\le V(x),
+\]
+the last step by the condition on $\eta$, with equality at $a=\hat\alpha(x)$ and
+$s=0$.
+
+\emph{Step 3: verification.} Summing the supersolution inequality along any
+time-dependent plan over the first $N$ dates bounds that plan's discounted welfare
+up to $N$ plus $\beta^NV(x_N)$ by $V(x_0)$; the terminal term vanishes because $V$
+is bounded, and the flows are bounded, so every plan's value is at most $V(x_0)$,
+which the zero-sanction path attains
+(\path{stationary_optimal_against_markov_deviation_of_global_bounds},
+\path{zeroSanction_planner_optimal}). Its counterpart in the Kaempfer--Lowenberg
+polity, where welfare is linear in the state, is
+\Cref{prop:planner-optimum-lower-bound}(i); there the case $B\le0$ needs no slope
+bound on the transition.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{prop:planner-efficient-persistence}]
+\emph{The representation.} Give the sender two groups, with welfare $s$ and
+$\Us-s$, both at weight one, and the target two groups, with welfare $\Ut$ and
+$-\Ut$, at weights two and one. The weighted sums are $\Us$ and $\Ut$, and
+aggregate welfare is $W=\Us$ (\path{senderWelfareRep},
+\path{senderWelfareRep_welfare}).
+
+\emph{Compliance never raises the sender's payoff.} On the class compliance lowers
+the sender's marginal return to sanctioning, so
+$\Us(x,a,s)-\Us(x,0,s)\le\Us(x,a,0)-\Us(x,0,0)$, and the right side is zero by
+compliance neutrality: $\Us(x,a,s)\le\Us(x,0,s)$ (\path{U_S_le_defiance}).
+
+\emph{Verification.} Let $V_S$ be the sender's constructed value against full
+non-compliance and $\rho$ its dynamic best response. At every feasible $(x,a,s)$,
+\[
+W(x,a,s)+\beta_SV_S(\F(x,s))\le\Us(x,0,s)+\beta_SV_S(\F(x,s))\le V_S(x),
+\]
+with equality at $a=0$ and $s=\rho(x)$. The flows and $V_S$ are bounded, so the
+verification step of the previous proof makes the stationary plan $(0,\rho)$
+socially optimal at $\beta_S$ against every time-dependent plan over both actions
+(\path{exists_planner_efficient_rep}). Every equilibrium in $\mathcal E$ at which
+the target maintains full non-compliance has the constructed values and plays $\rho$ at every
+feasible state (\path{values_eq_of_policy_zero}), so that plan is the
+equilibrium's play (\path{planner_efficient_rep_at_policy_zero}). On the
+quadratic--linear family at $r=n=0$ the same argument, with a linear
+microfoundation, gives \Cref{cor:planner-efficient-boundary}.
+\end{proof}

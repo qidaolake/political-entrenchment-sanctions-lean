@@ -1,0 +1,176 @@
+# Reviewed cosmetic linter warnings accepted by the HPC build gate (CLAUDE.md Rules 17 and 26).
+# One entry per line: <count>|<path relative to the repo>|<exact first line of the message>.
+# scripts/hpc-verify-return.py tallies the from-empty build log by (path, message); any key whose
+# count exceeds its entry here (or that has no entry) fails the gate until it is classified:
+# fixed, or added here with the round that accepted it. Never add a correctness warning
+# (sorry, axiom, unexpected recompilation) to this file.
+#
+# Provenance: generated on 2026-10-01 from the round-BD HPC return (job 30479420, run
+# spcl-bd-20261001T214518Z, return sha256 2d7cfdb0...). That build reported 784 warnings in
+# 102 files, all linter/style classes. 782 predate round BD: they sit in files the round did not
+# touch, or on lines last changed before it (git blame). The other two were round BD's own
+# long `#print axioms` lines in Theory/Microfoundations/FourGroupPlannerStateChord.lean, fixed
+# instead of listed. Earlier receipts recorded errors and `sorry` only, so this is the first
+# enumeration of the project's warning surface, not a change to it.
+10|Sanctions/Examples/AffineInstance/Bridges.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Examples/AffineInstance/Certificates.lean|This line exceeds the 100 character limit, please shorten it!
+2|Sanctions/Examples/AffineInstance/ComplianceTower.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/AffineInstance/ComplianceTower.lean|missing space in the source
+1|Sanctions/Examples/AffineInstance/ComplianceTower.lean|unused variable `hKS_nn`
+1|Sanctions/Examples/AffineInstance/ComplianceTower.lean|unused variable `hKS_nonneg`
+1|Sanctions/Examples/AffineInstance/ComplianceTower.lean|unused variable `hL_U_S_nn`
+1|Sanctions/Examples/AffineInstance/LockInShocked.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+5|Sanctions/Examples/AffineInstance/LockInShocked.lean|missing space in the source
+10|Sanctions/Examples/B2NonMonotoneCertWitness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+15|Sanctions/Examples/B2NonMonotoneCertWitness.lean|missing space in the source
+11|Sanctions/Examples/BaselineTwoSidedOrderingUndetermined.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+7|Sanctions/Examples/BaselineTwoSidedOrderingUndetermined.lean|missing space in the source
+1|Sanctions/Examples/ChordEconomy.lean|This simp argument is unused:
+1|Sanctions/Examples/ChordNotDerivable.lean|`push_neg` has been deprecated. Prefer using `push Not` instead.
+4|Sanctions/Examples/ContinuationDrivenEscalation.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Examples/Counterexamples/CornerChordAttained.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Examples/Counterexamples/EndpointFloorRule.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+3|Sanctions/Examples/Counterexamples/TiedStageMaximizers.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/Counterexamples/TiedStageMaximizers.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Examples/Counterexamples/TiedStageMaximizers.lean|unused variable `s`
+1|Sanctions/Examples/CoupledRoute/CoupledSchurWitness.lean|'ring' tactic does nothing
+1|Sanctions/Examples/CoupledRoute/CoupledSchurWitness.lean|The following tactic starts with 2 goals and ends with 1 goal, 1 of which is not operated on.
+1|Sanctions/Examples/CoupledRoute/CoupledSchurWitness.lean|this tactic is never executed
+1|Sanctions/Examples/DeterministicStrictEscalation.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+6|Sanctions/Examples/EECertWitness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+7|Sanctions/Examples/EECertWitness.lean|missing space in the source
+2|Sanctions/Examples/EpsilonIsolationWitness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Examples/EquilibriumStrictReluctanceWitness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Examples/FeedbackComparativeStatics.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+322|Sanctions/Examples/FeedbackComparativeStatics.lean|missing space in the source
+9|Sanctions/Examples/FourGroupCertWitness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+4|Sanctions/Examples/FourGroupCertWitness.lean|missing space in the source
+1|Sanctions/Examples/LossOffsetConverseCounterexample.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/LossOffsetConverseCounterexample.lean|This line exceeds the 100 character limit, please shorten it!
+8|Sanctions/Examples/LowBasinCertWitness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+13|Sanctions/Examples/LowBasinCertWitness.lean|missing space in the source
+1|Sanctions/Examples/NonAffineSenderChannelCounterexample.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+5|Sanctions/Examples/NonAffineSenderStakeRefutation.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/OffCornerNonVacuity.lean|missing space in the source
+1|Sanctions/Examples/Order/IntegerChain.lean|Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+3|Sanctions/Examples/P3SpreadPinned.lean|Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+4|Sanctions/Examples/P3SpreadPinned.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/P3SubBasinMonotonicity.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+6|Sanctions/Examples/P3WeakFloorSpreadBound.lean|Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+11|Sanctions/Examples/P3WeakFloorSpreadBound.lean|missing space in the source
+1|Sanctions/Examples/P3WeakFloorSpreadBound.lean|unused variable `x`
+3|Sanctions/Examples/PerpetualSanctionInterval.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+14|Sanctions/Examples/PerpetualSanctionInterval.lean|missing space in the source
+2|Sanctions/Examples/PersistencePackageNonuniqueWitness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Examples/PersistencePackageNonuniqueWitness.lean|unused variable `a`
+1|Sanctions/Examples/PersistencePackageNonuniqueWitness.lean|unused variable `ha`
+1|Sanctions/Examples/PlacableSenderBoundaryMember.lean|This line exceeds the 100 character limit, please shorten it!
+6|Sanctions/Examples/PlacableSenderBracket.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/PlacableSenderBracket.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Examples/PlacableSenderEqualityMember.lean|This line exceeds the 100 character limit, please shorten it!
+2|Sanctions/Examples/PlacableSenderEquilibrium.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+7|Sanctions/Examples/PlacableSenderEquilibrium.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Examples/PlacableSenderEquilibrium.lean|`push_neg` has been deprecated. Prefer using `push Not` instead.
+1|Sanctions/Examples/PlacableSenderEquilibrium.lean|unused variable `x`
+3|Sanctions/Examples/PlacableSenderFamilyF.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+4|Sanctions/Examples/PlacableSenderFamilyF.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Examples/PlacableSenderFamilyF.lean|This simp argument is unused:
+2|Sanctions/Examples/PlacableSenderLowBasin.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Examples/PlacableSenderOpenBox.lean|'change B.ℓ * B.q < B.k * (B.c - B.n)' tactic does nothing
+1|Sanctions/Examples/PlacableSenderOpenBox.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+4|Sanctions/Examples/PlacableSenderRallyBindingMember.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/PlacableSenderRallyBindingMember.lean|This line exceeds the 100 character limit, please shorten it!
+2|Sanctions/Examples/PlacableSenderRallyBindingMember.lean|missing space in the source
+2|Sanctions/Examples/PlacableSenderRegime01.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/PlacableSenderRegime10.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/PlacableSenderRegime10.lean|`push_neg` has been deprecated. Prefer using `push Not` instead.
+1|Sanctions/Examples/PlacableSenderRegimes.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+7|Sanctions/Examples/PlacableSenderRegimes.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Examples/PlacableSenderRegimes.lean|unused variable `a`
+3|Sanctions/Examples/PlacableSenderRegimes.lean|unused variable `x`
+1|Sanctions/Examples/PlacableSenderReliefActivation.lean|unused variable `x`
+1|Sanctions/Examples/PlacableSenderSharpReliefMember.lean|This line exceeds the 100 character limit, please shorten it!
+5|Sanctions/Examples/PlacableSenderTargetLipschitz.lean|This line exceeds the 100 character limit, please shorten it!
+3|Sanctions/Examples/PlacableSenderUniqueness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+3|Sanctions/Examples/PlacableSenderWelfareInterval.lean|This line exceeds the 100 character limit, please shorten it!
+2|Sanctions/Examples/PlacableSenderWitnesses.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/PlacableSenderWitnesses.lean|This line exceeds the 100 character limit, please shorten it!
+3|Sanctions/Examples/PlacableSenderWitnesses.lean|missing space in the source
+2|Sanctions/Examples/QuadBumpCertWitnessMS.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+10|Sanctions/Examples/QuadBumpCertWitnessMS.lean|missing space in the source
+1|Sanctions/Examples/QuadBumpSenderCone.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+10|Sanctions/Examples/QuadBumpSenderCone.lean|missing space in the source
+1|Sanctions/Examples/SenderConeWitness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+4|Sanctions/Examples/SenderConeWitness.lean|missing space in the source
+2|Sanctions/Examples/StageSignsNotIDOCounterexample.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Examples/StandardCompliancePolynomialSkeleton.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Examples/StandardCompliancePolynomialSkeleton.lean|missing space in the source
+15|Sanctions/Examples/StrictTargetReluctanceWitness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+5|Sanctions/Examples/SubstantiveComplianceWitness.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Examples/SubstantiveComplianceWitness.lean|This line exceeds the 100 character limit, please shorten it!
+3|Sanctions/Examples/SubstantiveComplianceWitness.lean|missing space in the source
+15|Sanctions/Examples/SymbolicCertifiedFamilyGeneralF.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+9|Sanctions/Examples/SymbolicCertifiedFamilyGeneralFCertificate.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/SymbolicCertifiedFamilyGeneralFEmbedding.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/SymbolicCertifiedFamilyGeneralFPersistence.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/SymbolicCertifiedFamilyGeneralFRecovery.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Examples/WeakFloorContainmentCounterexample.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+4|Sanctions/Foundations/BinaryComparativeStatics.lean|missing space in the source
+1|Sanctions/Foundations/BoxTransfer.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Foundations/CenteredContraction.lean|unused variable `hz`
+1|Sanctions/Foundations/CrossOrderComparison.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Foundations/DualKantorovich.lean|automatically included section variable(s) unused in theorem `Sanctions.dualKR_geometric`:
+1|Sanctions/Foundations/DualKantorovich.lean|automatically included section variable(s) unused in theorem `Sanctions.dualKR_set_zero_mem`:
+1|Sanctions/Foundations/DualKantorovichS.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Foundations/DualKantorovichS.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Foundations/GreatestSelectionUSC.lean|missing space in the source
+1|Sanctions/Foundations/MonotoneThreshold.lean|unused variable `htt`
+1|Sanctions/Foundations/MonotoneThreshold.lean|unused variable `hxx'`
+8|Sanctions/Foundations/MovingAverage.lean|Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+1|Sanctions/Foundations/SemiconcaveJointComposition.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Foundations/SemiconvexArgmaxShift.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Foundations/StokeyLucas.lean|Try this: intro V_seq V h_concave h_tend x y θ hθ_lo hθ_hi z hz
+1|Sanctions/Foundations/StokeyLucas.lean|Try this: intro V_seq V h_mono h_tend x y h_le
+3|Sanctions/Foundations/StokeyLucas.lean|missing space in the source
+1|Sanctions/Foundations/Topkis.lean|unused variable `hcd`
+1|Sanctions/Foundations/Topkis.lean|unused variable `p`
+1|Sanctions/Foundations/Topkis.lean|unused variable `q`
+4|Sanctions/Foundations/ZeroLevel.lean|`push_neg` has been deprecated. Prefer using `push Not` instead.
+2|Sanctions/Theory/Basin/StageFlipCertificate.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Theory/Bellman/BellmanT.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Theory/Bellman/C1Val.lean|'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+3|Sanctions/Theory/Bellman/C1Val.lean|unused variable `hK_d_nn`
+1|Sanctions/Theory/Bellman/C1Val.lean|unused variable `hL_VS_nn`
+1|Sanctions/Theory/Bellman/C1Val.lean|unused variable `hL_VT_nn`
+1|Sanctions/Theory/Bellman/C1Val.lean|unused variable `hs`
+1|Sanctions/Theory/Bellman/GeneralFOperatorRow.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+3|Sanctions/Theory/Bellman/InvariantBall.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Theory/Bellman/InvariantLipBall.lean|'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+1|Sanctions/Theory/Bellman/InvariantLipBall.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Theory/Bellman/InvariantLipBall.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Theory/Bellman/InvariantValueClass.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Theory/Bellman/InvariantValueClass2.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+5|Sanctions/Theory/Bellman/SenderLowerSlopeCone.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+3|Sanctions/Theory/Bellman/SenderLowerSlopeCone.lean|missing space in the source
+1|Sanctions/Theory/Bridges/JETBridge.lean|`Sanctions.AbstractGame.Params.dynamicTop_rule_dominates_myopic_policy_from_primitives` has been deprecated: wrong sign under literal compliance (audit-41): requires σ monotone in a, backwards under compliance; use ruleDom_of_dynamic_floor_and_myopic_ceiling and the carrier-local StandardComplianceLocalCoreCertificate route
+2|Sanctions/Theory/Certificates/GeneralFDischargers.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+7|Sanctions/Theory/Certificates/GeneralFDischargers.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Theory/Certificates/TargetSanctionLossOffset.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Theory/Equilibrium/AbsorbingTopObstruction.lean|This line exceeds the 100 character limit, please shorten it!
+2|Sanctions/Theory/Equilibrium/ArgmaxUniquenessFromConcavity.lean|try 'simp' instead of 'simpa'
+1|Sanctions/Theory/Equilibrium/CertifiedEquilibria.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Theory/Equilibrium/JointMPE.lean|This simp argument is unused:
+3|Sanctions/Theory/Equilibrium/PerovExistence.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Theory/Equilibrium/TargetSelectorFromUnique.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Theory/Equilibrium/TargetSelectorFromUnique.lean|This simp argument is unused:
+1|Sanctions/Theory/LockIn/DifferentPolicyComparator.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Theory/LockIn/DifferentPolicyComparator.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Theory/LockIn/PersistenceMargin.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+1|Sanctions/Theory/LockIn/PersistenceMargin.lean|missing space in the source
+3|Sanctions/Theory/LockIn/TwoSidedForwardLooking.lean|The `show` tactic should only be used to indicate intermediate goal states for readability.
+2|Sanctions/Theory/Mechanism/ContinuationChangesChoice.lean|This line exceeds the 100 character limit, please shorten it!
+2|Sanctions/Theory/Mechanism/ContinuationProfile.lean|`#`-commands, such as '#guard', are not allowed in 'Mathlib'
+1|Sanctions/Theory/Mechanism/ContinuationStakes.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Theory/Mechanism/RegimeExistence.lean|This line exceeds the 100 character limit, please shorten it!
+1|Sanctions/Theory/Shocked/HeSunShock.lean|unused variable `η`
+1|Sanctions/Theory/Shocked/ShockedLeaderLipschitz.lean|This line exceeds the 100 character limit, please shorten it!

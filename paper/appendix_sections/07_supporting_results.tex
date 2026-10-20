@@ -1,0 +1,1502 @@
+\section{Supporting robustness and boundary results}
+\label{app:supporting-results}
+
+This section collects results that sharpen the main mechanisms without
+being needed to reconstruct the paper's central argument. Their formal
+counterparts and axiom dependencies are recorded in the formal-verification
+supplement.
+
+\subsection{Parametric robustness of the corner equilibrium}
+
+\begin{proposition}[Perpetual sanctions on a patience interval]
+\label{prop:perpetual-interval}
+There is a non-degenerate interval of sender discount factors
+$\beta_S\in[6/13,\,4/7)$ such that, for every $\beta_S$ in it, the
+corresponding economy has a deterministic affine transition and admits a
+stationary feedback Stackelberg equilibrium along which, from every initial state
+of the high basin and at every date, the realized sanction stays above a
+strictly positive floor, never falls, and the political state remains in
+the basin. In fact, the realized sanction is maximal at every date.
+\end{proposition}
+
+This interval varies sender patience while holding the other primitives
+fixed. It establishes robustness in that direction, not an open
+neighborhood in the full parameter space.
+
+\subsubsection{Symbolic corner economies}
+\label{sec:existence:symbolic-family}
+
+\begin{proposition}[Symbolically parameterized certified corner economies]
+\label{prop:symbolic-family}
+There is a class of economies whose sender and target stage payoffs carry
+nine free real coefficients, with the adjustment rate, both discount
+factors, and the basin geometry free as well, such that:
+\begin{enumerate}[label=(\roman*)]
+\item membership is defined by finitely many inequalities among these
+primitives, some strict and some weak, and the region they define is non-empty;
+\item every economy in that region carries a complete compliance certificate
+in the legacy form and admits a stationary feedback Stackelberg equilibrium lying in
+invariant sets of value functions whose radius and slope are closed forms in the primitives,
+$K_S=(r+w)/\bigl(1-\beta_S(1-\delta)\bigr)$ and
+$g_T=(n+v)/\bigl(1-\beta_T(1-\delta)\bigr)$; an economy with a strictly
+interior basin bottom carries the
+Milgrom--Shannon/general-$\F$ certificate as well; and
+\item along that equilibrium the independently optimized myopic
+equilibrium realizes no sanction at any feasible state, while the
+forward-looking equilibrium realizes the maximal sanction at every
+feasible state.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Three conditions pin the equilibrium. An implacability condition makes the
+forward-looking sender's dynamic objective strictly increasing in the
+sanction at every feasible pair, so its response is maximal. A stage
+condition keeps the slope of the sender's stage payoff in the sanction on the basin's low-sanction range
+above the per-unit continuation drag. A entrenchment condition covers the target's
+myopic sanction loss by its discounted continuation gain, making full
+non-compliance the target's derived Bellman argmax. Because both policies are
+at corners, the cross-Lipschitz coefficients vanish and the row
+conditions reduce to $\beta_T<1$ and $\beta_S<1$. The Bellman images are
+affine in the state, and the displayed constants of the invariant sets solve their
+fixed-point equations. Non-emptiness follows by choosing each
+coefficient strictly between bounds constructed from coefficients
+chosen earlier; the formal supplement records the corresponding
+Fourier--Motzkin elimination.
+\end{proof}
+
+The inequalities of (i) are of both kinds. The implacability and sender stage
+conditions are strict, and so are $0<\delta<1$, $\beta_S,\beta_T<1$,
+$q,u_0,\ell>0$ and $0<\bar s<1$ for the basin's sanction floor $\bar s$; the
+conditions $\beta_S,\beta_T\ge0$, $q\le r$, $u_0+r\le k$, $n\ge0$,
+$\ell\le c-n$, $0\le\bar x\le\bar s$ and the entrenchment condition are weak
+(\path{SymbolicEconomy}).
+
+These economies are corner-pinned. They do not contain the interior-sanction
+benchmark or the dual-basin construction of \Cref{app:dual-basin-economy}.
+
+The corner economies of \Cref{prop:primitive-persistence} contain
+these: each symbolic economy, with the state slope bounds
+$g_{\mathrm{lo}}=g_{\mathrm{hi}}=1-\delta$ and the lower bound on the sanction slope
+$d_{\mathrm{lo}}=\delta$, is one of them
+(\path{SymbolicEconomy.toF}). Clauses (ii) and (iii) hold on all the corner economies
+as follows (\path{SymbolicEconomyF.symbolic_family_generalF}). At every corner economy
+an equilibrium lies in invariant sets with the closed-form constants
+$K_S=(r+w)/(1-\beta_Sg_{\mathrm{hi}})$, $g_S=(r+w)/(1-\beta_Sg_{\mathrm{lo}})$
+and $g_T=(n+v)/(1-\beta_Tg_{\mathrm{hi}})$, and it realizes the maximal sanction
+at every feasible state while the economy's own optimized myopic equilibrium
+realizes none, with no side condition (\path{regime_separation_symMyopic}); a
+corner economy with a strictly interior basin bottom carries the
+Milgrom--Shannon/general-$\F$ certificate. Against the canonical myopic
+equilibrium the separation is proved only under a strictly interior basin bottom
+and the strict substitution condition $u_0+r<k$, which it reads at the top state. The
+legacy-form certificate of (ii) does not extend, because its consequences use
+the partial-adjustment law, and (i) is not claimed for the corner economies as a whole.
+
+\begin{proposition}[Strict escalation]
+\label{prop:strict-escalation}
+Fix any economy, any equilibrium, and any interval $[a,b)$ on which the
+equilibrium closed loop is invariant, and suppose that at every state of
+$[a,b)$ a feasible sanction above the state strictly raises it (local upward
+adjustment; it holds whenever the transition is strictly increasing in the
+sanction, or satisfies \textup{(F5)} with $a\ge0$). If the equilibrium sanction
+strictly exceeds the state throughout $[a,b)$, the political state
+strictly rises at every date. If, in addition, the sanction rule is
+strictly increasing on $[a,b)$, the realized sanction strictly rises at
+every date, from every start in $[a,b)$, forever.
+\end{proposition}
+
+The two conditions are distinct: a rule can lie above the diagonal
+without being monotone, or be strictly monotone while lying below it.
+Because sanctions are bounded, strict escalation here means a strictly
+increasing convergent sequence, not unbounded growth.
+
+\subsection{Equilibrium feedback from sender patience}
+
+\begin{proposition}[Equilibrium value feedback from sender patience]
+\label{prop:equilibrium-patience-feedback}
+Let $E_1$ and $E_2$ be two of the corner economies of
+\Cref{prop:primitive-persistence}, which contain the symbolic economies of
+\Cref{prop:symbolic-family}, that share the transition $\F$ and the sender's
+stage payoff at the corner, $y\mapsto\Us(y,0,1)$. Write $\beta_1,\beta_2$ for
+their sender discount factors and $V_S^{\beta_i}$ for the sender value of any
+equilibrium of $E_i$ whose sender value lies in the economy's certified invariant set;
+such an equilibrium exists at every corner economy (\Cref{prop:primitive-persistence}).
+Along both equilibria the target policy and both realized actions remain
+at their corners. Then, for every state $x$, writing $\F(x,1)$ for the
+corner-pinned successor,
+\begin{align}
+V_S^{\beta_2}(x)-V_S^{\beta_1}(x)
+={}&(\beta_2-\beta_1)\,
+V_S^{\beta_2}\bigl(\F(x,1)\bigr) \label{eq:equilibrium-feedback}\\
+&+\beta_1\left[
+V_S^{\beta_2}\bigl(\F(x,1)\bigr)
+-V_S^{\beta_1}\bigl(\F(x,1)\bigr)\right].\nonumber
+\end{align}
+At the absorbing lock-in state,
+\begin{equation}
+(1-\beta_1)
+\left[V_S^{\beta_2}(1)-V_S^{\beta_1}(1)\right]
+=
+(\beta_2-\beta_1)V_S^{\beta_2}(1),
+\label{eq:equilibrium-lockin-amplification}
+\end{equation}
+and $V_S^{\beta}(1)=U_S(1,0,1)/(1-\beta)$;
+\eqref{eq:equilibrium-lockin-amplification} and the sign comparison that follows
+need only a common corner payoff $U_S(1,0,1)$, not a common transition.
+Consequently, if
+$\beta_1<\beta_2$, then
+$V_S^{\beta_1}(1)<V_S^{\beta_2}(1)$ if and only if
+$U_S(1,0,1)>0$. The latter inequality holds at every corner economy,
+so the strict ranking is unconditional on these economies. Finally, the
+target equilibrium value is invariant to sender patience: if $E_1$ and
+$E_2$ share $\F$, $\beta_T$ and the target's stage payoff at the corner,
+$y\mapsto U_T(y,0,1)=-c+(n+v)y$, whatever their compliance costs $\ell$ and
+their sender payoffs, then $V_T^{(1)}=V_T^{(2)}$ for any two such
+equilibria.
+\end{proposition}
+
+Two remarks on the scope of the first two displays, because it is wider than the
+set of economies they are stated over.
+
+\emph{No functional form for $\F$ is used.}  These economies carry a general
+transition, and \eqref{eq:equilibrium-feedback} and
+\eqref{eq:equilibrium-lockin-amplification} require only that both value
+functions solve the stationary Bellman equation along a common constant action
+pair, against a common stage payoff and, for the first, a common transition. The
+absorbing state that \eqref{eq:equilibrium-lockin-amplification} needs is
+supplied by the diagonal condition $\F(1,1)=1$ rather than assumed, so it too is
+free of functional form. Both are verified at that generality, and the versions for the corner
+economies are special cases. On the symbolic economies of \Cref{prop:symbolic-family}, whose transition is affine,
+the identities are also proved for their closed-form values, with the shared
+adjustment rate in place of the shared transition.
+
+\emph{The sign clause is an equivalence, and the direction it fails in is
+economically real.}  Greater sender patience raises the lock-in value \emph{if
+and only if} the sender's corner flow is positive. Where a locked-in sanctions regime pays
+the sender a negative flow, patience makes the sender strictly worse off there,
+and no feature of the dynamics reverses that. What makes the ranking
+unconditional here is a property of the corner economies, their implacability condition, which
+forces the corner flow to be positive; it is not a property of the mechanism.
+
+\begin{proof}
+At an equilibrium whose sender value lies in the certified invariant set the sender
+sanctions fully at every state and the target maintains full non-compliance, since compliance
+costs it $\ell>0$ per unit and does not move the sender off the corner; so both
+values solve corner Bellman equations along the action pair $(a,s)=(0,1)$.
+Subtracting the two sender equations gives \eqref{eq:equilibrium-feedback}. At
+$x=1$, the successor state is one,
+so the Bellman equation gives
+$V_S^{\beta}(1)=U_S(1,0,1)+\beta V_S^{\beta}(1)$ and hence
+\eqref{eq:equilibrium-lockin-amplification}. The sign comparison follows
+from this identity. Of the conditions on these economies only implacability is needed for
+$U_S(1,0,1)>0$: with the slope bound $g_{\mathrm{lo}}+d_{\mathrm{lo}}\le1$ it
+places the worst stage disincentive $q+k-u_0$, which the sign condition
+$u_0+r\le k$ puts at or above $q+r$, below the corner state slope $r+w$, so
+$U_S(1,0,1)=u_0-q/2+r+w>u_0+q/2+r>0$. The target value is
+invariant because its corner Bellman equation does not contain $\beta_S$ and has
+exactly one bounded solution. Exact parameter
+intervals are reported in \Cref{tab:compstat-windows}.
+\end{proof}
+
+\subsection{The upper-boundary trade-off}
+\label{sec:absorbing-obstruction}
+
+\begin{proposition}[Ratchet dichotomy]
+\label{prop:ratchet-dichotomy}
+Fix an economy in the model class, a sanction rule $R$ taking
+values in $[0,1]$, and any interval $[\bar x,1]$ with $\bar x\le1$.
+Exactly one of the following holds.
+\begin{enumerate}[label=(\roman*),nosep,leftmargin=2.2em]
+\item $R(1)<1$: the top sanction is interior. Then the ratchet floor
+$R(x)\ge\max\{x,\bar s\}$ fails on $[\bar x,1]$, for every $\bar s$.
+\item $R(1)=1$. Then $\F(1,R(1))=1$: the realized successor at the top
+state is the top state itself, whatever $R$ does elsewhere.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+In the first case, evaluating the floor at $x=1$ would require
+$1\le R(1)$, a contradiction. In the second, the diagonal condition
+gives $\F(1,R(1))=\F(1,1)=1$.
+\end{proof}
+
+\begin{corollary}[Endpoint obstruction to an upper-basin floor]
+\label{cor:endpoint-obstruction}
+Let $R$ be any rule with $R(1)<1$. Then no interval
+$[\bar x,1]$ can satisfy
+\[
+\max\{x,\underline s\}\le R(x)
+\qquad\text{for every }x\in[\bar x,1].
+\]
+Consequently, any equilibrium whose realized sanction is zero at state
+$1$ fails the dynamic-floor ingredient of the upper-basin persistence
+certificate.
+\end{corollary}
+
+\begin{proposition}[Absorbing-boundary obstruction]
+\label{prop:absorbing-obstruction}
+Fix an economy in the model class and a candidate equilibrium. Suppose
+the sender's continuation value rises to the top state at rate at least
+$m$; shading the sanction below the corner by $1-s$ lowers the successor
+state by at least $\kappa(1-s)$; and the sender's current-period gain
+from that shading is at most $c(1-s)$. If
+\[
+c\le\beta_Sm\kappa,
+\]
+then the sender's response is pinned at $s=1$ across a
+right-neighborhood of the target's action at $x=1$. Consequently, if
+the target's stage payoff strictly increases when its action rises from
+$\alpha(1)$ against the corner sanction, no such equilibrium exists.
+\end{proposition}
+
+At a pinned top sanction, the successor state is identical across the
+relevant target actions. The target's continuation term therefore
+cancels, leaving only its stage-payoff comparison. The proposition's
+inequality supplies sufficient conditions for that pinning.
+
+\subsection{A sufficient route to the weak switch leg}
+\label{app:switch-route}
+
+\Cref{app:two-channel} records that the sender-response-switch component is not
+signed by the primitives. That stands. What follows is a \emph{sufficient} route
+--- one way of supplying the weak leg from conditions a modeller can check --- and
+not a derivation of the component's sign from the baseline.
+
+Suppose that, across any two feasible sanctions, the \emph{difference} in the
+sender's stage payoff is a function of the displacement from the sender's own
+myopic best response alone --- so that compliance relocates the sender's stage
+problem without reshaping it, while an arbitrary compliance-dependent level is
+left free and cancels from every sanction comparison. Write
+$\Gamma_x(s)=\beta_S\Vs\bigl(\F(x,s)\bigr)$ for the discounted continuation term and
+$\Lambda(a)=\sigDynTop_{\Vs}(x,a)-\sigM(x,a)$ for the response gap. Say that
+$\Gamma_x$ has \emph{increasing translated chords} when the increment of $\Gamma_x$ across
+a chord of any fixed length does not fall as the chord is translated toward
+larger sanctions. Then, provided the shift-translated responses remain feasible
+and the dynamic best response is taken as the greatest maximizer,
+\[
+\Gamma_x\ \text{has increasing translated chords}
+\quad\Longrightarrow\quad
+\Lambda\ \text{does not widen in compliance,}
+\]
+and the reverse chord condition makes $\Lambda$ not narrow. An affine $\Gamma_x$
+satisfies both, leaving $\Lambda$ exactly constant. The proof is an exchange
+argument --- translate each maximizer by the shift and offer it in the other
+problem --- and uses no derivative, no strong concavity, and no compactness.
+Convexity of $\Gamma_x$ is one way to supply the chord condition, and on an interval
+with $\Gamma_x$ continuous it is equivalent to it; the chord form is preferred because
+it names exactly the inequality the argument consumes.
+
+The condition can be weakened further, and ordinally. Re-centring the sender's
+problem on its own myopic best response, so that the gap \emph{is} the maximizer in
+the displacement variable, the comparison becomes a monotone-comparative-statics
+question, and what it requires is single-crossing lower dominance of the
+re-centered objective across the two compliance levels. Increasing chords imply
+that; the converse fails, since single crossing survives an arbitrary strictly
+increasing transformation and a difference condition does not. This is the same
+distinction \citet{DekelQuahSinander2025} draw in a model of costly adjustment:
+monotonicity-type conditions govern the \emph{direction} of adjustment, and
+curvature governs its \emph{speed}. The comparison here is a direction result.
+
+\paragraph{Only the chords the decision problem generates are needed.}
+The chord condition above is stated over every chord of $[0,1]$, and for a
+continuous $\Gamma_x$ on an interval that is convexity --- so as written it is not a
+weakening of convexity at all. \citet{TaborTabor2009} explain why in general:
+every nontrivial linear inequality valid for all convex functions is valid
+\emph{only} for convex functions, once it is imposed over a family of affine
+reparametrizations.
+
+The exchange argument reads much less than that. It uses chords based at the two
+myopic best responses $\sigM(x,a_L)$ and $\sigM(x,a_H)$ only, and only shifts inside
+the interval those two compliance levels generate. Substituting
+$u=\sigM(x,a_H)+z$ and writing $\Delta=\sigM(x,a_L)-\sigM(x,a_H)$ for the
+sanction gap, that restricted condition says exactly
+\begin{equation}
+u\;\longmapsto\; \Gamma_x(u+\Delta)-\Gamma_x(u)
+\quad\text{is non-decreasing on } [0,1-\Delta].
+\label{eq:generated-chord}
+\end{equation}
+A \emph{single} lag --- and that lag is the gap the two compliance levels
+themselves generate. The all-chord condition asks the same of every lag. So what
+buys the weakening is the restriction from all lags to one, and not a restriction
+of the reparametrization group.
+
+The distinction is not decorative, because it changes what a separating example
+must look like. Tabor and Tabor's own escape --- $x_1^2-x_2^2$, which satisfies
+the spherical sub-mean-value inequality for every affine \emph{similarity} yet is
+not convex --- cannot serve here: it lives in $\mathbb{R}^2$ and works because the
+function is harmonic, whereas in one dimension the corresponding inequality is
+midpoint convexity, and a continuous midpoint-convex function on an interval is
+convex. \Cref{eq:generated-chord} gives the construction directly instead: a
+continuation term periodic with period $\Delta$ has vanishing $\Delta$-difference,
+so it satisfies the condition however far from convex it is.
+
+The weakening is therefore strict, and machine-checked to be. Take a sender whose
+stage loss is single-peaked at $3/4-a/2$, so its stage argmax is a clamp falling
+in compliance and the gap at $a_L=0$, $a_H=1$ is exactly $\tfrac12$; a transition
+that adjusts fully; and the $\tfrac12$-periodic continuation value
+$\varphi(s)=\bigl|\,|s-\tfrac12|-\tfrac14\bigr|$. It satisfies
+\Cref{eq:generated-chord} and fails the all-chord condition, at base points
+$\tfrac14$ and $\tfrac12$ with chord length $\tfrac14$, where the increment falls
+from $\tfrac14$ to $-\tfrac14$. So the implication from the all-chord form does
+not reverse.
+
+Per the scope discipline this appendix keeps elsewhere, the example refutes a
+universal and licenses nothing further: it does not say which condition holds at
+any calibrated economy, nor that the weaker form is ever the binding one.
+
+Three limits travel with all of this. Each implication is one-way, and a gap that
+fails to widen does not force any chord condition. The relevant shape is that of
+the \emph{composite} $\Gamma_x$, not of $\Vs$ or of $\F(x,\cdot)$ separately ---
+curvature of one factor says nothing about the composite without a matching
+monotonicity of the other. And the response gap is \emph{not} the switch component:
+it is one of five inputs to the switch-gap comparison, the remaining four being
+shape conditions on the target's complete sanction payoff over the reached
+sanctions.
+
+That the ordering can genuinely fail is settled by an example economy whose
+transition is strictly concave in the sanction, non-affine at every $\delta$, and
+carries genuine inheritance, and in which a fully forward-looking equilibrium and
+an independently optimized myopic one satisfy
+$\alpha^{MM}(x)=0<1=\alpha^{FF}(x)$ at every feasible state, with both Bellman
+equations holding exactly. Two things should be said about it, and no more.
+It licenses exactly one claim --- that the baseline together with several natural
+monotonicity and optimality properties does not logically determine the two-sided
+ordering --- and nothing about whether the intended ordering holds in typical or
+calibrated economies. And what it verifies is equilibrium-level: its
+stage-payoff state shifts are chosen so that the proposed values solve the
+Bellman equations exactly, and no claim is made that it satisfies the
+forms of \Cref{ass:concavity} and its companions that quantify over sets of value functions.
+
+\subsection{Why the path comparison assumes a monotone sanction rule}
+\label{app:closed-loop-monotone}
+
+The route taken here orders the state paths of the two equilibria by asking the
+forward-looking sanction rule $R^{FF}(x)=\sigDynTop_{\Vs}\bigl(x,\alpha^{FF}(x)\bigr)$
+to be non-decreasing in the state. That is a sufficient condition, not the exact
+one: what the induction actually consumes is a cross-order condition on the two
+closed-loop \emph{state} maps $x\mapsto\F(x,R(x))$, which a monotone
+rule discharges. The monotonicity is assumed rather than derived, and the reason
+is a constraint the model imposes rather than a gap in the argument.
+
+Write the composition informally as $R'(x)=\sigma_x+\sigma_a\,\alpha'(x)$, where
+$\sigma_a$ is the sender's response to compliance. This model maintains
+$\sigma_a\le0$ throughout --- compliance placates --- so the two effects pull
+against each other unless the target's own policy is non-increasing in the state.
+The baseline does not deliver that. A target with stage payoff $-(a-x)^2$, which
+does not mention the sanction at all, has $\alpha(x)=x$ as its genuine myopic
+stage argmax, strictly \emph{increasing}. What that closes is the \emph{sign-only}
+route: the closed-loop property cannot be read off the direction of $\alpha$ alone.
+A quantitative route survives, since the direct state effect may dominate the
+adverse compliance--sanction cross term even where $\alpha$ rises, but it turns on a comparison of
+magnitudes the baseline does not supply. The honest options are to assume the
+closed-loop property or to discharge it from a condition on the \emph{composite}. The
+formalization takes the second: the single-crossing condition is imposed on the
+sender's objective with the target's policy already substituted in, which is
+precisely the formulation that never separates the two effects and so never
+walks into the composition trap.
+
+\paragraph{The condition the induction actually consumes.}
+Write $G_i(x)=\F\bigl(x,R_i(x)\bigr)$ for the two closed-loop state maps. Stepping
+from a lower state $x$ to an upper state $y\ge x$, the induction needs one
+inequality, $G_1(x)\le G_2(y)$, and nothing else. Say that $G_1$ is
+\emph{cross-ordered} below $G_2$ on a region $B$ when
+\begin{equation}
+x\in B,\quad y\in[0,1],\quad x\le y
+\quad\Longrightarrow\quad
+G_1(x)\;\le\; G_2(y).
+\label{eq:cross-step}
+\end{equation}
+
+\begin{proposition}[Stopped path order under cross-step domination]
+\label{prop:cross-step-paths}
+Fix two sanction rules mapping $[0,1]$ into itself, a region $B\subseteq[0,1]$, a
+feasible initial state, and a date $n$. If \eqref{eq:cross-step} holds and the
+lower path has in fact remained in $B$ through step $n$, then the lower state path
+lies weakly below the upper one at $n$. If in addition the same cross-order
+condition holds for the two \emph{rules} in place of the two closed loops, the
+sanction levied along the lower path at $n$ is weakly below the one levied along
+the upper path.
+\end{proposition}
+
+Neither rule is required to be monotone, no invariance of $B$ is asserted, and $B$
+need not be closed or an interval. What replaces those is a hypothesis about the
+trajectory that was actually run, at the date in question.
+
+Monotonicity of the upper rule, which \Cref{app:closed-loop-monotone} uses, is one
+way to supply \eqref{eq:cross-step}: it gives $G_1(x)\le G_2(x)\le G_2(y)$ through
+the transition's monotonicity in each argument. It is a strictly stronger way.
+Condition \eqref{eq:cross-step} is equivalent to $G_1$ being dominated on $B$ by
+the greatest non-decreasing minorant of $G_2$ --- the pointwise infimum of $G_2$
+over the states weakly above the current one --- and that minorant coincides with
+$G_2$ exactly when $G_2$ is already monotone. Where it does not, the condition is
+correspondingly weaker.
+
+That gap is inhabited. Under the lattice-meet transition $\F(x,s)=\min\{x,s\}$,
+which satisfies \textup{(F1)}--\textup{(F4)} but not \textup{(F5)} (it is
+insensitive to a sanction above the state: $\F(0,1)=0$), the rule
+$R(x)=\max\{x,1-x\}$ is feasible and \emph{not} monotone --- it falls from $1$ at
+$x=0$ to $\tfrac12$ at $x=\tfrac12$ --- yet it never names a sanction below the
+state, so the closed loop is the identity and \eqref{eq:cross-step} holds
+trivially. The point is that rule monotonicity is a property of the rule, while
+what the comparison needs is a property of the rule composed with the transition;
+the two come apart wherever the transition is insensitive to the sanction.
+
+The two path conclusions are stated separately on purpose. Ordering the states
+along the two paths does not by itself order the sanctions levied along them,
+because the two rules are evaluated at different states --- which is why the
+sanction claim carries its own hypothesis rather than being read off the first.
+
+The counterexample refutes derivability. It does \emph{not} exhibit an economy in
+which the closed-loop rule actually fails to be monotone --- that would
+additionally require the effect of compliance on the sender's return to sanctioning to overturn the direct state effect.
+The general shape of the obstruction is familiar from monotone comparative
+statics, where what a composition needs is the follower's response to the
+\emph{leader's action} and not only to the state.
+
+\subsection{A sender payoff rising with the state, and a weaker persistence floor}
+\label{sec:dynamic-stake}
+
+For a fixed target policy, call the greatest maximizer of the sender's
+one-period problem at a state the \emph{stage ceiling}.
+
+\begin{proposition}[Dynamic floors require a sender payoff that rises with the state]
+\label{prop:dynamic-stake}
+Fix an economy in the model class, a continuous target policy, and the
+sender's continuation value determined by that policy. If the sender's
+stage payoff along the policy is non-increasing in the target's political
+state, then at every state the greatest maximizer of $J_S$
+is at most the stage ceiling. Equivalently, if at some state the
+equilibrium sanction strictly exceeds the stage ceiling, then there are
+feasible states $y_1\le y_2$ and a feasible sanction $s$ with
+\[
+U_S\bigl(y_1,\alpha(y_1),s\bigr)
+<U_S\bigl(y_2,\alpha(y_2),s\bigr).
+\]
+\end{proposition}
+
+The conclusion concerns the composed payoff
+$y\mapsto U_S(y,\alpha(y),s)$, not the partial effect of the state at
+fixed compliance. It also locates the required increase somewhere in
+the feasible state space, not necessarily at the state where the
+dynamic sanction exceeds the stage ceiling.
+
+\subsubsection{Persistence under a level floor}
+\label{sec:weak-floor}
+
+\begin{proposition}[Level-floor invariance and its cost]
+\label{prop:level-floor}
+Suppose $R(x)\ge\bar s$ on $[\bar x,1]$ with $\bar x\le\bar s$.
+Then $[\bar x,1]$ is forward invariant under the closed-loop
+map of $R$, and the statewise ordering of dynamic over myopic sanctions and
+the finite-shock entry conclusion are unaffected. The level floor does
+not, however, entail the ratchet step
+$x\le\F\bigl(x,R(x)\bigr)$ and therefore does not entail that the
+political state is non-decreasing: there are transitions and rules
+satisfying the level floor along which the state falls.
+\end{proposition}
+
+Forward invariance follows from monotonicity and the diagonal condition:
+\[
+\bar x=\F(\bar x,\bar x)
+\le \F(\bar x,\bar s)
+\le \F(x,\bar s)
+\le \F\bigl(x,R(x)\bigr).
+\]
+For the partial-adjustment law with $\delta=1/5$, $\bar x=\bar s=1/2$, and a rule
+constant at $1/2$, the state falls from $1$ to $9/10$. Thus the level
+floor preserves the basin but does not imply a monotone state path.
+
+\subsection{Exposition moved from the main text}
+\label{app:moved-ad}
+
+The passages below stood in the main text until 2026-09-20 and were moved
+here, verbatim apart from later changes of terminology, when the main text was shortened. None is a theorem statement
+or a hypothesis of a main-text result; each qualifies, illustrates or
+inventories one. Each is headed by what it is and where it stood.
+
+\paragraph{The statement on the cube and the formalization on the line.} \emph{(From \Cref{sec:model}, after \textup{(F1)--(F5)}.)}
+
+One difference between this statement and the formalization should be
+recorded rather than left to inspection. States and sanctions are
+economically meaningful only on $[0,1]$, and \textup{(F1)} and
+\textup{(F5)} are accordingly stated there. The formalization, however,
+maintains \textup{(F2)} and \textup{(F3)} \emph{globally} --- $\F$ is
+monotone in each argument on all of $\mathbb{R}$, not merely on the
+cube --- because a global monotonicity hypothesis is markedly easier to
+carry through the order arguments than its restriction. Read as an
+assumption on $\F$ it is strictly stronger than the displayed one.
+It costs no generality: a transition that is continuous, coordinatewise
+nondecreasing, and diagonal-fixing on the square extends to one with the
+same three properties on all of $\R^2$ and the same values on the
+square, by adding to $\F(\operatorname{clip}x,\operatorname{clip}s)$ the
+two correction terms $\min\{0,\min\{x,s\}\}$ and
+$\max\{0,\max\{x,s\}-1\}$, which vanish on the square and restore
+the diagonal outside it. That extension is machine-checked
+(\texttt{Foundations/TransitionExtension}); every difference-quotient condition stated
+on the square is inherited verbatim, since the extension \emph{is}
+$\F$ there. The payoff functions and the stage selector extend by
+clipping their arguments. Both steps are assembled into a machine-checked
+constructor (\texttt{Postulates/ParamsOfCube}): from payoffs continuous on
+the cube, a selector feasible, continuous and argmax on the square, and a
+transition satisfying \textup{(F1)--(F4)} on the square, it builds a formal
+economy that agrees with the data on the cube and square and inherits
+\textup{(F5)} from it. So the formal statements quantify over a class no
+smaller than the displayed one, and every theorem stated over the formal
+economy applies to every cube-defined economy, evaluated where that economy
+is defined.
+The point is recorded because an assumption surface that is wider in
+the machine-checked statements than in the prose is the kind of gap a
+reader is entitled to be told about rather than to find.
+
+\paragraph{Continuous payoffs whose myopic best response jumps.} \emph{(Added on
+2026-10-08 beside the paragraph above; not moved from the main text.)}
+
+The formal economy asks of the myopic sender only a feasible stage maximizer
+$\sigM(x,a)$, which exists whenever the payoffs are continuous; it does not ask
+that this choice vary continuously with the state and the compliance level.
+That continuity (\path{Params.StaticSelectorContinuous}) is read only by the
+results built on the myopic sender: the target's value against the myopic
+sender, the target-only case, the canonical and
+greatest myopic equilibria, and every comparison with the canonical myopic
+equilibrium, such as the three-goals conclusion of the route of
+\Cref{prop:flip-route}. Those results take it as a hypothesis, which every
+economy constructed in the formalization satisfies, and the class
+keeps it as a condition of its own, because its
+results on the four cases compare with the myopic sender. Every other result
+stated for the general game --- in particular \Cref{thm:existence},
+\Cref{thm:corner-existence}, \Cref{thm:persistence},
+\Cref{cor:nontermination}, \Cref{thm:shock}, \Cref{thm:finite-episode},
+\Cref{thm:relief-exit}, \Cref{thm:lowbasin}, \Cref{prop:longrun},
+\Cref{prop:order-selection}, \Cref{prop:history-deviations} and
+\Cref{prop:strict-dominance} --- holds for every economy with continuous
+payoffs that meets that result's own hypotheses; none of them reads this
+continuity. That includes an economy whose sender payoff is linear in the sanction
+with a slope whose sign depends on the state, so that the myopic best response
+jumps between no sanction and the full sanction. No such economy is constructed
+in the formalization, so this generality is stated, not yet illustrated by an example.
+
+\paragraph{Why differentiability is stated on a neighborhood of the cube.} \emph{(From the footnote to the payoff domains in \Cref{sec:model}.)}
+
+The Lean development states every quantitative bound it uses ---
+Lipschitz constants, lower state slopes, curvature moduli --- as a
+finite-difference inequality on the compact cube, and for the polynomial
+instances derives those bounds from the coefficients. Where a
+smooth route is used to \emph{read off} such a constant, it needs
+the second partials to be continuous up to the boundary, which is
+why the hypothesis is stated on a neighborhood of the cube:
+continuity on $[0,1]^3$ together with $C^2$ on the open cube alone
+does not bound the second partials ($x \mapsto x^{3/2}$ is $C^1$ on
+$[0,1]$, $C^\infty$ on $(0,1)$, and has unbounded second
+derivative). A reader who prefers a weaker maintained assumption may
+drop the differentiability altogether and take the finite-difference bounds as
+primitive; nothing else changes.
+
+\paragraph{Which result consumes which structural condition.} \emph{(From \Cref{sec:assumptions}.)}
+
+\begin{table}[htbp]
+\centering\footnotesize
+\caption{Which result consumes which structural condition.}
+\label{tab:assumption-routes}
+\begin{tabular}{@{}p{0.36\linewidth}p{0.60\linewidth}@{}}
+\toprule
+\textbf{Result} & \textbf{Conditions consumed}\\
+\midrule
+\Cref{thm:persistence} (persistence, general $\F$) & the package (P1)--(P5): membership of the value sets (P1), the sender Lipschitz ceiling (P2), A1 in its value-set form (P3), the target combined slope condition A2 as (P4), the sub-pivot slope condition (P5); no A3. Dropping (P4) keeps feasibility and optimality, conclusions (iv)--(v), from the equilibrium object and loses only the preference conclusion (vi); that P4-free statement is a proved composition (\Cref{app:formalization}), not a second signature. A1 is read only for (iii): (i), (ii) and (iv) follow from (P1), (P2) and (P5).\\
+\Cref{thm:shock} (minimum-drift shock) & (P1)--(P3) and (P5), with no target condition, together with the transition's (F1)--(F4), full-sanction ascent below the basin (which gives $\bar x<1$), and the temporary shock; the package alone is not the entry theorem. No A3.\\
+\Cref{thm:finite-episode}, \Cref{thm:relief-exit} & the equilibrium, transition, floor and rule hypotheses stated in each: (F1)--(F4), with held-sanction ascent below the basin for entry and post-basin descent for exit in place of (F5); no A1--A3 hypothesis appears in their statements.\\
+\Cref{prop:longrun} (long run) & the level condition at an equilibrium --- the sanction rule at or above the state on the basin, with no floor --- plus (F1)--(F5). (P1), (P2) and (P5) imply the level condition; neither A1 nor (P4) is read.\\
+\Cref{thm:existence} (Schur condition) & invariant sets of value functions; dynamic argmax uniqueness, the sender's at feasible compliance and the target's at every value pair; joint-operator invariance of those sets; the row bounds with the Schur condition \eqref{eq:Schur} (\Cref{app:existencemachinery}). A3 gives only stage-argmax uniqueness, neither the dynamic uniqueness assumed nor a substitute for the other premises.\\
+\Cref{prop:flip-route} (derived-basin route) & the sender half of \Cref{ass:flip} on the floor range and the sender's top boundary sign of \eqref{eq:boundary} derive the sender pivot; the three-goals conclusion consumes in addition A1 on the derived basin, row-sum contraction ($\beta_T+L_{TS}<1$, $\beta_S+L_{ST}<1$), full-sanction ascent below the basin, and the diagonal-residual, monotone-sender-values and myopic-ceiling clauses (i)--(iii) (\Cref{app:dischargers}); no target preference or sign condition and no A3. The target combined slope condition A2 can still be derived on the derived basin from the target half and the target's top sign, but the route does not read it.\\
+\Cref{prop:placable-family}, \Cref{prop:target-only} (cases $00$, $10$) & the class's fields of \Cref{sec:four-regimes}, the concavity condition and the Riccati closure; as hypotheses of the results that read them, the myopic relief condition, interiority where $A/q<1$ or a family closed form is read and elsewhere only myopic interiority $u_{\mathrm{hi}}<q$, and, since round AP, the lifting condition for case $00$ (the myopic equilibrium itself reads only the myopic lifting condition $u_{\mathrm{hi}}<k_{\mathrm{lo}}$) and the entrenchment condition in place of A2 for case $10$.\\
+\Cref{thm:regime-separation} (case $11$) & the same class fields, the myopic relief condition, myopic interiority $u_{\mathrm{hi}}<q$, the myopic lifting condition $u_{\mathrm{hi}}<k_{\mathrm{lo}}$, the entrenchment condition and a non-decreasing response at non-compliance, which the increasing-differences condition \eqref{eq:rally-margin} implies.\\
+\Cref{prop:sender-only} (case $01$) & the same class fields with interiority, the lifting condition, the sender-only compliance condition \textup{(T6)}, the forward-looking relief condition \textup{(RL)} of \Cref{app:proofs:placable} and compliance neutrality.\\
+\Cref{thm:four-cells} & the union of the three rows above. None of the four uses A1--A3 as stated or \Cref{ass:flip}: the class's signs $r_{\mathrm{lo}},n_{\mathrm{lo}}\ge0$ permit strict complementarity, and what it lacks is the boundary sign crossing.\\
+\Cref{thm:dominance} & a sender value non-decreasing in the state; no equilibrium and no basin; none of A1--A3.\\
+\Cref{prop:strict-dominance} & one comparison of the sender's continuation value at the successor state per lower sanction (no sanction at or below the greatest stage maximizer carries a larger continuation value at the successor state than it) together with one sanction at which the stage loss measured from the greatest stage maximizer is outweighed by the discounted continuation gain; the comparison alone can hold with equality and change no choice.\\
+Interest-group polity (\Cref{app:fourgroup}) & derives the cross-partial signs of \Cref{ass:flip} and the curvature of A3 from region (R); A2 through the entrenchment-condition route at the certificate-complete instance, not from \Cref{ass:flip}. The welfare sign of \Cref{app:fourgroup} is separate: region (R) implies neither of the two welfare inequalities.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{The substitution between compliance and the sanction needs no concavity.} \emph{(From \Cref{sec:assumptions}, after A3.)}
+
+A3 is not, however, what carries the substitution between compliance and the sanction. Decreasing differences of
+$\Us$ in $(s,a)$ orders the stage argmax \emph{correspondence} in the strong set
+order, and while that does not order an arbitrary selection from it, it does
+order the \emph{greatest} maximizer --- which exists by Weierstrass alone. So the
+antitonicity of $\sigM$ in $a$ that the ordering results use follows from the
+cross-partial sign plus a greatest-selection convention, with no concavity and no
+uniqueness; uniqueness is merely one sufficient way to reach it, since a unique
+maximizer is trivially the greatest. This matters because uniqueness is a
+regularity condition rather than an economic primitive, and it fails exactly
+where a sender payoff is linear in the sanction or flat over a range.
+
+\paragraph{Static and dynamic thresholds, substitution, and the constructed pivots.} \emph{(From the end of \Cref{sec:flip}.)}
+
+\paragraph{Static and dynamic sender thresholds.}
+The construction at slope level $m=0$ gives the \emph{static flip}
+$x_S^0:=\inf\mathcal F_S(\bar s;0)$ --- the state at which
+sanctioning stops being a stage loss to the sender. Since a higher
+slope level is a more demanding condition,
+$x_S^0\le\bar x_S$:
+between the static flip and the dynamic pivot, the sender's stage
+incentive has already flipped but
+the transition-adjusted forward-looking drag
+\eqref{eq:F-continuation-allowance} is not yet dominated. The band is
+indexed by the slope level $m_S$ and is non-decreasing in it, since a
+higher level is a more demanding condition. Under the partial-adjustment law the
+drag per unit sanction is $\beta_S K_S\delta$, which vanishes in the
+myopic limit $\beta_S\to0$, where the band closes; no comparative
+static in $\beta_S$ is proved beyond that observation.
+
+\paragraph{Compliance placates.}
+Suppose compliance lowers the sender's marginal value of sanctioning:
+\[
+\frac{\partial^2\Us}{\partial s\,\partial a}\le0.
+\]
+Define
+$x_S(a)$ as the infimum of the states at which the sender's difference-quotient inequality in
+\eqref{eq:FS-def} holds for that fixed action $a$, rather than uniformly
+over all actions. The resulting per-action threshold
+$a\mapsto x_S(a)$ is non-decreasing: against a more compliant target,
+a harder state is required before sanctioning clears the margin. The
+uniform flip set is therefore determined by the full-compliance slice,
+so $\bar x_S=x_S(1)$.
+
+An example economy has
+$\bar x_T=2/5$, $\bar x_S=1/2$, and a target sanction slope that changes
+sign at the interior pivot. The construction uses a kinked sender payoff
+because its diagonal-residual and myopic-ceiling conditions cannot both
+hold smoothly near the top state.
+
+Because the pivots are infima of upper flip sets, their comparative
+statics follow by set inclusion. A payoff change that raises the
+target's sanction slopes on the high range lowers $\bar x_T$, and the sender
+analogue shifts the interval between its static and dynamic thresholds.
+The sanction floor $\bar s$ remains
+a separate parameter in the construction; it may be set equal to the
+derived basin pivot only after the pivots have been computed.
+
+\paragraph{The four cases: arithmetic form, sanction rules, and the one-period ranking.} \emph{(From the paragraph after \Cref{thm:four-cells}.)}
+
+Two arithmetic
+consequences follow from the constructed rules alone. For the limit of the state,
+writing $L^{ij}$ for the four limits from a common start,
+$(L^{11}-L^{10})-(L^{01}-L^{00})=L^{11}-L^{10}>0$. At a common state $x$,
+writing $R^{ij}(x)$
+for the four sanction rules, $R^{00}=R^{01}=0$, $R^{10}(x)=\sigM(x,0)$
+and $R^{11}(x)>\sigM(x,0)$ (the vertex $(u_0+rx)/q$ on the quadratic--linear
+family), so
+$(R^{11}-R^{10})(x)-(R^{01}-R^{00})(x)>0$. Both are restatements of the rule
+identities, not interaction primitives. At every state the realized sanction is
+zero in the two cases in which the target is myopic and buys
+relief, equals the positive myopic sanction when only the target is forward-looking, and
+lies strictly between the myopic sanction and one when both are, above it by
+at least the foresight premium \eqref{eq:sender-wedge}; with
+$a^{01}(x)>a^{00}(x)$, the sender's forward-looking incentive raises the sanction against a non-compliant
+forward-looking target and extracts more compliance from a myopic one. \citet{Eaton1992} find that a more patient sender is more likely to succeed
+in their threat model; what is compared here is a pair of constructed
+equilibrium rules at a common state, not their toughness parameter or a threat
+stage, so the two statements are neighbors and not the same result. The one-period ranking
+$\ell_{\mathrm{hi}}<\underline s\,p_{\mathrm{lo}}$, under which full compliance beats full non-compliance in the one-period problem, is sufficient and not necessary for both forward-looking incentives to change behavior: on the
+enriched subclass, the increasing-differences condition \eqref{eq:rally-margin} and the forward-looking relief condition \textup{(RL)} alone give it,
+through a small compliance rather than full compliance, and \textup{(RL)}
+does not imply the one-period ranking: the affine relief-only member satisfies
+\textup{(RL)} as $6<12$ and fails the ranking as $6<4$.
+
+\paragraph{Two boundaries of the sender-only case.} \emph{(From after \Cref{prop:sender-only}.)}
+
+Two boundaries of the case are worth stating. First, \Cref{prop:sender-only}
+gives $a^{00}(x)<a^{01}(x)\le1$ and no more: at an economy in the class with
+the lifting condition at equality ($A=k$) and no state--sanction cross terms, on the quadratic--linear
+family, the zero level is full
+compliance, $a^{01}(x)=1$ at every state, while $a^{00}=3/4$
+(\Cref{app:formalization}). Relief from a
+forward-looking sender is bought at a strictly higher price, which can be the
+whole of compliance. Second, the entrenchment condition that makes the
+forward-looking target maintain non-compliance is sufficient, not necessary: with the same payoff
+shapes and the target's state valuation lowered until the condition fails,
+non-compliance is still the unique optimum at a constructed equilibrium
+(\Cref{app:formalization}). Where the condition fails the
+class's classification is silent, not reversed.
+
+\paragraph{The Schur-condition existence route, summarized.} \emph{(From \Cref{sec:existence:general}.)}
+
+\Cref{thm:existence} (\Cref{app:existencemachinery}) states the route: on
+closed, non-empty invariant sets of value functions, which the joint Bellman operator maps into
+themselves, with the sender argmax unique on the sender's invariant set at every
+compliance level in $[0,1]$ and the target argmax unique at every value pair,
+if the two Bellman rows are Lipschitz in
+the value pair with coefficients $\beta_T,\beta_{S,\mathrm{row}}<1$ on the
+diagonal and $L_{TS}$, $L_{ST}$ off it, all four of any sign, and the Schur
+condition $L_{TS}L_{ST}<(1-\beta_T)(1-\beta_{S,\mathrm{row}})$ holds (for non-negative
+coefficients, equivalently $\rho(\mathbf M)<1$), then the operator has a unique
+fixed point on these sets in a weighted sup-norm, the associated optimal target
+policy and the sender's dynamic best response form an equilibrium in $\mathcal E$ with
+values in these sets, and every equilibrium with values in these sets that
+plays the target selector those sets define coincides with it.
+
+The Schur inequality permits one Bellman row sum to exceed one when the
+opposing cross-value coupling is sufficiently weak. Its uniqueness
+conclusion is confined to the stated invariant sets and selector restrictions;
+it is not global equilibrium uniqueness. The appendix states the theorem and
+gives the Perov reduction and the exact constants
+(\Cref{app:existencemachinery}).
+
+\paragraph{Off-corner existence and the transition-smoothed game.} \emph{(From \Cref{sec:existence:general}, after \Cref{thm:corner-existence}.)}
+
+With an interior target action, each Bellman row depends on the other
+player's continuation value. The deterministic joint iteration need not
+preserve order and can cycle even when current argmaxes are unique. We
+call the game with an atomless transition component the
+\emph{transition-smoothed game} (``purified'' in earlier versions and in the
+formalization's names); the term refers to transition smoothing, not payoff
+purification.
+Under the regularity conditions in \Cref{app:existencemachinery}, its
+joint operator is a contraction and supplies an off-corner equilibrium
+\citep{HeSun2017,DoraszelskiSatterthwaite2010}. Deterministic off-corner
+existence is established for the example economies; the primitive
+model by itself supplies no global existence theorem of that form.
+
+\paragraph{The benchmark economy.} \emph{(From \Cref{sec:existence:nonvacuity}.)}
+
+The first application shows that the conditions of \Cref{thm:persistence} are
+attained in an economy where continuation values affect observable
+choices: \Cref{thm:b2-benchmark} (\Cref{app:witness:benchmark}) exhibits,
+within the general-$\F$ model, an economy with positive discount factors for
+both players, a non-degenerate high basin and an equilibrium at which both
+value functions are nonconstant, the target maintains full non-compliance at the basin pivot
+while the sender's realized sanction there is strictly interior and strictly
+above its myopic level, every basin start keeps the realized sanction above
+the pivot and non-decreasing, and a finite temporary shock at the maximum
+sanction carries every initial state into the basin. The theorem establishes
+existence in the model class. The appendix
+strengthens its robustness in two
+directions: permanent sanctions survive on a non-degenerate interval of
+sender discount factors, and the symbolic corner economies free the payoff
+coefficients, adjustment rate, discount factors, and basin geometry
+(\Cref{prop:perpetual-interval,prop:symbolic-family}).
+
+\paragraph{The off-corner boundary of primitive persistence.} \emph{(From the end of \Cref{sec:existence:primitive-persistence}.)}
+
+The off-corner constructions locate the remaining boundary. A purified
+economy defined on the full state space has nonconstant values, a state-varying
+target policy, and a monotone sanction rule, but its top-state
+sanction is interior and therefore cannot satisfy a ratchet floor on a
+basin ending at one. It nevertheless ratchets strictly on an interior
+sub-basin. The supporting appendix states the general boundary results;
+\Cref{sec:discussion:scope} explains their economic content. Thus
+equilibrium existence and continuation values that change choices do not alone
+imply the stronger conditions of \Cref{thm:persistence} on a basin ending at one.
+
+\paragraph{A local form of the conditions of the high-basin theorem, and no selection of a limit.} \emph{(From after \Cref{thm:persistence}.)}
+
+The same
+conclusions (i)--(iii) also follow from three conditions stated at the
+equilibrium pair alone --- a Lipschitz modulus of the equilibrium sender
+value, one comparison per sub-pivot sanction against the pivot at the
+equilibrium policy, and interval dominance of the substituted objective ---
+with no value sets and no value class
+(\path{standardCompliance_persistence_generalF_local_star}); P1--P3 and P5
+supply those conditions at the pivot, and the local form constructs no
+equilibrium. The first two conditions alone give conclusions (i) and (ii),
+a non-decreasing state path and the target's optimality along it
+(\path{standardCompliance_persistence_generalF_level_star}): interval
+dominance is read only for (iii). The package does not select a limit:
+\path{persistence_package_not_unique_steady_state} fills every field of
+P1--P3 and P5 at an economy whose equilibrium closed loop is the identity on
+the basin, so every basin state is steady and no state is a common limit of
+the basin's paths; attraction is the separate content of
+\Cref{prop:order-selection} and \Cref{prop:derived-interval}.
+
+\paragraph{What the derived interval does not say.} \emph{(From after \Cref{prop:derived-interval}.)}
+
+The result neither places $x_s$ in the interior nor describes starts above it. At
+the example economy $x_s=1$, so the derived interval is the whole high basin
+and the proposition specializes to the absorbing-corner case. The three results
+therefore have distinct roles: \Cref{prop:longrun} proves convergence under the
+level condition of the high-basin theorem, \Cref{prop:order-selection} selects an extremal limit,
+and \Cref{prop:derived-interval} obtains a common limit on a derived interval.
+
+\paragraph{Corners at the dual-basin economy.} \emph{(From after \Cref{prop:derived-dividing-line}.)}
+
+At this example economy the target chooses full non-compliance and the realized
+sanction lies at a corner on each basin, so both displayed long-run outcomes are
+corners. These are features of the construction, not of the general selection
+result, whose steady states may be interior. A sanction floor extending to the top
+state forces the sanction rule to equal one at the top state, $R(1)=1$; that
+the rule sits at the ceiling throughout the high basin is a feature of this
+economy's payoffs, not a consequence of the floor (an equilibrium rule
+$(x+1)/2$ satisfies such a floor with $R(x)<1$ below the top). This
+absorbing corner is a specialization of the general result rather than the
+state-dependent ratchet motivating the mechanism.
+
+\paragraph{The pathwise ordering at the Eaton--Engers corner economy.} \emph{(From after \Cref{cor:pathwise-dominance}.)}
+
+At the Eaton--Engers corner economy, the myopic
+rule is
+\begin{equation}
+\sigM\bigl(x,\alphaM(x)\bigr)
+=\max\Bigl\{0,x-\tfrac15\Bigr\},
+\label{eq:ee-myopic-rule}
+\end{equation}
+so a high basin is not preserved. The pathwise ordering still holds there
+for the simpler reason that the dynamic sanction is one and every
+myopic sanction is feasible and hence no greater than one
+(\path{eeCert_pathwise_dominance}). The proof of the corollary, which needs basin
+preservation and so does not apply here, is in \Cref{app:proof-pathwise}.
+
+\paragraph{The top of the state space, interior ratchets, and the open primitive problem.} \emph{(From \Cref{sec:discussion:scope}.)}
+
+The transition structure also creates an economic trade-off at the top
+of the state space. A ratchet floor on $[\bar x,1]$ requires the realized
+sanction at state one to equal one. The diagonal condition then makes the
+top state absorbing. If the sender response is pinned at the corner
+across nearby target actions, those actions have the same successor
+state, so the target's continuation term cancels from its choice. The
+target policy at the boundary must then be justified by current payoffs.
+\Cref{prop:ratchet-dichotomy,prop:absorbing-obstruction} state the
+kinematic and incentive parts of this boundary.
+
+An interior sanction at the top state is therefore incompatible with
+that particular floor, but not with persistence in every form. A fixed
+level floor preserves the high basin without guaranteeing a monotone
+state path (\Cref{prop:level-floor}). The purified construction on the
+full state space goes further: its political state and realized sanction
+rise strictly on an interior sub-basin and converge to an interior steady
+state. The ratchet cannot be extended to the ceiling because its
+right-hand endpoint must be a fixed point. Off-corner ratcheting is thus
+possible, but it terminates before the absorbing top boundary.
+
+A strict ratchet is needed neither for the political state to settle nor
+for the limit to be an extremal steady state; what it buys is a common
+long-run outcome for a whole interval, which on an invariant interval is
+equivalent to uniqueness of the steady state there. Deriving that
+uniqueness from payoff and transition primitives on a pre-specified interval
+is the open primitive problem; \Cref{app:scope-notes} records why the
+corner proof cannot simply be relaxed and what a sufficient condition must
+imply.
+
+\paragraph{The North Korea mapping and what it leaves out.} \emph{(From \Cref{sec:discussion}, predictions and limitations.)}
+
+The North Korea application is interpretive. One possible mapping is
+that tighter control raises the influence of actors who benefit from
+isolation --- the model's political state --- while resistance to opening
+that would weaken such control corresponds to the target's lower compliance.
+\citet{HaggardNoland2017} and \citet{UNPanelDPRK2024} document broader
+political control and resistance to opening, not the model's state or the
+sender's valuation of it directly. The same sources also document illicit
+foreign-exchange channels, sanctions evasion, and international
+enforcement and coordination problems, none of which is represented in
+the one-state baseline. The model isolates one domestic political
+feedback that can coexist with those mechanisms; it does not attribute
+North Korea's outcomes to the political-state mechanism alone.
+
+\paragraph{The theorem on a finite temporary shock: the comparison in (iii), two boundaries, and an instantiation.} \emph{(From after \Cref{thm:finite-episode}.)}
+
+The comparison in (iii) is with the path under the sanction held at $h$: the
+path under the shock need not be monotone --- an early sanction can push the state
+above a later one --- but it dominates the held path at every date through
+$T$, and the held path is monotone and gains at least $\eta_h(\bar x)$ per
+period below $\bar x$. Two boundaries delimit the statement, both
+machine-checked as refutations. A floor \emph{equal} to the pivot need not
+enter in finite time: under the partial-adjustment law, a sanction
+held at $\bar x>0$ from state $0$ stays strictly below $\bar x$ at every
+date, so held-sanction ascent, which forces $\bar x<h$, cannot be weakened to
+$h=\bar x$. And there is no
+uniformly small duration: for every preassigned $T$ and pivot in $(0,1]$
+there is a partial-adjustment law under which $T$ periods of full sanction from $0$ end
+below the pivot. The theorem also says nothing about the dates before $T$,
+at which the sanction is set exogenously and not chosen, and nothing about whether
+the shock was worth imposing.
+
+\paragraph{Instantiation.} At the example economy of the
+general-transition certificate route with a non-affine transition ---
+$\F(x,s)=x/2+s/2+(s-x)^2(1-s)/100$ on the square, pivot $1/10$ --- the
+constructed equilibrium's sanction rule is at or above $1/10$ on
+$[1/10,1]$, and (ii), the maximal-shock case of (iii), and the general
+case of (iii) are all discharged (declarations in \Cref{app:formalization}).
+
+\paragraph{Entry and exit durations compared.} \emph{(From after \Cref{thm:relief-exit}.)}
+
+The entry
+and exit durations are computed from different sections of the same
+transition --- $\F(\cdot,1)$ below the threshold and $\F(\cdot,0)$ above
+it --- so they need not coincide. Their difference is an asymmetry between
+two sufficient duration bounds; it is a difference of durations, not a band
+in the state space, and neither bound is a required duration. Under the
+partial-adjustment law they collapse to
+$\eta_\delta(\bar x)=\delta(1-\bar x)$ and $\eta^{R}_\delta(\bar x)=\delta\bar x$,
+so before rounding the exit bound exceeds the entry bound when $\bar x<\tfrac12$
+and falls below it when $\bar x>\tfrac12$ --- the asymmetry is governed by which
+side of the midpoint the threshold sits on, not by $\delta$, which cancels. (As
+in \Cref{cor:shock-transition-strength}, the comparison of the \emph{integer}
+durations remains weak, since distinct bounds can share a ceiling; the
+specialization to the partial-adjustment law is machine-checked as \path{affine_entryBound_lt_exitBound_iff},
+with \path{affine_fullReliefMinDrift_eq} for $\eta^{R}_\delta$.) For a general
+transition under strict adjustment and $0<\bar x<1$, the exit bound exceeds the
+entry bound if and only if
+$\bar x\,\eta^{R}_{\F}(\bar x)<(1-\bar x)\,\eta_{\F}(\bar x)$
+(\path{entryBound_lt_exitBound_iff}). If the transition is symmetric under
+reflection of the square, $\F(1-x,1-s)=1-\F(x,s)$, so that relief at $x$ mirrors
+a shock at $1-x$, then $\eta^{R}_{\F}(\bar x)=\eta_{\F}(1-\bar x)$, the exit duration
+at $\bar x$ is the entry duration at $1-\bar x$, and the exit bound exceeds the
+entry bound exactly when $\bar x<\tfrac12$, the two coinciding at $\tfrac12$
+(\path{fullReliefMinDrift_eq_reflect}, \path{fullReliefExitHorizon_eq_reflect},
+\path{entryBound_lt_exitBound_iff_lt_half}). The partial-adjustment law is reflection-symmetric,
+so its comparison above is a corollary. The class is larger:
+$\F(x,s)=(x+s)/2+(s-x)^3/10$, clipped off the square, is reflection-symmetric,
+adjusts strictly and is affine at no rate (\path{cubicReflectF_ne_affineF},
+\path{reflectParams_entryBound_lt_exitBound_iff}). Both statements compare two
+sufficient durations of temporary shocks, not required durations or equilibrium
+behavior.
+
+\paragraph{Why the class under the lifting condition and not corner economies.} \emph{(From the opening of \Cref{sec:four-regimes}.)}
+
+(Several corner economies of
+\Cref{sec:existence:nonvacuity} below have the maximal sanction along
+equilibrium play. A corner on the equilibrium path does not make the
+sanction insensitive to compliance deviations; what the class under the lifting condition adds
+is an interior sanction at non-compliance and relief at full compliance,
+which is what lets the two forward-looking incentives be separated.) 
+
+\paragraph{The target-only case: the rate, and the sender's state--sanction cross term.} \emph{(From after \Cref{prop:target-only}.)}
+
+On the quadratic--linear family under interiority, which keeps the vertex
+$(u_0+rx)/q$ below full sanction so that the myopic sanction rule is the vertex (without
+interiority the rule is the vertex clipped at full sanction), the rate in (iii)
+is a centered error bound toward the steady state $u_0/(q-r)$, obtained because
+the vertex rule is affine about it with slope $r/q$ and the lower
+bound on the transition's sanction slope moves the state at least the fraction $d_{\mathrm{lo}}$ of the way; it
+is not a pairwise contraction of the closed loop
+(\Cref{app:formalization}). The vertex $(u_0+rx)/q$, the rule under
+interiority, rises strictly at every positive state with the sender's state--sanction
+cross term $r$, and so does the steady state
+$u_0/(q-r)$ when the economy with the larger cross term satisfies interiority, which
+keeps $r<q$ there (\Cref{app:formalization}): in the
+interest-group interpretation of \citet{Kaempfer1988}, a sender whose pro-sanction
+constituency responds more to the target's entrenchment imposes more, and
+entrenches the target further when the target maintains non-compliance. The comparison is across
+economies that share $u_0$ and $q$; the analogue when the sender is also
+forward-looking is not a theorem, because the constructed sender value would have to be
+pinned down across economies. 
+
+\paragraph{Continuity of the sanction rule.} \emph{(From after \Cref{cor:order-selection-identified}.)}
+
+Continuity of $R_E$ is the mathematical requirement, and it is what
+\Cref{prop:order-selection} assumes. One economic condition that supplies it is
+uniqueness of the maximizer of $J_S$ at every physical
+state and compliance level: a single-valued argmax has a continuous selection, and
+the equilibrium already carries continuity of the target policy. We state the
+proposition with continuity directly so that the requirement is not confused with
+that particular sufficient condition.
+
+\paragraph{Amplification is not claimed.} \emph{(From \Cref{sec:mechanism}.)}
+
+Whether they \emph{amplify} one another is a separate question.
+\Cref{thm:four-cells} settles its arithmetic form on the class under the lifting condition: the
+common-state cross-difference of the four sanction rules is
+strictly positive (\path{four_cell_rule_difference_at_state'},
+\Cref{sec:four-regimes}), but that is an identity of the constructed
+rules, not strategic complementarity, and no result below signs an
+interaction primitive.
+
+\paragraph{Off the corner, in the discussion.} \emph{(From \Cref{sec:discussion:scope}.)}
+
+Off the corner, the Schur condition yields existence and uniqueness within
+specified invariant sets of value functions and an atomless transition component yields a purified
+equilibrium under stated regularity, while the deterministic joint Bellman
+operator need not contract or preserve order; deterministic off-corner
+existence is therefore established at example economies rather than
+for the full primitive class (\Cref{app:scope-notes}).
+
+\subsection{Scope notes: off-corner existence and the open primitive problem}
+\label{app:scope-notes}
+
+The two passages below were moved from \Cref{sec:discussion:scope} on
+2026-09-06; they restrict conclusions a reader might otherwise draw and are
+kept in full here.
+
+The distinction matters most off the corner. The Schur condition yields
+existence and uniqueness within specified invariant sets of value functions, and an atomless
+transition component yields a purified off-corner equilibrium under the
+stated regularity conditions. The deterministic joint Bellman operator,
+however, need not be a contraction or preserve order. This is consistent
+with the non-existence examples for stationary feedback Stackelberg
+equilibrium in finite-state games documented by \citet{Bucarey2023}.
+Accordingly, deterministic off-corner existence is established at
+example economies rather than for the full primitive class.
+
+A strict ratchet is needed neither for the political state to settle nor for the
+limit to be shown to be an extremal steady state; order selection delivers both
+without it. What a strict condition buys is a \emph{common} long-run outcome for
+a whole interval, and as \Cref{sec:results} records, that is not a separate
+requirement but the same one written pointwise: for a continuous, non-decreasing
+closed loop mapping an interval into itself, a common limit from every start,
+uniqueness of the steady state there, and a strictly signed closed loop are
+equivalent. The monotonicity and continuity are not decorative: $G(x)=1-x$ has a
+unique fixed point on $[0,1]$ and the sign pattern, and almost every orbit
+alternates (\path{nonunique_fixedPoint_breaks_named_limit},
+\path{monotone_orbit_tendsto_of_unique}).
+
+Uniqueness inside the claimed interval is necessary. Local isolation of a
+candidate limit is insufficient because a second steady state elsewhere retains
+its own path. \Cref{prop:derived-interval} obtains uniqueness by ending the
+interval at the first steady state. The remaining question concerns an interval
+fixed before the equilibrium is solved.
+
+For a pre-specified state interval --- the whole high basin, for example ---
+monotonicity of the sanction rule and the weak level condition do not exclude a
+second steady state. A primitive theorem covering such an interval would need to
+construct the joint equilibrium, derive a sanction level floor, and establish the
+direction of the sanction rule after substituting the target's endogenous
+policy. Monotone-argmax
+results can supply direction but not level
+\citep{MilgromShannon1994,QuahStrulovici2009}; a monotone decision rule also does
+not imply that the realized sanction at $x$ is at least $x$, which is the
+condition needed for an upward state path. The corner proof cannot simply be
+relaxed, because the condition that removes cross-value feedback is also what pins
+the sender's response at the ceiling. What the equivalence adds is a target:
+any sufficient condition must imply uniqueness of the basin steady state. The
+open primitive problem is therefore to derive that uniqueness from payoff and
+transition primitives on a pre-specified interval.
+
+\paragraph{Four scope examples.}
+\emph{Tied stage maximizers.} With stage payoff $(3/2)x-\tfrac12-s^2(1-s)^2$,
+sender value $2y$, the affine transition at rate $\tfrac12$ and $\beta_S=\tfrac12$,
+the stage maximizers at state $0$ are $\{0,1\}$, the sender's continuation value at the successor state is
+$\Gamma(s)=s$, the stage loss measured from the stage maximizer $0$ is outweighed at $s'=\tfrac12$ by the discounted continuation gain
+($\tfrac1{16}<\tfrac14$), and the forward-looking objective
+$-s^2(1-s)^2+s/2$ has the unique maximizer $1$: a comparison measured from a non-greatest stage
+maximizer orders only that maximizer (\path{tied_stage_maximizers_counterexample}).
+
+\emph{An endpoint floor is not a whole-basin corner.} The rule $R(x)=(x+1)/2$
+satisfies $R(x)\ge x$ and $R(1)=1$ with $R(x)<1$ below the top, and is realized
+by an equilibrium with $U_S=-(s-(x+1)/2)^2$, $U_T=-a^2$, both values zero and
+$\alpha\equiv0$; a floor reaching the top state forces $R(1)=1$ and nothing more
+(\path{endpoint_floor_not_whole_basin_corner}: the equilibrium is constructed,
+both Bellman equations verified, and the sanction rule shown to be the unique
+maximizer of the sender's objective).
+
+\emph{Full compliance in the sender-only case} and \emph{the failed
+entrenchment-condition converse}: the two economies in the paragraph after
+\Cref{prop:sender-only} (\path{exists_sender_only_full_compliance},
+\path{loss_offset_converse_counterexample}; coefficients and values in
+\Cref{app:formalization}). A third economy shows that the lifting condition at equality
+is also compatible with strictly \emph{partial} compliance: with
+$(q,u_0,k,r,w,\ell,c,n,v)=(3,1,2,\tfrac12,1,1,4,0,30)$, the affine transition at
+rate $\tfrac12$ and both discounts $\tfrac12$, $A=2=k$ and the zero level is
+$a^\ast(x)=\tfrac23+\tfrac x4$ at every state
+(\path{exists_equality_placability_partial_compliance}). Equality in
+the lifting condition $A\le k$ therefore characterizes nothing about the level.
+
+\subsection{Exposition moved from the main text in the consolidation of 2026-09-21}
+\label{app:moved-ah}
+
+The passages below stood in the main text until 2026-09-21 and were moved
+here, verbatim apart from later changes of terminology, in the cut-only pass of that date. None is a theorem
+statement or a hypothesis of a main-text result; each qualifies or
+interprets one. Each is headed by what it is and where it stood. The
+stage-complementarity route, which is a hypothesis block, moved on the
+author's word to \Cref{sec:flip}.
+
+\paragraph{The sender's Lipschitz constant and the transition-adjusted slope condition, in full.} \emph{(From \Cref{sec:assumptions}; the display \eqref{eq:F-adjusted-sender-chord} stays in the main text and is not repeated with its label here.)}
+
+Let $L_{S,x}^{\alpha}$ bound the inherited-state variation of the
+sender's \emph{composite} stage payoff along a continuous target policy:
+\[
+\left|\Us(x_2,\alpha(x_2),s)-\Us(x_1,\alpha(x_1),s)\right|
+\le L_{S,x}^{\alpha}|x_2-x_1|.
+\]
+Under the optional transition regularity \eqref{eq:F-state-lip}, denote
+the sender value's envelope Lipschitz bound by $K_S$:
+\begin{equation}
+K_S=\frac{L_{S,x}^{\alpha}}{1-\beta_S\gamma_F}.
+\label{eq:KS-closed}
+\end{equation}
+This is the standard value-function Lipschitz recursion
+\citep{StokeyLucas1989,BertsekasTsitsiklis1996}. The corresponding
+target bound uses the inherited-state modulus of the target's
+\emph{closed-loop} successor map, which need not equal $\gamma_F$
+because the sender response also moves with the state. The target
+constant, selector moduli, curvature constants, and the distinction
+between primitives and automatically derived intermediates are collected
+in \Cref{app:closedforms}. Under the partial-adjustment law,
+\eqref{eq:KS-closed} specializes to
+$L_{S,x}^{\alpha}/[1-\beta_S(1-\delta)]$.
+
+The modulus $\gamma_F$ does not bound the transition's response to the
+sanction. For sanction comparisons the exact general-$\F$ continuation
+allowance is instead
+\begin{equation}
+\beta_S K_S\bigl|\F(x,s_2)-\F(x,s_1)\bigr|.
+\label{eq:F-continuation-allowance}
+\end{equation}
+Accordingly, the cardinal general-$\F$ discharger used below is the
+transition-adjusted slope condition
+\begin{equation}
+\Us(x,a,s_2)-\Us(x,a,s_1)
+>
+\beta_S K_S\bigl|\F(x,s_2)-\F(x,s_1)\bigr|,
+\qquad s_1<s_2,
+\end{equation}
+on the range used below. It requires no
+separate Lipschitz modulus of $\F$ in its sanction argument. Under the
+partial-adjustment law, a stage lower slope $m_S$ makes
+\eqref{eq:F-adjusted-sender-chord} follow from
+$\beta_S K_S\delta<m_S$.
+
+\paragraph{What \textup{(F6-Q)} is and is not.} \emph{(From \Cref{sec:model}, after \eqref{eq:F-state-lip}.)}
+
+Condition \textup{(F6-Q)} is not part of the qualitative baseline
+\textup{(F1)--(F5)}. It is stated on the feasible square, and that is the
+form the formalization consumes (\Cref{app:formalization}); the global extension of the transition described
+above preserves a square-stated modulus on the square but not outside it, so
+\textup{(F6-Q)} is not to be read as a global Lipschitz bound. It is the quantitative statement that, holding
+today's sanction fixed, inherited political differences are transmitted
+at most at rate $\gamma_F$; discounting must dominate that persistence.
+Under \eqref{eq:affine}, $\gamma_F=1-\delta$. Thus $\gamma_F$ is the
+inherited-state persistence coefficient, not the sanction pass-through
+coefficient $\delta$.
+
+\paragraph{Why the derived interval has one steady state, and when it is degenerate.} \emph{(From \Cref{sec:results}, after \Cref{prop:derived-interval}.)}
+
+Uniqueness on $[\bar x,x_s]$ holds by construction because no state below the
+least steady state can itself be steady. The interval may nevertheless be
+degenerate: if $G_E(\bar x)=\bar x$, then $x_s=\bar x$. Positive length requires
+strict motion at the pivot. The example economy in
+\Cref{sec:existence:nonvacuity} satisfies this requirement because its sanction
+rule equals one against a pivot of $19/20$.
+
+\paragraph{What the three long-run results say about sanctions regimes, in full.} \emph{(From \Cref{sec:results}, the paragraph of that name.)}
+
+\Cref{prop:order-selection} says the inherited political state decides which such
+regime the economy reaches, and decides it at date zero: if the equilibrium
+sanction at the inherited state already exceeds that state, entrenchment builds
+and the economy settles at the \emph{lowest} self-sustaining regime above where it
+began; if the sanction falls short, entrenchment erodes to the \emph{highest}
+regime below. Where several regimes are reachable, history selects among them,
+and it selects within a single equilibrium: no change of expectations and no
+coordination on a different continuation is involved. The mechanism is path
+dependence, not indeterminacy. Whether several are reachable is a property of the
+economy --- \Cref{cor:initial-condition-selection} exhibits one where they are ---
+and where only one is, the proposition says every start reaches it.
+
+\Cref{prop:derived-interval} says more on a narrower range. From any state up to
+the first self-sustaining regime above the pivot, every path reaches that regime.
+History selects across regimes but not within an interval containing only one.
+
+What none of the three delivers is a rate. They say where a sanctions regime
+ends up, not how long it takes to get there, and nothing in the argument bounds
+the transition. A regime that is self-sustaining in the limit may be reached only
+asymptotically, so the results speak to durability rather than to the period over
+which relief becomes implausible.
+
+\paragraph{The derived dividing line: what it determines and the three kinds of threshold.} \emph{(From \Cref{sec:mechanism:bistability}, after \Cref{prop:derived-dividing-line}.)}
+
+The two convergence regions therefore extend strictly on both sides:
+from $[0,\bar x_L]$ out to $[0,x_s^-)$, and from $[\bar x_H,1]$ down to
+$(x_s^+,1]$. Their endpoints are derived from the equilibrium. The interval
+$[x_s^-,x_s^+]$ need not collapse to a point: a continuous map can fix a whole
+subinterval, and multiple steady states rule out a common limit across it. Whether
+the two bounds coincide in the dual-basin economy remains
+undetermined. Continuity is essential for obtaining a middle steady state and is
+supplied there by uniqueness of the sender's dynamic argmax.
+
+The notation distinguishes three objects. The stage-payoff tipping states
+$\bar x_T$ and $\bar x_S$ are infima of payoff flip sets. The basin boundaries
+$\bar x_L$ and $\bar x_H$ are inputs to the conditions for persistence and for convergence to zero.
+Only $x_s^-$ and $x_s^+$ are steady states derived from the closed loop.
+
+\paragraph{Strict comparison at a fixed target policy: what it needs and what it does not say.} \emph{(From \Cref{sec:compstat}, after \Cref{prop:strict-dominance}.)}
+
+No concavity, differentiability, uniqueness or positive discount enters, and
+$\Gamma$ need not be monotone: one comparison per lower sanction, $\Gamma(d)\le\Gamma(m)$ for
+every feasible $d\le m$, suffices
+(\path{all_stage_lt_dynamic_of_greatest_stage_improvement_of_wedge_le}), a
+non-decreasing $\Gamma$ being one way to supply it; the strict increase of $\Gamma$ that
+the first formalization assumed is in any case derived from primitives
+(sanctions build entrenchment and the sender values it). The stage loss must be measured from the greatest
+stage maximizer: measured from a lower tied one it orders only that one,
+and an economy with stage maximizers $\{0,1\}$, the stage loss measured from $0$, and the
+maximizer $1$ of $J_S$ shows the all-maximizer conclusion fails
+(\Cref{app:formalization}). The proposition orders the two sets of
+maximizers and says nothing about interiority: a strict gap is consistent
+with both sanctions at corners. It is discharged at the example
+economies as the property that no maximizer of $J_S$ is
+stage-optimal (\Cref{app:formalization}).
+
+\paragraph{The pathwise ordering: the scope of the corollary.} \emph{(From \Cref{sec:compstat}, after \Cref{cor:pathwise-dominance}.)}
+
+The corollary is stated at the scope of the certificate theorem that proves
+it (\Cref{app:formalization}): the statewise inequality comes from the
+certificate's myopic ceiling against the sender's floor, not from the
+compliance ordering $\alpha\le\alphaM$. It is the corollary's display at the
+certificate's own policies; it does not by itself compare
+sanctions at two different, endogenously evolving states, and the path
+conclusion uses that both paths stay in the basin, the myopic one by
+\eqref{eq:myopic-basin-preservation} and the forward-looking one by the
+certificate's floor $R_E(x)\ge\max\{x,\bar s\}$ (Step~1 of \Cref{app:proof-pathwise}). The extra hypothesis is substantive because the
+corollary compares different state paths. The Eaton--Engers corner economy, where the myopic rule does not preserve a
+high basin and the pathwise ordering holds for a simpler reason, is in
+\Cref{app:moved-ad}.
+
+\paragraph{Adjustment speed and sender patience in the comparative statics of lock-in.} \emph{(From \Cref{sec:compstat:lockin}.)}
+
+Adjustment speed has a different role. For any equilibrium-derived
+sanction rule $\sigma_{\mathrm{real}}$, strict adjustment gives
+\[
+\F\bigl(x,\sigma_{\mathrm{real}}(x)\bigr)=x
+\quad\Longleftrightarrow\quad
+\sigma_{\mathrm{real}}(x)=x.
+\]
+Holding the rule fixed, two positive affine adjustment rates therefore
+have the same steady-state set. A higher rate changes the transition
+path and convergence time, but it changes a steady state only through
+its effect on equilibrium policies or equilibrium selection.
+
+At a fixed continuation value and target policy, greater sender patience
+weakly raises the dynamic best response whenever the sender value is
+non-decreasing over reachable successor states. The corner economies also
+permit a total equilibrium comparison. There, policies remain fixed,
+the sender's absorbing-state payoff is positive, so its value is
+$U_S(1,0,1)/(1-\beta_S)$. Greater sender patience therefore strictly
+raises its lock-in value, while the target value is unchanged because
+the sender action remains pinned. \Cref{prop:equilibrium-patience-feedback} gives
+the exact direct-plus-continuation decomposition and
+\Cref{tab:compstat-windows} reports the parameter intervals over which
+the comparison applies.
+
+\paragraph{The constants of the contracting closed loop.} \emph{(From \Cref{sec:compstat:activation-not-hysteresis}, after \Cref{prop:activation-not-hysteresis}.)}
+
+The constants $14/23$ and $35/47$ are evaluated upper bounds ---
+the values of the proved formula at those members --- and not measured
+convergence rates or the sharp Lipschitz constants of $G$. The formula rests on the sharp form of the argmax
+stability lemma --- a $\mu$-strongly concave objective moves its maximizer at
+most $L/\mu$ under an $L$-Lipschitz perturbation; the factor-four form of the
+first formalization gave $43/46$ at the affine member and $277/235$ at the
+non-affine one, where it was inconclusive.
+
+\paragraph{``Finite'' means long enough for the economy, not few.} \emph{(From \Cref{sec:counterfactual}, after \Cref{thm:shock}.)}
+
+Nor is the duration small in any uniform sense: it is
+a sufficient bound that depends on the economy through $\eta_{\F}(\bar x)$,
+and for any preassigned number of periods there is a partial-adjustment
+law slow enough that a temporary shock of that length ends below the
+threshold. ``Finite'' means long enough for the economy, not few.
+
+\paragraph{The relief duration: sufficiency, institutional designs, and the two durations.} \emph{(From \Cref{sec:relief-exit}, after \Cref{thm:relief-exit}.)}
+
+The bound $\widehat N^{R}_{\F}(\bar x)$ is a sufficient duration for a
+temporary suspension of sanctions. It is not a minimal duration, and
+the theorem does not say that the equilibrium would choose such a shock.
+Sunset clauses, mandatory review dates, and explicit termination
+requirements are distinct institutional designs; the model speaks to them
+only insofar as a design commits to a zero-sanction path of the stated
+length, which none of them does automatically, and it does not establish
+their optimality or their effects on the governments' incentives. The entry
+and exit durations are computed from different sections of the same transition
+and need not coincide; their comparison, with its specialization to the partial-adjustment law, is in
+\Cref{app:moved-ad}.
+
+\paragraph{Two limits of the post-relief statement.} \emph{(From \Cref{sec:relief-exit}, after \Cref{prop:post-relief-persistence}.)}
+
+A second limit is at
+the threshold itself: relief
+delivers $x\le\bar x$ while the high region of \Cref{thm:shock} is
+$[\bar x,1]$, so the two regions share the point $\bar x$, and reaching it
+does not by itself select a distinct low outcome; a same-equilibrium
+contrast of two such outcomes would need disjoint basins or strict entry into a
+low attraction region, which this section does not claim. And the duration
+is conservative, being built from a worst-case drift over the whole basin
+rather than along the realized path.
+
+\paragraph{What the entry theorem and its corollary do and do not say.} \emph{(From \Cref{sec:relief-exit}, before \Cref{prop:two-sided-one-equilibrium}; it refers to \Cref{thm:shock} and \Cref{cor:shock-transition-strength}.)}
+
+The theorem combines exogenous entry with endogenous persistence. It
+does not say that equilibrium sanctions move every initial state into
+the high basin. It says that once a temporary sanction shock carries the state across the
+threshold, the equilibrium mechanism prevents the high-sanction regime
+from unwinding. The corollary compares transition technologies under the
+same exogenously set sanction; it is not a comparative static of the equilibrium
+sanction itself.
+
+\paragraph{Asymmetric adjustment, inaction bands and path dependence.} \emph{(From \Cref{sec:model}, the primitives.)}
+
+State-dependent and asymmetric adjustment rates remain allowed when
+they satisfy \textup{(F1)--(F5)}. Those conditions exclude an inaction
+band with $\F(x,s)=x$ when $s\ne x$; under a fixed sanction $s$, the unique
+rest point of $\F(\cdot,s)$ is $x=s$. Dual-basin path dependence instead requires the equilibrium sanction
+rule to cross the diagonal more than once. The constructions below
+exhibit invariant directional basins; they do not establish multiple
+crossings as a general fact.
+Compliance affects the state only through its effect on the sender's
+equilibrium sanction. Asymmetric adjustment connects this mechanism to
+political path dependence \citep{Pierson2000} without imposing an
+inaction region.
+
+\paragraph{A1: direction, and why direction does not determine level.} \emph{(From \Cref{sec:assumptions}, after \Cref{ass:sender}.)}
+
+A1 is ordinal: after the endogenous target policy is substituted, it
+makes the sender's dynamic best response non-decreasing in the state.
+Single crossing is a stronger sufficient condition
+\citep{MilgromShannon1994}; interval dominance also covers the
+non-monotone-continuation case in \Cref{rem:ido}. The premise of
+\Cref{thm:dominance} is different: it orders the sender value over
+successor states while holding the target policy fixed.
+
+Direction does not determine level. To keep the sender response above
+$\max\{x,\bar x\}$, the stage gain from raising sanctions must dominate
+the largest continuation loss allowed by the value set. This is exactly
+the role of \eqref{eq:F-adjusted-sender-chord}; under the partial-adjustment law it
+is implied by $\beta_SK_S\delta<m_S$. The proof of the high-basin theorem keeps the
+direction and level arguments separate
+(\Cref{app:proofs,app:dischargers}).
+
+\paragraph{A3: what stage concavity does and does not deliver.} \emph{(From \Cref{sec:assumptions}, after \Cref{ass:concavity}.)}
+
+A3 imposes diminishing returns to sanctions, as in standard
+public-choice models \citep{Kaempfer1988,Eaton1992}. It makes the myopic
+best response unique. It does not ensure uniqueness of the maximizer of
+$J_S$ because the continuation term can offset stage curvature.
+The smooth existence route therefore imposes curvature on the complete
+dynamic objective where needed (\Cref{app:closedforms}). A3 restricts
+the change in the stage slope, not its sign.
+
+A3 is not what carries the substitution between compliance and the sanction: decreasing differences of $\Us$
+in $(s,a)$ order the greatest stage maximizer with no concavity and no
+uniqueness (\Cref{app:moved-ad}).
+
+\paragraph{The increasing-differences condition, and why both forward-looking incentives change behavior together.} \emph{(From \Cref{sec:four-regimes}, after \Cref{prop:placable-family}.)}
+
+The increasing-differences condition says that the stage complementarity between the state and
+the sanction covers two forward-looking forces against a monotone
+response: saturation of the continuation, and cross-effectiveness of the
+transition. Under the partial-adjustment law, and for every additively separable
+transition with convex state sections, both vanish, and with a sender payoff
+convex in the state the condition reads $0\le r_{\mathrm{lo}}$. The quadratic--linear
+family is inhabited at an affine member and at a member whose
+transition is not affine at any rate; at both the condition is empty. Since
+$\tau_x$, $M_{\mathrm{cx}}$ and $M_{\mathrm{mix}}$ are data of the two-sided
+extension of the class (\Cref{app:proofs:placable}, panel~A0), the condition, and
+every clause that assumes it, is stated for economies in that extension. The
+target's forward-looking incentive changes behavior here \emph{because} the sender is responsive: the
+substitution rate covers the sender's whole dynamic marginal return to sanctioning, the sanction
+responds to compliance, and both forward-looking incentives change behavior together. The
+entrenchment condition does double duty, making the forward-looking target
+maintain non-compliance and making a sanction increase induced by the state--sanction complementarity a net gain for the
+target's value slope.
+
+\paragraph{The sender-only case: the per-unit relief rate and the forward-looking relief condition.} \emph{(From \Cref{sec:four-regimes}, after \Cref{prop:sender-only}.)}
+
+The forward-looking sender is more demanding than the myopic one --- it
+still sanctions at $a^{00}(x)$, because of the foresight premium --- so the
+myopic target pays more for relief; but it still buys it. Below
+$a^{01}$, at distance $\Delta=a^{01}-a$, the sanction is at least
+$k_{\mathrm{lo}}\Delta/M_{\mathrm{tot}}$, where
+$M_{\mathrm{tot}}=\bar Q+\beta_S(\sigma_Cd_{\mathrm{hi}}^2+K_SM_{\mathrm{cs}})$ bounds
+the curvature of the sender's dynamic objective in the sanction, the stage
+curvature ceiling $\bar Q$ plus the discounted continuation curvature through the
+transition's moduli (\Cref{app:proofs:placable}) --- a per-unit relief
+rate, from the semiconvexity of the sender's objective read as a quadratic
+support at its maximizer --- and
+the forward-looking relief condition (RL), $\ell_{\mathrm{hi}}M_{\mathrm{tot}}<k_{\mathrm{lo}}p_{\mathrm{lo}}$
+($\ell M_{\mathrm{tot}}<k(c-n)$ on the quadratic--linear family), says that the
+sanction pain avoided per unit of compliance, at the lowest price $p_{\mathrm{lo}}$,
+exceeds the unit compliance cost: a strict inequality among the class's
+rates and nothing else.
+
+\paragraph{The high-basin theorem: how the proof is organized and what each hypothesis does.} \emph{(From \Cref{sec:results}, after \Cref{thm:persistence}.)}
+
+The proof separates the direction and level of the sender's response.
+A1 makes the dynamic best response non-decreasing in the inherited state
+after the target policy has been substituted. The transition-adjusted
+slope condition in P5 prevents that response from falling below the basin floor.
+Together these conditions imply $s_t^E\ge x_t^E$; transition
+monotonicity then gives $x_{t+1}^E\ge x_t^E$ and preserves the basin.
+Under the partial-adjustment law, a familiar sufficient form of P5 is
+$\beta_SK_S\delta<m_S$, where $m_S$ is a lower stage-payoff slope. A local form
+with no value sets, and an economy showing that the package selects no limit, are
+in \Cref{app:moved-ad}.
+
+The target combined slope condition P4 is logically separate. It yields conclusion (vi),
+which verifies that the target's complete objective favors higher
+sanctions along the relevant range. Conclusions (i)--(iii) continue to
+hold under P1--P3 and P5 alone, and A1 is read only for (iii): (i), (ii)
+and (iv) hold under P1, P2 and P5. Conclusions (iv) and (v) record that both
+realized actions remain equilibrium-optimal. The proof is in
+\Cref{app:proofs}.
+
+The same equilibrium supplies these conclusions for every initial state
+in the basin; its construction does not depend on $x_0$. The theorem is
+conditional on the stated equilibrium and the package P1--P5.
+\Cref{thm:corner-existence} and \Cref{prop:primitive-persistence}
+provide unconditional applications under narrower primitive
+conditions.
+
+\paragraph{The long-run lock-in level: the argument in brief.} \emph{(From \Cref{sec:results}, after \Cref{prop:longrun}.)}
+
+The state sequence is increasing and bounded. Compactness and continuity
+then make every convergent sanction subsequence optimal at the state
+limit and consistent with its transition. Strict adjustment implies
+that any such sanction limit equals the state limit, so the entire
+sanction sequence converges there. Under the partial-adjustment law this identity is
+immediate from
+\[
+s^E_t=\frac{x^E_{t+1}-(1-\delta)x^E_t}{\delta}
+\longrightarrow x^\ast.
+\]
+
+\paragraph{Entry and exit as opposite-direction crossings.} \emph{(From the opening of \Cref{sec:relief-exit}.)}
+
+The entry result has a counterpart on the exit side. The two are
+opposite-direction threshold crossings under temporary shocks; whether one
+equilibrium sustains both basins is a further question that neither of
+them settles in general, and \Cref{prop:two-sided-one-equilibrium} at the
+end of this section is the one economy at which it is settled.
+\Cref{thm:shock} spends only the ascent half of \textup{(F5)} --- sanctions
+above the inherited state strictly raise it --- and only at the full sanction
+below the basin. The exit side spends only the descent half --- sanctions
+below the inherited state strictly lower it --- and only at the zero sanction
+inside the basin.
+
+\paragraph{Three limits of the two-sided statement.} \emph{(From \Cref{sec:relief-exit}, after \Cref{prop:two-sided-one-equilibrium}.)}
+
+This is the same-equilibrium two-sided statement that
+\Cref{sec:relief-exit} declines to make in general: at this economy one
+equilibrium sustains both basins, and temporary shocks move between them.
+Three limits travel with it. The transition is affine. The two basins do
+not exhaust the state space, and nothing is said about the interval between
+them. And the statement is an existence certificate: it shows the two level
+conditions of the general composition can hold at one equilibrium, and
+nothing about other economies.
+
+\paragraph{Predictions inside a high basin.} \emph{(From \Cref{sec:discussion}, predictions and limitations.)}
+
+Inside a high basin satisfying the theorem's conditions, the model predicts non-decreasing
+realized sanctions, a weakly positive foresight premium of the sender, relative to a myopic
+sender at a common target policy, when the sender value is non-decreasing,
+and persistence after a sufficiently long temporary sanction
+shock. In the dual-basin construction, initial political conditions
+select between convergence to zero under low sanctions and lock-in under high sanctions. Faster
+state adjustment shortens the entry duration under the partial-adjustment law and changes the
+transition path; holding the sanction rule fixed, it does not
+change the steady-state set.
+
+\paragraph{The conclusion's two paragraphs on policy paths and the long run.} \emph{(From \Cref{sec:conclusion}.)}
+
+The mechanism has distinct implications for policy paths. A
+forward-looking sender sanctions at least as heavily as a myopic sender
+at the same target policy when the political state raises its value. A
+temporary sanction shock can move the economy into the high
+basin, after which equilibrium behavior keeps the state there. When low
+and high basins coexist under one equilibrium, initial political
+conditions select between convergence to zero and lock-in.
+
+The long-run results also determine where a monotone equilibrium path
+settles. Its initial direction selects the nearest steady state on that
+side, and every start between the basin pivot and the first steady state
+above it converges to that same state. This common limit is derived from
+the equilibrium rule; it need not be interior, and convergence need not
+have a uniform rate.

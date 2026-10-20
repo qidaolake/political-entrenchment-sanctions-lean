@@ -1,0 +1,393 @@
+\section{Assumption discharge routes}
+\label{app:dischargers}
+
+\subsection{Stage complementarity and the derived tipping thresholds}
+\label{sec:flip}
+
+\emph{This subsection stood in \Cref{sec:assumptions} of the main text until
+2026-09-21 and is reproduced verbatim apart from terminology. No result on the class under the lifting condition of
+\Cref{sec:four-regimes} uses it; \Cref{prop:flip-route} below is what consumes it.}
+
+As the political state hardens, both players' marginal payoffs from
+sanctions can rise and eventually change sign. The following
+complementarity condition turns this change into derived tipping
+thresholds.
+
+\begin{assumption}[Stage complementarity in $(s,x)$]
+\label{ass:flip}
+The stage payoffs are strictly supermodular in the sanction and the
+political state, uniformly in the compliance action:
+\begin{equation}
+\frac{\partial^2 U_S}{\partial s\,\partial x}(x,a,s)>0
+\qquad\text{and}\qquad
+\frac{\partial^2 U_T}{\partial s\,\partial x}(x,a,s)>0
+\qquad\text{for all }(x,a,s)\in[0,1]^3.
+\label{eq:flip}
+\end{equation}
+\end{assumption}
+
+Economically, a harder state raises the sender's marginal value of
+sanctioning as sanction-supporting constituencies strengthen, and it
+raises the target incumbent's marginal payoff from being sanctioned
+through rally or habituation. The proofs use the corresponding
+increasing-differences condition in derivative-free form \citep{topkis1998};
+\eqref{eq:flip} is a smooth sufficient condition. It does not restrict
+the curvature of the target payoff in sanctions or the sign of the
+target's direct payoff from the political state. Nor does it, with the
+other sign conditions, deliver persistence on its own: sign conditions
+order slopes and bound no magnitude, and there is an economy satisfying
+every one of them in which every equilibrium sanctions at zero at every
+date (\Cref{app:formalization}); the magnitude
+condition that persistence needs is the sub-pivot slope condition (P5) of
+\Cref{thm:persistence}.
+
+\paragraph{Flip sets and derived pivots.}
+Fix a sanction-floor parameter $\bar s\in(0,1]$ and a positive stage
+slope level $m_S$. On the general-$\F$ quantitative route, the
+requirement that the stage gain outweigh the continuation change is
+\[
+\beta_S K_S\bigl|\F(x,s_2)-\F(x,s_1)\bigr|
+<m_S(s_2-s_1)
+\]
+for the ordered pairs used in the basin proof. Under
+\eqref{eq:affine}, this reduces exactly to
+$\beta_S K_S\delta<m_S$. Denote the \emph{target flip set} by
+$\mathcal F_T(\bar s)$ and the \emph{sender floor flip set at slope
+level $m$} by $\mathcal F_S(\bar s;m)$:
+\begin{align}
+\mathcal F_T(\bar s)&:=\bigl\{x\in[0,1] :
+\Ut(x,a,\cdot)\text{ is non-decreasing on }[\bar s,1]
+\text{ for every }a\in[0,1]\bigr\},
+\label{eq:FT-def}\\
+\mathcal F_S(\bar s;m)&:=\bigl\{x\in[0,1] :
+\Us(x,a,s_2)-\Us(x,a,s_1)\ge m(s_2-s_1)
+\;\forall\,0\le s_1\le s_2\le\bar s,\;\forall a\in[0,1]\bigr\}.
+\label{eq:FS-def}
+\end{align}
+Both sets quantify uniformly over compliance, so their definitions do
+not depend on the equilibrium policy. The boundary sign conditions are
+\begin{equation}
+1\in\mathcal F_T(\bar s)\cap\mathcal F_S(\bar s;m_S),
+\qquad
+0\notin\mathcal F_T(\bar s)\cup\mathcal F_S(\bar s;m_S):
+\label{eq:boundary}
+\end{equation}
+the flip has happened at the top state and not at the bottom.
+
+\begin{proposition}[Derived tipping thresholds]
+\label{prop:tipping}
+Under \Cref{ass:flip} and \eqref{eq:boundary}, the pivots
+\begin{equation}
+\bar x_T:=\inf\mathcal F_T(\bar s),
+\qquad
+\bar x_S:=\inf\mathcal F_S(\bar s;m_S)
+\end{equation}
+exist, are interior ($0<\bar x_T,\bar x_S\le1$), satisfy their own
+flip conditions, and the flip regions are exactly the upper
+intervals
+$\mathcal F_T(\bar s)=[\bar x_T,1]$,
+$\mathcal F_S(\bar s;m_S)=[\bar x_S,1]$.
+\end{proposition}
+
+The basin is therefore derived rather than imposed: its component
+thresholds are the infima of upper flip sets.
+
+\Cref{prop:flip-route,app:dischargers} connect the derived basin to
+\Cref{thm:persistence,thm:dominance,thm:shock}. The static and dynamic sender
+thresholds, the per-action thresholds under the substitution between compliance and the sanction, an example
+economy with interior pivots, and the pivots' comparative statics are in
+\Cref{app:moved-ad}.
+
+\subsection{Interval dominance and the derived-basin composition}
+
+\begin{remark}[Interval dominance: the exact condition consumed]
+\label{rem:ido}
+A1 is the exact ordinal field consumed by the persistence certificate:
+the interval dominance order of \citet{QuahStrulovici2009} for the
+policy-substituted family
+$\{\widetilde J_{\Vt,\Vs}(\cdot,x):x\in\basin\}$. It delivers a
+greatest sender argmax that is non-decreasing in the state. Single
+crossing in $(s,x)$ implies interval dominance, so every
+single-crossing discharger remains sufficient. When the
+continuation is non-monotone, interval dominance can instead be
+obtained from single-peakedness in the sanction and an
+escalation-consistency condition. The latter is automatic wherever
+single crossing holds, but is a genuine primitive for general
+value sets when the continuation slope is unrestricted. An example
+economy discharges single-peakedness and escalation consistency even
+though single crossing fails, establishing that the weaker route is
+non-vacuous.
+\end{remark}
+
+\begin{proposition}[General-$\F$ route through the transition-adjusted slope condition]
+\label{prop:F-chord-route}
+Fix a Bellman-invariant set of value functions and pivots
+$\bar x_T,\bar x_S$ with $\bar x=\max(\bar x_T,\bar x_S)<1$.
+Suppose every sender value in the set is $K_S$-Lipschitz and
+non-decreasing in the inherited state, the target combined slope condition holds,
+and the canonical myopic ceiling holds. For every value pair in the set, let
+$\alpha$ denote its induced target policy and assume that, for every
+$x\in[\bar x_S,1]$ and $0\le s_1<s_2\le1$,
+\[
+\Us(x,\alpha(x),s_2)-\Us(x,\alpha(x),s_1)
+>
+\beta_S K_S\bigl|\F(x,s_2)-\F(x,s_1)\bigr|.
+\tag{GF-Chord}\label{eq:GF-chord}
+\]
+Together with the row-contraction conditions for existence, these
+hypotheses construct the local general-$\F$ invariant-set certificate and
+hence deliver persistence, the dynamic-over-myopic comparison, and the
+general minimum-drift shock result.
+\end{proposition}
+
+The exact-displacement condition does two jobs. On the low sanction range its
+non-negative right-hand side implies strict stage-payoff monotonicity,
+which pins the level of the dynamic argmax. On the basin, its
+$K_S$-Lipschitz continuation bound makes the whole dynamic sender
+objective strictly increasing, hence supplies the ordinal
+interval-dominance field. No modulus of $\F$ in its sanction coordinate
+is introduced. The separate hypothesis that the sender's values in the invariant set are monotone is
+still load-bearing for the general-$\F$ headline certificate's
+dynamic-over-myopic comparison; \eqref{eq:GF-chord} does not silently
+remove it. If \textup{(F6-Q)} and the composite stage-state Lipschitz
+bound hold, then $K_S$ in \eqref{eq:GF-chord} can be set to the closed
+form \eqref{eq:KS-closed}.
+
+The same exact-displacement argument survives the atomless moving-average
+shock.  The box smear preserves the base value's $K_S$-Lipschitz
+constant, so the shocked sender objective is strictly increasing when
+the stage gain dominates
+$\beta_S K_S\operatorname{dist}(\operatorname{clip}\F(x,s_1),
+\operatorname{clip}\F(x,s_2))$.  This yields shocked single crossing
+and monotonicity of the greatest shocked sender best response without
+an affine transition or a separate sanction-coordinate modulus for
+$\F$.  The exact-displacement condition is therefore the paper-facing
+general-$\F$ shocked route.
+
+\begin{proposition}[Derived-basin route to
+\Cref{thm:persistence,thm:dominance,thm:shock}]
+\label{prop:flip-route}
+Let the transition follow the general law \eqref{eq:transition} and rise
+under full sanctions below the derived basin, $x<\F(x,1)$ for
+$x\in[0,\bar x]$ with $\bar x=\max(\bar x_T,\bar x_S)$ (so $\bar x<1$).
+Suppose the sender half of \Cref{ass:flip} on the floor range $[0,\bar s]$
+(its derivative-free form suffices), the sender's top boundary sign
+$1\in\mathcal F_S(\bar s;m_S)$ in \eqref{eq:boundary} (the other signs are
+needed only for the pivot interiority of \Cref{prop:tipping}, not here),
+\Cref{ass:sender} on the derived basin, row-sum contraction of the joint
+Bellman operator on a pair of invariant sets of value functions, $\beta_T+L_{TS}<1$ and
+$\beta_S+L_{ST}<1$ (stronger than the Schur condition of \Cref{sec:existence}),
+and additionally:
+\begin{enumerate}[label=(\roman*)]
+\item \emph{(above-floor diagonal)} at every state $x\ge\bar x_S$ and every
+value pair in the invariant sets, the sender stage slope at the induced target policy clears the
+margin on the above-floor range:
+$\Us(x,\alpha(x),s_2)-\Us(x,\alpha(x),s_1)\ge m_S(s_2-s_1)$ for
+$\bar s\le s_1\le s_2\le\max(x,\bar x)$;
+\item \emph{(monotone sender values)} every sender value
+$\Vs\in\mathcal C_S$ is non-decreasing in the state;
+\item \emph{(myopic ceiling)} at every basin state the myopic equilibrium
+sanction is at most $\max(x,\bar x)$.
+\end{enumerate}
+Then conclusions (i)--(iii) of \Cref{thm:persistence}, the statewise
+ordering of the myopic sanction below the forward-looking one, and
+the shock entry of \Cref{thm:shock} hold with the basin
+$[\max(\bar x_T,\bar x_S),1]$ given by the derived pivots of
+\Cref{prop:tipping}. No target preference or sign condition is used
+(\Cref{ass:target}, the target half of \Cref{ass:flip}, the target's top
+sign, monotone target values in the invariant set): the target enters only through its
+operator's row bound and its policy in the invariant sets, and its flip set only as
+the location $\bar x_T$ of the basin's lower end.
+\end{proposition}
+
+Until 2026-10-07 the route was stated for the affine law and also took the
+target half of \Cref{ass:flip}, the target's top sign, monotone target
+values in the invariant set and \Cref{ass:concavity}; the three goals read none of these. With the target half,
+the target's top sign and monotone target values in the invariant set, the target combined
+slope condition of \Cref{ass:target} is still a derived result: the stage slope is
+non-negative above the target pivot and the continuation slope is
+non-negative by monotonicity of those values; it is what conclusion (vi) of
+\Cref{thm:persistence} would need. The residual clauses, the general-$\F$ route of
+\Cref{prop:F-chord-route}, the discharger for a positive stage slope, and the route's
+scope limits are detailed
+below. The route is inhabited by an example economy with pivots
+$\bar x_T=2/5$ and $\bar x_S=1/2$, and the example is a family over the
+transition: its conclusions hold at every transition satisfying
+\textup{(F1)--(F4)} whose full-sanction section is $\F(y,1)=y/2+1/2$ and whose
+lower bound on the sanction slope is at least $11/36$
+(\path{sfFCert_three_goals_generalF}). The affine law at rate $\tfrac12$ is one
+member (\path{sfCert_three_goals_generalF}); the quadratic-bump transition, with
+lower bound $47/100$ on the sanction slope and affine at no rate, is another
+(\path{sfqbCert_three_goals_generalF}, \path{sfqbParams_F_ne_affineF}). The
+corner section is an equality on the line $s=1$, so at every member the
+realized full-sanction path is the affine one. These are existence
+certificates: they show that the route does not need the affine law,
+and they say nothing about transitions outside the family. The example's kinked
+sender payoff is
+essential because the diagonal-residual and myopic-ceiling clauses are
+incompatible near the top state for a smooth sender payoff with a
+Lipschitz derivative.
+
+\paragraph{Dischargers for the residual clauses.}
+Clause (iii) of \Cref{prop:flip-route} has a stage-level discharger, and
+so has clause (i) when $\bar x_T\le\bar x_S$. The discharger of (i) gives the
+diagonal on $[\bar s,x]$ at states $x\ge\bar x_S$ above $\bar s$, the form the
+earlier affine route read; this is clause (i) when $\bar x_T\le\bar x_S$,
+since then $\max(x,\bar x)=x$, while for $\bar x_T>\bar x_S$ the slope on
+$[\bar s,\bar x]$ at states in $[\bar x_S,\bar x)$ is not derived. That
+diagonal is derived from
+$\alpha$-antitonicity on the basin (available under the
+substituted-objective slope condition discussed in
+\Cref{sec:mechanism}), the action-complementarity sign
+$\partial^2\Us/\partial s\partial a\le0$, stage complementarity, and
+a single \emph{pivot-action frontier} condition: margin-level slope conditions
+at the one action $\alpha(\bar x_S)$ along the diagonal states, so
+the per-basin-state quantification collapses to a one-action family.
+The myopic ceiling (iii) follows from strict stage decrease above the
+floor at the myopic action (``the myopic action is on the un-flipped
+side of the diagonal''); the bridge from this stage-level condition
+to fully primitive form (the $\sigma$-difference between the stage
+and dynamic best responses) remains open. Complementing these, the
+next-state reparametrization $y=\F(x,s)$, under which the
+continuation cancels from every slope comparison, gives monotonicity
+of the greatest next-state selection per fixed action from stage
+complementarity plus concavity of $\Us$ in $s$ alone (the Amir
+1996 pattern), and under strict complementarity \emph{every} selection from the stage
+argmax is monotone in the state.
+
+\paragraph{Deriving the dynamic single crossing: the route-(b)
+convexity cone.} The one sender-side dynamic input the
+primitives of the derived-basin route provably cannot deliver for free is the
+single crossing of the \emph{forward-looking} objective
+$\Us(x,\alpha(x),s)+\beta_S\Vs(\F(x,s))$ in (sanction; state):
+single crossing is not preserved under sums, and at the affine
+transition the continuation term has the requisite increasing
+differences precisely when $\Vs$ is convex along the transition
+range (Topkis Thm 2.6.2). It is \emph{derivable} from a
+range-local curvature cone: if every sender value in the value set is
+convex along the basin transition range $[\,\mathrm{lo},1]$ with
+$\mathrm{lo}\le(1-\delta)\bar x$, then together with stage
+complementarity, the compliance-placates sign, and
+$\alpha$-antitonicity, the dynamic objective has increasing
+differences (hence single crossing, and a fortiori the certificate's
+interval-dominance condition of \Cref{rem:ido}).
+The cone's economic content is \emph{no diminishing returns to
+entrenchment on the post-tipping basin}: each further step of
+political hardening is worth weakly more than the last, the
+increasing-returns lock-in mechanism of the institutional
+path-dependence literature \citep{Pierson2000}, imposed only where
+that literature claims it. The contested and low-basin regions are
+unconstrained, so dual-basin path dependence is untouched. Two caveats:
+the cone excludes saturation of entrenchment returns strictly
+inside the basin (if saturation is the preferred semantics, the
+derivative-free form with its three existing dischargers remains canonical);
+and preservation of the cone under the Bellman map cannot remain
+range-local (invariance of convexity on $[\,\mathrm{lo},1]$ pulls in
+the strictly larger interval $[(1-\delta)\mathrm{lo},1]$ and
+iteration expands the requirement to all of $[0,1]$), so a
+\emph{constructive} convex-cone invariant set would require the global
+commitment rejected above; the form stated here, which places the cone on a chosen value set, is
+the endpoint of the range-local route.
+Constant-$\Vs$ value sets (e.g.\ that of the auxiliary polynomial economy of
+\Cref{tab:witness-roster}, whose sender value is constant) lie in the cone
+with equality.
+
+\paragraph{The Lipschitz route under a positive stage slope: single crossing
+\emph{constructed} at the equilibrium.} Because the convexity cone of
+the previous route is near-vacuous against the \emph{concave} value
+functions standard dynamic programming delivers
+\citep[Thm~4.8]{StokeyLucas1989}, a second
+route discharges the single crossing for the genuinely \emph{non-monotone}
+equilibrium value, using only Lipschitz regularity. Suppose the sender
+stage payoff has a strictly positive lower slope $m_S>0$ in $s$ on the
+\emph{full} choice axis $[0,1]$ at the equilibrium compliance --- the
+\emph{positive-stage-slope} setting, in which the marginal sanction benefit stays
+positive across $[0,1]$ --- and that the transition-adjusted slope condition
+\eqref{eq:GF-chord} holds, with $K_S$ the Lipschitz constant of the invariant set.
+Then the dynamic objective is strictly increasing in $s$ on $[0,1]$: the
+stage rise strictly exceeds the worst-case continuation fall
+$\beta_S K_S|\F(x,s_2)-\F(x,s_1)|$, an inequality that uses
+\emph{only} that $\Vs$ is $K_S$-Lipschitz, never that it is monotone or
+convex. Under the affine law, the lower slope $m_S$ and
+$\beta_S K_S\delta<m_S$ are a sufficient specialization. Strict
+monotonicity in $s$ is the corner property --- the sender plays the
+high-sanction boundary --- and it implies the single-crossing clause of
+\Cref{ass:sender} a fortiori.
+
+Crucially, this is a property the \emph{constructed} equilibrium
+\emph{has}, not one imposed on it. The invariant set is the closed
+$K_S$-Lipschitz ball; the Bellman operator maps it into itself and the
+ball is closed in sup-norm, so the contraction's fixed point inherits
+$K_S$-Lipschitzness by construction
+\citep[Cor.~1 to Thm~3.2]{StokeyLucas1989}. Single crossing is therefore
+\emph{derived} from the positive-stage-slope condition and \eqref{eq:GF-chord} ---
+both stated over the model's existing primitives --- and the certificate's
+interval-dominance field (\Cref{rem:ido}) is filled by this derivation
+(the derived single crossing upcasts for free) rather than supplied as
+a separate hypothesis, so every high-basin result consuming the
+certificate inherits a derived condition. Unlike the convexity cone,
+this route admits the non-monotone equilibrium value the model actually
+produces.
+
+The route's scope limit travels with it. It is confined to the
+positive-stage-slope setting; in the complementary
+setting --- where the sender's stage payoff \emph{falls} in $s$ and
+only the forward-looking continuation gain carries the high-sanction
+corner --- the two-sided $\pm K_S$ bound is too coarse to capture that
+gain at a non-monotone $\Vs$, so in that setting the
+interval-dominance field of \Cref{rem:ido} remains assumption-backed
+rather than derived (\Cref{sec:flip}). The derivation above should not
+be read apart from this limit.
+
+\begin{remark}[Lipschitz strict-slope margin as a cardinal sufficient
+condition]
+\label{rem:wedge-equivalence}
+A cardinal sufficient condition for \Cref{ass:sender} is the
+Lipschitz strict-slope margin
+\[
+U_S(x,a,s_2)-U_S(x,a,s_1)
+>
+\beta_S K_S\lvert\F(x,s_2)-\F(x,s_1)\rvert
+\]
+for $s_1<s_2$ in $[\max(x,\bar x),1]$. Combined with
+$\Vs\in\mathcal C_S$, this
+strict difference-quotient inequality implies the Milgrom-Shannon single-crossing
+clause of \Cref{ass:sender} (the stage gain strictly dominates the
+worst-case Lipschitz absorption of the continuation, so the increment
+of $J_S$ in $s$ is bounded below by $\mathrm{gap}\cdot(s_2-s_1)>0$;
+hence single-crossing is satisfied with the constant-sign upper
+witness). The cardinal form is thus available to users with explicit
+numerical bounds, and it is not merely an optional convenience: the
+\emph{level} conclusion of \Cref{lem:single-crossing} --- that no
+sender maximizer lies below $\max(x,\bar x)$ --- is proved from this
+same strict difference-quotient inequality imposed on the \emph{complementary}
+range $[0,\max(x,\bar x)]$ (equivalently, from the margin on the whole
+of $[0,1]$), which bounds the stage gain against the worst-case
+Lipschitz absorption of a possibly non-monotone $\Vs$. Under the
+affine law, a lower slope $m_S$ and
+$\beta_S K_S\delta<m_S$ imply this exact inequality. The ordinal
+form is the canonical statement on which the proof otherwise depends.
+\end{remark}
+
+\begin{remark}[Fixed-action interval dominance does not survive policy
+substitution automatically]
+\label{rem:policy-substitution-obstruction}
+Continuity and feasibility of the target policy are not enough to turn
+fixed-action interval dominance into \Cref{ass:sender}. The
+machine-checked counterexample takes
+\[
+  G(s,x,a)=(x-a)s,\qquad \alpha(x)=2x,
+\]
+on sanctions \([0,1]\) and states \([0,\tfrac12]\). For every fixed
+action \(a\), the family \(G(\cdot,\cdot,a)\) satisfies interval
+dominance, and \(\alpha\) is continuous and feasible. After
+substitution, however,
+\[
+  G(s,x,\alpha(x))=-xs,
+\]
+which violates interval dominance. A valid discharge must therefore
+derive an appropriate order or variation restriction on the realized
+policy, or verify interval dominance directly after substitution. The
+convex-value route remains valid precisely because it derives policy
+antitonicity before proving the realized objective's single crossing.
+\end{remark}

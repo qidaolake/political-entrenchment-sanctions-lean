@@ -1,0 +1,705 @@
+\section{The conditions in full and the component statements}
+\label{sec:moved-main-2026-10-13}
+
+On 2026-10-13 the main text was rewritten to state its most important results in
+full and the others in words (decision recorded in the project's
+\texttt{DECISIONS.md}, "Exposition of the main text"). This section holds, verbatim
+and with their labels, the statements and discussions that left the main text, and
+the precise forms of the conditions that the main text now names in words. Every
+cross-reference to them resolves here.
+
+\subsection{The bounds of the class and the conditions in full}
+\label{sec:moved-main-2026-10-13:conditions}
+
+\central{Except where a statement names the quadratic--linear family of
+\Cref{sec:model:family}, the results use no functional form for the transition
+or for either payoff.} They hold on the \emph{general class} of economies
+defined by \textup{(F1)--(F5)}, by bounds on the transition's slopes and
+curvature, and by bounds on the payoffs' rates. Subscripts $\mathrm{lo}$ and $\mathrm{hi}$ mark a
+lower and an upper bound. The transition is constrained
+only through its chords, with no derivative assumed. Its \emph{slope bounds}
+bound the slope, or difference quotient, of every chord, with the state slope
+in $[g_{\mathrm{lo}},g_{\mathrm{hi}}]$ at every sanction and the sanction slope
+in $[d_{\mathrm{lo}},d_{\mathrm{hi}}]$, $d_{\mathrm{lo}}>0$. The transition
+also satisfies a joint semiconcavity bound. Some results read two further
+curvature bounds (\Cref{app:proofs:placable}). One is a semiconvexity modulus
+$M_{\mathrm{cx}}$, which limits how far the transition can bend in the state.
+The other is a two-sided bound $M_{\mathrm{mix}}$ on mixed differences, which
+limits how much the state changes a sanction's effect on the next state. These
+two moduli are read only by results that bound the curvature of the sender's
+value from above and below, and by one route from bounds on the target's policy.
+So is the sender's semiconvexity modulus $\tau_x$ below. Among those results is
+the clause of \Cref{prop:placable-family} that uses the increasing-differences
+condition \eqref{eq:rally-margin}.
+Membership of the class does not require these three moduli.
+
+\central{The rate bounds fall into four groups.} \emph{The sender's stake}: its
+payoff rises with the state at a rate of at least $w_{\mathrm{lo}}>0$, and at
+full non-compliance at most $w_{\mathrm{hi}}$, with a semiconvexity modulus
+$\tau_x\ge0$ in the state there. \emph{The sender's sanction choice}: the
+curvature of its sanction cost lies between $q$ and $\bar Q$, and $q>0$ follows
+from the concavity condition of \Cref{sec:model:conditions}. At full non-compliance
+its marginal return at the first unit of sanction lies in
+$[u_{\mathrm{lo}},u_{\mathrm{hi}}]$, with $u_{\mathrm{lo}}>0$. A higher state
+raises that return at a rate of at least $r_{\mathrm{lo}}\ge0$, the sender's
+\emph{state--sanction complementarity}. Compliance lowers it at a substitution rate
+of at least $k_{\mathrm{lo}}>0$, and some results also assume an \emph{upper
+substitution rate} $k_{\mathrm{hi}}$. \emph{The target's costs}: compliance costs
+between $\ell_{\mathrm{lo}}>0$ and $\ell_{\mathrm{hi}}$ per unit, and the
+sanction's marginal pain lies in $[p_{\mathrm{lo}},c]$, with $p_{\mathrm{lo}}>0$.
+\emph{The target's stake}: its payoff rises with the state at a rate between
+$v_{\mathrm{lo}}+n_{\mathrm{lo}}s$ and $v_{\mathrm{hi}}+n_{\mathrm{hi}}s$ at
+sanction $s$, with $v_{\mathrm{lo}}>0$ and $n_{\mathrm{lo}}\ge0$.
+
+\central{The theorems use five constants built from these payoffs and bounds.}
+Two of them define the entrenchment condition and its strong form. Write
+$K_S=w_{\mathrm{hi}}/(1-\beta_S g_{\mathrm{hi}})$ for the Lipschitz constant of
+the sender's value in the state, and
+$A=u_{\mathrm{hi}}+\beta_S K_S d_{\mathrm{hi}}$ for an upper bound on the
+sender's dynamic marginal return to sanctioning at full non-compliance. Write
+$\underline s=\sigM(0,0)$ for the sanction that maximizes the sender's
+per-period payoff against full non-compliance at $x=0$ (the myopic best response
+$\sigM$ is defined in \Cref{sec:model:myopic}). Finally, write
+\begin{equation}
+g_T^0=\frac{v_{\mathrm{lo}}}{1-\beta_T g_{\mathrm{lo}}},
+\qquad
+g_T=\frac{v_{\mathrm{lo}}+n_{\mathrm{lo}}\underline s}{1-\beta_T g_{\mathrm{lo}}}
+\label{eq:target-slopes}
+\end{equation}
+for a lower state slope of the target's value and its refined version, which
+uses $\underline s$ as a floor on the sender's response at non-compliance: the target's
+own stake per period, discounted over the persistence of the state. The two
+slopes give the \emph{entrenchment condition} (\Cref{ass:loss-offset})
+\begin{equation}
+c\le\beta_T\,d_{\mathrm{lo}}\,g_T ,
+\label{eq:loss-offset}
+\end{equation}
+under which the discounted value of the entrenchment a unit of sanction builds
+covers the incumbent's current pain from it, and the \emph{strong entrenchment
+condition} $c\le\beta_Td_{\mathrm{lo}}g_T^0$ (\Cref{sec:results:security}). The
+strong form uses the unrefined slope, so it is more demanding. On the sender's
+side, write $g_S=w_{\mathrm{lo}}/(1-\beta_S g_{\mathrm{lo}})$ for the least rate at
+which a sender value in the invariant set rises with the state. Under interiority
+the forward-looking sender's sanction at non-compliance exceeds the myopic sanction
+$\sigM(x,0)$ at every state by at least
+\begin{equation}
+\frac{\beta_S\,g_S\,d_{\mathrm{lo}}}{\bar Q}>0 ,
+\label{eq:sender-wedge}
+\end{equation}
+the premium bound of \Cref{sec:results:wedge}: the numerator is the least that a unit
+of sanction adds to the sender's discounted value through the next state, and
+$\bar Q$ converts that marginal gain into a sanction increase.
+
+Two remarks of the earlier main text belong here. The formalization maintains
+\textup{(F2)} and \textup{(F3)} on all of $\mathbb{R}$ at no cost in generality: a
+transition satisfying \textup{(F1)--(F4)} on the square extends globally, unchanged
+on the square, with the same properties, and a machine-checked constructor builds
+the formal economy from square-defined data (\Cref{app:moved-ad}). For the
+closed-form constants of \Cref{app:closedforms} the payoffs are also twice
+continuously differentiable on a neighborhood of $[0,1]^3$; every theorem in the
+formalization holds without this (\Cref{app:moved-ad}).
+
+\central{Of the conditions listed below, only the concavity condition is part
+of membership of the class.} Every other condition is a
+hypothesis of the results that read it. The concavity condition says that the
+curvature $q$ of the sender's sanction cost exceeds the curvature that the
+continuation term can add. This curvature is computed with a curvature bound
+$\sigma_V$ on the sender's value that the Bellman operator preserves. Such a
+bound exists exactly when an explicit inequality on the primitives holds
+(\Cref{app:proofs:placable}). Under this condition the sender's dynamic
+objective is strictly concave in the sanction. Interiority $A<q$ implies the
+myopic interiority $u_{\mathrm{hi}}<q$, under which a myopic sender never
+sanctions fully, and some results read only that (\Cref{thm:regime-separation}
+and \Cref{prop:target-only}(iv)). The lifting condition $A\le k_{\mathrm{lo}}$ implies
+$u_{\mathrm{hi}}<k_{\mathrm{lo}}$, under which full compliance ends a myopic
+sender's sanction. That is all the myopic equilibrium reads of it. The myopic
+relief condition $\ell_{\mathrm{hi}}\bar Q<k_{\mathrm{lo}}p_{\mathrm{lo}}$ is a
+one-period margin with the sender's response substituted. The reversal toward
+non-compliance is a continuation-value result. Five bounds are not required of every
+economy in the class. For the target, they are the upper bound
+$\ell_{\mathrm{hi}}$ on its compliance cost, the lower bound $p_{\mathrm{lo}}$
+on its pain and the upper bound $v_{\mathrm{hi}}+n_{\mathrm{hi}}s$ on its stake.
+For the sender, they are the bound away from non-compliance on its state--sanction complementarity and the upper
+substitution rate $k_{\mathrm{hi}}$.
+\Cref{prop:branch-invariance,prop:relief-participation,prop:monotone-uniqueness}
+hold without them, and the other results that use $k_{\mathrm{hi}}$ take it as
+a hypothesis. Every example economy in the class has an upper substitution rate and the moduli
+$M_{\mathrm{cx}}$, $M_{\mathrm{mix}}$ and $\tau_x$.
+\central{Each theorem-specific condition does one economic job and is read by
+the results named with it.}
+\begin{itemize}
+\item \emph{Concavity condition} (membership): a well-defined dynamic best
+response and controlled continuation values.
+\item \emph{Interiority} $A<q$: an interior dynamic best response at non-compliance.
+The myopic and target-only cases, and the result that the sender's
+forward-looking incentive changes behavior, read only the myopic interiority
+$u_{\mathrm{hi}}<q$ it implies.
+\item \emph{Myopic relief condition}
+$\ell_{\mathrm{hi}}\bar Q<k_{\mathrm{lo}}p_{\mathrm{lo}}$: at the margin, a unit
+of compliance costs at most $\ell_{\mathrm{hi}}$ and buys at least
+$k_{\mathrm{lo}}/\bar Q$ units of sanction reduction worth at least
+$p_{\mathrm{lo}}$ each, so the myopic target accommodates. It is read by the
+myopic case and by the threshold discount factor of
+\Cref{prop:collapse-threshold}, and implied by the forward-looking relief condition
+\textup{(RL)} of \Cref{prop:sender-only}.
+\item \emph{Lifting condition} $A\le k_{\mathrm{lo}}$: full compliance drives the
+sanction to zero. It is read by cases 00 and 01 (myopic target) among other
+results, case 00 only through the inequality $u_{\mathrm{hi}}<k_{\mathrm{lo}}$ it
+implies (full compliance ends a myopic sender's sanction).
+\item \emph{Compliance neutrality} \eqref{eq:zero-sanction-neutrality}: it
+determines the sender's value along relief before the target policy is known,
+and only the results that construct relief read it.
+\item \emph{Entrenchment condition} $c\le\beta_Td_{\mathrm{lo}}g_T$: the
+discounted value of the entrenchment a unit of sanction builds covers the
+incumbent's current pain from it. It is read by cases 10 and 11
+(forward-looking target) among other results; its strong form
+$c\le\beta_Td_{\mathrm{lo}}g_T^0$ is read by the minmax-payoff and uniqueness
+results.
+\item \emph{Increasing-differences condition} \eqref{eq:rally-margin}: a
+nondecreasing sender response at non-compliance, read by the constructed full-non-compliance
+equilibrium of \Cref{prop:placable-family}.
+\item $\ell_{\mathrm{hi}}<\underline s\,p_{\mathrm{lo}}$: full compliance beats
+full non-compliance in the one-period problem. It is read by the clause of
+\Cref{prop:placable-family} that the forward-looking incentives change behavior
+and by the two results of \Cref{app:proofs:placable} that derive the forward-looking
+relief condition \textup{(RL)} from it.
+\end{itemize}
+
+\subsection{The components of the four-case theorem}
+\label{sec:moved-main-2026-10-13:components}
+
+\Cref{prop:placable-family} constructs the full-non-compliance equilibrium used in
+case $11$; \Cref{thm:regime-separation} and
+\Cref{prop:target-only,prop:sender-only} are the components of
+\Cref{thm:four-cells} in the main text.
+
+\begin{proposition}[The sender's response under interiority and the lifting condition]
+\label{prop:placable-family}
+For every economy in the class satisfying interiority $A<q$, the sender's value
+against full non-compliance is the
+Banach fixed point of its Bellman operator on an invariant set of Lipschitz,
+lower-sloped, curvature-bounded value functions, and its dynamic best response
+never reaches the ceiling:
+every maximizer of $J_S$ lies in $[0,A/q]$ with $A/q<1$, and
+at full non-compliance it is strictly interior and
+strictly above the myopic sanction $\sigM(x,0)$ ($(u_0+rx)/q$ on the
+family); under the lifting condition it
+is zero at full compliance. If in addition the transition has a state-section
+semiconvexity modulus $M_{\mathrm{cx}}$ and a bound $M_{\mathrm{mix}}$ on mixed
+differences, and the sender's payoff a semiconvexity modulus $\tau_x$ in the state
+(\Cref{sec:moved-main-2026-10-13:conditions}), and the economy satisfies the entrenchment condition and the
+increasing-differences condition
+\begin{equation}
+\beta_S\bigl(\sigma_C g_{\mathrm{hi}} d_{\mathrm{hi}}
++(K_S+2\sigma_C)M_{\mathrm{mix}}\bigr)\le r_{\mathrm{lo}},
+\qquad
+\sigma_C=\frac{\tau_x+\beta_S K_S M_{\mathrm{cx}}}{1-\beta_S g_{\mathrm{hi}}^2},
+\label{eq:rally-margin}
+\end{equation}
+then the response at non-compliance is non-decreasing in the state, the
+target's value is the Banach fixed point of its Bellman operator against
+that response, full non-compliance is the target's unique optimum at every
+state, and $(\Vt,\Vs,\alpha\equiv0)\in\mathcal E$. At that equilibrium, at
+every state, no maximizer of $J_S$ is a stage maximizer; and
+when $\ell_{\mathrm{hi}}<\underline s\,p_{\mathrm{lo}}$, so that full compliance
+beats full non-compliance in the one-period problem, no
+forward-looking target maximizer is a stage maximizer either.
+\end{proposition}
+
+\central{The increasing-differences condition \eqref{eq:rally-margin} says that
+the stage complementarity between state and sanction covers two forward-looking
+forces that can make the sender's response fall with the state.} They are the
+curvature of the sender's continuation value (the $\sigma_C$ term) and the
+dependence on the state of the sanction's effect on the next state (the
+$M_{\mathrm{mix}}$ term). Both transition terms, $M_{\mathrm{cx}}$ and
+$M_{\mathrm{mix}}$, vanish for every additively separable transition with convex
+state sections, such as the partial-adjustment law
+(\Cref{sec:model:examples}). With
+a sender payoff convex in the state ($\tau_x=0$, as on the family), the
+$\sigma_C$ term vanishes too, and the condition reads $0\le r_{\mathrm{lo}}$.
+The construction uses \eqref{eq:rally-margin} only to make the response at
+non-compliance non-decreasing. The appendix states
+\Cref{thm:regime-separation,thm:four-cells}, \Cref{prop:target-only}(iv), the
+long-run gap of \Cref{prop:steady-gap} and the welfare results of
+\Cref{sec:welfare:nonidentification} under that monotonicity instead. It is
+strictly weaker than \eqref{eq:rally-margin} with the supplied moduli: it holds
+at a member that meets the condition with a tighter modulus but not with the
+supplied ones
+(\Cref{app:proofs:placable}). We state \eqref{eq:rally-margin} because, unlike that
+monotonicity, it can be checked from the primitives and the supplied moduli.
+
+\central{Relief and non-compliance are constructed by different routes, which is why
+the results use different conditions.} At non-compliance, the sender's value against
+full non-compliance is constructed first and the target's value against the resulting
+response next. Only then do the entrenchment and increasing-differences
+conditions verify that non-compliance is the target's optimum, so that the
+construction against a fixed full-non-compliance policy becomes an equilibrium. In
+cases $00$ and $01$, where the myopic target accommodates, compliance
+neutrality pins down the sender's value along relief, and the target's optimal
+compliance is the least that makes the selected sanction zero. The minmax bound
+on the target's value and the uniqueness of full non-compliance among equilibria with
+a non-decreasing sanction rule therefore hold without the conditions that
+construct relief. Conversely, a relief equilibrium requires solving
+its own continuation problem. The myopic and forward-looking cases are \Cref{prop:myopic-benchmark} and
+\Cref{thm:regime-separation} of the main text; the target-only and sender-only cases
+follow (\Cref{prop:target-only,prop:sender-only}).
+
+The separation of the myopic and the forward-looking cases, stated here until
+2026-10-16, is now in the main text: the myopic case is \Cref{prop:myopic-benchmark},
+and the forward-looking case, with the comparison of the two paths, is
+\Cref{thm:regime-separation}, both under the one-period forms of interiority and
+the lifting condition.
+
+\central{The two main-text results are statements about the constructed
+equilibria, and their parts rest on different conditions.} The forward-looking
+equilibrium of \Cref{thm:regime-separation} is constructed under the increasing-differences condition. Given it, the lower bound on the build-up of the state
+and the forward-looking path lying above the myopic one use only the transition's
+monotonicity and sanction-slope bounds. The convergence also uses the response
+monotonicity that the condition delivers. The convergence to zero in
+\Cref{prop:myopic-benchmark} uses the sanction-slope bounds alone. The limit in
+\Cref{thm:regime-separation} may depend on the initial state unless the
+equilibrium law of motion is a contraction (\Cref{prop:activation-not-hysteresis}).
+Its bounds $\underline s<x^{11}_\infty\le A/q$ have closed forms on the family
+(\Cref{sec:model:examples}), and $A/q<1$ under interiority. The comparison changes
+both discount factors together, holding the other primitives fixed.
+
+\begin{proposition}[Target-only case]
+\label{prop:target-only}
+For every economy in the class satisfying the entrenchment condition, with
+$\beta_S=0$ and $\beta_T$ as given:
+\begin{enumerate}[label=(\roman*)]
+\item the sender's sanction rule is the myopic sanction $\sigM(x,0)$
+($(u_0+rx)/q$ on the family under interiority) and its value is the stage
+value there;
+\item full non-compliance is the target's unique optimum at every state, and its
+value is the fixed point of its Bellman operator against the myopic best response;
+the pair with $\alpha\equiv0$ is an equilibrium in $\mathcal E$ of this
+case;
+\item from every initial state $x_t\ge\underline s\bigl(1-(1-d_{\mathrm{lo}})^t\bigr)$
+and $x_t$ converges to a fixed point $x^{10}_\infty\ge\underline s$ of the myopic sanction rule;
+on the family under interiority the fixed point is unique, $u_0/(q-r)$, and
+$\bigl|x_t-u_0/(q-r)\bigr|\le\bigl(1-d_{\mathrm{lo}}(1-r/q)\bigr)^t\,\bigl|x_0-u_0/(q-r)\bigr|$
+($7/12$ per period at the partial-adjustment example);
+\item under the increasing-differences condition \eqref{eq:rally-margin} and
+$u_{\mathrm{hi}}<q$ (a myopic sender never sanctions fully), the limit $x^{10}_\infty$ from a
+start is strictly below the limit $x^{11}_\infty$ of the forward-looking equilibrium of
+\Cref{thm:regime-separation} from the same start.
+\end{enumerate}
+\end{proposition}
+
+\central{The target's forward-looking incentive alone therefore switches it from
+partial compliance to non-compliance, and the sender's forward-looking incentive then
+raises the steady state.} The entrenchment condition does that work against the
+myopic best response as against the dynamic one. The steady state rises
+because the forward-looking sanction exceeds the myopic sanction at every
+state. On the family, the rate in (iii) bounds each path's distance to the
+steady state at each date. Across economies of the family that share $u_0$ and
+$q$, a larger sender state--sanction cross term $r$ strictly raises the myopic
+sanction at every positive state where it is below full sanction. It strictly raises the target-only steady
+state too when the economy with the larger $r$ satisfies interiority
+(\Cref{app:moved-ad}).
+
+\begin{proposition}[Sender-only case]
+\label{prop:sender-only}
+For every economy in the class satisfying interiority, the lifting condition and
+compliance neutrality whose transition also has
+semiconvexity in the sanction, condition \textup{(T6)} of
+\Cref{app:proofs:placable}, satisfying
+the forward-looking relief condition \textup{(RL)} there, with $\beta_T=0$ and $\beta_S$ as
+given:
+\begin{enumerate}[label=(\roman*)]
+\item the sender's value is the value of the zero-sanction path,
+$\sum_{t\ge0}\beta_S^t\,\Us(y_t,0,0)$ with $y_0=x$ and $y_{t+1}=\F(y_t,0)$
+($\Us(x,0,0)=wx$ on the
+family); it is constructed before
+the target's policy is determined, because along the constructed equilibrium
+the sanction is zero and at sanction zero the sender's stage payoff
+(by compliance neutrality) and the transition do not depend on compliance;
+\item the target's unique optimum at every state is
+$a^{01}(x)$, the least compliance at which the sender's dynamic best
+response vanishes; it is continuous in the state, lies strictly above
+$a^{00}(x)$, the compliance that ends a myopic sender's sanction, and with it the pair
+$(\Ut(x,a^{01}(x),0),\,V_S,\,a^{01})$ is an equilibrium in $\mathcal E$ of this
+case ($\Ut(x,a^{01}(x),0)=v\,x-\ell a^{01}(x)$ on the family);
+\item the equilibrium sanction is zero and from every initial state
+$x_t\le(1-d_{\mathrm{lo}})^tx_0\to0$.
+\end{enumerate}
+\end{proposition}
+
+\central{The forward-looking sender is more demanding than the myopic one, so
+the myopic target pays more for relief, but it still buys it.} Because of the
+foresight premium, the forward-looking sender still sanctions at the compliance
+$a^{00}(x)$. The forward-looking relief condition (RL),
+$\ell_{\mathrm{hi}}M_{\mathrm{tot}}<k_{\mathrm{lo}}p_{\mathrm{lo}}$, says that a unit of compliance
+avoids more sanction pain, valued at the lowest price $p_{\mathrm{lo}}$, than it
+costs. Here $M_{\mathrm{tot}}$ bounds the curvature of the sender's dynamic objective
+in the sanction (\Cref{app:proofs:placable,app:moved-ah}). Relief can require
+full compliance (\Cref{app:moved-ad}).
+
+\subsection{The strict comparison at a fixed target policy}
+\label{sec:moved-main-2026-10-13:strict}
+
+\begin{proposition}[Strict comparison at a fixed target policy]
+\label{prop:strict-dominance}
+Fix $x$ and a target action $a$, write $\Gamma(s)=\Vs(\F(x,s))$ for the
+sender's continuation value at the successor state $\F(x,s)$, and let $m$ be the greatest stage maximizer of
+$U_S(x,a,\cdot)$ on $[0,1]$, which exists by continuity. If no feasible
+sanction below $m$ carries a larger continuation value, $\Gamma(s)\le\Gamma(m)$ for every $s\in[0,m]$, and
+there is one sanction $s'$ at which the stage loss measured from $m$ is
+outweighed by the discounted continuation gain,
+\[
+U_S(x,a,m)-U_S(x,a,s')<\beta_S\bigl(\Gamma(s')-\Gamma(m)\bigr),
+\]
+then every stage maximizer lies weakly below $m$ and strictly below every
+maximizer of $J_S$.
+\end{proposition}
+
+\central{\Cref{prop:strict-dominance} needs no concavity, differentiability,
+uniqueness or positive discount, and $\Gamma$ need not be monotone: a
+non-decreasing $\Gamma$ is one way to meet the comparison.} The proposition
+orders two sets of maximizers, and the stage loss must be measured from the
+greatest stage maximizer. At an economy in
+\Cref{app:moved-ah}, a loss measured from a lower tied stage maximizer orders
+only that one. The proof closes \Cref{app:proof-dominance}.
+
+\central{Compared with the myopic equilibrium at their own target policies, the
+dynamic equilibrium sanctions at least as much at every state when its sender value is non-decreasing in the state, its target
+complies no more and compliance placates the sender.} It does so through two
+separate effects.
+Under the compliance ordering $\alpha(x)\le\alphaM(x)$,
+\[
+\sigM(x,\alphaM(x))
+\le \sigM(x,\alpha(x))
+\le \sigDynTop_{\Vs}(x,\alpha(x)).
+\]
+The first inequality is the indirect effect of the target's lower compliance on
+the myopic best response. The second is the direct effect of the sender's foresight
+at that compliance (\Cref{thm:dominance}). The compliance ordering is an
+explicit condition, met by the example economies. Under the general transition, whole sanction paths are ordered under other conditions, without the compliance ordering
+or any condition on how the target ranks sanction levels. This is so
+for an equilibrium constructed from stated invariant
+value sets, when the myopic sanction stays below a ceiling on the high political
+basin and the myopic rule preserves that basin
+(\Cref{cor:pathwise-dominance}).
+
+\subsection{The target's minmax payoff and uniqueness among monotone rules}
+\label{sec:moved-main-2026-10-13:security}
+
+\central{The benchmark for the target's security is permanent relief: zero
+sanctions at every date, with the target maintaining non-compliance throughout.} Let $y_0=x_0$ and
+$y_{t+1}=\F(y_t,0)$ be the state path under permanent zero sanctions, and define
+the permanent-relief payoff
+\begin{equation}
+\underline{V}_T(x_0)=\sum_{t=0}^{\infty}\beta_T^t\,\Ut(y_t,0,0).
+\label{eq:relief-benchmark}
+\end{equation}
+
+\begin{proposition}[The target's minmax payoff]
+\label{prop:security}
+Take any economy, whatever the sender's objective, in which the transition's
+zero-sanction section rises in the state at rate at least $g_{\mathrm{lo}}$, a
+sanction $s$ raises the successor state by at least $d_{\mathrm{lo}}s$ against
+zero sanctions, and the target gains at least $v_{\mathrm{lo}}\ge0$ per unit of
+state at full non-compliance and zero sanctions, loses at most $cs$ to a sanction $s$
+at full non-compliance, and gains nothing from compliance against a zero sanction
+(used only in (i) and (ii)). Under the strong entrenchment condition
+$c\le\beta_Td_{\mathrm{lo}}g_T^0$, and from every initial state $x_0$:
+\begin{enumerate}[label=(\roman*)]
+\item $\underline{V}_T(x_0)$ is the lowest payoff to which a feasible pure
+history-dependent sanction strategy can hold the target against every
+feasible pure history-dependent compliance strategy; permanent relief attains it;
+\item $\underline{V}_T(x_0)$ is the highest payoff that the target can guarantee
+itself with a feasible pure history-dependent compliance strategy against every
+feasible pure history-dependent sanction strategy; full non-compliance at every date
+attains it;
+\item every equilibrium in $\mathcal E$ satisfies $\Vt(x_0)\ge \underline{V}_T(x_0)$.
+\end{enumerate}
+\end{proposition}
+
+\central{So $\underline{V}_T$ is the target's minmax payoff in pure strategies,
+which by (ii) is also the most it can guarantee itself, and the minmax over
+sanction sequences fixed in advance is its special case.} Every economy in the
+class has the five properties the proposition reads, from the bounds
+$g_{\mathrm{lo}}$, $d_{\mathrm{lo}}$, $v_{\mathrm{lo}}$ and $c$ and the positive
+compliance cost. Inequality (iii) holds at every equilibrium in $\mathcal E$,
+beyond the constructed equilibrium and the monotone-rule equilibria of
+\Cref{prop:identification}.
+
+\central{The bound holds because, under the strong entrenchment condition, the
+entrenchment that sanctions build is worth at least as much to the target as
+their pain.} Under any sanction sequence, the lower bounds on the transition's
+slopes make the state's excess over the zero-sanction state a discounted
+accumulation of past sanctions. Valuing it at least at its lower state-valuation
+rate, against a pain of at most $c$ per unit, the target gains from full
+non-compliance at every date at least
+$\bigl(\beta_Td_{\mathrm{lo}}v_{\mathrm{lo}}/(1-\beta_Tg_{\mathrm{lo}})-c\bigr)\sum_t\beta_T^ts_t$
+over permanent relief. The strong entrenchment condition makes this nonnegative.
+Against permanent relief, compliance only incurs its cost, so full non-compliance
+attains the upper bound. With deterministic play and perfect monitoring,
+date-indexed actions reproduce the path of any pair of history-dependent plans,
+so both bounds extend to history-dependent strategies. Equilibrium optimality gives the target at least the payoff of
+deviating to full non-compliance at every date (\Cref{app:proofs:scope}).
+Politically, under the strong entrenchment condition relief is the harshest
+treatment the sender can impose, so threats cannot coerce the target on the
+non-compliance side.
+
+\central{The same strong entrenchment condition makes full non-compliance, with the
+associated values, the only possible equilibrium with a non-decreasing sanction
+rule, and excludes a
+sanction rule equal to zero at every state.}
+
+\begin{proposition}[Uniqueness of non-compliance among monotone rules]
+\label{prop:identification}
+On an economy in the class satisfying the strong entrenchment condition
+$c\le\beta_Td_{\mathrm{lo}}g_T^0$:
+\begin{enumerate}[label=(\roman*)]
+\item every equilibrium in $\mathcal E$ whose sanction rule is
+non-decreasing in the state has full non-compliance at every state, the constructed
+sender and target values, and the constructed response as its sanction rule;
+\item no equilibrium in $\mathcal E$ has a sanction rule equal to zero at
+every state.
+\end{enumerate}
+\end{proposition}
+
+\central{Both clauses of \Cref{prop:identification} concern non-decreasing
+sanction rules: (i) pins down every equilibrium with such a rule, and (ii)
+excludes the rule equal to zero at every state.} Clause (i) requires no monotonicity of the target's policy.
+Its proof rules out positive compliance in the class through a lower state slope
+that the equilibrium value equation gives the target's value
+(\Cref{prop:monotone-uniqueness}). Clause (ii) covers every equilibrium: a
+globally zero rule is non-decreasing, so it would fall within (i), which implies
+a positive response at full non-compliance. Under the increasing-differences
+condition the constructed equilibrium belongs to the class of (i), which is
+therefore not empty.
+
+\subsection{Relief, non-compliance and the threshold discount factor in general}
+\label{sec:moved-main-2026-10-13:bracket}
+
+\central{For the forward-looking target, three inequalities on its discount
+factor each give one conclusion (the formulas are in \Cref{prop:bracket}).}
+(i)~\emph{Sufficient condition for non-compliance.} The most the target can save by buying
+off a unit of sanction, its pain $c$ less the least compliance cost of that
+unit, is below the discounted entrenchment the unit builds. That entrenchment is valued at a lower
+slope that the target's value carries when the sender's response is monotone.
+The slope is $g_T$ under the entrenchment condition and, in general, under two further
+conditions, a slope at most $g_T$. Then full non-compliance is the target's unique
+optimum at every state, and with the increasing-differences condition the
+constructed full-non-compliance equilibrium exists. (ii)~\emph{Sufficient condition
+for relief.} The most a unit of compliance costs, $\ell_{\mathrm{hi}}$, is below
+the least value of what it buys. This is $k_{\mathrm{lo}}/M_{\mathrm{tot}}$ units of
+sanction reduction, each worth the pain $p_{\mathrm{lo}}$ less the most
+discounted entrenchment it can cost in the relief equilibrium. Then, under
+interiority, the lifting condition and compliance neutrality, on economies in the class
+with semiconvexity in the sanction \textup{(T6)}, the relief equilibrium, in
+which the target complies at $a^{01}(x)$, exists. For existence the weak forms of
+(i) and (ii) suffice. The strict forms add uniqueness of the target's optimum.
+(iii)~\emph{An inequality that rules out non-compliance.} It compares as in (ii),
+measuring entrenchment by the Lipschitz constant of the target's value at the
+full-non-compliance profile. With interiority, the lifting condition and the target's discount
+factor times a bound on the Lipschitz constant of the state map at full
+non-compliance below one, it makes full non-compliance not a best reply at that profile's
+values. Since every slope in (i) is at most $g_T$, each sufficient condition for
+non-compliance implies the inequality for non-compliance at $g_T$, which excludes (ii) and,
+under the same bound on the state map, (iii). The sufficient condition for
+non-compliance and the inequality at $g_T$ pass to a more patient target and (ii) to a
+less patient one. In strict form, the inequality at $g_T$ and (ii) are open
+conditions on $\beta_T$.
+
+\central{In general these inequalities leave a gap between the two sufficient
+conditions.} Above every
+discount factor at which the sufficient condition for relief holds and below
+every discount factor at which the sufficient condition for non-compliance holds,
+neither applies. They determine no equilibrium there. The gap can reflect
+conservative bounds as well as genuine differences in behavior. Each end has
+an exact counterpart, a threshold necessary and sufficient for existence, under
+the conditions of \Cref{prop:exact-thresholds}. At the relief end these are \textup{(T6)},
+interiority, the lifting condition, compliance neutrality and a target state valuation
+at zero sanction that covers the rise of its compliance cost along the relief
+policy. At the non-compliance end they are a non-decreasing sender response at full non-compliance
+and the slope condition of \Cref{prop:bracket}(i) at slope zero. The discount
+factors with an equilibrium without sanctions then form an interval from zero up
+to a largest one, and those with a full-non-compliance equilibrium an interval from a
+smallest discount factor up to one. At the partial-adjustment example with $\beta_T$ varied
+(\Cref{sec:model:examples}), where an exact evaluation finds the gap open
+(\Cref{app:proofs:threshold}), both apply, and both exact thresholds lie
+strictly inside the gap. There, at one discount factor between them, a continuum of
+equilibria with compliance rising in the state exists (\Cref{prop:affine-window}).
+
+\central{Nine equalities, the linear--quadratic special case of the main text, close this gap: with them the sufficient condition for
+relief and the sufficient condition for non-compliance meet at a single discount
+factor.} They make the transition affine on
+the square by hypothesis (a constant sanction slope, with $\F(x,x)=x$); they are listed in
+the proof of \Cref{prop:collapse-threshold} (\Cref{app:proofs:scope}). They also set two
+curvature bounds on the sender's side to zero, rule out state--sanction cross
+terms and make five marginal rates constant. The five
+further equalities of \Cref{prop:bracket}(iii), tight bounds on the transition's
+state slope and four zero transition moduli, concern the bounds supplied
+for the economy and leave the game unchanged (\Cref{app:proofs:scope}). In symbols, the
+transition's constant sanction slope is $\delta$ (so that $\F(x,s)=(1-\delta)x+\delta s$), the
+constant curvature of the sender's cost of sanctioning is $q$, and the constant
+substitution rate, compliance cost, sanction pain and state valuation of the target are
+$k$, $\ell$, $c$ and $v$. Write $D=c-\ell q/k$ for the target's net cost of a sanction, its pain less the
+compliance cost of ending it. The threshold discount
+factor of \Cref{prop:collapse-threshold} is
+\begin{equation}
+\beta_T^{*}=\frac{D}{\delta v+(1-\delta)D},
+\label{eq:target-threshold}
+\end{equation}
+which rises with $D$ and falls with $v$; under the nine equalities the myopic relief
+condition reads $\ell q<kc$, that is, $D>0$.
+
+\central{The non-existence direction ranges over every equilibrium in
+$\mathcal E$: below $\beta_T^*$ no equilibrium has full non-compliance.} At
+$\beta_T=\beta_T^*$ the equilibrium exists,
+because existence passes to the limit in $\beta_T$
+(\Cref{prop:defiance-closed}). Two example economies lie on the two sides
+of the threshold (\Cref{app:proofs:scope}). When
+$\beta_T^*\ge1$, which holds exactly when $D\ge v$, no discount factor
+supports full non-compliance. The target's pain from a unit of sanction, net of the
+compliance cost of buying it off, is then at least its valuation of the political
+state. The nine
+equalities suffice for an exact threshold, and \Cref{prop:exact-thresholds}
+gives exact thresholds without them, as at the partial-adjustment example.
+
+\central{The sender's patience strictly raises the bounds on its own marginal
+return to sanctioning, but with these nine equalities it does not move the
+target's threshold.} Sender patience changes the level of the sender's response, and so
+the compliance that relief requires, while the target's comparison turns on its
+cost, pain, state valuation and discount factor.
+On the class as a whole, sender patience also moves the curvature and Lipschitz
+bounds in both sufficient conditions. The same structure brackets the sender. If the
+upper substitution rate $k_{\mathrm{hi}}$ is below the lower bound
+$u_{\mathrm{lo}}+\beta_Sg_Sd_{\mathrm{lo}}$ on the sender's dynamic marginal
+return to sanctioning, and a larger concession is never worth more to the sender
+at zero sanction, a positive sanction remains in every equilibrium whose
+compliance does not rise with the state, full compliance included. If the lower
+substitution rate $k_{\mathrm{lo}}$ is at least the upper bound $A$ on that return
+(the lifting condition), full compliance ends the sanction.
+\citet[Lemma~2, Proposition~1]{AcemogluJensen2015} give robust discount-factor
+comparative statics for a single agent's dynamic program and for aggregates of
+price-taking agents. Ours concern one government's patience in a two-player
+game. A myopic against a forward-looking target is thus one cut of a continuous
+comparison. Along it the constructed equilibrium switches from relief to
+non-compliance as the target's discount factor rises from the sufficient condition
+for relief to that for non-compliance. 
+
+\central{Patience, like every other target parameter, can change whether an
+economy has a full-non-compliance equilibrium, and leaves the path of such an
+equilibrium unchanged.} Take two
+economies that share the transition, the sender's discount factor and the
+sender's stage payoff at full non-compliance ($\Us(x,0,s)$ on the square). In any full-non-compliance equilibria they have the same sender value
+and the same state and sanction paths from every start, whatever the target's
+payoff and discount factor and the sender's payoff away from non-compliance
+(\Cref{prop:branch-invariance}).
+
+\subsection{Welfare: the interest-group polity in full}
+\label{sec:moved-main-2026-10-13:welfare}
+
+The interest-group polity's accounting identity, the planner results and the
+rescaling argument, as the main text stated them before 2026-10-13.
+
+\central{In the interest-group polity of \Cref{app:fourgroup}, political weights
+account exactly for the gap between the sum of the two governments' objectives and
+aggregate welfare.} In the tradition of \citet{Kaempfer1988}, each country has two
+interest groups. The sender has a pro-sanction group and a commercial lobby harmed
+by sanctions. The target has a regime-aligned group and an opposition. Let
+$W_g(x,a,s)$ be group $g$'s welfare and $\theta_g$ the political weight its
+government places on it \citep{GrossmanHelpman1994}. \citet{Becker1983} supplies
+the pressure contest behind the weights. Aggregate welfare $W$
+sets every political weight to one and keeps the resource terms that enter the
+government objectives at unit weight. Four sign conditions on the coefficients
+deliver the game's stage assumptions. The sender's sanctioning cost is strictly
+convex, a higher political state raises the sender's marginal value of
+sanctioning, and compliance does not raise it. On the target side, the
+regime-aligned group's gain in political
+effectiveness under sanctions, weighted by its valuation of the political state,
+outweighs the opposition's gain, weighted by the opposition's loss from the state.
+For every coefficient vector, whether or not these conditions hold,
+\begin{equation}
+\Us(x,a,s)+\Ut(x,a,s)
+=W(x,a,s)
++\sum_{g\in G}
+(\theta_g-1)W_g(x,a,s),
+\label{eq:planner-distortion}
+\end{equation}
+where $G$ is the set of the four groups. The identity is accounting at common
+actions.
+
+\central{At one example economy of this polity (\Cref{sec:model:examples}),
+equilibrium play follows the corner path of full sanctions against full non-compliance
+from every start, while the zero-sanction path attains the planner's optimum over
+all feasible paths.} The planner's value exceeds equilibrium welfare at every
+start and every planner discount factor (\Cref{prop:planner-optimum-lower-bound}).
+
+\central{The zero-sanction path attains the planner's optimum in every
+interest-group polity and under every transition satisfying \textup{(F2)--(F3)},
+provided a sufficient condition holds: the first unit of sanction must not pay
+socially.} Write $g_J$
+and $q_K$ for the pro-sanction group's gain and the commercial lobby's loss per
+unit of sanction. The target's direct cost per unit is $d_s$, and $B$ is the
+regime-aligned group's valuation of the political state less the opposition's.
+The zero-sanction path with the best constant compliance attains the optimum
+from every start if $B\le0$ and $g_J-q_K\le d_s$. It also does so
+if $B\ge0$ and
+\[
+g_J-q_K+\frac{\beta BL}{1-\beta\lambda}\le d_s ,
+\]
+where $L$ bounds the rise in next period's state per unit of sanction and
+$\lambda$, with $\beta\lambda<1$, bounds the slope of the zero-sanction section
+$\F(\cdot,0)$ (\Cref{prop:planner-optimum-lower-bound}). The condition says that
+the sender-side groups' net gain plus the planner's discounted value of the higher
+state the sanction leaves behind does not cover the target's direct cost.
+
+\central{The comparison of the two paths extends beyond the example economy as
+well.} For every vector of group coefficients and every transition satisfying
+\textup{(F2)--(F3)}, the welfare difference between the zero-sanction path at full
+non-compliance and the corner path is the capitalized long-run gap plus $B$ times a
+discounted residual. The residual is one minus the distance between the two paths, which starts at
+one. The sender's sanctioning cost is $k_S$, so the resource cost of a full
+sanction to both countries is $k_S+d_s$. Under \textup{(F1)--(F5)} the difference
+is positive at every planner discount if and only if this cost exceeds the
+sender-side groups' net benefit $g_J-q_K$ and is at least that benefit plus $B$. The closed form
+under the partial-adjustment law of \Cref{sec:model:examples} and the stationary
+comparison are in \Cref{app:fourgroup}
+(\Cref{prop:discounted-stationary-welfare,prop:affine-welfare-gap}). For other
+transitions, the appendix bounds the gap below in the transition's own rates, more
+sharply given a lower bound on its state slope along the zero-sanction and
+full-sanction sections.
+
+\central{The example shows that politically sustained sanctions \emph{can} be
+socially wasteful, and neither the four sign conditions nor the game determines
+the sign of the welfare gap.}
+Multiply the pro-sanction group's per-unit benefit $g_J$ by $\phi>0$ and divide its
+political-weight schedule by $\phi$. Both government payoffs are unchanged. So
+under every transition the rescaled polity still satisfies the four sign
+conditions and has the same game and equilibria. The planner, who counts that
+group's benefit at unit weight, sees the gap between the zero-sanction path and
+the corner path fall by $(\phi-1)g_J/(1-\beta)$. Hence, for every polity whose
+pro-sanction group gains from sanctions, some rescaling makes the corner path
+strictly better for the planner than the zero-sanction path, at every planner
+discount, every start and every transition satisfying \textup{(F2)--(F3)}. Where
+that group loses from sanctions, some rescaling makes the corner path strictly
+worse (\Cref{sec:fourgroup:planner}). Each statement goes one way. Where the group
+gains, the game never shows the zero-sanction path to be at least as good for the
+planner; where it loses, never the reverse.
+
+\central{Two polities next to the example economy reverse the welfare ranking,
+the first with the same game and equilibrium.} The first rescales the example
+economy in this way and keeps its equilibrium, hence its play of the corner path.
+The second differs from it only in a lower direct sanction cost. The first fails
+the sufficient condition above at every discount, and the second above a
+threshold discount. For the first at every discount, and for the second above a
+higher threshold, the corner path is worth strictly more to the planner than the
+zero-sanction path. There the planner's optimum is not the zero-sanction path
+(\Cref{sec:fourgroup:planner}).
+
+\central{Maintained restrictions on the microfoundation narrow this
+non-identification: they partially identify the ranking of cases $10$ and $11$, in
+which the target maintains non-compliance.} With the target side of the microfoundation and the
+commercial lobby's exposure held fixed, and the pro-sanction group's political
+weight confined to a band, the welfare gap between the two constructed equilibria
+ranges over an attained closed interval. A uniform strict ranking is identified
+exactly when that interval excludes zero. Both strict rankings occur when its
+endpoints have opposite signs. The exposure and the target-side inputs are
+maintained from outside the governments' game. A weight
+band alone need not identify the sign (\Cref{prop:welfare-interval}).

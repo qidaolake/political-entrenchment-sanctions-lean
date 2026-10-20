@@ -1,0 +1,242 @@
+\section{Closed-form parametric constants and the assumption-surface floor}
+\label{app:closedforms}
+
+\paragraph{The partial-adjustment law.} The simplest transition in the class is
+the partial-adjustment law \eqref{eq:affine}.
+Its state and sanction slopes equal $1-\delta$ and $\delta$ at both ends of their
+bounds, and every curvature modulus is zero. Where the lower and upper bounds on
+either slope coincide, the transition is of the form \eqref{eq:affine} on the
+square (\Cref{prop:bracket}). Under a fixed sanction $s$, the unique rest point
+of every transition in the class is $x=s$, because \textup{(F1)--(F5)} exclude a
+range of inaction.
+
+\paragraph{Status of the constants in derivative-free form.} The derivative-free
+parametric-argmax results of \citet{KlatteKummer2002} and the
+set-valued analysis of \citet{AubinFrankowska1990} provide the
+appropriate route from \emph{complete-objective} strong concavity and
+objective-difference bounds to Lipschitz selectors. Stage curvature by
+itself is not such a route. The complete target-objective modulus
+$c_T$, where invoked, is the scalar form of the diagonal strict
+concavity condition of \citet{Rosen1965}.
+
+This appendix lists the closed-form constants entering
+\Cref{ass:sender,ass:target,ass:concavity} and the Schur condition
+\eqref{eq:Schur}. The paper-facing primitives are the discount and
+transition objects $\beta_T,\beta_S\in[0,1)$ and
+$\F\colon[0,1]^2\to[0,1]$ satisfying \textup{(F1)--(F5)};
+the stage payoffs $\Ut,\Us\colon[0,1]^3\to\R$ (continuous and twice
+continuously differentiable on $(0,1)^3$); the basin pivots
+$\bar x_T,\bar x_S\in[0,1]$, derived from $\Ut,\Us$ via the
+threshold characterization in \Cref{sec:mechanism:basin}; and the
+first-derivative bounds $L_{U_T},L_{U_S},L_{U_a}$ used in the
+sanction- and action-sensitivity estimates, defined as suprema of
+$|\partial\Ut/\partial s|$, $|\partial\Us/\partial s|$, and
+$|\partial U/\partial a|$ on $[0,1]^3$.
+
+The value-function state bound has its own numerator. Let
+$L_{S,x}^{\alpha}$ bound the inherited-state variation of
+$\Us(x,\alpha(x),s)$, and let $\gamma_F$ be the fixed-sanction transition
+modulus in \eqref{eq:F-state-lip}. In primitive applications both are
+discharged from derivative and transition bounds; neither is a sanction
+slope, and under the affine law $\gamma_F=1-\delta$. The target-side
+analogue --- a closed-loop state modulus $\gamma_T$ and the Lipschitz
+constant $K_T=L_{T,x}^{\mathrm{cl}}/(1-\beta_T\gamma_T)$ of the target's invariant set in the optional
+target-Lipschitz route --- does not enter the existence construction for the class under
+the lifting condition, whose invariant set for the target is a norm ball with a lower-slope floor and
+no Lipschitz clause. Since round AJ (2026-09-22) it is instantiated on that
+class after the fact: with $\gamma_T$ the sharp loop constant
+$g_{\mathrm{hi}}+d_{\mathrm{hi}}L_{\mathrm{resp}}/\mu$ and
+$L_U=\max\{v_{\mathrm{hi}},v_{\mathrm{hi}}+n_{\mathrm{hi}}\}+cL_{\mathrm{resp}}/\mu$
+($v+n+cL_{\mathrm{resp}}/\mu$ on the quadratic--linear family), the equilibrium target value is
+$K_T=L_U/(1-\beta_T\gamma_T)$-Lipschitz whenever $\beta_T\gamma_T<1$
+(\path{VTstar_lipschitz}, \path{Examples/PlacableSenderTargetLipschitz.lean};
+staged as note N117).
+
+\subsection{Derived and separately verified constants}
+
+The following list distinguishes algebraically derived bounds from
+positive curvature or selector moduli that must be verified where
+used:
+\begin{itemize}[leftmargin=2em]
+\item $K_S=L_{S,x}^{\alpha}/(1-\beta_S\gamma_F)$, closed-form Lipschitz
+constant of the sender's invariant set (derived from $\Vs\in\mathrm{Lip}_{K_S}$
+by Banach iteration under $\beta_S\gamma_F<1$; the recursion is \citet[Thm.~4.2(c)]{Hinderer2005} and its inheritance by the invariant set is Corollary~1 to Theorem~3.2 of \citet{StokeyLucas1989}).
+\item $c_\sigma=\inf_{[0,1]^3}\bigl(-\partial^2\Us/\partial s^2\bigr)>0$,
+the stage strong-concavity modulus imposed in
+\Cref{ass:concavity}. It controls the static sender problem only.
+\item No general dynamic-selector modulus $L_\sigma$ is derived from
+$c_\sigma$. Whenever an existence theorem uses a Lipschitz dynamic
+sender selector, its named analytic package must instead verify strong
+concavity of the complete objective $J_S$ and the relevant
+parametric objective-difference bound
+(\citealp{KlatteKummer2002,DoraszelskiPakes2007}).
+\item $K_T^{\mathrm{IFT}},K_S^{\mathrm{IFT}}\ge0$ objective-difference
+moduli of the joint target objective in the value-pair coordinates: a
+sup-norm perturbation of size $\varepsilon$ in $\Vt$ (respectively
+$\Vs$) changes the objective's variation between two actions by at most
+$K^{\mathrm{IFT}}\varepsilon$ times the action distance. This is the
+objective-difference input of
+\path{argmax_lipschitz_of_strongConcave_lipschitzDiff}, verified by
+each analytic package that uses it. It is not a finite-dimensional
+Hessian bound, and smoothness of the stage payoff on a neighborhood of
+the cube does not supply it: a uniformly strongly concave objective can
+have a maximizer that is not Lipschitz in sup-norm perturbations of the
+objective.
+\item $c_T>0$ joint-target complete-objective strong-concavity modulus
+in $a$, verified as part of the leader-regularity package wherever it
+is used; continuity of second derivatives alone does not imply its
+positivity.
+\item $L_{\alpha,\Vt}=K_T^{\mathrm{IFT}}/c_T$,
+$L_{\alpha,\Vs}=K_S^{\mathrm{IFT}}/c_T$, Implicit-Function Lipschitz
+constants of the target equilibrium policy in the value-pair
+coordinates. The canonical derivation from C${}^2$ target stage
+payoffs plus an Arrow-Hurwicz-Uzawa constraint qualification (without
+an interiority hypothesis on the optimal compliance choice) is
+\citet{RinconZapateroSantos2009}, which proves continuous
+differentiability of the value function and uniqueness of the KKT
+multipliers; the IFT gradient strong-monotonicity in derivative-free form taken
+as a primitive here is
+the gradient-monotonicity content of this uniqueness statement. The
+encyclopedic reference for the parametric-argmax Lipschitz stability
+results from which this derivative-free form descends is
+\citet[Ch.~2 + Ch.~7]{KlatteKummer2002}.
+\end{itemize}
+
+Every parametric constant above is either (a) algebraically derived
+from verified moduli via a closed-form expression
+(e.g.\ $K_S$, $L_{\alpha,V_*}$), or (b) a bound verified from
+the complete objective by the analytic package that uses it (the
+curvature moduli $c_\sigma$, $c_T$ and the objective-difference moduli
+$K_T^{\mathrm{IFT}}$, $K_S^{\mathrm{IFT}}$); where such a bound is read
+off a smooth stage payoff, the derivative bound must be verified on the
+closed cube, since differentiability on the open cube does not bound
+curvature at the boundary.
+The positive curvature moduli $c_\sigma$ and $c_T$ must be verified
+from the corresponding stage or complete objective; compactness only
+guarantees that a continuous curvature bound attains its infimum, not
+that the infimum is positive. The optional moduli
+$L_{S,x}^{\alpha},\gamma_F$ must
+themselves be discharged from the specified payoff, transition, and
+selector bounds; they are not silently identified with sanction
+derivatives. The structural
+assumptions \Cref{ass:sender,ass:target,ass:concavity} are
+qualitative; they enter the paper-facing surface as conditions on
+the payoff functions and the basin, not as numerical primitives.
+
+\begin{center}
+\small
+\textbf{Table 2.} Derived and separately verified intermediates.\\[2pt]
+\begin{tabular}{@{}p{0.20\linewidth}p{0.73\linewidth}@{}}
+\toprule
+\textbf{Symbol} & \textbf{Closed form / interpretation}\\
+\midrule
+$K_S$ & $L_{S,x}^{\alpha}/(1-\beta_S\gamma_F)$, Lipschitz constant of the Sender's
+invariant set under \textup{(F6-Q)} and $\beta_S\gamma_F<1$; under the
+affine law, $\gamma_F=1-\delta$.\\
+$L_\sigma$ & Optional dynamic Sender-selector modulus; available only
+from complete-objective strong concavity plus a parametric
+objective-difference bound, not from A3 alone.\\
+$K_T^{\mathrm{IFT}},K_S^{\mathrm{IFT}}$ & Cross-Hessian bounds on
+the joint Target integrand.\\
+$L_{\alpha,\Vt},L_{\alpha,\Vs}$ & $K_T^{\mathrm{IFT}}/c_T$,
+$K_S^{\mathrm{IFT}}/c_T$, IFT Lipschitz of $\alpha$ in
+$(\Vt,\Vs)$.\\
+$L_{TS},L_{ST}$ & Row-Lipschitz off-diagonals of the joint Bellman
+operator (\Cref{sec:existence}).\\
+$R_T,R_S$ & Sup-norm bounds on the balls of the invariant sets; the
+smallest invariant radii are $\|\Ut\|_\infty/(1-\beta_T)$ and
+$\|\Us\|_\infty/(1-\beta_S)$ (\Cref{app:jointiteration}).\\
+$\bar x_T,\bar x_S$ & High-basin tipping thresholds: infima of the
+flip sets \eqref{eq:FT-def}--\eqref{eq:FS-def}
+(\Cref{prop:tipping}); $\bar x=\max(\bar x_T,\bar x_S)$.\\
+$x_S^0$ & Static Sender flip ($m=0$ level); contested band
+$[x_S^0,\bar x_S)$ (\S\ref{sec:flip}).\\
+$\bar x_T^*,\bar x_S^*$ & Low-basin ceilings: suprema of the dual
+flip sets (\S\ref{sec:mechanism:bistability});
+$\bar x_*=\min(\bar x_T^*,\bar x_S^*)$.\\
+$d_{\F}(x),\eta_{\F}(\bar x)$ & Full-sanction drift
+$d_{\F}(x)=\F(x,1)-x$ and its positive minimum on $[0,\bar x]$.\\
+$\widehat N_{\F}(\bar x)$ & Explicit general-transition bound
+$\lceil\bar x/\eta_{\F}(\bar x)\rceil$ on the worst-case shock-entry
+duration under \textup{(F1)--(F4)} and full-sanction ascent on $[0,\bar x]$.\\
+$\eta_\delta(\bar x),\widehat N_\delta(\bar x)$ &
+$\delta(1-\bar x)$ and
+$\lceil\bar x/[\delta(1-\bar x)]\rceil$, the affine specialization of
+the general minimum-drift bound. The sharper affine choice is
+$N_*(\bar x,\delta)=\lceil\log(1-\bar x)/\log(1-\delta)\rceil$
+(\Cref{thm:shock,cor:shock-transition-strength}).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The notation choice $R_T, R_S$ for the sup-norm bounds of the invariant sets (in
+place of the older $M_T, M_S$) avoids collision with $M=(\alpha^M,
+\sigma^M)$, the myopic equilibrium
+(\Cref{def:myopic}).
+
+\subsection{Certified comparative-static windows}
+
+The full-adjustment comparative statics at the corner economies hold on
+exact parameter intervals rather than only at isolated calibration
+points. \Cref{tab:compstat-windows} records the intervals and the
+constraint that binds at each edge.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}p{0.17\linewidth}p{0.14\linewidth}p{0.61\linewidth}@{}}
+\toprule
+\textbf{Parameter} & \textbf{Certified window} & \textbf{What binds at the endpoints}\\
+\midrule
+\multicolumn{3}{@{}l@{}}{\emph{Eaton--Engers economy}}\\
+\addlinespace[2pt]
+Sender patience $\beta_S$
+& $[6/13,\ 4/7)$
+& The continuation drag must cover the worst stage drop at the lower
+edge and remain below the strict foresight premium at the upper edge.\\
+\addlinespace[2pt]
+Target patience $\beta_T$
+& $[598/709,\ 1)$
+& The Target entrenchment condition binds at the lower edge; the upper
+edge is the discount bound.\\
+\addlinespace[2pt]
+Adjustment speed $\delta$
+& $[3/7,\ 2/3)$
+& The Sender corner pin binds below and the strict foresight premium binds above.\\
+\midrule
+\multicolumn{3}{@{}l@{}}{\emph{Interest-group economy}}\\
+\addlinespace[2pt]
+Sender patience $\beta_S$
+& $[0,\ 1)$
+& The whole range is certified because the defiance-corner
+stage slope is already positive.\\
+\addlinespace[2pt]
+Target patience $\beta_T$
+& $[14/17,\ 1)$
+& The Target condition and the entrenchment condition bind at the lower edge.\\
+\addlinespace[2pt]
+Adjustment speed $\delta$
+& $[7/27,\ 1)$
+& The Target condition and the invariant-set membership condition bind together at
+the lower edge.\\
+\bottomrule
+\end{tabular}
+\caption{Certified parameter windows for the full-adjustment
+comparative statics. One deep parameter varies in each row while the
+other primitives remain at their example values. Closed endpoints
+correspond to weak conditions; open endpoints to strict conditions or
+the discount bound.}
+\label{tab:compstat-windows}
+\end{table}
+
+At the certified equilibria the value functions also have exact state
+derivatives, the shadow prices of political entrenchment. They are
+$82/11$ for the Target and $16/3$ for the Sender at the
+Eaton--Engers economy, and $80/11$ and $4/3$ at the interest-group
+economy. Each obeys the boundary-envelope recursion
+\[
+\text{slope}=U_x+\beta(1-\delta)\,\text{slope}.
+\]
+The positive signs certify that the equilibrium incumbents value a
+harder political state, while the exact magnitudes are
+example-specific rather than general predictions.

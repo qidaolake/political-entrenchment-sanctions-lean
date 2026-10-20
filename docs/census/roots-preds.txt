@@ -1,0 +1,25 @@
+# Project predicates the census records mention; printed once, unfolded, in the
+# glossary of docs/HYPOTHESIS-CENSUS.md. Names resolve under the probe's open
+# line. Mathlib predicates (MonotoneOn, StrictAntiOn, ...) are not listed.
+ContinuationChangesSenderChoiceAt
+ContinuationChangesTargetChoiceAt
+DynamicArgmaxUnique
+TargetArgmaxUnique
+ValueLipschitzWith
+StrictAdjustment
+IntervalDominanceOrder.IDOFamilyOn
+TargetCombinedChordOn
+SenderPersistenceBasinTop
+TransitionChords.SanctionLowerChord
+TransitionChords.SanctionUpperChord
+TransitionChords.CornerStateChord
+TransitionChords.SanctionSemiconcave
+Semiconcave.StateChordBandAll
+MixedChordBound
+Semiconcave.SemiconcaveOnSet
+Semiconcave.SemiconvexOnSet
+Semiconcave.JointSemiconcaveOn
+MilgromShannon.IncreasingDifferencesOn
+MilgromShannon.SingleCrossingOn
+TransitionStateLipschitzWith
+TransitionStateLipschitzOnWith

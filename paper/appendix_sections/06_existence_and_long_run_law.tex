@@ -1,0 +1,608 @@
+\section{Existence: constructions, the Schur/Perov machinery, and the long-run law}
+\label{app:existencemachinery}
+
+This appendix collects the technical constructions deferred from
+\Cref{sec:existence,sec:assumptions}: the alternative existence
+routes, the Schur-condition matrix computations, the purified
+(shock) constructions and the invariant-law machinery,
+and the discharge apparatus for the assumption residual clauses.
+None of it changes any statement in the main text.
+
+\paragraph{The coupling matrix.} With $L_{TS}$, $L_{ST}$ and
+$\beta_{S,\mathrm{row}}$ as in \Cref{thm:existence} below,
+\[
+\mathbf M=
+\begin{pmatrix}
+\beta_T & L_{TS}\\
+L_{ST} & \beta_{S,\mathrm{row}}
+\end{pmatrix},
+\]
+and $\rho(\mathbf M)$ is its spectral radius. When the four coefficients are
+non-negative and the two diagonal ones are below one, the boxed Schur
+inequality of \Cref{thm:existence} is equivalent to $\rho(\mathbf M)<1$
+(\path{specRadius_lt_one_iff_schurDet}); the theorem itself imposes no sign on
+the coefficients.
+
+The theorem, which \Cref{sec:existence:general} states in words, is the
+following.
+
+\begin{theorem}[Existence on invariant sets under the Schur condition]
+\label{thm:existence}
+Fix closed, non-empty sets of value functions $\mathcal C_T$ and
+$\mathcal C_S$. Suppose that, for every sender value in $\mathcal C_S$, the
+sender's dynamic argmax is unique at every state and every feasible compliance
+level $a\in[0,1]$, and that the target argmax is unique at every value pair from the two sets.
+Together with the maintained continuity of the primitives, these
+conditions define continuous feasible selectors. Suppose also that the
+joint Bellman operator maps
+$\mathcal C_T\times\mathcal C_S$ into itself. Denote its two rows by
+$\mathcal T_T$ and $\mathcal T_S$. Suppose, for all value pairs
+$z=(\tilde V_T,\tilde V_S)$ and $z'=(\tilde V_T',\tilde V_S')$ from the two sets, that
+\begin{align}
+\|\mathcal T_T(z)-\mathcal T_T(z')\|_\infty
+&\leq
+\beta_T\|\tilde V_T-\tilde V_T'\|_\infty+L_{TS}\|\tilde V_S-\tilde V_S'\|_\infty,\\
+\|\mathcal T_S(z)-\mathcal T_S(z')\|_\infty
+&\leq
+L_{ST}\|\tilde V_T-\tilde V_T'\|_\infty+
+\beta_{S,\mathrm{row}}\|\tilde V_S-\tilde V_S'\|_\infty,
+\end{align}
+where $\beta_T,\beta_{S,\mathrm{row}}<1$ and
+\begin{equation}
+\boxed{
+L_{TS}L_{ST}
+<
+(1-\beta_T)(1-\beta_{S,\mathrm{row}})
+}
+\label{eq:Schur}
+\end{equation}
+(no sign is imposed on the four coefficients; when they are non-negative,
+\eqref{eq:Schur} is equivalent to $\rho(\mathbf M)<1$). Then the joint
+Bellman operator has a unique fixed point on the invariant product set in a weighted
+sup-norm. The associated optimal target policy and greatest sender response
+form an equilibrium $E=(\Vt,\Vs,\alpha)\in\mathcal E$ with
+$(\Vt,\Vs)\in\mathcal C_T\times\mathcal C_S$ and $\alpha=\alpha_{\Vt,\Vs}$,
+the target selector the two sets define. Every equilibrium
+$E'=(V_T',V_S',\alpha')\in\mathcal E$ with
+$(V_T',V_S')\in\mathcal C_T\times\mathcal C_S$ and
+$\alpha'=\alpha_{V_T',V_S'}$ coincides with $E$: $V_T'=\Vt$, $V_S'=\Vs$ and
+$\alpha'=\alpha$.
+\end{theorem}
+
+A negative coefficient is allowed because it can only describe a degenerate
+invariant set. If $\beta_T<0$ or $L_{ST}<0$, the row bound at a fixed sender value
+forces the target set to be a single point, and symmetrically
+$L_{TS}<0$ or $\beta_{S,\mathrm{row}}<0$ makes the sender set a single
+point; the bounds then hold again with non-negative coefficients, and the
+Perov step applies unchanged. Both diagonal bounds are assumed in exchange:
+with non-negative coefficients $\beta_T<1$ would follow from the other
+conditions, but without the signs it does not. The coincidence clause is
+uniqueness within the stated invariant sets and selector class; it is not global
+equilibrium uniqueness (\path{feedbackStackelbergTop_unique_in_carrier_schur}).
+The sender's argmax need be unique only at compliance levels in $[0,1]$: the
+target chooses compliance there, and the target's Bellman operator reads the
+sender's response only there (\path{Params.DynamicArgmaxUniqueOnI}). Uniqueness
+at every real compliance level implies this (\path{DynamicArgmaxUnique.toOnI}),
+and the corner economies of \Cref{prop:primitive-persistence} obtain the weaker
+form with no bound on the curvature of their transitions
+(\path{SymbolicEconomyF.DAUOnI_on_cone}).
+
+\subsection{Alternative existence routes}
+
+\Cref{thm:existence} uses a model-specific Schur-condition
+row-Lipschitz route, with the invariant set of state-Lipschitz value functions
+motivated by \citet{Curtat1996}. The literature offers several parallel sufficiency routes --- Tarski
+monotone iteration on a lattice of value pairs
+\citep{BalbusReffettWozny2014JET,Vives1990}, Schauder on a sup-norm-compact
+Lipschitz ball \citep{RaadWozny2019}, measurable selection on a decomposable
+kernel \citep{HeSun2017}, and the fixed-point route of the risk-sensitive
+overlapping-generations model \citep{JaskiewiczNowak2014}, which is a Glicksberg argument rather than a row-Lipschitz one. None is adopted as primary
+here: the lattice route needs an order-preservation structure the coupled
+operator does not have (\Cref{rem:twisted-order}); the Schauder and
+measurable-selection routes return existence without the greatest-selection
+convention or the closed-form constants the comparative statics use; and the
+risk-sensitive extension is not needed for time-additive preferences. The
+Schur-condition route is described in detail below. The general taxonomy of stationary
+Stackelberg-equilibrium concepts for discounted stochastic games is
+in \citet{Bucarey2023}, who formalize the stationary strong
+Stackelberg equilibrium (SSSE) and fixed-point equilibrium (FPE)
+notions, prove their existence and coincidence for classes of games
+including myopic follower strategy and team games, and provide
+counter\-examples where existence fails in the general case. The
+restricted assumption set
+$\{$\Cref{ass:sender},\Cref{ass:target},\Cref{ass:concavity}$\}$
+describes structural inputs; the Schur-condition construction of
+\Cref{thm:existence} additionally requires the value-set, selector, invariance
+and row-bound hypotheses stated there, and the construction of
+\Cref{prop:placable-family} discharges its own conditions from its fields.
+Neither makes the three assumptions alone a sufficient condition for
+existence.
+
+\begin{remark}[Why the mixed-monotone order fails, and where]
+\label{rem:twisted-order}
+The lattice route is usually attempted twice: first under the pointwise product
+order on value pairs, and then --- when that fails --- under the \emph{twisted}
+order that reverses one coordinate,
+\[
+  (V_T,V_S)\preceq_{\mathrm{tw}}(\tilde V_T,\tilde V_S)
+  \quad\Longleftrightarrow\quad
+  V_T\le \tilde V_T \ \text{ and }\ \tilde V_S\le V_S \ \text{ pointwise.}
+\]
+The second attempt is the substantive one, because our pointwise refutations
+vary the target continuation with the sender continuation held fixed and so
+leave the twisted order untouched. Isotonicity of the joint Bellman map under
+$\preceq_{\mathrm{tw}}$ requires four coordinate signs. The target row's
+own-value sign holds, from $\beta_T\ge0$ alone. Its cross sign does not.
+
+The mechanism of the failure is worth stating, because it is not an artifact.
+The sender's continuation value enters the target's Bellman integrand only
+through the sender's best response. Raising that continuation makes the sender
+sanction more heavily, which costs the target current payoff but \emph{raises}
+its continuation value, because a heavier sanction raises next period's
+entrenchment and the target's value is increasing in entrenchment. Writing $L_T$
+for the target's stage loss per unit of additional sanction, $g_T$ for the lower
+slope of its value in the state, and $d_S$ for the lower bound on the transition's
+sanction slope, the second effect dominates whenever
+\[
+  L_T \;<\; \beta_T\,g_T\,d_S ,
+\]
+which is the strict form of the entrenchment condition
+$c_T\le\beta_T\,g_T\,d_{\mathrm{lo}}$ maintained throughout
+\Cref{sec:existence}. That condition is the one under which the target
+tolerates sanctions rather than complying in the persistence certificate.
+
+The lattice route therefore fails on the economies this paper is about. The
+refutation is a configuration: two ordered sender continuation values between
+which the sender's optimal response strictly shifts, a target maximizer, the
+difference-quotient inequalities and the strict entrenchment condition above
+(\path{not_antitone_T_T_joint_in_sender_value}). It defeats antitonicity of
+the target row on any domain containing that configuration, which is what the
+unrestricted twisted-order route needs. Three scope points. It does not show
+that every smaller value set fails: a value set on which the entrenchment condition is reversed, or
+on which the sender's response does not move between the two values (a constant
+shift of the continuation adds an action-independent term and moves nothing),
+is not addressed. It closes a proof \emph{route}; existence is delivered by
+the contraction argument of \Cref{thm:existence} and is untouched. And the
+refutation is empty when
+$\beta_S=0$, where the sender is myopic, its response does not depend on its own
+continuation, and the target operator is constant in $V_S$ --- so the obstruction
+is a genuine consequence of two-sided forward-looking behavior rather than of
+the sequential timing.
+\end{remark}
+
+
+\subsection{The construction behind the theorem, in brief}
+\label{app:jointiteration}
+
+The proof of \Cref{thm:existence} is a joint Banach iteration on the value
+pair in an invariant set with an asymmetric weighted sup-norm, whose contraction modulus is
+governed by the Schur condition \eqref{eq:Schur}: the set is complete, two
+invariance conditions keep the operator inside it, the row estimates have the
+entries of $\mathbf M$ as coefficients, and the Perov $2\times2$ fixed point
+(\citealp{Toda2021}; the weighted-max-norm reduction of
+\citealp[\S2]{BertsekasTsitsiklis1996}) yields the value pair from which the
+optimal target policy and the greatest sender response are read off. Three
+levels of the same route are kept apart in the formalization --- the
+conditions at a supplied equilibrium, at the constructed fixed point, and
+over the whole invariant set --- and the strongest is the checkable \emph{ex ante}
+certificate (\path{Sanctions/Theory/Equilibrium/PerovExistence.lean},
+\path{Sanctions/Theory/Certificates/TwoSidedRuleComparison.lean};
+\Cref{app:formalization}). The fixed point is locally isolated inside its
+invariant set: a shape-conforming equilibrium within an enlarged norm ball at
+which the Schur condition still holds coincides with it. This is a local
+uniqueness statement inside a specified invariant set, with no genericity,
+manifold, nondegeneracy or finiteness claim about the global equilibrium
+set; the smallest invariant radii of the balls are
+$\|\Ut\|_\infty/(1-\beta_T)$ and $\|\Us\|_\infty/(1-\beta_S)$. The anatomy
+of the iteration, the isolation statement and the coupled low-$\delta$
+diagnostics are not reproduced in this appendix.
+
+\subsection{Contraction restoration under the shock}
+
+\paragraph{Machine-checked contraction restoration under the shock.}
+The purified existence above is, in the cited references, a
+\emph{topological} fixed point (a continuous self-map on a compact value
+class, closed by Fan--Glicksberg). A sharper statement of the mechanism on the sender side follows (the construction is mapped in \Cref{fig:shock-construction}). Model
+the atomless shock as a smoothing operator on continuation values,
+$(\mathrm{smear}\,V)(y)=\mathbb{E}_\eta[V(y+\eta)]$ with $\eta$ drawn from the shock
+density. Two properties of $\mathrm{smear}$ are exactly what an atomless
+smooth density delivers: it is sup-norm \emph{nonexpansive} (averaging
+against a probability density, $\int\kappa=1$), and it maps any bounded $V$
+to a state-\emph{Lipschitz} function (mollifier smoothing); only the first is
+carried by the Lean structure \path{ShockedParams}, whose single proof field is
+nonexpansiveness. The first
+property alone shows, with no new regularity, that the shocked sender
+Bellman operator $V\mapsto\mathrm{bellmanS}(\alpha,\mathrm{smear}\,V)$
+\emph{remains a $\beta_S$-contraction}: the deterministic
+H\"older-$\tfrac12$ obstruction is bypassed because the shock enters only
+through the nonexpansive continuation, so the contraction modulus is
+unchanged at $\beta_S<1$, and the sender value is \emph{constructed} by the
+Banach engine rather than postulated.
+This is a Banach --- rather than Fan--Glicksberg --- existence route under
+the shock. Moreover, $\mathrm{smear}$ is not left abstract: the He--Sun shock is
+carried as a concrete \emph{atomless probability kernel} $\kappa$ on the
+transition (the He--Sun idiosyncratic component), with
+$(\mathrm{smear}\,V)(y)=\int V(\mathrm{clip}(y+\eta))\,\kappa(\mathrm d\eta)$,
+and its nonexpansiveness is \emph{derived} from $\int\kappa=1$ rather than
+assumed --- so the shocked corner equilibrium holds from a genuine kernel
+primitive. The shocked equilibrium is an equilibrium of the \emph{shocked} game --- its
+Bellman equations carry $\mathrm{smear}$ --- a sibling object to the
+deterministic \Cref{thm:corner-existence}, and it too now holds: the
+shocked equilibrium structure, both shocked Bellman fixed-point equations
+(sender and target), and a non-vacuous shocked \emph{corner} instance are
+established, with the two value functions \emph{constructed} as Banach
+fixed points of the shocked sender and target operators. The \emph{interior} (non-corner, state-varying leader) case is also now
+established: the slaved shocked operator $\Phi(\Vs)=\mathrm{bellmanS\_shock}
+(\mathrm{lead}(\Vs),\Vs)$ has modulus $\le\beta_S+L_{U_S,a}\,L_\alpha$, where the
+continuation term contributes $\beta_S$ (nonexpansive $\mathrm{smear}$) and
+the policy term contributes $L_{U_S,a}\,L_\alpha$ ($U_S$ Lipschitz in the
+target action, leader policy $L_\alpha$-Lipschitz in $\Vs$); under the condition
+$\beta_S+L_{U_S,a}\,L_\alpha<1$ this is a Banach contraction, and its fixed point
+yields an interior shocked equilibrium with a state-varying leader policy. The
+contraction-specific quantity is $L_\alpha$: deterministically the leader
+argmax is only H\"older-$\tfrac12$ in $\Vs$, but the atomless shock's
+mollifier-Lipschitz smoothing upgrades it to Lipschitz (the
+$\mathrm{smear}$-regularity property), which the numerics confirm in the
+relevant range of shocks.  In the canonical theorem it is derived from composite
+strong concavity and the Stackelberg-coupling bound; joint follower continuity
+supplies the objective continuity and the canonical leader selector.
+The full-width case $h=1$ now discharges that follower-continuity input: the moving
+average is exactly affine on the physical state interval for every bounded
+continuous continuation, which yields a unique sender argmax and a jointly
+continuous greatest selection on $[0,1]\times\mathbb R$.
+At the $P_3$ economy, the same affine identity permits a stronger exact
+construction that bypasses the reusable leader-regularity theorem altogether.
+The two smeared continuation values are summarized by their endpoint spreads;
+eliminating the target spread gives a quartic equation for the sender spread.
+Lean isolates the economically relevant root in an exact rational interval,
+constructs the induced piecewise-affine leader policy and clipped greatest
+sender response, builds both bounded-continuous value functions, and verifies
+global target optimality and both Bellman fixed-point equations through every
+clipping region. The resulting full-width shocked equilibrium has no
+strong-concavity, cross-value/action coupling, invariant-set, or policy
+hypothesis.
+The \emph{mechanism} of that upgrade is itself now
+established: a general lemma shows that for a $c$-strongly-concave objective
+whose two-maximizer difference is action-Lipschitz with constant $L$, the
+maximizers satisfy $c\,|a_f-a_g|\le 2L$ --- a Lipschitz (not Hölder-$\tfrac12$)
+argmax bound. The
+deterministic obstruction bounds the same difference by its \emph{sup}
+($\to\sqrt{}$, Hölder-$\tfrac12$); the smear-smoothed continuation makes it
+\emph{action-Lipschitz} with constant $\propto\|V-V'\|$ (the
+$\mathrm{smear\_lipschitz}$ property), turning the same inequality into the
+Lipschitz rate. That $\mathrm{smear\_lipschitz}$ estimate is itself now
+discharged from a concrete atomless (uniform) kernel: the moving-average
+smoothing $(\mathrm{smear}\,U)(y)=\tfrac1{2h}\!\int_{y-h}^{y+h}U(\mathrm{clip}\,z)\,dz$
+is state-Lipschitz with constant $\|U\|/h$, by the elementary window-shift bound
+$|\!\int_{y-h}^{y+h}g-\!\int_{y'-h}^{y'+h}g|\le 2\|g\|_\infty|y-y'|$. The
+argmax-core reduces $\mathrm{lead\_lip}$ to a single action-direction estimate
+on the leader objective \emph{difference}. The
+shock's $\sigma$- and $\Vt^{\mathrm{dyn}}$-Lipschitz bounds control
+the \emph{magnitude} of that estimate, but its variation \emph{in the leader's
+own action} is not supplied by the shock: because the sender response
+$\sigma(x,a)$ enters the leader objective and depends on $a$, this
+action-Lipschitz estimate --- the Stackelberg coupling, isolated as the
+hypothesis $\mathrm{h\_obj\_diff}$ --- is \emph{consumed}, not derived. A
+reference sweep confirms this is not an artifact of our particular kernel:
+smoothing the continuation regularizes the \emph{state} direction only (a
+uniform-Lipschitz-in-action integrand need not be jointly Lipschitz;
+\citealp{Hinderer2005}) --- concretely, the moving-average smear is only $C^1$
+(its second derivative would require a $C^1$ continuation, which value functions
+are not), so the action-direction cross-derivative an implicit-function / envelope
+derivation \citep[the Lipschitz-policy route of][]{Montrucchio1987} would need
+does not exist --- and the feedback-Stackelberg constructions we hold do not
+derive the analogous leader-side regularity from primitives either; where
+they need it, it is imposed. So
+$\mathrm{lead\_lip}$ is the argmax-core applied to one consumed coupling
+estimate. The canonical interior theorem pins the leader objective to the
+genuine target payoff $\mathrm{joint\_T\_top\_integrand}$.  Joint continuity
+of the shocked sender selector and strong concavity of this real composite
+objective at any positive modulus \(c_T\) then produce a unique canonical
+leader maximizer; Berge continuity, feasibility, and pointwise leader
+optimality are proved rather than separately assumed.  For a general
+half-width, the remaining analytic surface is therefore exactly those two
+conditions plus the coupling estimate and the direct contraction condition
+\(\beta_S+2L_{\mathrm{lead}}/c_T<1\), not an externally supplied leader map or
+a fixed numerical curvature.  In the state-local full-width specialization,
+follower continuity is proved and the remaining surface contracts to composite
+leader strong concavity, the coupling estimate, and this same symbolic condition.
+The kernel side is moreover now inhabited by a \emph{concrete}
+uniform-kernel parameter, and the smear's state-Lipschitz constant is the closed
+form $\|V\|/h$ rather than a named primitive. This does not discharge, or prove
+joint satisfiability of, the general three-condition analytic package. The
+conditional theorem is wired to the mechanism-active $P_3$ economy: once that
+package is supplied, it builds a purified equilibrium as a Banach fixed point
+with no Schur condition. Its abstract state-local $h=1$ sibling discharges follower
+continuity but still consumes composite strong concavity, the coupling estimate,
+and \(\beta_S+2L_{\mathrm{lead}}/c_T<1\). The older modulus-\(2\) and
+\(L_{\mathrm{lead}}<1/2\) statement is only the arithmetic specialization at
+the printed example parameter vector. These conditional templates are not headline existence
+results.
+
+The exact $h=1$ construction is logically separate and stronger at that
+parameter vector. It solves the equilibrium rather than proving the abstract
+leader hypotheses over an operator domain. The selected sender endpoint spread
+is an exact root of a quartic in a rational bracket; the target spread is then
+recovered algebraically. These spreads determine a feasible continuous
+piecewise-affine leader policy, an exact clipped greatest sender response, and
+both bounded-continuous values. Lean verifies the sender fixed point, the target
+fixed point, and global target optimality through the lower-clipped, interior,
+and upper-clipped sender regions. Hence an unconditional, genuinely
+state-varying full-width $P_3$ equilibrium is exhibited.
+
+The dynamic-over-myopic theorem still requires its separate basin inputs.
+At full width, monotonicity of the sanction rule is available twice. The reusable
+canonical-selector result follows from the change of variable
+$b=a-(27/10)x$, strict decreasing differences of the target objective, and
+interval dominance of the sender objective. At the explicit equilibrium there
+is also a direct proof: the leader policy is increasing, the sender vertex
+remains increasing after the leader response is substituted, and clipping
+preserves monotonicity. Thus the equilibrium's own sanction rule, under the greatest selection, is
+monotone on all of $[0,1]$.
+
+The separate dynamic floor is nevertheless impossible. The full-width sender
+selector is the clip of
+$\tfrac98x-\tfrac1{12}-\tfrac5{12}\alpha(x)
+ +(V_S(1)-V_S(0))/24$, and the top-state floor holds if and only if
+$V_S(1)-V_S(0)\ge10\alpha(1)-1$. The sender Bellman equation bounds the same
+spread above by
+$\tfrac58(\alpha(1)-\alpha(0))+\tfrac{35}{16}$, so a putative floor forces
+$\alpha(1)\le17/50$. The target Bellman equation gives
+$V_T(1)-V_T(0)\le60/11$. Combining these restrictions with the exact sender
+vertex makes a deviation at $x=1$ to $a'=1/2$ strictly profitable, contradicting
+target optimality. Hence no full-width shocked equilibrium has the top-state
+floor, and no non-empty basin ending at $1$ satisfies the full-width floor
+component. In particular, the explicit equilibrium has a monotone sanction
+rule and a top-state sanction strictly below one. It therefore cannot be
+assembled with the floor into full pathwise ordering at $P_3$; the myopic
+basin inputs also remain open. The earlier test continuation $V_S(x)=-100x$
+remains a useful disproof-first check, while the equilibrium argument closes the
+stronger fixed-point statement.
+
+For a general half-width, the three-condition analytic package remains the
+reusable theorem's honest assumption surface. The stage curvature
+$\partial^2U_T/\partial a^2=-2$ does not by itself establish strong concavity
+of the composite leader objective, because the target action moves the clipped
+sender response and hence the continuation. An exact Lean counterexample at
+$x=5/12$ shows that the static composite already violates $2$-strong concavity
+on the rational actions $9/10$, $37/40$, and $19/20$. Likewise, smoothing
+regularizes the state direction, not the leader-action direction controlled by
+the Stackelberg-coupling estimate. These facts explain why the abstract theorem
+retains those inputs; they are not hypotheses of the explicit full-width
+equilibrium. The deterministic model is the $\kappa\to\delta_0$ limit.
+
+\subsection{The derived dividing line, in general form}
+\label{app:derived-dividing-line}
+
+\Cref{prop:derived-dividing-line} is stated for the equilibrium closed loop on
+the unit state space. The content is an order-topological fact about a
+continuous self-map, and it is proved at that level; the equilibrium statement
+substitutes $G=G_E$ and nothing else.
+
+\begin{proposition}[Derived crossings of a continuous self-map]
+\label{prop:derived-crossings}
+Let $G$ be continuous on $[a,b]$ with $G(a)=a$ and $G(b)=b$, and suppose
+$a\le G(x)\le b$ for every $x\in[a,b]$. Let $a<x_L\le x_H<b$ and suppose
+\[
+  G(x)<x\ \text{ for all }x\in(a,x_L],
+  \qquad
+  x<G(x)\ \text{ for all }x\in[x_H,b).
+\]
+No assumption is made about the sign of $G(x)-x$ on $(x_L,x_H)$, and $G$ is not
+assumed monotone anywhere. Put
+\[
+  t=\inf\{\,x\in[x_L,x_H]:x\le G(x)\,\},
+  \qquad
+  t'=\sup\{\,x\in[x_L,x_H]:G(x)\le x\,\}.
+\]
+Then $x_L<t\le t'<x_H$, both are fixed points of $G$, and $G(x)<x$ for every
+$x\in[x_L,t)$ while $x<G(x)$ for every $x\in(t',x_H]$. Every orbit of $G$ started
+in $[a,t)$ converges to $a$; every orbit started in $(t',b]$ converges to $b$;
+and $t=t'$ if and only if $G$ has exactly one fixed point in $[x_L,x_H]$.
+\end{proposition}
+
+The construction is the whole proof. Continuity makes
+$\{x\in[x_L,x_H]:x\le G(x)\}$ closed, so its infimum is attained and lies in it,
+giving $t\le G(t)$; and every state below an infimum is outside the set, which
+\emph{is} the statement $G(x)<x$ for $x<t$, whence $G(t)\le t$ by continuity from
+the left. Because every fixed point of the window lies in the set, $t$ is the
+least one. The mirror argument gives $t'$, and $t\le t'$ because $t$ is itself a
+fixed point and therefore a member of the second set.
+
+Two features are load-bearing rather than incidental, and both are settled by
+counterexample rather than left to the reader's confidence.
+
+\emph{Continuity cannot be weakened.} A map jumping from $0$ to $1$ at the middle
+of a window satisfies both endpoint conditions and has no fixed point in the
+window at all. Everything the proposition delivers is carried by continuity.
+
+\emph{The interval $[t,t']$ can be non-degenerate.} Take the window $[-1,2]$
+itself and the map $x\mapsto\min\{x,2x\}+\max\{0,x-1\}$, which is continuous
+there, falls strictly at $-1$, rises strictly at $2$, and fixes every point of
+$[0,1]$. Its two derived crossings over that window are $0$ and $1$. So the
+inequality $t\le t'$ admits no upgrade to equality, and the region between the
+crossings is a genuine gap in the conclusion rather than an artifact of how it is
+proved.
+
+The orbit statements do not use monotonicity of $G$. Once $G$ lies strictly below
+the diagonal throughout an interval, each iterate steps downward because of the
+sign, not because $G$ preserves order; the orbit is then decreasing and bounded,
+its limit is a fixed point by continuity, and the strict sign forces that limit to
+the endpoint. This is what allows the proposition to be applied across a region
+where the sanction rule is known to be continuous but is not known to be monotone
+--- which is the situation between two certified basins.
+
+\subsection{General closed-loop invariant laws and the affine specialization}
+
+Let $g:[0,1]\to\mathbb R$ be a continuous closed-loop drift and let
+$T_{g,h}\mu$ be the law of
+\[
+x'=\operatorname{clip}\bigl(g(x)+\eta\bigr),
+\qquad x\sim\mu,\quad \eta\sim\operatorname{Unif}[-h,h],
+\]
+with $h>0$ and independent noise.  The formal result is stated at this
+general drift level.  Continuity of $g$ is enough for existence of an
+invariant probability law.  If, in addition, there is an $L\in(0,1)$
+such that
+\[
+|g(x)-g(y)|\le L|x-y|
+\quad\text{for all }x,y\in[0,1],
+\]
+then
+\[
+d(T_{g,h}\mu,T_{g,h}\nu)\le L\,d(\mu,\nu),
+\qquad
+d(T_{g,h}^{\,n}\mu,\lambda)\le L^n d(\mu,\lambda),
+\]
+and $\lambda$ is the unique invariant probability law.  This
+contraction condition is not an additional maintained assumption of the
+economic model; it identifies the conditional uniqueness-and-attraction
+region of the already general transition framework.
+
+The proof does not use the \citet{HopenhaynPrescott1992} stochastic-order
+argument, which needs an order on measures the current libraries lack.
+Instead, it constructs the dual Kantorovich--Rubinstein metric
+\citep{KantorovichRubinstein1958}, in the duality form of
+\citet[\S11.8]{Dudley2002},
+$d(\mu,\nu)=\sup_{f\ 1\text{-Lipschitz}}
+(\int f\,d\mu-\int f\,d\nu)$, and proves that the closed-loop adjoint maps
+$1$-Lipschitz tests to $L$-Lipschitz tests.  Uniqueness is genuine
+measure equality, not merely $d=0$: Lipschitz ramps decreasing to
+interval indicators show that equal integrals against every Lipschitz
+test imply equality of the two probability measures.
+
+The transfer operator and its adjoint identity are constructed directly.
+$T_{g,h}\mu$ is the pushforward of the product of $\mu$ and the box-noise
+law under the closed-loop-plus-noise map, and
+\[
+\int f\,d(T_{g,h}\mu)
+=\int\!\left[\operatorname{movAvgReal}\,h\,f\bigl(g(x)\bigr)\right]d\mu(x)
+\]
+follows from the change-of-variables formula and the Bochner Fubini
+theorem.  Existence is obtained by the Krylov--Bogolyubov /
+Ces\`aro-average argument
+(\citealp{KrylovBogolyubov1937}; textbook form
+\citealp[Thm.~12.10]{StokeyLucas1989}).  On the compact state space the
+Ces\`aro averages have a weak cluster point; the Feller adjoint identity
+makes that point invariant against every bounded continuous test, and
+the determining class upgrades this to measure-level fixed-point
+equality.
+
+The affine drift is a specialization, not the primitive theorem.
+For $g_\delta(x)=(1-\delta)x+\delta$, the drift modulus is
+$L=1-\delta$, the general operator is definitionally the affine box
+transfer, and the preceding bounds become
+\[
+d(T_{\delta,h}\mu,T_{\delta,h}\nu)
+\le(1-\delta)d(\mu,\nu),
+\qquad
+d(T_{\delta,h}^{\,n}\mu,\lambda)
+\le(1-\delta)^n d(\mu,\lambda).
+\]
+Equivalently, its dual pullback
+$(Sf)(x)=\operatorname{movAvgReal}\,h\,f((1-\delta)x+\delta)$ is
+$(1-\delta)$-Lipschitz whenever $f$ is $1$-Lipschitz.  Thus the chain with the familiar
+affine drift inherits the general theorem's unique, globally
+attracting invariant distribution.
+
+The same construction covers the \emph{endogenous} general-$\F$ chain
+by taking $g(x)=\F(x,\sigma_{\mathrm{real}}(x))$ whenever this
+equilibrium-induced drift is continuous.  Existence then holds with no
+slope restriction.  What does not follow automatically is uniqueness:
+that conclusion requires the displayed contraction bound.  At the
+affine example economies with a positive stage slope the closed-loop factor is exactly
+$(1-\delta)+\delta\cdot\tfrac98=1+\delta/8>1$ --- the slope $\tfrac98$ of the
+sanction rule exceeds one precisely because the state--sanction cross-partial
+dominates the sender's concavity, the same
+$\tfrac{27}{20}$-vs-$\tfrac65$ frontier that closes the
+distributional-equilibrium route.  The contraction route is therefore
+provably unavailable there, while existence remains.  Economically this
+is the appropriate boundary: an equilibrium chain with two invariant
+basins need not have a unique globally attracting law. What is
+established is only that this sufficient route to such a law is
+unavailable. Neither multiplicity of stationary laws nor metastability
+is claimed, and a blocked sufficient condition is not evidence for
+either.
+
+\subsection{Construction of the shocked (purified) existence (figure)}
+
+\begin{center}
+\centering
+\resizebox{0.70\textwidth}{!}{%
+\begin{tikzpicture}[
+  >={Stealth[length=2.2mm]},
+  every node/.style={font=\scriptsize},
+  box/.style={draw, rounded corners=2pt, align=center, inner sep=3pt,
+              text width=33mm, minimum height=8mm},
+  prim/.style={box, fill=black!7, draw=black!45},
+  der/.style={box, fill=green!12, draw=green!50!black},
+  ok/.style={box, fill=teal!14, draw=teal!65},
+  thmok/.style={box, fill=orange!22, draw=orange!80!black, very thick},
+  todo/.style={box, fill=red!7, draw=red!60, dashed, text width=33mm},
+  edge/.style={->, thick, draw=black!72},
+  wk/.style={->, thick, dashed, draw=red!65},
+]
+% main construction chain
+\node[prim]  (K)  at (0,9.2)   {\textbf{He--Sun shock kernel} $\kappa$\\ atomless probability measure on the transition noise $\eta$};
+\node[der]   (SM) at (0,7.0)   {\textbf{smear} operator\\ $V\mapsto\!\int V(\mathrm{clip}(\cdot+\eta))\,\kappa(\mathrm d\eta)$\\[1pt] {\scriptsize nonexpansive $\checkmark$ (from $\int\kappa=1$)}};
+\node[ok]    (BS) at (-3.3,4.7) {Shocked \textbf{Sender} Bellman\\ $\beta_S$-contraction $\checkmark$\\[1pt] $\Rightarrow \Vs^{\mathrm{shock}}$ (Banach)};
+\node[ok]    (BT) at (3.3,4.7)  {Shocked \textbf{Target} Bellman\\ $\beta_T$-contraction $\checkmark$\\[1pt] $\Rightarrow \Vt^{\mathrm{dyn,shock}}$, Bellman eq $\checkmark$};
+\node[ok]    (EQ) at (0,2.6)    {\textbf{Shocked equilibrium object}\\ {\scriptsize both shocked Bellman fixed-point eqs}};
+\node[thmok] (CO) at (-3.3,0.4) {\textbf{Corner} existence $\checkmark$\\ {\scriptsize from the kernel}};
+\node[thmok] (IN) at (3.3,0.4)  {\textbf{Interior} existence $\checkmark$\\ {\scriptsize state-varying leader; slaved op contraction $\beta_S+L_{U_S\!,a}L_\alpha<1$}};
+% lead_lip reduction column (right)
+\node[der]   (SL) at (7.0,7.0)  {\textbf{smear\_lipschitz} $\checkmark$\\ {\scriptsize uniform-kernel moving-average bound}};
+\node[der]   (AML) at (7.0,4.4) {\textbf{argmax-Lipschitz core} $\checkmark$\\ {\scriptsize strong concavity $+$ action-Lip.\ objective-diff $\Rightarrow$ Lipschitz argmax}};
+\node[der]   (LL) at (7.0,2.2)  {\textbf{lead\_lip} $\checkmark$\\ {\scriptsize argmax-core, \emph{reduced to} the Stackelberg coupling}};
+\node[todo]  (SK) at (7.0,-0.4) {\textbf{Reusable-theorem inputs}\\ {\scriptsize general $h$: three inputs; abstract $h=1$: leader strong concavity $+$ coupling; exact $P_3$, $h=1$: bypassed}};
+% edges
+\draw[edge] (K) -- (SM);
+\draw[edge] (SM) -- (BS);  \draw[edge] (SM) -- (BT);
+\draw[edge] (BS) -- (EQ);  \draw[edge] (BT) -- (EQ);
+\draw[edge] (EQ) -- (CO);  \draw[edge] (EQ) -- (IN);
+\draw[edge] (K.west) to[out=180,in=160] node[pos=0.5,left=0pt,font=\tiny,align=center]{nonexp.\\only} (CO.west);
+\draw[edge] (SM) -- (SL);
+\draw[edge] (SL) -- (AML);
+\draw[edge] (AML) -- (LL);
+\draw[edge] (LL) -- (IN) node[midway,above,font=\tiny]{discharged};
+\draw[wk]   (SK) -- (LL);
+\end{tikzpicture}}
+\captionof{figure}{\textbf{Construction of the shocked (purified) existence.}
+Solid/colored boxes are established results
+($\checkmark$); the dashed red box records the reusable general interior
+theorem's remaining analytic hypotheses. From the
+He--Sun atomless kernel $\kappa$ (grey) the smoothing operator $\mathrm{smear}$
+is derived (green), with its nonexpansiveness proved from $\int\kappa=1$. That
+nonexpansiveness alone makes the shocked sender and target Bellman operators
+$\beta_S$- and $\beta_T$-contractions (teal), whose Banach fixed points are the
+shocked value functions and satisfy the two shocked Bellman equations; these
+assemble the shocked-equilibrium object. Two existence theorems (orange) follow:
+the \emph{corner} equilibrium directly from the kernel, and the \emph{interior}
+(state-varying-leader) equilibrium from the slaved-operator contraction under the
+condition $\beta_S+L_{U_S\!,a}L_\alpha<1$. The interior case's input
+$\mathrm{lead\_lip}$ (leader argmax Lipschitz in $\Vs$) is the argmax-Lipschitz
+core applied to the leader objective \emph{difference}; the $\sigma$-Lipschitz
+and $\Vt^{\mathrm{dyn}}$-Lipschitz bounds (from $\mathrm{smear\_lipschitz}$,
+discharged from the uniform kernel by the moving-average window-shift estimate)
+bound the \emph{magnitude} of that difference, but its variation in the leader's
+own action is the consumed \emph{Stackelberg-coupling} estimate (part of the
+dashed-red package), so $\mathrm{lead\_lip}$ holds given that estimate and
+composite strong concavity.  Joint follower continuity and strong concavity also
+derive the canonical leader selector, including its feasibility, continuity,
+and pointwise optimality; at $h=1$, exact affine smoothing supplies the former
+condition for every bounded-continuous continuation. Separately, the exact
+$P_3$, $h=1$ construction solves the two-spread Bellman system and verifies the
+equilibrium directly, bypassing the dashed-red inputs without claiming them as
+general lemmas. The coupling is
+genuine: because the sender's response $\sigma(x,a)$ enters the leader objective
+and depends on the leader's own action $a$, the action-direction estimate is not
+supplied by the shock alone, and a reference sweep confirms it is not derivable
+from a smoother kernel (kernel smoothing regularizes the state direction only;
+the feedback-Stackelberg literature also assumes the analogous leader-side
+regularity). It is isolated as one estimate, exactly as the deterministic
+development isolates strong concavity. The deterministic model is the
+$\kappa\to\delta_0$ limit, where $\mathrm{smear}=\mathrm{id}$ and the interior
+route is blocked.}
+\label{fig:shock-construction}
+\end{center}
+\clearpage

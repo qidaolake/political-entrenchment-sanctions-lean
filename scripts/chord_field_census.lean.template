@@ -1,0 +1,261 @@
+-- scripts/chord_field_census.lean.template -- the compiler-derived field census
+-- of the chord headline rows (round BB, 2026-09-28; doc 110 item R5 step 1).
+--
+-- WHAT IT ANSWERS. For each theorem named on a `#chordFieldCensus` line: which
+-- own fields of the four chord structures `ChordEconomy`, `ChordEconomyTwoSided`
+-- (split off by renovation item BJ3.1), `ChordEconomyRelief` and
+-- `ChordEconomyCs`, and of the inherited `AbstractGame.Params`, does the
+-- theorem, statement and proof together, actually reach? The field lists and
+-- their counts are read from the compiled structures (the `FC-STRUCT` records),
+-- not fixed here. It is the step-1 census that doc 110 R5 asks for before any
+-- tier split of the chord economy, and it replaces the text-closure upper
+-- bounds of the R5 verifier (a comment-stripped name scan) with what the
+-- elaborated terms contain.
+--
+-- HOW. `scripts/Chord-Field-Census.ps1` splices this file after its own
+-- `import` and `open` lines, as `Generate-HeadlineSnapshot.ps1` does with
+-- `contract_probe.lean.template`. The walk is the snapshot generator's
+-- `snapClosure` (Generate-HeadlineSnapshot.ps1:435-450) with five changes:
+--   1. it is breadth-first and remembers who reached what, so every field read
+--      comes with a shortest citation path from the theorem;
+--   2. it follows a constant when the MODULE declaring it belongs to the
+--      `Sanctions` library, not when its NAME starts with `Sanctions`: a
+--      `private` declaration is named `_private.Sanctions.<module>.0.<name>`,
+--      which the name-prefix test silently drops (26 files here carry them);
+--   3. it collects raw `Expr.proj` nodes as well as projection-function
+--      constants (`getUsedConstants` sees only `.const` nodes, so a projection
+--      left by `dsimp`/unfolding in a proof term would otherwise be missed;
+--      the R5 verifier flagged this);
+--   4. it records constructor / eliminator uses of the censused structures
+--      (`mk`, `rec`, `casesOn`, ...). An ELIMINATOR reads fields positionally,
+--      invisible to a projection census, so a theorem carrying one has a
+--      census that is a LOWER bound, and the report says so;
+--   5. it records every reader of each field, and marks a field COPY-ONLY for
+--      a theorem when every constant reading it applies a censused
+--      CONSTRUCTOR: typically a structure update `{ p with β_S := … }`, whose
+--      elaborated `Params.mk` mentions every field it does not replace. Such a
+--      read moves the field into a new instance without using it; the report
+--      lists these separately rather than dropping them, since the closure
+--      cannot see whether the copy's field is later used.
+--
+-- TWO READINGS, both reported:
+--   * DIRECT: projection functions are recorded as field reads and not
+--     expanded. A field is DIRECT when some constant in the closure mentions
+--     its projection (or a raw `Expr.proj` at its index) in its type or value.
+--   * CLOSED: projection functions are expanded through their TYPES too, so a
+--     field whose own statement mentions another field pulls that one in
+--     (`hUS_crossHi` mentions `rhi` and `U_S`). CLOSED is the smallest
+--     field set closed under the structures' own dependency order, i.e. what a
+--     tier structure holding the theorem would have to contain (subject to the
+--     constructor-type caveat below).
+--
+-- WHAT IT DOES NOT ANSWER (scope, stated once):
+--   * It is a constant-level census, not a data-flow one. A field counts as
+--     read when any constant in the closure mentions its projection, whatever
+--     object it is applied to. For the chord fields the only objects are the
+--     theorem's own economies (a theorem over two, such as
+--     `ChordEconomyCs.exists_defiance_equilibrium_mono_βT`, is censused as
+--     their union). For the Params fields it over-approximates wherever a
+--     lemma over an arbitrary `Params` is applied to a derived one.
+--   * It is exact for the proofs as they stand, not minimal over all proofs: a
+--     lemma in the closure that proves more than the theorem needs still
+--     contributes every field its own proof reads.
+--   * It reads nothing outside the `Sanctions` library (mathlib and core cannot
+--     mention these structures) and nothing a proof term does not contain.
+--   * It scans an inductive's TYPE, never its constructors' field types. A
+--     non-censused structure or inductive over the economy that names a class
+--     field only in a constructor's field type is therefore missed, and the
+--     CLOSED reading is then not what a tier structure would have to contain.
+--     The template neither checks nor reports this (no FC- diagnostic scans
+--     constructors). A review probe on 2026-09-28 found no such case on the
+--     14 chord rows of that date; that probe is not part of this template.
+open Lean Elab Command Meta
+
+namespace ChordFieldCensus
+
+/-- The structures whose fields are censused: `Params` and the chord hierarchy
+`ChordEconomy` < `ChordEconomyTwoSided` < `ChordEconomyRelief` <
+`ChordEconomyCs` (each extends the one before; `ChordEconomyTwoSided` since
+renovation item BJ3.1). A structure left out here is invisible: its projections
+are walked as ordinary constants and its fields never recorded. -/
+def censusStructs : List Name :=
+  [`Sanctions.AbstractGame.Params,
+   `Sanctions.Examples.ChordEconomy,
+   `Sanctions.Examples.ChordEconomyTwoSided,
+   `Sanctions.Examples.ChordEconomyRelief,
+   `Sanctions.Examples.ChordEconomyCs]
+
+/-- A constant is followed when the module that declares it belongs to the
+`Sanctions` library (private declarations included). -/
+def isProjectConst (env : Environment) (c : Name) : Bool :=
+  match env.getModuleIdxFor? c with
+  | some idx =>
+    match env.allImportedModuleNames[idx.toNat]? with
+    | some m => (`Sanctions).isPrefixOf m
+    | none => false
+  | none => false
+
+/-- The field named by projection index `i` of a censused structure `S`,
+as the fully qualified projection name `S.field`. -/
+def projField? (env : Environment) (S : Name) (i : Nat) : Option Name := do
+  guard (censusStructs.contains S)
+  let f ← (getStructureFields env S)[i]?
+  return S ++ f
+
+/-- If `c` is the projection function of a field of a censused structure, that
+field (as `S.field`). Parent projections (`toParams`, `toChordEconomy`,
+`toChordEconomyTwoSided`, `toChordEconomyRelief`) are fields too and are
+reported separately (`FC-SUBOBJ`). -/
+def projFnField? (env : Environment) (c : Name) : Option Name := do
+  let info ← env.getProjectionFnInfo? c
+  let S ← env.getProjectionStructureName? c
+  projField? env S info.i
+
+/-- A use of a censused structure that reads fields positionally rather than by
+projection: its constructor (and the lemmas generated under it) or one of its
+eliminators. -/
+def isBulkUse (c : Name) : Bool :=
+  censusStructs.any fun S =>
+    (S ++ `mk).isPrefixOf c || c == S ++ `rec || c == S ++ `casesOn ||
+      c == S ++ `recOn || c == S ++ `noConfusion || c == S ++ `noConfusionType
+
+/-- The constants and the censused raw projections occurring in `e`. -/
+def scan (env : Environment) (e : Expr) : MetaM (Array Name × Array Name) := do
+  let cs ← IO.mkRef (#[] : Array Name)
+  let ps ← IO.mkRef (#[] : Array Name)
+  e.forEachWhere (fun e => e.isConst || e.isProj) fun e => do
+    match e with
+    | .const c _ => cs.modify (·.push c)
+    | .proj S i _ =>
+      if let some f := projField? env S i then ps.modify (·.push f)
+    | _ => pure ()
+  return (← cs.get, ← ps.get)
+
+/-- Is `c` the constructor of a censused structure (a structure-building use)? -/
+def isCtor (c : Name) : Bool :=
+  censusStructs.any fun S => c == S ++ `mk
+
+/-- The outcome of one walk. -/
+structure Walk where
+  /-- Project constants visited. -/
+  closure : Nat
+  /-- Field → the first constant (breadth-first) whose type or value reads it. -/
+  reader : Std.HashMap Name Name := {}
+  /-- Field → every constant whose type or value reads it, in visiting order. -/
+  readers : Std.HashMap Name (Array Name) := {}
+  /-- Constants whose value applies a censused constructor: they build a new
+  structure instance, typically by a structure update `{ p with … }` that
+  copies every field it does not replace. -/
+  builders : NameSet := {}
+  /-- Constant → the constant through which the walk first reached it. -/
+  parent : Std.HashMap Name Name := {}
+  /-- Fields read through a projection-function constant somewhere. -/
+  viaFn : NameSet := {}
+  /-- Fields read through a raw `Expr.proj` somewhere. -/
+  viaProj : NameSet := {}
+  /-- Constructor / eliminator uses of a censused structure. -/
+  bulk : Array Name := #[]
+
+/-- Breadth-first closure from `root` over project constants, through types
+and values. Projection functions of censused structures record a field read;
+with `expandProj` they are also expanded, through their type only. -/
+def walk (env : Environment) (root : Name) (expandProj : Bool) : MetaM Walk := do
+  let mut seen : NameSet := ({} : NameSet).insert root
+  let mut queue : Array Name := #[root]
+  let mut head := 0
+  let mut parent : Std.HashMap Name Name := {}
+  let mut reader : Std.HashMap Name Name := {}
+  let mut readers : Std.HashMap Name (Array Name) := {}
+  let mut builders : NameSet := {}
+  let mut viaFn : NameSet := {}
+  let mut viaProj : NameSet := {}
+  let mut bulk : Array Name := #[]
+  while h : head < queue.size do
+    let n := queue[head]
+    head := head + 1
+    if isBulkUse n then bulk := bulk.push n
+    let isProjFn := (projFnField? env n).isSome
+    if isProjFn && !expandProj then continue
+    let some ci := env.find? n | continue
+    let (cs1, ps1) ← scan env ci.type
+    let (cs2, ps2) ← match ci.value?, isProjFn with
+      | some v, false => scan env v
+      | _, _ => pure (#[], #[])
+    if cs2.any isCtor then builders := builders.insert n
+    -- The fields this constant reads, each once.
+    let mut here : NameSet := {}
+    for f in ps1 ++ ps2 do
+      viaProj := viaProj.insert f
+      here := here.insert f
+    for c in cs1 ++ cs2 do
+      if let some f := projFnField? env c then
+        viaFn := viaFn.insert f
+        here := here.insert f
+      if isProjectConst env c && !seen.contains c then
+        seen := seen.insert c
+        parent := parent.insert c n
+        queue := queue.push c
+    for f in here.toList do
+      unless reader.contains f do reader := reader.insert f n
+      readers := readers.insert f ((readers.getD f #[]).push n)
+  return { closure := queue.size, reader, readers, builders, parent, viaFn, viaProj, bulk }
+
+/-- The citation path `root > ... > n`, following first-reach parents. -/
+partial def pathTo (parent : Std.HashMap Name Name) (n : Name) : List Name :=
+  match parent[n]? with
+  | some p => pathTo parent p ++ [n]
+  | none => [n]
+
+/-- Sort names by their string form. -/
+def sortNames (xs : Array Name) : Array Name :=
+  xs.qsort (fun a b => a.toString < b.toString)
+
+end ChordFieldCensus
+
+open ChordFieldCensus in
+/-- `#chordFieldCensus thm₁ thm₂ …` prints, per theorem, the censused fields its
+closure reaches (records `FC-…`, parsed by `scripts/Chord-Field-Census.ps1`). -/
+elab "#chordFieldCensus " ids:ident+ : command => do
+  let env ← getEnv
+  -- The field lists, in declaration order: own fields, then parent projections.
+  for S in censusStructs do
+    let all := getStructureFields env S
+    let own := all.filter fun f => (isSubobjectField? env S f).isNone
+    let subs := all.filter fun f => (isSubobjectField? env S f).isSome
+    logInfo m!"FC-STRUCT {S} {own.size} :: {" ".intercalate (own.toList.map toString)}\n\
+      FC-SUBOBJ {S} :: {" ".intercalate (subs.toList.map toString)}"
+  for id in ids do
+    let n ← liftCoreM <| realizeGlobalConstNoOverload id
+    let (d, c) ← liftTermElabM do return (← walk env n false, ← walk env n true)
+    let mut lines : Array String := #[s!"FC-BEGIN {n}",
+      s!"FC-CLOSURE {d.closure} {c.closure}"]
+    let direct := sortNames (d.reader.toArray.map (·.1))
+    let closed := sortNames (c.reader.toArray.map (·.1))
+    lines := lines.push s!"FC-DIRECT {" ".intercalate (direct.toList.map toString)}"
+    lines := lines.push s!"FC-CLOSED {" ".intercalate (closed.toList.map toString)}"
+    -- Fields reached only through raw `Expr.proj`, never a projection constant.
+    let projOnly := direct.filter fun f => d.viaProj.contains f && !d.viaFn.contains f
+    lines := lines.push s!"FC-PROJONLY {" ".intercalate (projOnly.toList.map toString)}"
+    let bulk := sortNames (d.bulk ++ c.bulk) |>.toList.eraseDups
+    lines := lines.push s!"FC-BULK {" ".intercalate (bulk.map toString)}"
+    -- Fields every one of whose readers builds a new structure instance: read,
+    -- as far as the closure shows, only to be copied into it.
+    let copyOnly := direct.filter fun f =>
+      (d.readers.getD f #[]).all fun r => d.builders.contains r
+    lines := lines.push s!"FC-COPYONLY {" ".intercalate (copyOnly.toList.map toString)}"
+    -- One shortest citation path per DIRECT field, and its reader count with
+    -- the first few readers.
+    for f in direct do
+      if let some r := d.reader[f]? then
+        let p := pathTo d.parent r
+        lines := lines.push s!"FC-PATH {f} :: {" > ".intercalate (p.map toString)}"
+      let rs := d.readers.getD f #[]
+      lines := lines.push
+        s!"FC-READERS {f} :: {rs.size} :: {" ".intercalate ((rs.toList.take 6).map toString)}"
+    -- For CLOSED-only fields, the field whose type pulls it in.
+    for f in closed do
+      unless d.reader.contains f do
+        if let some r := c.reader[f]? then
+          lines := lines.push s!"FC-PULLED {f} :: {r}"
+    lines := lines.push s!"FC-END {n}"
+    logInfo m!"{"\n".intercalate lines.toList}"

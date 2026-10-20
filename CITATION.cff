@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite the software archive and the accompanying paper."
+title: "Lean 4 companion to Political Entrenchment and the Persistence of Economic Sanctions"
+type: software
+authors:
+  - family-names: Gong
+    given-names: Xiaofeng
+    email: xiaofeng.gong@uconn.edu
+version: 1.30.0
+date-released: 2026-10-19
+license: MIT
+repository-code: "https://github.com/qidaolake/political-entrenchment-sanctions-lean"
+abstract: >-
+  Lean 4 formalization accompanying Political Entrenchment and the Persistence
+  of Economic Sanctions (titled Entrenchment and the Persistence of Sanctions
+  until 2026-10-19, Government Horizons and the Persistence of Sanctions until
+  2026-10-11, and Why Do Sanctions Persist? A Dynamic Political-Economy Model
+  with Forward-Looking Governments until 2026-09-21). The MIT License covers
+  the Lean sources, scripts and documentation; the paper sources are not
+  covered by it.
+keywords:
+  - Lean 4
+  - economic sanctions
+  - political economy
+  - dynamic games
+  - formal verification
+references:
+  - type: article
+    title: "Political Entrenchment and the Persistence of Economic Sanctions"
+    authors:
+      - family-names: Gong
+        given-names: Xiaofeng
+      - family-names: Zhao
+        given-names: Yuechuan
+      - family-names: Zhong
+        given-names: Chunping
+    year: 2026
+    status: submitted

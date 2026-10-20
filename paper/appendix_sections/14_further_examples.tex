@@ -1,0 +1,351 @@
+\section{Further example economies}
+\label{app:further-examples}
+
+This section holds example economies that the main text does not need: the roster of
+example economies, the payoff bookkeeping of the mechanism-active $P_3$ economy, the
+non-compliance core outside the class, interior compliance at a positive sanction, and
+national welfare at the dual-basin economy. The auxiliary polynomial economy
+of the roster --- a deliberately simple economy used to test the machinery of
+Bellman-invariant sets of value functions and of the joint operator (non-emptiness and invariance of the sets,
+dynamic argmax uniqueness, a decoupled Schur contraction) --- is \emph{not} an
+example economy at which \Cref{ass:sender,ass:target,ass:concavity} hold jointly: its
+sender payoff is linear in the sanction and fails \Cref{ass:concavity}, and
+no headline theorem is applied to it. Logical non-vacuity of the full
+headline package is supplied by the complete certificate economies of the
+roster, including the Eaton--Engers and interest-group constructions. Its
+parameter vector and verified invariant-set checks are not reproduced here.
+
+\subsection{Roster of example economies}
+
+\Cref{tab:witness-roster} separates logical non-vacuity,
+unconditional applications of the headline results and mechanism displays.
+The two conditional existence diagnostics that used to close it --- the
+low-$\delta$ purified window and the coupled Schur condition, both at the $P_3$
+economy with $\delta=\tfrac1{100}$ --- deliver no equilibrium and carry no
+result of this paper; their rows are kept in the notes and their
+declarations are indexed in \Cref{app:formalization}.
+
+\begingroup
+\captionof{table}{Roster of example economies. The reported fractions
+evaluate certified conditions at illustrative economies and are not
+calibrated empirical magnitudes.}
+\label{tab:witness-roster}
+\footnotesize
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\begin{longtable}{@{}
+  >{\raggedright\arraybackslash}p{0.13\linewidth}
+  >{\raggedright\arraybackslash}p{0.22\linewidth}
+  >{\raggedright\arraybackslash}p{0.19\linewidth}
+  >{\raggedright\arraybackslash}p{0.20\linewidth}
+  >{\raggedright\arraybackslash}p{0.12\linewidth}
+  @{}}
+\toprule
+\textbf{Economy} & \textbf{What it certifies} & \textbf{Coupling \& policies} & \textbf{Caveat} & \textbf{Where}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Economy} & \textbf{What it certifies} & \textbf{Coupling \& policies} & \textbf{Caveat} & \textbf{Where}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Auxiliary polynomial economy
+& Invariant set of value functions, unique dynamic argmaxes, and a Schur-contractive joint operator.
+& Decoupled; $\alpha\equiv1$ and $\sigma_{\rm dyn}\equiv1$ on the invariant set.
+& Linear sender payoff violates A3; no headline-theorem application.
+& \Cref{app:witness}\\
+\midrule
+Eaton--Engers certificate
+& Two-sided mechanism-active full-package application: both values are strictly increasing, and continuation reverses each player's named stage ranking over sanctions.
+& Full local invariant-set certificate; unconditional persistence, ordering and shock conclusions.
+& Decoupled cross-value rows; affine transition; corner policies and corner-pinned realized sanctions.
+& \Cref{sec:existence:nonvacuity}\\
+\midrule
+Quadratic bump
+& Same certificate at a non-affine transition.
+& Decoupled; corner policies.
+& Realized sanctions corner-pinned.
+& \Cref{sec:results}\\
+\midrule
+Integrated nonlinear interior
+& One exact nonlinear equilibrium with positive discount factors, interior target and sender actions, strict target sanction preference, and the full persistence floor.
+& target policy $\alpha\equiv1/2$; sender sanction rule $(x+1)/2$; quadratic-bump transition.
+& Both equilibrium values are zero, so neither forward-looking incentive changes behavior; logical integration, not a substantive calibration.
+& \Cref{sec:existence:nonvacuity}\\
+\midrule
+Integrated nonlinear target-active
+& The same nonlinear interior geometry with $V_T(x)=x$; a stage-profitable compliance deviation is strictly rejected by the full target Bellman objective, while the complete persistence floor still holds.
+& target policy $\alpha\equiv1/2$; sender sanction rule $(x+1)/2$; quadratic-bump transition.
+& $V_S=0$ and cross-value coupling remains absent; only the target's forward-looking incentive changes behavior in this construction.
+& \Cref{sec:existence:nonvacuity}\\
+\midrule
+Low-basin (dovish)
+& Mirror low-basin theorem non-vacuous; both invariant directional basins exhibited.
+& Decoupled; non-affine transition.
+& No interior policy display.
+& \Cref{sec:mechanism:bistability}\\
+\midrule
+Non-monotone (B2)
+& Mechanism-active full-package application: positive discounting, nonconstant values, exact nonzero foresight premiums, an interior realized sender sanction, and the full persistence/minimum-drift package; single crossing fails but interval dominance holds.
+& At the pivot, $(a^E,s^E)=(0,7/8)$ while the myopic equilibrium has $(a^M,s^M)=(1,5/14)$.
+& Cross-value rows are decoupled and the transition is affine; no interior target policy or nonlinear transition in this application.
+& \Cref{sec:existence:nonvacuity,rem:ido}\\
+\midrule
+Interest-group microfounded
+& Stage assumptions derived from interest-group primitives.
+& Decoupled; corner policies.
+& Region~(R); strictly interior basin pivot.
+& \Cref{app:fourgroup}\\
+\midrule
+Derived-basin example
+& Inhabits the derived-basin route via its constructor.
+& Decoupled; target stage payoff flips at interior pivot $2/5$.
+& Kinked sender payoff essential (smooth impossible).
+& \Cref{sec:flip}\\
+\midrule
+Mechanism-active $P_3$
+& At $h=1$, an explicit unconditional equilibrium has nonconstant values, a monotone sanction rule, and a strict foresight premium at the top state.
+& State-varying leader and sender policies; affine transition; purified box kernel.
+& Every $h=1$ equilibrium violates the top-state dynamic floor, so the specialization cannot furnish the three-goals/pathwise-ordering package.
+& \Cref{sec:existence:nonvacuity}\\
+\midrule
+Dual-basin selection
+& Both invariant directional basins certified at one economy and the same equilibrium; no limit point is named.
+& target row exactly decoupled at the entrenchment-condition boundary; leader policy derived at the corner.
+& sender argmax interior only between basins.
+& \Cref{sec:mechanism:bistability}\\
+\midrule
+Quartic economy in the class
+& The class inhabited outside the quadratic--linear family: the four cases at $\beta_T=1/2$, the relief equilibrium at $\beta_T=1/30$.
+& sender payoff quartic in the sanction, target payoff quadratic in each coordinate; non-affine transition; myopic best response defined as an argmax.
+& An existence certificate; no genericity or magnitude claim.
+& \Cref{app:witness:quartic}\\
+\end{longtable}
+\endgroup
+
+\subsection[The P3 example: payoff and cross-partial bookkeeping]
+{The $P_3$ example: payoff and cross-partial bookkeeping}
+
+\[
+  U_S=a-\tfrac35 s^2-s\big(\tfrac1{10}+\tfrac12 a-\tfrac{27}{20}x\big)+\tfrac25 x,
+  \qquad
+  U_T=-a^2+2xa-a-s\big(\tfrac12-\tfrac12 a-x\big),
+\]
+keeping $\delta=\tfrac15,\ \beta_S=\tfrac12,\ \beta_T=\tfrac9{10}$ and the affine
+transition. The stronger curvature $-\tfrac35 s^2$ makes the sender's myopic best response
+$\sigM=\mathrm{clip}\big(\tfrac98 x-\tfrac1{12}-\tfrac5{12}a\big)$ \emph{interior}
+on the lower basin; the target's state--compliance term $+2xa$ makes compliance interior and
+reluctant; the sender's stake $+\tfrac25 x$ keeps $\Vs$ state-dependent independently of the
+sanction. None of the four changes a structural cross-partial --- the
+state--sanction cross-partial signs $\partial^2U_S/\partial s\partial x=\tfrac{27}{20}>0$,
+$\partial^2U_T/\partial s\partial x=1>0$, the sign of the compliance--sanction cross term
+$\partial^2U_S/\partial s\partial a=-\tfrac12\le0$, and the $s$-concavity all
+carry over, and the conditional three-goals
+conclusion carries over verbatim.
+
+
+\paragraph{What the non-affine examples certify, and the transition-free
+ordering goal.}
+\label{app:witness:grading}
+The certified corner recursion is $x_{t+1}=\F(x_t,1)$, so only the corner
+section $y\mapsto\F(y,1)$ ever executes along the certified path. The
+quadratic-bump transition's bump carries a factor $(1-s)$ that vanishes
+there (\path{quadBumpF_corner_isAffine}): that example exercises the
+incentive layer under a non-affine transition while its realized path is
+the affine one. The low-basin mirror and the wobble economy bend the corner
+section itself (\path{quadBumpLowF_corner_not_affine},
+\path{wobbleEconF10_corner_not_affine}). All three transitions are refuted
+against the affine law at \emph{every} weight, not only at the economy's
+own rate (\path{quadBumpF_ne_affineF}, \path{quadBumpLowF_ne_affineF},
+\path{ratchetF_ne_affineF}); the non-affine member of the family under the lifting condition is
+refuted the same way (\path{quadDiagF_ne_affineF}). Separately, the
+certificate route's ordering goal --- the statewise ordering of the
+forward-looking sanction above the myopic one --- names no
+transition and never needed the affine law: \path{goal2_dominance_generalF}
+reaches it with the transition entering only as a lower bound
+$d_{\mathrm{lo}}$ on its sanction slope on the target leg and a range-restricted upper bound
+$d$ on that slope on the sender leg, at the cost of one sign hypothesis $0\le g_T$
+that the affine route does not need because there the transition step is an
+equality. The two rates cannot be collapsed into one: a two-sided bound on the sanction slope at a
+single rate, with the diagonal condition, pins $\F(x,s)=(1-d)x+ds$. The
+affine law is the instance $d_{\mathrm{lo}}=d=\delta$ of
+\path{goal2_dominance_generalF}, applied directly at the affine examples (the
+separate affine wrapper was removed as redundant in renovation round BG-2).
+
+\paragraph{Open-set robustness at the affine member of the family under the lifting condition.}
+\label{app:witness:openbox}
+The quadratic--linear family under the lifting condition is inhabited on a box of coefficients
+(a statement in the family's coefficients, not in the class's rates; doc 104,
+sign-off M6). Let $B$
+be the set of coefficient vectors $(q,u_0,k,r,w,\ell,c,n,v)$ with each
+coordinate within $1/20$ of the affine member's $(3,1,3,1/2,1,1,4,0,30)$,
+except that the target's state--sanction cross term keeps its sign domain, $n\in[0,1/20]$: $B$
+is a neighborhood of the member relative to $n\ge0$, not a Euclidean ball
+around it, and it contains the full-dimensional open sub-box with $n>0$.
+The transition is the affine law at rate $1/2$, the discounts are $1/2$ and
+$\sigma_V=1$ throughout, so this is a statement about payoff coefficients,
+not an open-set statement in function space. Every point of $B$ is an
+economy in the class, and interiority, the lifting condition, the one-period ranking and the strong
+entrenchment condition hold there as well: at the worst corners, interiority reads
+$u_0+r+(r+w)/3\le2.27<2.95\le q$, the lifting condition the same against $k$, the
+one-period ranking $\ell q\le3.21<3.70\le u_0(c-n)$, the strong entrenchment condition
+$c\le4.05<9.98\le v/3$, the concavity condition $1/8<q$, and the Riccati closure
+$1/8+(r+1/8)^2/(q-1/8)\le1$. On all of $B$ the increasing-differences condition is vacuous
+(the transition is flat), both forward-looking incentives change behavior at
+the composed equilibrium, in the target-only case the state converges to $u_0/(q-r)$,
+and $L_{\mathrm{loop}}=1/2+2(r+1/8)/(q-1/8)<1$, so the closed loop is a
+contraction with one globally stable steady state. The sanction-section
+modulus is zero, so every point of $B$ is also an economy in the enriched
+subclass, on which $M_{\mathrm{tot}}=q$ and the forward-looking relief condition \textup{(RL)} follows from
+$2\ell\max\{q,k\}\le1281/200<2301/200\le k(c-n)$ at the worst corners;
+hence in the sender-only case the state converges to zero and all four cases of
+\Cref{thm:four-cells} are ordered at every point of $B$.
+
+\subsection{The non-compliance core outside the class}
+\label{app:witness:outside-chord}
+
+\begin{proposition}[The non-compliance core outside the class]
+\label{prop:core-outside-chord}
+There is an economy whose target payoff is that of no economy in the class, with an
+equilibrium in $\mathcal E$ that has full non-compliance at every state and a nondecreasing
+sanction rule, at which every equilibrium in $\mathcal E$ with a nondecreasing sanction
+rule has full non-compliance at every state.
+\end{proposition}
+
+The economy has the transition $\F(x,s)=(x+s)/2$, both discount factors $\tfrac12$, the
+quadratic--linear sender payoff $\Us=x-\tfrac32s^2+(1-3a)s$ without a state--sanction cross term, and the
+target payoff $\Ut=3x-s-C(a)$ with compliance cost $C(a)=a+10a(1-a)$. The cost is at
+least $a$ but not monotone, $C(3/4)=21/8>C(1)=1$, so the class's requirement that
+every compliance increment cost at least $\ell_{\mathrm{lo}}>0$ fails and no economy
+in the class has this target payoff (\path{oc_not_chord}). The equilibrium has
+$\Vs=4x/3+16/27$, $\Vt=4x$, full non-compliance and the response $\max\{0,4/9-a\}$; the
+target's objective is $4x-C(a)$ whatever the sanction, so full non-compliance is its unique
+optimum (\path{ocEquilibrium}, \path{oc_argmax_unique}). The conditions of the non-compliance
+core (\Cref{app:proofs:threshold}) hold with $g_{\mathrm{lo}}=d_{\mathrm{lo}}=\tfrac12$,
+$v=3$ and $c=\ell=1$, and the strong entrenchment condition binds:
+$\beta_Td_{\mathrm{lo}}v/(1-\beta_Tg_{\mathrm{lo}})=1=c$ (\path{oc_core_policy_zero},
+\path{defiance_core_outside_chord_class}). The economy is an existence certificate: the
+core's extra generality over the class is not empty, and nothing is said about how
+common such economies are. The transition is affine in this example; the core it
+instantiates is general in $\F$, and the generality exhibited is in the target's payoff.
+
+\subsection{Interior compliance at a positive sanction}
+\label{app:witness:interior}
+
+\begin{proposition}[A strict interior optimum in the class]
+\label{prop:interior-witness}
+There is an economy in the class satisfying interiority, the
+myopic relief condition, the lifting condition and compliance neutrality, with an
+equilibrium in $\mathcal E$ in which the target's compliance $1/14$ is its unique optimum at every
+state, its objective falls below that optimum by at least $(a-1/14)^2/2$ at every
+compliance $a$, and the sanction is $47/126>0$ at every state.
+\end{proposition}
+
+The economy is the affine member of the family under the lifting condition of \Cref{app:witness:openbox} with $r$,
+$c$, $v$ and $\beta_T$ set to $0$, $5/2$, $10$ and $1/4$, and the target's payoff
+replaced by
+$\Ut=10x-\tfrac52s-a-\tfrac12a^2$, whose compliance cost is quadratic. Its compliance
+rates lie between $\ell_{\mathrm{lo}}=1$ and $\ell_{\mathrm{hi}}=2$, so the economy is in
+the class but outside the family, whose cost is linear (\path{qcChord},
+\path{qc_interior}, \path{qc_stageRelief}, \path{qc_placable}, \path{qc_neutral}). The
+equilibrium has $\alpha\equiv1/14$, $\Vs=4x/3+2209/5292$ and $\Vt=80x/7-557/882$
+(\path{qcEquilibrium}, \path{qc_rule}). The growth bound is \path{qc_growth}, so no
+first-order condition or grid is used (\path{qc_argmax_unique},
+\path{strict_interior_equilibrium_in_chord_class}). On the family the cost is linear
+and interior compliance is an equilibrium only through indifference; the curvature of
+the cost is what makes the interior optimum strict. The economy is an existence
+certificate, with an affine transition, and says nothing about how common such economies
+are.
+
+\subsection{National welfare at the dual-basin economy}
+\label{app:entrenchment-welfare}
+
+At the dual-basin economy each government's payoff is its nation's welfare plus a
+political part that grows with the political state. Define the sender's and the
+target's national welfare by
+\[
+W_S(a,s)=a-\tfrac12s^2-\tfrac12s-2as,\qquad
+W_T(a,s)=-\tfrac15a-\tfrac{9}{10}s ,
+\]
+so that $\Us(x,a,s)=W_S(a,s)+2xs$ and $\Ut(x,a,s)=W_T(a,s)+\tfrac{19}{10}x$. Both
+political parts vanish at the state $x=0$ and rise with the state. The statement
+was in the main text until 2026-10-15.
+
+\begin{proposition}[Entrenchment against both nations]
+\label{prop:entrenchment-welfare}
+At the dual-basin economy:
+\begin{enumerate}[label=(\roman*)]
+\item At the state $x=0$, each government's payoff equals its nation's welfare
+at every action. At every state $x\le1/4$ the sender's myopic best response to
+every compliance $a\ge0$ is no sanction.
+\item There is an equilibrium in $\mathcal E$ such that, from every initial
+state, after a temporary shock that holds the sanction at $1$ for at least
+$\widehat N_{\F}(19/20)$ periods, at every later date the state lies in
+$[19/20,1]$, the target maintains full non-compliance and the sanction is $1$. In every such
+period the sender's nation has welfare $-1$ and the target's $-9/10$, against
+$0$ for both at full trade, so at every discount factor $\beta\in[0,1)$ their
+discounted welfare is $-1/(1-\beta)$ and $-(9/10)/(1-\beta)$. The sender
+government's payoff in every such period is $2x_t-1\ge 9/10$, above its payoff
+$0$ at full trade. At its own discount factor, the target government's payoff
+from the state $x$ at which the shock ends is $10x$, the same as under
+permanent relief from that state.
+\item Replace the sender's payoff by its nation's welfare $W_S$, with everything
+else unchanged. The resulting economy has an equilibrium in $\mathcal E$ at
+which the sanction is zero at every state. Every equilibrium in $\mathcal E$ of
+that economy whose target value rises with the state at exactly rate $10$ and
+is bounded by $19$ in absolute value, the set of target values used to
+construct \Cref{prop:two-sided-one-equilibrium}, has zero sanctions at every
+state.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof of \Cref{prop:entrenchment-welfare}]
+(i) The identities $\Us=W_S+2xs$ and $\Ut=W_T+\tfrac{19}{10}x$ hold at every
+state and action, and both political parts are zero at $x=0$ and
+non-decreasing in $x$ for $s\ge0$ (\path{dbU_S_split}, \path{dbU_T_split},
+\path{db_political_parts_zero_at_full_trade},
+\path{db_political_parts_monotone}). The sender's myopic best response is the
+clipped vertex $\max\{0,\min\{1,2x-\tfrac12-2a\}\}$, which is $0$ when
+$x\le1/4$ and $a\ge0$ (\path{db}$\sigma$\path{_eq_zero_of_le}).
+
+(ii) Take an equilibrium of the dual-basin economy whose values lie in the
+value sets of the high-basin certificate, as for
+\Cref{prop:two-sided-one-equilibrium}. After the shock, the resumed path stays
+in $[19/20,1]$, where the target's policy is full non-compliance and the realized
+sanction is $1$. Hence the national welfare in each period is
+$W_S(0,1)=-1$ and $W_T(0,1)=-9/10$, while both are $0$ at full trade, and the
+geometric sums give $-1/(1-\beta)$ and $-(9/10)/(1-\beta)$. The sender
+government's payoff is $\Us(x,0,1)=2x-1\ge9/10$ on the basin, against
+$\Us(0,0,0)=0$. Under permanent full sanctions from a state $z$ the state is
+$1-(1-z)(9/10)^n$, so at $\beta_T=9/10$ the target government's payoff is
+\[
+\sum_{n\ge0}\bigl(\tfrac{9}{10}\bigr)^n
+\Bigl[\tfrac{19}{10}\bigl(1-(1-z)(\tfrac{9}{10})^n\bigr)-\tfrac{9}{10}\Bigr]
+=\tfrac{19}{10}\Bigl(10-(1-z)\tfrac{100}{19}\Bigr)-9=10z .
+\]
+Under permanent relief from $z$ the state is $z(9/10)^n$, and the payoff is
+$\sum_{n\ge0}(9/10)^n\,\tfrac{19}{10}z(9/10)^n=\tfrac{19}{10}z\cdot\tfrac{100}{19}=10z$
+(\path{db_entrenchment_loss_after_episode}).
+
+(iii) With $\Us$ replaced by $W_S$, the sender's stage payoff against full
+non-compliance, $W_S(0,s)=-\tfrac12s^2-\tfrac12s$, does not depend on the state, is
+$0$ at $s=0$ and negative at every $s\in(0,1]$. Against a target policy of full
+non-compliance at every state, such a sender's value is identically zero and its
+forward-looking best response is $0$ at every state
+(\path{dynamicTopRealizedRule_eq_zero_of_stateFree}, a general statement in
+\path{Theory/Welfare/RepresentativeSender.lean}). The values $\Vs\equiv0$ and
+$\Vt(x)=10x$ with full non-compliance and no sanction form an equilibrium in
+$\mathcal E$: $10x=\tfrac{19}{10}x+\tfrac{9}{10}\cdot10\cdot\tfrac{9x}{10}$, and the
+target's objective $10x-a/5$ is maximal at $a=0$ (\path{dualRepEquilibriumTop},
+\path{dualRep_rule_eq_zero}). For an equilibrium whose target value is
+$\Vt(x)=c+10x$, the target's objective is
+$\tfrac{19}{10}x-\tfrac15a-\tfrac{9}{10}s+\tfrac{9}{10}\bigl(c+(9x+s)\bigr)
+=10x-\tfrac15a+\tfrac{9}{10}c$: a sanction costs the target exactly what the
+entrenchment it builds is worth to it, so the objective does not depend on the
+sender's choice, the target maintains full non-compliance, and the sender side is as above
+(\path{dualRep_rule_eq_zero_of_carrier}).
+\end{proof}

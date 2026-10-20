@@ -1,0 +1,58 @@
+\documentclass[11pt]{article}
+
+% =====================================================================
+%  ROOT 4 of 4 --- ONLINE FORMAL-VERIFICATION SUPPLEMENT
+%
+%  This document isolates the manuscript-to-Lean map from the economic
+%  appendix.  It is intended for the journal's online supplementary
+%  material and for the citable code archive.
+% =====================================================================
+
+\input{sanctions_preamble}
+\usepackage{alltt}  % the Lean statements of app:reading-lean, with typeset symbols
+\setlength{\emergencystretch}{3em}
+
+\externaldocument[][nocite]{sanctions_jet_draft}
+\externaldocument[][nocite]{sanctions_jet_appendix}
+
+\numberwithin{equation}{section}
+\numberwithin{theorem}{section}
+
+\title{Formal Verification Supplement to\\
+       \emph{Political Entrenchment and the Persistence of Economic Sanctions}}
+\author{Xiaofeng Gong\thanks{Corresponding author. Department of
+Economics, University of Connecticut, 365 Fairfield Way, Unit 1063,
+Storrs, CT 06269-1063, USA. Email:
+\texttt{xiaofeng.gong@uconn.edu}. Telephone: +1 857-384-2289.}
+\and Yuechuan Zhao\thanks{National Academy of Economic Strategy, Chinese Academy of
+Social Sciences, Beijing, China. Email: \texttt{zhaoyuechuan@ucass.edu.cn}.}
+\and Chunping Zhong\thanks{National Academy of Economic Strategy, Chinese Academy of
+Social Sciences, Beijing, China. Email: \texttt{cpzenith@163.com}.}}
+\date{October 2026}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+This online supplement records the exact correspondence between the
+economic statements in the manuscript and the machine-checked Lean~4
+development.  It is separated from the economic appendix so readers
+can audit theorem statements, assumption discharges, witness
+constructions, and axiom dependencies without interrupting the paper's
+economic argument. Its first section reads two of the Lean statements with a table of
+their notation; the second is the map. The Lean~4 development is public at
+\url{https://github.com/qidaolake/political-entrenchment-sanctions-lean}.
+
+\appendix
+\crefalias{section}{appendix}
+\crefalias{subsection}{subappendix}
+\crefalias{subsubsection}{subappendix}
+
+\input{appendix_sections/16_reading_lean}
+\input{appendix_sections/07_formalization_map}
+
+\bibliographystyle{econ-aea}
+\bibliography{annote}
+
+\end{document}
