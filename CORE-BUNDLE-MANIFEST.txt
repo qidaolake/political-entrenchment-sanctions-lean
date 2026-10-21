@@ -1,10 +1,10 @@
 SanctionPublicChoiceLean core bundle
 Profile: submission
 Role: submission archive: exactly the paths of release/SUBMISSION-MANIFEST.txt; the reference libraries, the notes root and paper/note_sections, paper/submission, audit-notes, the planning material and the agent and editor configuration are excluded
-Created: 2026-10-21 09:32:35 -04:00
-Source commit: 9d6995ba6a2dda01b7ff3afbd365298df07920a7
+Created: 2026-10-21 10:04:01 -04:00
+Source commit: cb1380d5aab2c5161037653c2cdf8282464802d0
 Tag at that commit: v1.30-submission
-Working tree: clean (every archived file matches 9d6995ba6a2dda01b7ff3afbd365298df07920a7)
+Working tree: clean (every archived file matches cb1380d5aab2c5161037653c2cdf8282464802d0)
 Lean toolchain (lean-toolchain): leanprover/lean4:v4.29.1
 mathlib revision (lake-manifest.json): 5e932f97dd25535344f80f9dd8da3aab83df0fe6
 
@@ -14,12 +14,12 @@ Lean:
 Lake:
 (build check skipped)
 
-Included top-level files: 576
+Included top-level files: 577
 Included core directories: (none: allowlist release/SUBMISSION-MANIFEST.txt)
 Included reference directories: (none)
 Excluded: .git, .lake, tmp, dist, suggestions, __pycache__ and every path not listed above
-Member count (excluding this manifest): 576
-Byte count (excluding this manifest): 26117780
+Member count (excluding this manifest): 577
+Byte count (excluding this manifest): 26141877
 
 Rebuild on target machine:
   lake exe cache get
@@ -71,13 +71,13 @@ cf7757290ed1666c6c8242742931dc4bef3b2d6af42b99d4fe758b4de14947f7          3133  
 7eefc41d04a2d14e048e491a507eebc3ca86cb8e4cdbd622a609f48fbe6ac57e          1070  LICENSE
 8151aba49276c48904b663e0c70602337dcb6c19a5833598d588540032735fac         62391  paper/annote.bib
 e1e1d1805082d0bb7c312a29ce17da2cc52c06c46794aae1de2bb2dc3aa79b5e         10550  paper/appendix_sections/00_notation.tex
-3cc01d9b7d283f3095f6b7c455e8890628e13c948d229eb3161d2939967034f6        154152  paper/appendix_sections/01_headline_proofs.tex
+2fd9a84ca25f119e0f48920bf7a59e677724fa85a5c3e28684b94e24e7ba2d9f        154142  paper/appendix_sections/01_headline_proofs.tex
 b835f9433f901ce387c1bf9f993aa26a2351915c80c7839da55dcaeac2761fbe         20530  paper/appendix_sections/02_assumption_discharge_routes.tex
 d8c563adfa3b3ec32f59cfd15209fec85626123a2ad5135c95eba9f344aa1f97         12499  paper/appendix_sections/03_closed_form_constants.tex
 b5d898dc33da78f39c612ec769340610878296b4e4cc83fe2fa58eeba121e941          7123  paper/appendix_sections/04_witness_parameter_vectors.tex
 0349eae0324bc3c036728defcf61ea2b3eb9743c2bc450125b6e8bfc7357018d         64131  paper/appendix_sections/05_microfounded_four_group_witness.tex
 1b503c96191b2f8d56e91e196ff9206854fd5e484c9f587637334d6460d5ac6e         36721  paper/appendix_sections/06_existence_and_long_run_law.tex
-d6f368e1c1b7a7fdfa2cbbba6e10db00813841b7ea6a8fcd152f0f3009de15f3        224569  paper/appendix_sections/07_formalization_map.tex
+c3611e7e22731c4f738b345646a4d4c093e1f3d6c1ab4b7da603cff41906277b        224556  paper/appendix_sections/07_formalization_map.tex
 245ecdedfb57ec86566719aff0e8c4361097e6f9b375f506af1908db42584ec8         93988  paper/appendix_sections/07_supporting_results.tex
 8be17f7a7632dbc0d1b786a2ad7acf7291e7afee48ea9fb9d9cb05ffc813788e         19354  paper/appendix_sections/08_moved_statements.tex
 c21f4bf36543717b6aa4741c73bf31b45ac168c01473eaeaa207c58c4550102b         48273  paper/appendix_sections/09_persistence_and_imposed_episodes.tex
@@ -95,18 +95,18 @@ e6f4659725aa84227cb914c387631a1e181b782c96ddfad8f8b2069100d1cad3         20361  
 8b0709494432738ca2fb341dd8b89abeba2109165deec15b75e2d289a8272e38         19079  paper/main_sections/04_welfare.tex
 42c46fe0889b3c098d3b343b8780aafe9dd98eefbf5be4cf88c9a83e8d57bb4d         45378  paper/main_sections/05_discussion.tex
 1110472d788a9a9c26364dd1e502c87b54846d71f8d6d16965bde23587fa6c90          8155  paper/main_sections/06_conclusion.tex
-027bd2da69b8c6639dc876f3b699039ddcda3dda78203e94998b4092f2f8fae2          3835  paper/main_sections/07_declarations.tex
-a82a2ab60346cf8b27b5a4a9f605ceadc36c85629abb0fb90eaf368ad289f716          1964  paper/main_sections/08_ai_declaration.tex
+03b8c17deb5f30e6db0ed538231a4f952a8b5b8268751a0f43d4b0bbbd71d158          3840  paper/main_sections/07_declarations.tex
+cdfffd913067dc097872a959e21c62131cb2059874e17ce4b1e85c30298b4478          1978  paper/main_sections/08_ai_declaration.tex
 29262ba9ab1d150e76d2b4a04fc288b9a8efdd2b35e0d576f41a08e2b5284d85          4918  paper/sanctions_appendix_body.tex
 5369f88bd389537d5ec63b3622bb85478acc1dc8ff6459694e7c95d41226cbc7          9071  paper/sanctions_formal_supplement.bbl
-7bcecbec836a0189864992fd21cd59baf1193f68c65ed8fa79ff35322d679c61        805500  paper/sanctions_formal_supplement.pdf
+84424996f8ec08336044e0add04afd063363a5a1fd99e01f4dedb3e6668ceb16        805559  paper/sanctions_formal_supplement.pdf
 3dba739d5a88e784021755a0f3ac74a04514097396397816f51231b28259bd46          2311  paper/sanctions_formal_supplement.tex
 43f903c7c1a38b763b14a0a72723f0609885447d1bc6719f33cc164fc4e32002           382  paper/sanctions_highlights.txt
 63a230073bcdba54893c08383f37c2b04beca23331a2b4b90288827a3293e43a         31514  paper/sanctions_jet_appendix.bbl
-d1d259e4c74f2ede43ae6f6bf79a21d714e74f9a64d38ad5fe5a5a6a518097cf       1703110  paper/sanctions_jet_appendix.pdf
+266cc9f1e665e6f9d6d50ea9b585b8456da1e7603620a6de79054dbd355b2bc2       1703079  paper/sanctions_jet_appendix.pdf
 819c5e32b6b9d76596d540c6f180abf3e77b4f42d3e6204bb21ae4e793b68fdf          2632  paper/sanctions_jet_appendix.tex
 eceeeb7b3c2db1e930bc8873924eb034b9339cbc51aee9486b43cb3e8570a355         24010  paper/sanctions_jet_draft.bbl
-d7652a5f79b35fb43c1133dc96041b00a653142193a10259d1907c9b780082b9        627858  paper/sanctions_jet_draft.pdf
+316ddf8452cbf9b9ba9a03eaf0229d48c3fce24bba41178f6ee2038dc66be48c        627880  paper/sanctions_jet_draft.pdf
 5f0f0fb97c20e9bfa6964b9ca2ba3561dc85f45bd7f1d8ddf01e5ebc98b2ba7a         13615  paper/sanctions_jet_draft.tex
 d473480b18b6d52bec76da4ffcd4f8c1360fa04f36bb347951e02ffb5d1894b1          5737  paper/sanctions_preamble.tex
 7ffc02a1096348ddf7755a91c58aa09b3e5ba00eed17915371a7cb05c8c240a3          8589  README.md
@@ -569,6 +569,7 @@ fb1e12c98201b917abc1549f6e8945238d2cdbcc5bdf8163b0539e7f972cca15          6239  
 445c172183e16360bffe8a7db28f5fbe399d086650e35e7b39680d8fe825942d          3058  scripts/affine-surface-baseline.json
 a6406be3aa33d6e6af5506dc98fb0808414b1c7e3801d14f9ba72a95a3d415d9          7496  scripts/audit-affine-surface.mjs
 8b10806ba355c22a5c819cbb0d0e793d25aa6f0851f46da8923c0a77526250fd         26677  scripts/Audit-Round.ps1
+a014de2cd05cc0460692baa0a82595b5adfed64b1486ef00135897def0094edc         24051  scripts/build_jet_submission_package.py
 311529b42c36051ae82cacd6eacf37f9d48bca4451e03fbaa153e680c771b8c1          4898  scripts/build_submission_source.py
 ddf44a23038828b4dfa3a4d4f84c67ff95c4f21a62808aa12b7ebb62a2b20469         21577  scripts/Build-CoreBundle.ps1
 35d05e67db18c169646837c42603dff46dcd29cdd4e5aa0bb8d8d54bcbc005d7         10099  scripts/Build-FullArchive.ps1
