@@ -1,5 +1,5 @@
-Target foresight can overturn one-period accommodation on a stated family.
-Sender foresight raises either the price of relief or conflict intensity.
-An affine Target-patience threshold is independent of Sender patience.
-Persistent sanctions need not imply dependence on initial conditions.
-Government payoffs need not identify welfare rankings.
+Sanctions shift power in the target country toward groups favoring confrontation
+With myopic governments, the target complies just enough to end sanctions
+With forward-looking governments, sanctions can persist under complete information
+A long enough temporary sanction shock can lock in persistent sanctions
+The core results are machine-checked in the Lean 4 proof assistant

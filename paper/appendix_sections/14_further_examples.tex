@@ -5,9 +5,9 @@ This section holds example economies that the main text does not need: the roste
 example economies, the payoff bookkeeping of the mechanism-active $P_3$ economy, the
 non-compliance core outside the class, interior compliance at a positive sanction, and
 national welfare at the dual-basin economy. The auxiliary polynomial economy
-of the roster --- a deliberately simple economy used to test the machinery of
+of the roster is a deliberately simple economy used to test the machinery of
 Bellman-invariant sets of value functions and of the joint operator (non-emptiness and invariance of the sets,
-dynamic argmax uniqueness, a decoupled Schur contraction) --- is \emph{not} an
+dynamic argmax uniqueness, a decoupled Schur contraction). It is \emph{not} an
 example economy at which \Cref{ass:sender,ass:target,ass:concavity} hold jointly: its
 sender payoff is linear in the sanction and fails \Cref{ass:concavity}, and
 no headline theorem is applied to it. Logical non-vacuity of the full
@@ -19,10 +19,10 @@ parameter vector and verified invariant-set checks are not reproduced here.
 
 \Cref{tab:witness-roster} separates logical non-vacuity,
 unconditional applications of the headline results and mechanism displays.
-The two conditional existence diagnostics that used to close it --- the
+Two conditional existence diagnostics (the
 low-$\delta$ purified window and the coupled Schur condition, both at the $P_3$
-economy with $\delta=\tfrac1{100}$ --- deliver no equilibrium and carry no
-result of this paper; their rows are kept in the notes and their
+economy with $\delta=\tfrac1{100}$) deliver no equilibrium and carry no
+result of this paper; their
 declarations are indexed in \Cref{app:formalization}.
 
 \begingroup
@@ -140,7 +140,7 @@ transition. The stronger curvature $-\tfrac35 s^2$ makes the sender's myopic bes
 $\sigM=\mathrm{clip}\big(\tfrac98 x-\tfrac1{12}-\tfrac5{12}a\big)$ \emph{interior}
 on the lower basin; the target's state--compliance term $+2xa$ makes compliance interior and
 reluctant; the sender's stake $+\tfrac25 x$ keeps $\Vs$ state-dependent independently of the
-sanction. None of the four changes a structural cross-partial --- the
+sanction. None of the four changes a structural cross-partial: the
 state--sanction cross-partial signs $\partial^2U_S/\partial s\partial x=\tfrac{27}{20}>0$,
 $\partial^2U_T/\partial s\partial x=1>0$, the sign of the compliance--sanction cross term
 $\partial^2U_S/\partial s\partial a=-\tfrac12\le0$, and the $s$-concavity all
@@ -163,8 +163,8 @@ against the affine law at \emph{every} weight, not only at the economy's
 own rate (\path{quadBumpF_ne_affineF}, \path{quadBumpLowF_ne_affineF},
 \path{ratchetF_ne_affineF}); the non-affine member of the family under the lifting condition is
 refuted the same way (\path{quadDiagF_ne_affineF}). Separately, the
-certificate route's ordering goal --- the statewise ordering of the
-forward-looking sanction above the myopic one --- names no
+certificate route's ordering goal, the statewise ordering of the
+forward-looking sanction above the myopic one, names no
 transition and never needed the affine law: \path{goal2_dominance_generalF}
 reaches it with the transition entering only as a lower bound
 $d_{\mathrm{lo}}$ on its sanction slope on the target leg and a range-restricted upper bound
@@ -173,16 +173,15 @@ that the affine route does not need because there the transition step is an
 equality. The two rates cannot be collapsed into one: a two-sided bound on the sanction slope at a
 single rate, with the diagonal condition, pins $\F(x,s)=(1-d)x+ds$. The
 affine law is the instance $d_{\mathrm{lo}}=d=\delta$ of
-\path{goal2_dominance_generalF}, applied directly at the affine examples (the
-separate affine wrapper was removed as redundant in renovation round BG-2).
+\path{goal2_dominance_generalF}, applied directly at the affine examples (no separate affine wrapper is needed).
 
 \paragraph{Open-set robustness at the affine member of the family under the lifting condition.}
 \label{app:witness:openbox}
 The quadratic--linear family under the lifting condition is inhabited on a box of coefficients
-(a statement in the family's coefficients, not in the class's rates; doc 104,
-sign-off M6). Let $B$
-be the set of coefficient vectors $(q,u_0,k,r,w,\ell,c,n,v)$ with each
-coordinate within $1/20$ of the affine member's $(3,1,3,1/2,1,1,4,0,30)$,
+(a statement in the family's coefficients, not in the class's rates). Write the
+coefficient vector as $(q,u_0,k,r,w,\ell,c,n,v)$; the affine member's is
+$(3,1,3,1/2,1,1,4,0,30)$. Let $B$ be the set of coefficient vectors with each
+coordinate within $1/20$ of the affine member's,
 except that the target's state--sanction cross term keeps its sign domain, $n\in[0,1/20]$: $B$
 is a neighborhood of the member relative to $n\ge0$, not a Euclidean ball
 around it, and it contains the full-dimensional open sub-box with $n>0$.
@@ -272,8 +271,7 @@ W_S(a,s)=a-\tfrac12s^2-\tfrac12s-2as,\qquad
 W_T(a,s)=-\tfrac15a-\tfrac{9}{10}s ,
 \]
 so that $\Us(x,a,s)=W_S(a,s)+2xs$ and $\Ut(x,a,s)=W_T(a,s)+\tfrac{19}{10}x$. Both
-political parts vanish at the state $x=0$ and rise with the state. The statement
-was in the main text until 2026-10-15.
+political parts vanish at the state $x=0$ and rise with the state.
 
 \begin{proposition}[Entrenchment against both nations]
 \label{prop:entrenchment-welfare}

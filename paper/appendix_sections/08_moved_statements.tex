@@ -3,10 +3,7 @@
 
 This section collects results on persistence and the long run that the main text does
 not need: the order-selection block, the transition-strength corollary and a pointer to the
-two-sided statement, which stood in the main text until 2026-09-23 and were moved here
-verbatim, with their labels, on the author's decision (doc~98 G12; terminology updated
-since, and several restated on 2026-10-07 with fewer hypotheses and the same conclusions);
-and, from the sections on the general results, post-entry non-termination and the selection
+two-sided statement; and, from the sections on the general results, post-entry non-termination and the selection
 boundary, the economic mechanism behind the basins, persistence from primitives, the
 pathwise ordering under basin preservation and the comparative statics of lock-in. Each
 statement is the one the formalization map cites.
@@ -16,9 +13,9 @@ statement is the one the formalization map cites.
 \begin{proposition}[Order-selected steady state]
 \label{prop:order-selection}
 Let $\basin$ be preserved by the equilibrium closed loop $G_E(x)=\F(x,R_E(x))$,
-and suppose that the closed loop is non-decreasing on $\basin$ --- a higher state
+and suppose that the closed loop is non-decreasing on $\basin$ (a higher state
 today never leads to a lower state tomorrow, which holds whenever the
-equilibrium sanction rule $R_E$ is non-decreasing --- and that $R_E$ is
+equilibrium sanction rule $R_E$ is non-decreasing), and that $R_E$ is
 \emph{continuous} on $\basin$. Fix a start $x_0\in\basin$.
 \begin{enumerate}[label=(\roman*)]
 \item If $x_0\le R_E(x_0)$, the political state path converges to the
@@ -52,18 +49,18 @@ additional condition.
 
 \begin{proposition}[Attraction on a derived interval]
 \label{prop:derived-interval}
-Under the hypotheses of \Cref{prop:order-selection} --- an invariant basin, a
+Under the hypotheses of \Cref{prop:order-selection} (an invariant basin, a
 non-decreasing closed loop and a continuous sanction rule, with no level
-condition --- let $x_s$ be
+condition), let $x_s$ be
 the \emph{least} steady state of $G_E$ at or above the basin pivot $\bar x$. Then
-every equilibrium path started anywhere in $[\bar x,x_s]$ converges to $x_s$ ---
+every equilibrium path started anywhere in $[\bar x,x_s]$ converges to $x_s$:
 a single limit, common to every start in that interval. Under strict directional
 adjustment \textup{(F5)} the realized sanction converges to $x_s$ as well.
 \end{proposition}
 
 In plain terms: initial conditions determine the direction of movement and select
 an extremal steady state on that side. Different initial states in the same
-invariant interval need not converge to a common point --- unless the interval
+invariant interval need not converge to a common point: unless the interval
 runs only as far as the first steady state, in which case they do.
 
 \paragraph{What the three results say about sanctions regimes.}
@@ -74,7 +71,7 @@ sustains itself without either government changing its behavior.
 
 \Cref{prop:order-selection} says that the inherited political state selects,
 at date zero and within a single equilibrium, which self-sustaining regime is
-reached --- path dependence, not indeterminacy --- and
+reached (path dependence, not indeterminacy), and
 \Cref{prop:derived-interval} that up to the first such regime above the pivot
 every start reaches it. None of the three results delivers a rate: they say
 where a sanctions regime ends up, not how long it takes
@@ -119,8 +116,7 @@ $\widehat N_{\delta_2}(\bar x)\le
 
 \subsection{The same-equilibrium two-sided statement (\Cref{sec:relief-exit})}
 
-The statement, \Cref{prop:two-sided-one-equilibrium}, moved into the main text on
-2026-10-13 and back to the Online Appendix on 2026-10-15; it is in
+The statement, \Cref{prop:two-sided-one-equilibrium}, is in
 \Cref{app:dual-basin-economy}, with the definition of the dual-basin economy.
 
 \subsection{Post-entry non-termination and the selection boundary}
@@ -225,7 +221,7 @@ primitives. Its transition law satisfies the model's maintained
 continuity, monotonicity, diagonal, and strict-adjustment conditions,
 together with a lower bound on its sanction slope and a two-sided bound on the
 corner section $x\mapsto\F(x,1)$. No upper bound on the sanction slope and no bound on the
-curvature of $\F$ are imposed (until 2026-10-08 this class carried both), and
+curvature of $\F$ are imposed, and
 it contains non-affine realized recursions, including members whose
 curvature in the sanction exceeds half the lower bound on their sanction slope.
 
@@ -262,7 +258,7 @@ semiconcave as well, with a modulus proportional to $M$; no curvature of $\F$ in
 the sanction is needed for this. This class contains a member whose transition is
 semiconcave with modulus $1/5$, and with no smaller modulus, both in the
 sanction and along the corner section; that modulus exceeds half the lower bound on the member's
-sanction slope, $3/20$, a level this class excluded until 2026-10-08,
+sanction slope, $3/20$,
 and the proposition holds there (\Cref{app:formalization}).
 
 The off-corner boundary of this result is described in \Cref{app:moved-ad}
@@ -316,8 +312,7 @@ $\alpha\le\alphaM$, the certificate reads no condition on how the target ranks
 sanction levels, and the extra hypothesis \eqref{eq:myopic-basin-preservation}
 is substantive because two different state paths are compared
 (\Cref{app:moved-ah}; the proof is \Cref{app:proof-pathwise}). Both
-paths are evolved by the general transition; until 2026-10-07 the corollary
-was stated for the partial-adjustment law only.
+paths are evolved by the general transition.
 
 \paragraph{Proof of \Cref{cor:pathwise-dominance}.}
 \label{app:proof-pathwise}

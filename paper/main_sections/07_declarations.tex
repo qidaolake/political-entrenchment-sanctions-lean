@@ -12,7 +12,7 @@
 % decision_ref: suggestions/2026-10-01-manuscript-rebuild/01_STRUCTURE_PROPOSAL.md#author-decisions-recorded
 % confirmation_scope: Section role only; the declarations' content is the author's.
 % reopen_if: Journal requirements or the author's declarations change.
-% amended_at: 2026-10-19 (data availability names the release v1.30-submission; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#submission-release-2026-10-19); 2026-10-20 (the repository link; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#repository-link-and-acemoglu-notes-2026-10-20); 2026-10-20 (the release is public at the new repository; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#public-repository-2026-10-20)
+% amended_at: 2026-10-19 (data availability names the release v1.30-submission; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#submission-release-2026-10-19); 2026-10-20 (the repository link; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#repository-link-and-acemoglu-notes-2026-10-20); 2026-10-20 (the release is public at the new repository; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#public-repository-2026-10-20); 2026-10-21 (Elsevier layout: the generative-AI statement is its own section, titled as the Guide requires, last before the references, wording otherwise unchanged; funding in the Guide's sentence; data availability without the internal script name, citing the release; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#jet-submission-package-2026-10-21)
 % @end-econ-contract
 \section*{Declarations}
 
@@ -21,8 +21,8 @@
 competing financial interests or personal relationships that could have
 influenced the work reported in this paper.
 
-\paragraph{Funding.} This research received no specific grant from any
-funding agency in the public, commercial, or not-for-profit sectors.
+\paragraph{Funding.} This research did not receive any specific grant from funding
+agencies in the public, commercial, or not-for-profit sectors.
 
 \paragraph{CRediT author statement.} Xiaofeng Gong:
 Conceptualization, Formal analysis, Methodology, Software, Validation,
@@ -31,26 +31,13 @@ editing. Yuechuan Zhao: Conceptualization, and Writing -- review and
 editing. Chunping Zhong: Conceptualization, and Writing -- review and
 editing.
 
-\paragraph{Data availability.} No empirical data were used. The complete
-Lean~4 formalization that machine-checks the core results of this paper, as
-mapped in the formal supplement, is archived as the tagged release
-\texttt{v1.30-submission} of the corresponding author's repository and accompanies this submission as supplementary material: a
-source archive built from that release by
-\texttt{scripts/Build-CoreBundle.ps1 -Submission}, which excludes the
-third-party reference libraries and the internal staging documents. The release is
-public at \url{https://github.com/qidaolake/political-entrenchment-sanctions-lean}, with the
-manuscript, the Online Appendix and the formal supplement attached to it; a deposit with a DOI
-will accompany publication.
-
-\paragraph{Declaration of generative AI in the writing and formalization
-process.} During the preparation of this work the authors used Claude
-(Anthropic) and Codex (OpenAI) to assist the Lean~4 proof development
-and the drafting and editing of the manuscript. Each core result is
-independently verified by the Lean~4 kernel, passing a
-\texttt{\#print axioms} check that depends only on \texttt{propext},
-\texttt{Classical.choice}, and \texttt{Quot.sound}; no core result relies
-on the assistants' unverified output. The authors reviewed and edited all
-content and take full responsibility for it.
+\paragraph{Data availability.} No empirical data were used. The Lean~4 formalization
+that machine-checks the core results of this paper, as mapped in the formal supplement, is
+public as the release \texttt{v1.30-submission} at
+\url{https://github.com/qidaolake/political-entrenchment-sanctions-lean}
+\citep{GongLean2026}, with the manuscript, the Online Appendix and the formal supplement
+attached to it. Its source archive accompanies this submission as supplementary material.
+A deposit with a DOI will accompany publication.
 
 \paragraph{Formalization methods.} The Lean~4 development was written with
 assistant-generated suggestions for proof steps and lemma search. The

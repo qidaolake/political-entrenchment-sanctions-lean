@@ -101,10 +101,10 @@ J^{FF}_x(a)&:=\Ut\bigl(x,a,\sigDynTop_{\Vs}(x,a)\bigr)
 \end{align}
 $J^{MM}$ is the objective the myopic target maximizes and $J^{FF}$ is the
 integrand of the target Bellman equation \eqref{eq:T-bellman}, so both are
-objects the equilibrium already carries. The middle object $J^{TM}$ --- a target
-that values continuation but faces the \emph{myopic} sender --- is a device. It
+objects the equilibrium already carries. The middle object $J^{TM}$, a target
+that values continuation but faces the \emph{myopic} sender, is a device. It
 is not a third equilibrium concept, and no maximizer of it is constructed
-anywhere in what follows.
+anywhere below.
 
 The total forward-looking gap is $\Delta_x:=J^{FF}_x-J^{MM}_x$. Its two
 components are the two steps between the three objectives:
@@ -114,8 +114,8 @@ C_x:=J^{TM}_x-J^{MM}_x,
 S_x:=J^{FF}_x-J^{TM}_x.
 \label{eq:two-channels}
 \end{equation}
-$C_x$ is the \emph{target-continuation} component --- what the incumbent's own
-political-survival motive adds, holding the sender's behavior fixed --- and
+$C_x$ is the \emph{target-continuation} component (what the incumbent's own
+political-survival motive adds, holding the sender's behavior fixed), and
 $S_x$ is the \emph{sender-response-switch} component, what changes for the target
 purely because the sender it faces is forward-looking.
 
@@ -147,7 +147,7 @@ signed even under those. Both sender best responses falling in compliance, the d
 above the stage one, and the target's payoff rising in the sanction together do
 \emph{not} determine whether $S_x$ rises or falls. The component reads the
 target's payoff \emph{difference} between the two responses, which turns on the
-\emph{gap} between them and not on their level alone --- and that gap may widen
+\emph{gap} between them and not on their level alone, and that gap may widen
 with compliance. Any route to the
 compliance ordering must therefore either sign $S_x$ separately or dominate it.
 The switch from the stage to the dynamic best response of the sender thus has an
@@ -158,20 +158,20 @@ fails.
 \paragraph{Only the net movement is needed.}
 Asking each component to behave separately is stronger than the ordering requires.
 Because \eqref{eq:decomposition} is exact, the comparison never sees the components
-apart --- only their sum. The exact condition is that across any rise in
+apart: only their sum. The exact condition is that across any rise in
 compliance from $a_L$ to $a_H$,
 \begin{equation}
 S_x(a_H)-S_x(a_L)\;<\;C_x(a_L)-C_x(a_H),
 \label{eq:net-channel}
 \end{equation}
-which permits $S_x$ to \emph{rise} --- to work against the ordering --- provided
+which permits $S_x$ to \emph{rise} (to work against the ordering), provided
 the target-continuation component gives up strictly more. Condition
 \eqref{eq:net-channel} is \emph{equivalent} to a strictly decreasing $\Delta_x$,
 so it is an accounting restatement of the gap condition rather than a new
 assumption: the route was always net, and reading it component by component conceals
 the trade-off. \citet{QuahStrulovici2012} is why a component-by-component sign
-argument is stronger than a condition on the aggregate --- single crossing is not
-preserved by addition except under stringent conditions --- but
+argument is stronger than a condition on the aggregate (single crossing is not
+preserved by addition except under stringent conditions), but
 \eqref{eq:net-channel} is not theirs; it is a corollary of the exact
 decomposition above.
 
@@ -181,7 +181,7 @@ Two boundaries travel with it, and both are one-directional. The condition is
 \eqref{eq:net-channel} implies \eqref{eq:sc-lower}, and the converse fails.
 Single crossing survives an arbitrary strictly increasing transformation of
 either objective and a difference condition does not, so the two are ordered
-rather than incomparable --- on $[0,1]$ the pair $f(a)=a^{3}$, $g(a)=a$ stands in
+rather than incomparable: on $[0,1]$ the pair $f(a)=a^{3}$, $g(a)=a$ stands in
 the ordinal relation while $f-g$ rises over $[9/10,1]$. And the sufficient route
 in which the switch gap weakly falls while the target gap strictly falls is
 strictly stronger again than \eqref{eq:net-channel}, since it forbids exactly the
@@ -244,15 +244,15 @@ J^{TM}_x\prec_{SC}J^{MM}_x
 already gives $J^{FF}_x\prec_{SC}J^{MM}_x$, so the conclusion of
 \Cref{prop:ordinal-ordering} still orders \emph{every} pair of maximizers. The
 switch component is asked only not to reverse the comparison; the target's own
-continuation motive carries the strictness. The mirror composition --- strict
-switch, weak target --- is available and is not the version we recommend.
+continuation motive carries the strictness. The mirror composition (strict
+switch, weak target) is available and is not the version we recommend.
 
 Two cautions travel with the weak relation. On its own it orders the argmax
 \emph{correspondences} in the strong set order, and hence their extremal
 elements, but not an arbitrary selection from each: two constant objectives
 satisfy it with every action maximizing both. That is precisely why one leg must
 remain strict. And the weak relation is not the weakest hypothesis delivering the
-conclusion --- two argmax sets can be ordered while it fails away from the
+conclusion: two argmax sets can be ordered while it fails away from the
 maximizers; its value is that it is selection-robust and does not depend on where
 the unknown maximizers sit.
 
@@ -263,5 +263,5 @@ read at the current state as a function of the sanction, does not fall over
 feasible sanctions; global monotonicity of $\Vs$ is one way of supplying that.
 Weaker still, it suffices that the continuation term not prefer the
 dynamic best response to the myopic best response wherever the former lies
-below the latter --- a condition on the two responses alone. Each of these is a weakening of
+below the latter: a condition on the two responses alone. Each of these is a weakening of
 its predecessor, so nothing that discharged the earlier form is lost.

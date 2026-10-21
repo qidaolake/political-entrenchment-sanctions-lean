@@ -28,15 +28,15 @@ every $x\in\basin$.
 Fix $x_0\in\basin$. We must show $\sigDynTop_{\Vs}(x_0,\alpha(x_0))
 \ge\max(x_0,\bar x)$: the sender's dynamic best response sits at or
 above the basin pivot. This is a statement about the \emph{level} of
-the sender's upper argmax, and it is important to be precise about
+the sender's upper argmax, and we state exactly
 which condition delivers it. It is \emph{not} \Cref{ass:sender}. An
-ordinal condition --- Milgrom-Shannon single crossing, or the weaker
-interval dominance the certificate actually carries (\Cref{rem:ido})
---- constrains how the upper argmax \emph{moves} as a parameter rises;
+ordinal condition, Milgrom-Shannon single crossing or the weaker
+interval dominance the certificate actually carries (\Cref{rem:ido}),
+constrains how the upper argmax \emph{moves} as a parameter rises;
 it does not say where that argmax \emph{lies} relative to
 $\max(x_0,\bar x)$ when the continuation $\Vs$ is an arbitrary,
 possibly non-monotone, member of the $K_S$-Lipschitz value set
-$\mathcal C_S$ --- a member whose continuation payoff may fall by as
+$\mathcal C_S$: a member whose continuation payoff may fall by as
 much as
 $K_S|\F(x,s_2)-\F(x,s_1)|$ when the sanction rises from $s_1$ to
 $s_2$.
@@ -63,8 +63,8 @@ $\sigDynTop_{\Vs}(x_0,\alpha(x_0))\ge\max(x_0,\bar x)$.
 Two disclosures follow, and we state them plainly. First, the level
 clause is proved under a cardinal condition that \Cref{ass:sender}
 does not supply; the machine-checked certificate carries that
-condition --- a stage lower-slope field on the sub-pivot range, a
-Lipschitz field for the value set, and the transition-adjusted slope condition --- as explicit
+condition (a stage lower-slope field on the sub-pivot range, a
+Lipschitz field for the value set, and the transition-adjusted slope condition) as explicit
 hypotheses, alongside its ordinal field. A reader who wishes to keep
 the sender-side assumption set purely ordinal must take the level
 bound itself as a primitive: an ordinal condition on the parametrized
@@ -73,7 +73,7 @@ and against a $K_S$-Lipschitz continuation that may decline in $s$ the
 location has to be won by a cardinal comparison of the stage gain with
 the worst-case continuation loss. Second, the cardinal condition does
 \emph{not} displace the ordinal condition: the certificate carries
-both, as separate fields, and they discharge different steps --- the
+both, as separate fields, and they discharge different steps: the
 cardinal condition the \emph{level} (this step); the ordinal interval-dominance
 condition of \Cref{rem:ido} the \emph{direction}, namely the monotone
 upper argmax in the state used in Step 4 below. The comparison at a
@@ -150,7 +150,7 @@ single crossing in $(s,x)$ upcasts to interval dominance with no side
 conditions (\Cref{rem:ido}).
 
 (b) For the level
-conclusion --- that the upper argmax lies in $[\max(x,\bar x),1]$ ---
+conclusion, that the upper argmax lies in $[\max(x,\bar x),1]$,
 we use the cardinal transition-adjusted slope condition on the sub-pivot range,
 \emph{not} clause (a) and \emph{not} any monotonicity
 of $\Vs$. For $\Vs\in\mathcal C_S=\mathrm{Lip}_{K_S}$ and any
@@ -161,8 +161,8 @@ K_S|\F(x,\hat x)-\F(x,s)|$, while
 \eqref{eq:F-adjusted-sender-chord} says that the stage gain from $s$ to
 $\hat x$ strictly exceeds this allowance; hence
 $\widetilde J_{\Vt,\Vs}(s,x)<\widetilde J_{\Vt,\Vs}(\hat x,x)$ for every
-$s<\hat x$ and \emph{for every} $\Vs\in\mathcal C_S$ --- using only the
-$K_S$-Lipschitz bound, valid even for non-monotone $\Vs$ --- so no
+$s<\hat x$ and \emph{for every} $\Vs\in\mathcal C_S$ (using only the
+$K_S$-Lipschitz bound, valid even for non-monotone $\Vs$), so no
 maximizer lies below $\hat x$; no two sub-pivot sanctions are compared.
 (This is why the certificate carries \emph{both}
 sender-side conditions rather than one, and why the two clauses above
@@ -170,8 +170,8 @@ are stated separately. The ordinal interval-dominance field
 (\Cref{rem:ido}) delivers the
 comparative-statics direction: the monotone upper argmax of Step 4.
 The cardinal
-stack --- the stage lower slope on the sub-pivot range, the Lipschitz
-constant $K_S$ of the value set, and the actual transition displacement ---
+stack (the stage lower slope on the sub-pivot range, the Lipschitz
+constant $K_S$ of the value set, and the actual transition displacement)
 separately pins the \emph{level}. Under the affine law it is sufficient
 to verify a lower slope $m_S$ and $\beta_S K_S\delta<m_S$. Neither does the
 other's job: the ordinal form does not pin the level against a
@@ -179,7 +179,7 @@ general, possibly non-monotone, Lipschitz continuation; and the cardinal conditi
 in the sub-pivot form the level argument uses, says nothing above the
 pivot. Only when the stage lower slope is strengthened to the whole
 choice axis $[0,1]$ does the cardinal condition
-additionally discharge the ordinal field.)
+also discharge the ordinal field.)
 \end{proof}
 
 Steps 2 and 3 use neither A1 nor the target condition: conclusions (i) and (ii)
@@ -216,7 +216,7 @@ and $\F(x,\cdot)$ is non-decreasing by \textup{(F3)};
 hence $s\mapsto\Vs(\F(x,s))$ is non-decreasing, and the difference
 $\beta_S\Vs(\F(x,s))$ is non-decreasing in $s$. A difference non-decreasing in
 $s$ is exactly the increasing-differences / single-crossing condition that
-Milgrom--Shannon require \citep{MilgromShannon1994} --- and here it is sourced
+Milgrom--Shannon require \citep{MilgromShannon1994}, and here it is sourced
 by the \emph{monotonicity} of $\Vs$, not by the pointwise level of any value
 function. (Pointwise order alone is insufficient: a value pointwise above the
 myopic $0$ need not have larger $s$-increments; monotonicity of $\Vs$ is the
@@ -254,7 +254,7 @@ $\Vs$. Therefore, at $a=\alpha^{\circ}(x)$,
 
 \paragraph{Step 4: Monotonicity of $\Vs$ (explicit, and derived on gain-ball invariant sets).}
 The single-crossing in Step~1 rests on $\Vs$ being non-decreasing in the
-state --- \emph{not} on any sign normalization of $\Us$.  Accordingly
+state, \emph{not} on any sign normalization of $\Us$.  Accordingly
 \Cref{thm:dominance} states it explicitly.  At the certificate-complete
 example economy it is a theorem about the geometry of the invariant set: the
 sender's invariant set is the zero-based gain ball
@@ -309,9 +309,9 @@ different-$\alpha$ corollary under (a) $\alpha(x)\le\alphaM(x)$ at the
 states compared, and (b) pointwise monotonicity of $\sigM(x,\cdot)$
 non-increasing in the compliance argument. Condition (b) is a
 comparative static and needs the cross sign, not the own sign: it
-follows from decreasing differences of $\Us$ in $(s,a)$ --- the
+follows from decreasing differences of $\Us$ in $(s,a)$ (the
 ``compliance placates'' condition $\partial^2\Us/\partial s\,\partial a\le0$
-of \Cref{sec:model} --- which orders the unique stage maximizer under
+of \Cref{sec:model}), which orders the unique stage maximizer under
 \Cref{ass:concavity} and, without uniqueness, orders the greatest stage
 maximizer (\path{isMaxOn_max_of_monotone_diff}, an exchange inequality).
 A nonpositive own derivative $\partial\Us/\partial a\le0$ does not imply
@@ -500,14 +500,14 @@ $n_{\mathrm{lo}}>n_{\mathrm{hi}}$.
 \end{enumerate}
 The formalization splits the class. (S8), the upper bound in (P1), the lower
 bound in (P2) and the upper envelope in (P3) form a relief extension
-(\path{ChordEconomyRelief}, round BC), read by the relief-side results, the
+(\path{ChordEconomyRelief}), read by the relief-side results, the
 Lipschitz estimates and the sharp sufficient condition for non-compliance; \Cref{prop:relief-participation},
 \Cref{prop:branch-invariance}, \Cref{prop:certified-equilibria} and
 \Cref{prop:monotone-uniqueness} hold on the base class
 (\path{ChordEconomy}), and the enriched subclass extends the relief extension.
-Since round BJ the base class is slimmer in three further ways. The two-sided
-curvature data --- (S6), and the transition's state-section semiconvexity
-$M_{\mathrm{cx}}$ and bound $M_{\mathrm{mix}}$ on mixed differences of panel~A --- form a
+The base class leaves out three further sets of data. The two-sided
+curvature data, namely (S6) and the transition's state-section semiconvexity
+$M_{\mathrm{cx}}$ and bound $M_{\mathrm{mix}}$ on mixed differences of panel~A, form a
 two-sided extension (\path{ChordEconomyTwoSided}), which the relief extension
 extends; only the two-sided invariant set (the modulus $\sigma_C$ below, and through it
 the route through the increasing-differences condition to a monotone response
@@ -528,7 +528,7 @@ The myopic best response $\sigma(x,a)$ ($\sigM(x,a)$ in the main text), a field
 of the game (\Cref{sec:model}), is the
 maximizer of $\Us(x,a,\cdot)$ on $[0,1]$, unique by (S3); on the family it is the
 clipped vertex, and in general it has no closed form. The class also requires it
-to vary continuously with $(x,a)$; since round BJ this is a condition of the
+to vary continuously with $(x,a)$; this is a condition of the
 class rather than of the game (\texttt{ChordEconomy.$\sigma$\_continuous}), kept
 because the class's results on the four cases compare with the myopic sender
 (\Cref{app:moved-ad}). \emph{Compliance
@@ -585,14 +585,14 @@ the myopic equilibrium of \Cref{thm:regime-separation} and by the threshold
 discount factor $\beta_T^*$, and in the four cases it follows from the forward-looking
 relief condition (\path{stageRelief_of_reliefSharp}).
 The hypotheses of the propositions that read them are (the lifting condition)
-$A\le k_{\mathrm{lo}}$ --- which implies the myopic lifting condition
-$u_{\mathrm{hi}}<k_{\mathrm{lo}}$ (\path{uhi_lt_k}), all that the myopic
-equilibrium reads; the sender-only case, the relief side and the four cases
-keep the lifting condition ---, the entrenchment condition $c\le\beta_Td_{\mathrm{lo}}g_T$, the
+$A\le k_{\mathrm{lo}}$, the entrenchment condition $c\le\beta_Td_{\mathrm{lo}}g_T$, the
 one-period ranking $\ell_{\mathrm{hi}}<\underline s\,p_{\mathrm{lo}}$, under which
 full compliance beats full non-compliance in the one-period problem, the increasing-differences condition (RM)
 with $r_{\mathrm{lo}}$ on its right, and the forward-looking relief condition (RL)
-$\ell_{\mathrm{hi}}M_{\mathrm{tot}}<k_{\mathrm{lo}}p_{\mathrm{lo}}$. The concavity
+$\ell_{\mathrm{hi}}M_{\mathrm{tot}}<k_{\mathrm{lo}}p_{\mathrm{lo}}$. The lifting condition implies the myopic
+lifting condition $u_{\mathrm{hi}}<k_{\mathrm{lo}}$ (\path{uhi_lt_k}), all that the myopic
+equilibrium reads; the sender-only case, the relief side and the four cases
+keep the lifting condition. The concavity
 condition $\mu>0$ and the closure admit some $\sigma_V\ge0$ exactly under the discriminant
 condition of panel~A with $N=B_0Q+C_0^2$,
 $L=(1-\beta_Sg_{\mathrm{hi}}^2)Q+B_0D-2C_0\beta_Sg_{\mathrm{hi}}d_{\mathrm{hi}}$,
@@ -733,9 +733,9 @@ Lipschitz constant and a smaller sharp loop constant
 (\path{LloopSharp_withLeastModulus_le}), so every quantitative bound below is
 tightest there. The members supply the rational $\sigma_V=1$ for display
 ($\sigma_-=10-7\sqrt2$ at the affine member); a different feasible modulus
-gives different constants --- at the vertex $\sigma_V=10$ the sharp loop
-constant of the affine member is exactly $1$
-(\path{placableAffineVertex_LloopSharp}) --- and every bound uses one
+gives different constants (at the vertex $\sigma_V=10$ the sharp loop
+constant of the affine member is exactly $1$,
+\path{placableAffineVertex_LloopSharp}), and every bound uses one
 consistently chosen modulus. At the members $(Q,L,N,D)=(3,5/2,1/4,1/8)$ and
 $(3,1623/700,25/28,9/50)$.
 
@@ -770,7 +770,7 @@ sup-norm radius; $\mu$ the strong-concavity modulus of the sender's dynamic
 objective in the sanction; $A$ an upper bound on the sender's dynamic marginal
 return to the first unit of sanction, at full non-compliance (a bound, not
 the derivative of a value that need not be differentiable); $g_T$ the
-target's lower value slope --- the direct valuation $v$ plus the cross term
+target's lower value slope: the direct valuation $v$ plus the cross term
 $n$ at $u_0/q$, compounded through the lower bound on the transition's state
 slope, and at $n=0$ equal
 to $v/(1-\beta_Tg_{\mathrm{lo}})$; when $u_0\le q$, as under interiority,
@@ -794,7 +794,7 @@ so that each case of the family is stated on the same structure:
 &\text{(entrenchment condition)}& c&\le\beta_Td_{\mathrm{lo}}g_T .
 \end{align*}
 As on the class of panel~A0, interiority and the myopic relief condition are
-hypotheses rather than fields since round BJ (the predicates
+hypotheses rather than fields (the predicates
 \path{PlacableEconomyF.Interior} and \path{PlacableEconomyF.StageRelief},
 hypotheses \path{hInt} and \path{hSR}); the family keeps only the sign of the
 second, $n<c$, which that condition implies (\path{hcn_of_stageRelief}). A result
@@ -829,10 +829,10 @@ structure, not fields (\path{PlacableEconomyF.derived_fields}, from
 \path{sanctionChord_rates_le}, \path{MixedChordBound.nonneg},
 \path{plSigV_nonneg_of_closure}, and for $q>0$ the concavity condition,
 \path{PlacableEconomyF.hq}, in place of interiority, \path{plq_pos_of_interior},
-since round BJ); the signs $k>0$, $v>0$ and $n<c$, which the lifting condition, the entrenchment
+since); the signs $k>0$, $v>0$ and $n<c$, which the lifting condition, the entrenchment
 condition and the myopic relief condition used to imply, are fields since those became
-hypotheses; a member supplies the remaining conditions only. The one-period ranking $\ell q<u_0(c-n)$ --- the endpoint comparison under which
-full compliance beats full non-compliance in the one-period problem --- is not a field: it
+hypotheses; a member supplies the remaining conditions only. The one-period ranking $\ell q<u_0(c-n)$, the endpoint comparison under which
+full compliance beats full non-compliance in the one-period problem, is not a field: it
 implies the myopic relief condition through the lifting condition ($u_0\le k$), and it is a
 hypothesis of the clause of \Cref{prop:placable-family} that the forward-looking
 incentives change behavior
@@ -887,8 +887,8 @@ $\beta_S\sigma_Cg_{\mathrm{hi}}d_{\mathrm{hi}}=9/278=r$ strictly positive
 mixed term is zero there. The condition restricts the supplied moduli,
 not the game: \path{placableQuadDiag} re-certified with the state-section
 modulus $M_{\mathrm{cx}}=4$ violates (RM), its left side $270/287$ exceeding
-$r=1/2$, while its response at non-compliance --- the same function as at the modulus
-$0$ --- is monotone (\path{exists_member_response_monotone_not_margin}), so the
+$r=1/2$, while its response at non-compliance, the same function as at the modulus
+$0$, is monotone (\path{exists_member_response_monotone_not_margin}), so the
 non-decreasing response is strictly weaker than (RM) for the supplied moduli.
 No economy that fails (RM) under every choice of moduli is exhibited, and no
 member of the enriched subclass that fails (RM) is exhibited for the forms of
@@ -907,8 +907,8 @@ implies it (\path{reliefSharp_of_relief}) and under which the machine-checked
 headline rows are still stated; at the two example economies of the subclass (RL) reads
 $3<12$ and $45/14<12$, on the whole affine coefficient box of
 \Cref{app:witness:openbox} it holds with $M_{\mathrm{tot}}=q$, and wherever
-$u_0M_{\mathrm{tot}}\le kq$ --- in particular wherever $M_{\mathrm{tot}}=q$,
-by the lifting condition --- it follows from the one-period ranking (a hypothesis) alone, through the identity
+$u_0M_{\mathrm{tot}}\le kq$ (in particular wherever $M_{\mathrm{tot}}=q$,
+by the lifting condition), it follows from the one-period ranking (a hypothesis) alone, through the identity
 $q\,(k(c-n)-\ell M_{\mathrm{tot}})=(kq-u_0M_{\mathrm{tot}})(c-n)+M_{\mathrm{tot}}(u_0(c-n)-\ell q)$
 (\path{reliefSharp_of_scaled_Mtot_le}, \path{reliefSharp_of_Mtot_eq_q}).
 The condition $u_0M_{\mathrm{tot}}\le kq$ is the largest on the other
@@ -926,8 +926,8 @@ $u_0M_{\mathrm{tot}}=2131/350\le9=kq$ while $M_{\mathrm{tot}}>q$, so the
 larger discharger applies and the $M_{\mathrm{tot}}=q$ one does not
 (\path{placableSharpRelief_relief_disch}).
 
-The four restrictions that mention the cross term $n$ --- its sign, the
-one-period ranking, the entrenchment condition and (RL) --- hold together exactly when
+The four restrictions that mention the cross term $n$, namely its sign, the
+one-period ranking, the entrenchment condition and (RL), hold together exactly when
 $\max\{0,n_{\min}\}\le n<\min\{c-\ell q/u_0,\,c-\ell M_{\mathrm{tot}}/k\}$
 with $n_{\min}=(c(1-\beta_Tg_{\mathrm{lo}})/(\beta_Td_{\mathrm{lo}})-v)\,q/u_0$
 (\path{rally_softening_interval_iff}; with the family's own condition, the
@@ -950,7 +950,7 @@ relief level a unit of it purchases $k/q$ units of sanction reduction worth at l
 $c-n$ each, more than its cost $\ell$; the one-period ranking $\ell q<u_0(c-n)$ is the
 endpoint form of the same comparison, full compliance against full non-compliance. The entrenchment condition says the
 target's per-unit sanction pain is covered by the discounted value of the
-entrenchment that sanction builds, at the target's lower value slope --- the
+entrenchment that sanction builds, at the target's lower value slope: the
 direct valuation $v$ plus the cross term $n$ at $u_0/q$, the lower bound below which
 the sanction never falls when $u_0\le q$, as under interiority; this is
 a substantive statement about a government that values political
@@ -1040,9 +1040,9 @@ taken pointwise in $x$; and the semiconcavity of the image is the Schur
 modulus $\sigma_{\mathrm{img}}=\sigma+\varrho^2/\mu$ of a supremum over $s$
 of a function that is jointly semiconcave with moduli $(\sigma,\varrho,\mu)$ in
 $(x,s)$, which requires the concavity condition $\mu>0$ in the same clause (the
-modulus is undefined without it) --- the stage term contributes $(0,r,q)$, the continuation
+modulus is undefined without it). In this modulus the stage term contributes $(0,r,q)$, the continuation
 contributes $\beta_S$ times the composition moduli obtained from (T3) and
-the invariant set's $\sigma_V$ --- and the closure inequality makes it at most
+the invariant set's $\sigma_V$, and the closure inequality makes it at most
 $\sigma_V$. The operator is a $\beta_S$-contraction in the sup norm, so it
 has a unique fixed point $\Vs^\ast\in\mathcal C_S$ (Banach). Because $\mu>0$,
 the objective $s\mapsto\Us(x,a,s)+\beta_S\Vs^\ast(\F(x,s))$ is $\mu$-strongly
@@ -1290,7 +1290,7 @@ by Step 1. The target's equation holds because $\beta_T=0$ and
 $\tau_x(a^{01}(x))=-\ell a^{01}(x)+v\,x$ is the maximum by Step 5, which is also the
 selector-consistency condition. The tuple is an equilibrium of the sender-only case
 (\path{senderOnlyEquilibriumTop}); the equilibrium is not assumed anywhere in
-Steps 1--6, which is what Rule 1 requires of it.
+Steps 1--6.
 
 \emph{Step 8 (convergence to zero).} The realized sanction is $\rho(x,a^{01}(x))=0$
 (\path{senderOnlyRule_eq_zero}), so $x_{t+1}=\F(x_t,0)$. The lower bound on the
@@ -1673,17 +1673,17 @@ fails outside it: at the economy of \Cref{app:formalization} in which that
 condition fails and non-compliance is nonetheless the unique optimum, a one-period
 temporary suspension of sanctions is worth exactly $\tfrac1{18}$ more to the target than
 the equilibrium, at every state
-(\path{lossOffset_relief_period_benefits_target}) --- compliance is costly, but
+(\path{lossOffset_relief_period_benefits_target}): compliance is costly, but
 relief that is simply imposed requires none.
 
 \subsection{The bracket in the target's discount factor, and uniqueness in the monotone class}
 \label{app:proofs:threshold}
 
-Round AP made the lifting condition and the entrenchment condition hypotheses of the
-propositions that read them; on one structure both the relief and the non-compliance
-equilibria of the forward-looking target can then be stated. The affine family of
-earlier versions without state--sanction cross terms (an exact threshold $D/(\delta v+(1-\delta)D)$ in the
-target's discount factor) is retired: its content is the instance of the following
+The lifting condition and the entrenchment condition are hypotheses of the
+propositions that read them, so on one structure both the relief and the non-compliance
+equilibria of the forward-looking target can be stated. The affine family without
+state--sanction cross terms (an exact threshold $D/(\delta v+(1-\delta)D)$ in the
+target's discount factor) is the instance of the following
 proposition in which the general intermediate range closes to a point.
 
 Write, on an economy in the class with semiconvexity in the sanction (T6), $\mu$
@@ -1753,14 +1753,14 @@ $g_T$ depends on the sender only through $\mu$, the upper substitution rate
 $k_{\mathrm{hi}}$ and $\underline s$, and the relief side only through
 $M_{\mathrm{tot}}$, the lower substitution rate $k_{\mathrm{lo}}$ and
 $K_T^{\mathrm{rel}}$; both are equalities of the conditions with those constants
-held fixed. Under fourteen tightness conditions --- tight slope bounds
+held fixed. Consider fourteen tightness conditions: tight slope bounds
 ($g_{\mathrm{lo}}=g_{\mathrm{hi}}$, $d_{\mathrm{lo}}=d_{\mathrm{hi}}=\delta$), zero
 moduli ($\sigma_V=M_s=\tau_x=M_{\mathrm{cx}}=M_{\mathrm{cs}}=M_{\mathrm{mix}}=0$),
 a zero upper envelope slope ($n_{\mathrm{hi}}=0$; then
 $r_{\mathrm{hi}}=n_{\mathrm{lo}}=0$ follow) and the tight pairs
 $\bar Q=q$, $k_{\mathrm{lo}}=k_{\mathrm{hi}}=k$,
 $\ell_{\mathrm{lo}}=\ell_{\mathrm{hi}}=\ell$, $p_{\mathrm{lo}}=c$,
-$v_{\mathrm{lo}}=v_{\mathrm{hi}}=v$ --- the tight slope bounds pin $\F$ to the affine law
+$v_{\mathrm{lo}}=v_{\mathrm{hi}}=v$. Under them, the tight slope bounds pin $\F$ to the affine law
 $\F(x,s)=(1-\delta)x+\delta s$ on the square (either tight pair alone does, with
 the fixed diagonal), $\mu=M_{\mathrm{tot}}=q$ and
 $K_T^{\mathrm{rel}}=K_T=g_T$, $L_{\mathrm{resp}}=0$ so that the value is shown in (i) to carry $g_T$,
@@ -2132,9 +2132,9 @@ comparison is not vacuous.
 The argument reads only the lower bound $g_{\mathrm{lo}}$ on the state slope of the
 transition's zero-sanction section, the lower bound $d_{\mathrm{lo}}$ on its sanction slope
 from zero, three target bounds
---- a state rate $v_{\mathrm{lo}}\ge0$ at full non-compliance and zero sanction, pain at
-most $c$ per unit at full non-compliance, and compliance that does not pay against a
-zero sanction (used only for the attainment in (i) and (ii)) --- and the
+(a state rate $v_{\mathrm{lo}}\ge0$ at full non-compliance and zero sanction; pain at
+most $c$ per unit at full non-compliance; and compliance that does not pay against a
+zero sanction, used only for the attainment in (i) and (ii)), and the
 strong entrenchment condition; it reads nothing of the sender's objective, so it holds over any
 economy with these properties (\path{Theory/Equilibrium/SecurityCore.lean}),
 and the class satisfies them. Let $r_0=x_0$, $r_{t+1}=\F(r_t,0)$ and

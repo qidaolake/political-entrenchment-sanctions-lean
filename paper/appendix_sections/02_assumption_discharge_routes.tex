@@ -4,8 +4,7 @@
 \subsection{Stage complementarity and the derived tipping thresholds}
 \label{sec:flip}
 
-\emph{This subsection stood in \Cref{sec:assumptions} of the main text until
-2026-09-21 and is reproduced verbatim apart from terminology. No result on the class under the lifting condition of
+\emph{No result on the class under the lifting condition of
 \Cref{sec:four-regimes} uses it; \Cref{prop:flip-route} below is what consumes it.}
 
 As the political state hardens, both players' marginal payoffs from
@@ -177,7 +176,7 @@ needed only for the pivot interiority of \Cref{prop:tipping}, not here),
 \Cref{ass:sender} on the derived basin, row-sum contraction of the joint
 Bellman operator on a pair of invariant sets of value functions, $\beta_T+L_{TS}<1$ and
 $\beta_S+L_{ST}<1$ (stronger than the Schur condition of \Cref{sec:existence}),
-and additionally:
+and also:
 \begin{enumerate}[label=(\roman*)]
 \item \emph{(above-floor diagonal)} at every state $x\ge\bar x_S$ and every
 value pair in the invariant sets, the sender stage slope at the induced target policy clears the
@@ -200,9 +199,8 @@ operator's row bound and its policy in the invariant sets, and its flip set only
 the location $\bar x_T$ of the basin's lower end.
 \end{proposition}
 
-Until 2026-10-07 the route was stated for the affine law and also took the
-target half of \Cref{ass:flip}, the target's top sign, monotone target
-values in the invariant set and \Cref{ass:concavity}; the three goals read none of these. With the target half,
+The three goals read neither the target half of \Cref{ass:flip}, nor the target's
+top sign, nor monotone target values in the invariant set, nor \Cref{ass:concavity}. With the target half,
 the target's top sign and monotone target values in the invariant set, the target combined
 slope condition of \Cref{ass:target} is still a derived result: the stage slope is
 non-negative above the target pivot and the continuation slope is
@@ -300,9 +298,9 @@ functions standard dynamic programming delivers
 route discharges the single crossing for the genuinely \emph{non-monotone}
 equilibrium value, using only Lipschitz regularity. Suppose the sender
 stage payoff has a strictly positive lower slope $m_S>0$ in $s$ on the
-\emph{full} choice axis $[0,1]$ at the equilibrium compliance --- the
+\emph{full} choice axis $[0,1]$ at the equilibrium compliance (the
 \emph{positive-stage-slope} setting, in which the marginal sanction benefit stays
-positive across $[0,1]$ --- and that the transition-adjusted slope condition
+positive across $[0,1]$), and that the transition-adjusted slope condition
 \eqref{eq:GF-chord} holds, with $K_S$ the Lipschitz constant of the invariant set.
 Then the dynamic objective is strictly increasing in $s$ on $[0,1]$: the
 stage rise strictly exceeds the worst-case continuation fall
@@ -310,18 +308,18 @@ $\beta_S K_S|\F(x,s_2)-\F(x,s_1)|$, an inequality that uses
 \emph{only} that $\Vs$ is $K_S$-Lipschitz, never that it is monotone or
 convex. Under the affine law, the lower slope $m_S$ and
 $\beta_S K_S\delta<m_S$ are a sufficient specialization. Strict
-monotonicity in $s$ is the corner property --- the sender plays the
-high-sanction boundary --- and it implies the single-crossing clause of
+monotonicity in $s$ is the corner property (the sender plays the
+high-sanction boundary), and it implies the single-crossing clause of
 \Cref{ass:sender} a fortiori.
 
-Crucially, this is a property the \emph{constructed} equilibrium
+This is a property the \emph{constructed} equilibrium
 \emph{has}, not one imposed on it. The invariant set is the closed
 $K_S$-Lipschitz ball; the Bellman operator maps it into itself and the
 ball is closed in sup-norm, so the contraction's fixed point inherits
 $K_S$-Lipschitzness by construction
 \citep[Cor.~1 to Thm~3.2]{StokeyLucas1989}. Single crossing is therefore
-\emph{derived} from the positive-stage-slope condition and \eqref{eq:GF-chord} ---
-both stated over the model's existing primitives --- and the certificate's
+\emph{derived} from the positive-stage-slope condition and \eqref{eq:GF-chord},
+both stated over the model's existing primitives, and the certificate's
 interval-dominance field (\Cref{rem:ido}) is filled by this derivation
 (the derived single crossing upcasts for free) rather than supplied as
 a separate hypothesis, so every high-basin result consuming the
@@ -331,9 +329,9 @@ produces.
 
 The route's scope limit travels with it. It is confined to the
 positive-stage-slope setting; in the complementary
-setting --- where the sender's stage payoff \emph{falls} in $s$ and
+setting (where the sender's stage payoff \emph{falls} in $s$ and
 only the forward-looking continuation gain carries the high-sanction
-corner --- the two-sided $\pm K_S$ bound is too coarse to capture that
+corner), the two-sided $\pm K_S$ bound is too coarse to capture that
 gain at a non-monotone $\Vs$, so in that setting the
 interval-dominance field of \Cref{rem:ido} remains assumption-backed
 rather than derived (\Cref{sec:flip}). The derivation above should not
@@ -357,9 +355,9 @@ worst-case Lipschitz absorption of the continuation, so the increment
 of $J_S$ in $s$ is bounded below by $\mathrm{gap}\cdot(s_2-s_1)>0$;
 hence single-crossing is satisfied with the constant-sign upper
 witness). The cardinal form is thus available to users with explicit
-numerical bounds, and it is not merely an optional convenience: the
-\emph{level} conclusion of \Cref{lem:single-crossing} --- that no
-sender maximizer lies below $\max(x,\bar x)$ --- is proved from this
+numerical bounds, and it is more than an optional convenience: the
+\emph{level} conclusion of \Cref{lem:single-crossing}, that no
+sender maximizer lies below $\max(x,\bar x)$, is proved from this
 same strict difference-quotient inequality imposed on the \emph{complementary}
 range $[0,\max(x,\bar x)]$ (equivalently, from the margin on the whole
 of $[0,1]$), which bounds the stage gain against the worst-case

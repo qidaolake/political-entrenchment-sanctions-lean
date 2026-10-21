@@ -1,0 +1,26 @@
+% @econ-contract section
+% id: AI_DECLARATION
+% role: Carry the generative-AI statement that the JET Guide for Authors requires as its own section, last before the references.
+% question_answered: Which AI tools were used in preparing the manuscript, for what, and who takes responsibility?
+% required_inputs: Author records.
+% output_handoff: None.
+% claim_ceiling: Declaration only; no scientific claim.
+% exclusions: Any scientific claim.
+% support_status: NOT_APPLICABLE
+% status: HUMAN_CONFIRMED
+% human_confirmed_at: 2026-10-16
+% decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#section-4-promoted-in-general-form-2026-10-16
+% confirmation_scope: The statement's content (the authors confirmed it as it stands, item 2 of that entry); its placement as a section of its own follows the journal's Guide for Authors (2026-10-21) and is for the authors to check.
+% reopen_if: The journal's AI policy or the authors' use of AI tools changes.
+% amended_at: 2026-10-21 (moved out of the Declarations into its own section with the Guide's title and template sentences; the content is the author-confirmed statement of 2026-10-16; decision_ref: suggestions/2026-10-10-jet-submission/DECISIONS.md#jet-submission-package-2026-10-21)
+% @end-econ-contract
+\section*{Declaration of generative AI and AI-assisted technologies in the manuscript
+preparation process}
+During the preparation of this work the authors used Claude (Anthropic) and Codex
+(OpenAI) in order to assist the Lean~4 proof development and the drafting and editing of
+the manuscript. Each core result is independently verified by the Lean~4 kernel, passing a
+\texttt{\#print axioms} check that depends only on \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}; no core result relies on the
+assistants' unverified output. After using these tools, the authors reviewed and edited
+the content as needed and take full responsibility for the content of the published
+article.

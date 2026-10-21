@@ -91,7 +91,7 @@ form with no bound on the curvature of their transitions
 
 \Cref{thm:existence} uses a model-specific Schur-condition
 row-Lipschitz route, with the invariant set of state-Lipschitz value functions
-motivated by \citet{Curtat1996}. The literature offers several parallel sufficiency routes --- Tarski
+motivated by \citet{Curtat1996}. The literature offers several parallel sufficiency routes: Tarski
 monotone iteration on a lattice of value pairs
 \citep{BalbusReffettWozny2014JET,Vives1990}, Schauder on a sup-norm-compact
 Lipschitz ball \citep{RaadWozny2019}, measurable selection on a decomposable
@@ -112,7 +112,7 @@ counter\-examples where existence fails in the general case. The
 restricted assumption set
 $\{$\Cref{ass:sender},\Cref{ass:target},\Cref{ass:concavity}$\}$
 describes structural inputs; the Schur-condition construction of
-\Cref{thm:existence} additionally requires the value-set, selector, invariance
+\Cref{thm:existence} also requires the value-set, selector, invariance
 and row-bound hypotheses stated there, and the construction of
 \Cref{prop:placable-family} discharges its own conditions from its fields.
 Neither makes the three assumptions alone a sufficient condition for
@@ -121,7 +121,7 @@ existence.
 \begin{remark}[Why the mixed-monotone order fails, and where]
 \label{rem:twisted-order}
 The lattice route is usually attempted twice: first under the pointwise product
-order on value pairs, and then --- when that fails --- under the \emph{twisted}
+order on value pairs, and then, when that fails, under the \emph{twisted}
 order that reverses one coordinate,
 \[
   (V_T,V_S)\preceq_{\mathrm{tw}}(\tilde V_T,\tilde V_S)
@@ -165,7 +165,7 @@ is not addressed. It closes a proof \emph{route}; existence is delivered by
 the contraction argument of \Cref{thm:existence} and is untouched. And the
 refutation is empty when
 $\beta_S=0$, where the sender is myopic, its response does not depend on its own
-continuation, and the target operator is constant in $V_S$ --- so the obstruction
+continuation, and the target operator is constant in $V_S$, so the obstruction
 is a genuine consequence of two-sided forward-looking behavior rather than of
 the sequential timing.
 \end{remark}
@@ -182,9 +182,9 @@ entries of $\mathbf M$ as coefficients, and the Perov $2\times2$ fixed point
 (\citealp{Toda2021}; the weighted-max-norm reduction of
 \citealp[\S2]{BertsekasTsitsiklis1996}) yields the value pair from which the
 optimal target policy and the greatest sender response are read off. Three
-levels of the same route are kept apart in the formalization --- the
+levels of the same route are kept apart in the formalization (the
 conditions at a supplied equilibrium, at the constructed fixed point, and
-over the whole invariant set --- and the strongest is the checkable \emph{ex ante}
+over the whole invariant set), and the strongest is the checkable \emph{ex ante}
 certificate (\path{Sanctions/Theory/Equilibrium/PerovExistence.lean},
 \path{Sanctions/Theory/Certificates/TwoSidedRuleComparison.lean};
 \Cref{app:formalization}). The fixed point is locally isolated inside its
@@ -218,15 +218,15 @@ H\"older-$\tfrac12$ obstruction is bypassed because the shock enters only
 through the nonexpansive continuation, so the contraction modulus is
 unchanged at $\beta_S<1$, and the sender value is \emph{constructed} by the
 Banach engine rather than postulated.
-This is a Banach --- rather than Fan--Glicksberg --- existence route under
-the shock. Moreover, $\mathrm{smear}$ is not left abstract: the He--Sun shock is
+This is a Banach, rather than Fan--Glicksberg, existence route under
+the shock. Nor is $\mathrm{smear}$ left abstract: the He--Sun shock is
 carried as a concrete \emph{atomless probability kernel} $\kappa$ on the
 transition (the He--Sun idiosyncratic component), with
 $(\mathrm{smear}\,V)(y)=\int V(\mathrm{clip}(y+\eta))\,\kappa(\mathrm d\eta)$,
 and its nonexpansiveness is \emph{derived} from $\int\kappa=1$ rather than
-assumed --- so the shocked corner equilibrium holds from a genuine kernel
-primitive. The shocked equilibrium is an equilibrium of the \emph{shocked} game --- its
-Bellman equations carry $\mathrm{smear}$ --- a sibling object to the
+assumed, so the shocked corner equilibrium holds from a genuine kernel
+primitive. The shocked equilibrium is an equilibrium of the \emph{shocked} game (its
+Bellman equations carry $\mathrm{smear}$), a sibling object to the
 deterministic \Cref{thm:corner-existence}, and it too now holds: the
 shocked equilibrium structure, both shocked Bellman fixed-point equations
 (sender and target), and a non-vacuous shocked \emph{corner} instance are
@@ -264,7 +264,7 @@ hypothesis.
 The \emph{mechanism} of that upgrade is itself now
 established: a general lemma shows that for a $c$-strongly-concave objective
 whose two-maximizer difference is action-Lipschitz with constant $L$, the
-maximizers satisfy $c\,|a_f-a_g|\le 2L$ --- a Lipschitz (not Hölder-$\tfrac12$)
+maximizers satisfy $c\,|a_f-a_g|\le 2L$: a Lipschitz (not Hölder-$\tfrac12$)
 argmax bound. The
 deterministic obstruction bounds the same difference by its \emph{sup}
 ($\to\sqrt{}$, Hölder-$\tfrac12$); the smear-smoothed continuation makes it
@@ -281,16 +281,16 @@ shock's $\sigma$- and $\Vt^{\mathrm{dyn}}$-Lipschitz bounds control
 the \emph{magnitude} of that estimate, but its variation \emph{in the leader's
 own action} is not supplied by the shock: because the sender response
 $\sigma(x,a)$ enters the leader objective and depends on $a$, this
-action-Lipschitz estimate --- the Stackelberg coupling, isolated as the
-hypothesis $\mathrm{h\_obj\_diff}$ --- is \emph{consumed}, not derived. A
+action-Lipschitz estimate (the Stackelberg coupling, isolated as the
+hypothesis $\mathrm{h\_obj\_diff}$) is \emph{consumed}, not derived. A
 reference sweep confirms this is not an artifact of our particular kernel:
 smoothing the continuation regularizes the \emph{state} direction only (a
 uniform-Lipschitz-in-action integrand need not be jointly Lipschitz;
-\citealp{Hinderer2005}) --- concretely, the moving-average smear is only $C^1$
+\citealp{Hinderer2005}). Concretely, the moving-average smear is only $C^1$
 (its second derivative would require a $C^1$ continuation, which value functions
 are not), so the action-direction cross-derivative an implicit-function / envelope
 derivation \citep[the Lipschitz-policy route of][]{Montrucchio1987} would need
-does not exist --- and the feedback-Stackelberg constructions we hold do not
+does not exist. The feedback-Stackelberg constructions we hold do not
 derive the analogous leader-side regularity from primitives either; where
 they need it, it is imposed. So
 $\mathrm{lead\_lip}$ is the argmax-core applied to one consumed coupling
@@ -306,7 +306,7 @@ conditions plus the coupling estimate and the direct contraction condition
 a fixed numerical curvature.  In the state-local full-width specialization,
 follower continuity is proved and the remaining surface contracts to composite
 leader strong concavity, the coupling estimate, and this same symbolic condition.
-The kernel side is moreover now inhabited by a \emph{concrete}
+The kernel side is now also inhabited by a \emph{concrete}
 uniform-kernel parameter, and the smear's state-Lipschitz constant is the closed
 form $\|V\|/h$ rather than a named primitive. This does not discharge, or prove
 joint satisfiability of, the general three-condition analytic package. The
@@ -429,8 +429,8 @@ the diagonal throughout an interval, each iterate steps downward because of the
 sign, not because $G$ preserves order; the orbit is then decreasing and bounded,
 its limit is a fixed point by continuity, and the strict sign forces that limit to
 the endpoint. This is what allows the proposition to be applied across a region
-where the sanction rule is known to be continuous but is not known to be monotone
---- which is the situation between two certified basins.
+where the sanction rule is known to be continuous but is not known to be monotone,
+which is the situation between two certified basins.
 
 \subsection{General closed-loop invariant laws and the affine specialization}
 
@@ -511,7 +511,7 @@ equilibrium-induced drift is continuous.  Existence then holds with no
 slope restriction.  What does not follow automatically is uniqueness:
 that conclusion requires the displayed contraction bound.  At the
 affine example economies with a positive stage slope the closed-loop factor is exactly
-$(1-\delta)+\delta\cdot\tfrac98=1+\delta/8>1$ --- the slope $\tfrac98$ of the
+$(1-\delta)+\delta\cdot\tfrac98=1+\delta/8>1$: the slope $\tfrac98$ of the
 sanction rule exceeds one precisely because the state--sanction cross-partial
 dominates the sender's concavity, the same
 $\tfrac{27}{20}$-vs-$\tfrac65$ frontier that closes the
